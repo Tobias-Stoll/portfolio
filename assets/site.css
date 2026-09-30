@@ -1,0 +1,188 @@
+/**
+ * Portfolio layout, built only from the Design System tokens.
+ * Tokens, text styles and Button come from the Design System via CDN.
+ * New pieces here (header, case study layout, figure, facts, steps, stat, footer)
+ * are candidates to move into Figma and the Design System later.
+ */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-bg-default);
+  color: var(--color-fg-default);
+  font-family: var(--font-family-sans);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--button-ghost-fg); }
+a.btn { text-decoration: none; }
+a:focus-visible, [tabindex]:focus-visible {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: var(--space-4);
+  border-radius: var(--radius-indicator);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .9em;
+  background: var(--color-bg-muted);
+  padding: 1px var(--space-4);
+  border-radius: var(--radius-indicator);
+}
+
+/* Skip link */
+.skip-link { position: absolute; left: var(--space-16); top: var(--space-16); z-index: 20; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--color-bg-default);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+.site-header__inner {
+  max-width: 1120px; margin: 0 auto;
+  padding: var(--space-12) var(--space-24);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-16);
+}
+.site-header__brand { color: var(--color-fg-default); text-decoration: none; }
+.site-header__nav { display: flex; gap: var(--space-8); }
+
+/* ---------- Layout ---------- */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-24); }
+.prose { max-width: 720px; }
+main:focus { outline: none; }
+
+/* ---------- Case study hero ---------- */
+.cs-hero {
+  padding: var(--space-64) 0 var(--space-48);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: var(--space-48); align-items: start;
+}
+.cs-hero__eyebrow { margin: 0 0 var(--space-12); color: var(--color-fg-muted); }
+.cs-hero h1 { margin: 0; }
+.cs-hero__lead { margin: var(--space-16) 0 0; color: var(--color-fg-muted); max-width: 56ch; }
+.cs-hero__links { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); margin-top: var(--space-32); }
+.cs-hero__links .btn { text-decoration: none; }
+
+/* Facts = the Sign-up Card surface */
+.facts {
+  margin: 0;
+  display: grid; gap: var(--space-16);
+  padding: var(--space-inset-lg);
+  background: var(--color-bg-subtle);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-container);
+}
+.facts div { display: grid; gap: var(--space-4); }
+.facts dt { color: var(--color-fg-muted); }
+.facts dd { margin: 0; }
+
+/* ---------- Sections ---------- */
+.cs-section { padding: var(--space-48) 0; border-top: var(--border-width-default) solid var(--color-border-default); }
+.cs-section h2 { margin: 0 0 var(--space-16); }
+.cs-section h3 { margin: var(--space-40) 0 var(--space-12); }
+.cs-section p { margin: 0 0 var(--space-16); }
+.cs-section ul, .cs-section ol { margin: 0 0 var(--space-16); padding-left: var(--space-24); }
+.cs-section li { margin-bottom: var(--space-8); }
+.cs-section li::marker { color: var(--color-fg-subtle); }
+.cs-kicker { color: var(--button-ghost-fg); margin: 0 0 var(--space-8); }
+.muted { color: var(--color-fg-muted); }
+
+/* Quote-like principle */
+.principle {
+  margin: var(--space-24) 0;
+  padding: var(--space-16) var(--space-24);
+  border-left: var(--border-width-focus) solid var(--color-action-primary-bg-default);
+  background: var(--color-action-ghost-bg-hover);
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+}
+.principle p { margin: 0; }
+
+/* ---------- Figures ---------- */
+.figure { margin: var(--space-32) 0; }
+.figure img, .figure .diagram {
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-container);
+  background: var(--color-bg-subtle);
+}
+/* Screenshots open full size: Figma panels have small text */
+.figure__link { display: block; border-radius: var(--radius-container); cursor: zoom-in; }
+.figure__link:hover img { border-color: var(--color-border-strong); }
+.figure figcaption { margin-top: var(--space-12); color: var(--color-fg-muted); max-width: 720px; }
+.figure figcaption b { color: var(--color-fg-default); font-weight: var(--font-weight-medium); }
+.figure--pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-16); }
+.figure--pair figcaption { grid-column: 1 / -1; margin-top: 0; }
+.figure--narrow { max-width: 820px; }
+
+/* Diagrams: inline SVG, colors from tokens */
+.diagram { padding: var(--space-24); overflow-x: auto; background: var(--color-bg-default) !important; }
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; font-family: var(--font-family-sans); }
+.dg-box { fill: var(--color-bg-default); stroke: var(--color-border-strong); stroke-width: 1.25; }
+.dg-box--source { fill: var(--color-action-ghost-bg-hover); stroke: var(--color-action-primary-bg-default); stroke-width: 2; }
+.dg-box--qa { fill: var(--color-bg-default); stroke: var(--color-action-secondary-bg-default); stroke-width: 2; }
+.dg-line { fill: none; stroke: var(--color-border-strong); stroke-width: 1.25; }
+.dg-line--qa { stroke: var(--color-action-secondary-bg-default); stroke-width: 1.5; }
+.dg-line--concept { stroke: var(--color-action-primary-bg-default); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.dg-head { fill: var(--color-border-strong); }
+.dg-head--qa { fill: var(--color-action-secondary-bg-default); }
+.dg-head--concept { fill: var(--color-action-primary-bg-default); }
+.dg-title { fill: var(--color-fg-default); font-size: 15px; font-weight: 500; }
+.dg-name { fill: var(--color-fg-default); font-size: 13px; font-weight: 500; }
+.dg-sub { fill: var(--color-fg-muted); font-size: 11.5px; }
+.dg-lane { fill: var(--color-fg-muted); font-size: 11.5px; font-weight: 500; }
+.dg-note { fill: var(--color-fg-muted); font-size: 11.5px; }
+.dg-note--qa { fill: var(--color-action-secondary-bg-default); font-weight: 500; }
+.dg-note--concept { fill: var(--color-action-primary-bg-default); font-weight: 500; }
+
+/* ---------- Table ---------- */
+.table-scroll { overflow-x: auto; margin: var(--space-24) 0; }
+table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
+.cs-table th { text-align: left; color: var(--color-fg-muted); font-weight: var(--font-weight-medium); padding: 0 var(--space-16) var(--space-8) 0; }
+.cs-table td { padding: var(--space-12) var(--space-16) var(--space-12) 0; border-top: var(--border-width-default) solid var(--color-border-default); vertical-align: top; }
+
+/* ---------- QA routine steps ---------- */
+.steps { list-style: none; padding: 0 !important; margin: var(--space-24) 0 !important; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-gap-md); counter-reset: step; }
+.steps li {
+  counter-increment: step; margin: 0 !important;
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-inset-md);
+  border-radius: var(--radius-control);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-top: var(--border-width-focus) solid var(--color-action-secondary-bg-default);
+}
+.steps li b { font-weight: var(--font-weight-medium); }
+.steps li b::before { content: counter(step) " · "; color: var(--color-action-secondary-bg-default); }
+.steps li span { color: var(--color-fg-muted); }
+
+/* ---------- Results ---------- */
+.stat { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--space-8) var(--space-16); margin: var(--space-16) 0 var(--space-24); }
+.stat__value { color: var(--color-action-primary-bg-default); }
+.stat__label { color: var(--color-fg-muted); max-width: 32ch; }
+.results { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-gap-md); }
+.results li {
+  margin: 0 !important; padding: var(--space-inset-md);
+  background: var(--color-bg-subtle); border-radius: var(--radius-control);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.results li b { font-weight: var(--font-weight-medium); }
+.results li span { color: var(--color-fg-muted); }
+
+/* ---------- Links list ---------- */
+.link-list { list-style: none; padding: 0 !important; display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); }
+.link-list li { margin: 0 !important; }
+.link-list .btn { text-decoration: none; }
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: var(--border-width-default) solid var(--color-border-default); margin-top: var(--space-48); }
+.site-footer__inner { max-width: 1120px; margin: 0 auto; padding: var(--space-32) var(--space-24); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-16); color: var(--color-fg-muted); }
+.site-footer p { margin: 0; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 880px) {
+  .cs-hero { grid-template-columns: minmax(0, 1fr); gap: var(--space-32); padding-top: var(--space-40); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .wrap, .site-header__inner, .site-footer__inner { padding-left: var(--space-16); padding-right: var(--space-16); }
+  .steps, .results, .figure--pair { grid-template-columns: minmax(0, 1fr); }
+  .site-header__nav .btn--ghost { display: none; }
+}

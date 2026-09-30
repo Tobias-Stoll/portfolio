@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design to Code: A Token Workflow · Tobias Stoll</title>
+  <meta name="description" content="Case study: a design system that stays in sync with code. Tokens from Figma Variables reach GitHub in one click, components are read from Figma via the Figma MCP.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Design System, pinned to one version (commit 15ba62f) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip-link btn btn--primary" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand text-heading-s" href="https://www.concept2design.de">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Case study links">
+      <a class="btn btn--ghost" href="https://github.com/Tobias-Stoll/DesignSystem">GitHub</a>
+      <a class="btn btn--primary" href="https://tobias-stoll.github.io/DesignSystem/">Live demo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <!-- Hero -->
+    <section class="cs-hero" aria-labelledby="title">
+      <div>
+        <p class="cs-hero__eyebrow text-label">Case study · Design systems</p>
+        <h1 id="title" class="text-display">Design to Code: A Token Workflow</h1>
+        <p class="cs-hero__lead text-body-l">
+          A design system that stays in sync with code by itself. Tokens are defined with Claude, live as Figma Variables,
+          and reach GitHub with one click. A build turns them into CSS, and components are read straight from Figma via the Figma MCP.
+        </p>
+        <div class="cs-hero__links">
+          <a class="btn btn--primary" href="https://tobias-stoll.github.io/DesignSystem/">Open the live demo</a>
+          <a class="btn btn--secondary" href="https://www.figma.com/design/NvYNqHYZlROxpwRCq7yy3p/Design-System?node-id=46-693">Figma file</a>
+          <a class="btn btn--ghost" href="https://github.com/Tobias-Stoll/DesignSystem">Repository</a>
+        </div>
+      </div>
+      <dl class="facts text-body-s">
+        <div><dt class="text-label">Role</dt><dd>UX/UI Designer, end to end: concept, token architecture, tooling and rollout</dd></div>
+        <div><dt class="text-label">Context</dt><dd>Concept and implementation to optimize a client's design system, built on Atomic Design</dd></div>
+        <div><dt class="text-label">Tools</dt><dd>Figma, Figma MCP, Claude, GitHub</dd></div>
+        <div><dt class="text-label">Scope at the client</dt><dd>250+ tokens, 12 text styles, 20+ atoms, 10+ molecules, organisms</dd></div>
+        <div><dt class="text-label">This rebuild</dt><dd>202 tokens, 9 text styles, 4 atoms, 1 molecule, 1 organism</dd></div>
+      </dl>
+    </section>
+
+    <!-- Problem -->
+    <section class="cs-section" aria-labelledby="problem">
+      <div class="prose">
+        <p class="cs-kicker text-label">01 · The problem</p>
+        <h2 id="problem" class="text-heading-l">Design and development drifted apart</h2>
+        <p class="text-body-m">The design system had grown too big to see what mattered.</p>
+        <ul class="text-body-m">
+          <li><b>Sync:</b> every change in Figma had to be carried into code by hand. That meant slow handoffs and many follow-up questions between design and development.</li>
+          <li><b>Bloat:</b> the library held far more components and styles than the product used. Nobody could say which ones were really needed.</li>
+        </ul>
+        <div class="principle">
+          <p class="text-body-l">How do you keep a design system in sync with development efficiently, and use that process to find out what the system really needs?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Role -->
+    <section class="cs-section" aria-labelledby="role">
+      <div class="prose">
+        <p class="cs-kicker text-label">02 · My role</p>
+        <h2 id="role" class="text-heading-l">From token structure to collaboration with development</h2>
+        <p class="text-body-m">I developed the process and introduced it for a client.</p>
+        <ul class="text-body-m">
+          <li><b>Figma is the source of truth.</b> Tokens and components are defined there, with Claude as a partner for structure and naming.</li>
+          <li><b>Development works from a ready repository.</b> Developers take the tokens and components from GitHub, run their QA, and the result flows back into Figma.</li>
+          <li><b>A defined set of tokens.</b> Every token has a place in a layer and a reason to exist.</li>
+        </ul>
+        <p class="text-body-m muted">This case study is my own rebuild of that workflow. The client used the Figma REST API; here I built a Figma plugin on the Plugin API instead, plus my own documentation site.</p>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="cs-section" aria-labelledby="approach">
+      <div class="prose">
+        <p class="cs-kicker text-label">03 · The approach</p>
+        <h2 id="approach" class="text-heading-l">One source of truth, two tracks, one QA routine</h2>
+        <div class="principle"><p class="text-body-l"><b>Where a standard exists, use it. Where none fits, build the gap.</b></p></div>
+        <ul class="text-body-m">
+          <li><b>Tokens, fully automated.</b> Claude helps structure the tokens, Figma holds them as Variables, my plugin commits them to GitHub, and a GitHub Action builds <code>tokens.css</code>.</li>
+          <li><b>Components, via the Figma MCP.</b> Claude reads a Figma component with its bound variables, flags binding errors for a design QA in Figma, then translates it into code that reuses existing components.</li>
+        </ul>
+      </div>
+
+      <figure class="figure">
+        <div class="diagram" role="img" aria-label="Two tracks from Figma to code. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, Design QA, Claude, HTML and CSS. Design QA loops back to Figma.">
+          <svg viewBox="0 48 760 260" aria-hidden="true">
+            <defs>
+              <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
+              <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--qa" d="M0 0L10 5L0 10z"/></marker>
+            </defs>
+            <text class="dg-lane" x="26" y="66">Tokens: fully automated</text>
+            <text class="dg-lane" x="26" y="186">Components: via the Figma MCP</text>
+
+            <g>
+              <path class="dg-line" d="M150 104H172" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M296 104H318" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M442 104H464" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M588 104H610" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M150 224H172" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M296 224H318" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M442 224H464" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M588 224H610" marker-end="url(#h1)"/>
+              <path class="dg-line" d="M672 130V198" marker-end="url(#h1)"/>
+            </g>
+            <path class="dg-line dg-line--qa" d="M380 250V278H88V250" marker-end="url(#h2)"/>
+
+            <rect class="dg-box" x="26" y="78" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="88" y="101" text-anchor="middle">Claude</text><text class="dg-sub" x="88" y="118" text-anchor="middle">structures tokens</text>
+            <rect class="dg-box dg-box--source" x="172" y="78" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="234" y="101" text-anchor="middle">Figma</text><text class="dg-sub" x="234" y="118" text-anchor="middle">Variables</text>
+            <rect class="dg-box" x="318" y="78" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="380" y="101" text-anchor="middle">Token Bridge</text><text class="dg-sub" x="380" y="118" text-anchor="middle">one commit</text>
+            <rect class="dg-box" x="464" y="78" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="526" y="101" text-anchor="middle">GitHub Action</text><text class="dg-sub" x="526" y="118" text-anchor="middle">Style Dictionary</text>
+            <rect class="dg-box" x="610" y="78" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="672" y="101" text-anchor="middle">tokens.css</text><text class="dg-sub" x="672" y="118" text-anchor="middle">via CDN</text>
+
+            <text class="dg-note" x="680" y="168">styles</text>
+
+            <rect class="dg-box dg-box--source" x="26" y="198" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="88" y="221" text-anchor="middle">Figma</text><text class="dg-sub" x="88" y="238" text-anchor="middle">component</text>
+            <rect class="dg-box" x="172" y="198" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="234" y="221" text-anchor="middle">Figma MCP</text><text class="dg-sub" x="234" y="238" text-anchor="middle">reads bindings</text>
+            <rect class="dg-box dg-box--qa" x="318" y="198" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="380" y="221" text-anchor="middle">Design QA</text><text class="dg-sub" x="380" y="238" text-anchor="middle">checks tokens</text>
+            <rect class="dg-box" x="464" y="198" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="526" y="221" text-anchor="middle">Claude</text><text class="dg-sub" x="526" y="238" text-anchor="middle">translates</text>
+            <rect class="dg-box" x="610" y="198" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="672" y="221" text-anchor="middle">HTML + CSS</text><text class="dg-sub" x="672" y="238" text-anchor="middle">reuses atoms</text>
+
+            <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">QA routine: errors are fixed in Figma, then read again</text>
+          </svg>
+        </div>
+        <figcaption class="text-body-s"><b>Figma is the source for both tracks.</b> Values flow automatically, structure is read on demand and checked before it becomes code.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3 class="text-heading-s">The QA routine</h3>
+        <p class="text-body-m"><b>Every component is checked against its tokens before it becomes code.</b> A screenshot shows how a component looks; the MCP shows what it is bound to.</p>
+      </div>
+      <ol class="steps text-body-s">
+        <li><b>Read</b><span>Claude reads the component via the Figma MCP, including every bound variable.</span></li>
+        <li><b>Compare</b><span>Foreign variables, mixed-up tokens and hard-coded values are flagged.</span></li>
+        <li><b>Fix in Figma</b><span>Errors are corrected at the source, never patched in code.</span></li>
+        <li><b>Read again</b><span>A second read confirms the component is clean, then it is translated into code.</span></li>
+      </ol>
+      <div class="prose">
+        <p class="text-body-m muted">The scope of this rebuild stays small on purpose: 4 atoms, 1 molecule and 1 organism, following Atomic Design. It is the same principle as at the client: build only what a real use case needs.</p>
+      </div>
+    </section>
+
+    <!-- Tokens -->
+    <section class="cs-section" aria-labelledby="tokens">
+      <div class="prose">
+        <p class="cs-kicker text-label">04 · Tokens in three layers</p>
+        <h2 id="tokens" class="text-heading-l">114 primitives, 53 semantic, 35 component tokens</h2>
+        <p class="text-body-m">Each layer is smaller than the one below, and each only points to the one beneath it. A change travels up without touching anything else.</p>
+        <div class="table-scroll">
+          <table class="cs-table text-body-s">
+            <thead><tr><th>Layer</th><th>Example</th><th>What a change affects</th></tr></thead>
+            <tbody>
+              <tr><td>Primitive</td><td><code>color/purple/600</code></td><td>Everything that uses this value</td></tr>
+              <tr><td>Semantic</td><td><code>color/action/primary/bg/default</code></td><td>Every primary action</td></tr>
+              <tr><td>Component</td><td><code>button/primary/bg/default</code></td><td>Only the button</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/primitives.png" title="Open full size"><img src="images/primitives.png" width="1752" height="1602" loading="lazy" alt="Figma Variables panel, collection Primitives: groups color, space, radius, border-width and font on the left, the purple scale from 50 to 900 on the right."></a>
+        <figcaption class="text-body-s"><b>Primitives are the raw material.</b> Eight hues with ten steps each, plus space, radius, border and type. Named by hue and step, never by purpose, so a brand color can change without renaming anything.</figcaption>
+      </figure>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/semantic-aliases.png" title="Open full size"><img src="images/semantic-aliases.png" width="1762" height="1458" loading="lazy" alt="Figma Variables panel, collection Semantic: color/action/primary/bg default, hover, pressed and disabled, each shown as an alias pill of a purple or neutral primitive."></a>
+        <figcaption class="text-body-s"><b>Semantic tokens name the purpose, not the value.</b> <code>color/action/primary/bg/default</code> points to <code>purple/600</code>. Change the alias once, every primary action follows.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p class="text-body-m">A few decisions that shaped the set:</p>
+        <ul class="text-body-m">
+          <li><b>Space is named by pixel value</b> (<code>space/16</code> = 16 px), so nobody has to translate.</li>
+          <li><b>Scopes per group:</b> a color variable only shows up where colors fit, which keeps the Figma pickers short.</li>
+          <li><b>Contrast first:</b> the secondary action uses <code>cyan/600</code> instead of <code>500</code> to meet WCAG AA.</li>
+        </ul>
+        <p class="text-body-m">Every token is listed on one page, with its Figma name, CSS variable, alias and value: <a href="https://tobias-stoll.github.io/DesignSystem/#tokens">browse all tokens</a>.</p>
+      </div>
+    </section>
+
+    <!-- Token Bridge -->
+    <section class="cs-section" aria-labelledby="bridge">
+      <div class="prose">
+        <p class="cs-kicker text-label">05 · From Figma to CSS in one click</p>
+        <h2 id="bridge" class="text-heading-l">Token Bridge, my Figma plugin</h2>
+        <p class="text-body-m">Token Bridge moves tokens both ways. Figma's Variables REST API needs an Enterprise plan, so the plugin uses the Plugin API, which runs on every plan.</p>
+        <ul class="text-body-m">
+          <li><b>Import:</b> token JSON from Claude becomes Figma Variables, each one an alias of the layer below. Missing references are reported, which doubles as a naming check.</li>
+          <li><b>Export:</b> all Variables and Text Styles go to GitHub as W3C design tokens, in one commit. No changes, no commit.</li>
+          <li><b>Access:</b> the GitHub token is stored only locally in Figma, never in the file or the repository.</li>
+        </ul>
+      </div>
+
+      <figure class="figure">
+        <a class="figure__link" href="images/token-bridge.png" title="Open full size"><img src="images/token-bridge.png" width="1898" height="1274" loading="lazy" alt="Token Bridge plugin windows. Import log: Semantic 0 new, 53 updated, 0 missing; Component 0 new, 35 updated, 0 missing; Text Styles 0 new, 9 updated. Export log: token counts and no changes since the last export."></a>
+        <figcaption class="text-body-s"><b>Import: 0 new, 0 missing,</b> so names match across design and code. <b>Export:</b> every collection and all 9 text styles. Nothing changed, so nothing is committed. (The plugin interface is in German.)</figcaption>
+      </figure>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/github-actions.png" title="Open full size"><img src="images/github-actions.png" width="1744" height="1488" loading="lazy" alt="GitHub Actions, workflow Build tokens: four successful runs, each named tokens: sync from Figma, taking 15 to 33 seconds."></a>
+        <figcaption class="text-body-s"><b>Every export builds itself.</b> Each "sync from Figma" commit triggers a GitHub Action. Style Dictionary turns the JSON into <code>tokens.css</code> and keeps the aliases as CSS variables. About 30 seconds per build.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Components -->
+    <section class="cs-section" aria-labelledby="components">
+      <div class="prose">
+        <p class="cs-kicker text-label">06 · Components read from Figma</p>
+        <h2 id="components" class="text-heading-l">The MCP sees bindings, not just pixels</h2>
+        <p class="text-body-m">Components are built in Figma with every value bound to a token. Claude then reads them through the Figma MCP, which returns not only how a component looks but what each layer is bound to.</p>
+      </div>
+
+      <figure class="figure">
+        <a class="figure__link" href="images/text-styles.png" title="Open full size"><img src="images/text-styles.png" width="2162" height="1406" loading="lazy" alt="Figma frame Typography: nine text styles from Display to Caption, each with typeface, size, line height and font size variable, and the text styles panel on the right."></a>
+        <figcaption class="text-body-s"><b>Nine text styles, two typefaces.</b> Oswald for headings, Roboto for text. Every style is bound to font variables, so a size change in the tokens updates Figma and code alike.</figcaption>
+      </figure>
+
+      <figure class="figure figure--pair">
+        <a class="figure__link" href="images/button-variants.png" title="Open full size"><img src="images/button-variants.png" width="1738" height="1354" loading="lazy" alt="Figma component set Button: Primary, Secondary and Ghost in five states each, 15 variants."></a>
+        <a class="figure__link" href="images/button-bindings.png" title="Open full size"><img src="images/button-bindings.png" width="1882" height="1292" loading="lazy" alt="Figma design panel for Button Primary Default: padding 16 and 8, gap 4 and corner radius 8 bound to variables, fill button/primary/bg/default, text button/primary/fg."></a>
+        <figcaption class="text-body-s"><b>Nothing is hard-coded.</b> 3 variants in 5 states. Fill, text color, padding, gap and radius are all bound to component tokens, and the code reads the same names: <code>--button-primary-bg-default</code>.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3 class="text-heading-s">Design QA with the MCP</h3>
+        <p class="text-body-m">The first MCP read of the Sign-up Card showed problems no screenshot would reveal:</p>
+        <ul class="text-body-m">
+          <li>Variables from a foreign library (Figma's Simple Design System) instead of my own</li>
+          <li>Mixed-up tokens: the card border bound to an input token, the input padding bound to a button token</li>
+          <li>Values typed in by hand instead of bound</li>
+        </ul>
+        <p class="text-body-m">I fixed them in Figma, and a second read came back clean. Checking all other components the same way found two more things: the checkbox code had followed an old spec and was aligned to Figma, and the disabled label and property names were made consistent in Figma.</p>
+        <p class="text-body-m">The MCP returns React and Tailwind as a reference. Claude translates it into this project's HTML and CSS and reuses what exists: the Sign-up Card is built from Form Field, Checkbox, Alert and Button, only the card layout is new.</p>
+      </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="cs-section" aria-labelledby="demo">
+      <div class="prose">
+        <p class="cs-kicker text-label">07 · The live demo</p>
+        <h2 id="demo" class="text-heading-l">My own lightweight Storybook</h2>
+        <p class="text-body-m">Every component page on the <a href="https://tobias-stoll.github.io/DesignSystem/">demo site</a> has a playground, all states, copy-ready code and a live token table.</p>
+      </div>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/figma-vs-code.png" title="Open full size"><img src="images/figma-vs-code.png" width="2048" height="2531" loading="lazy" alt="Left: the Sign-up Card component set exported from Figma with four states. Right: the same card built in code, in its default state."></a>
+        <figcaption class="text-body-s"><b>Figma on the left, code on the right.</b> Left: the component set exported from Figma, all four states. Right: the same card, live in code. On the demo site, submit it empty and it switches to the error state from Figma.</figcaption>
+      </figure>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/signup-card-states.png" title="Open full size"><img src="images/signup-card-states.png" width="2048" height="2244" loading="lazy" alt="The Sign-up Card in code in four states: default, field errors, a failed submit with a danger alert, and success."></a>
+        <figcaption class="text-body-s"><b>One organism, four states.</b> Default, field errors, a failed submit and success, all built from the same atoms and the Form Field molecule. Errors never rely on color alone, and the markup carries <code>aria-invalid</code>, <code>aria-describedby</code> and live regions.</figcaption>
+      </figure>
+
+      <figure class="figure figure--pair">
+        <a class="figure__link" href="images/token-table.png" title="Open full size"><img src="images/token-table.png" width="2048" height="2004" loading="lazy" alt="Token table on the Button page: each button token with its alias and resolved value."></a>
+        <a class="figure__link" href="images/code-handoff.png" title="Open full size"><img src="images/code-handoff.png" width="2048" height="1652" loading="lazy" alt="Code section on the Button page: stylesheet link and markup for Primary, Secondary, Ghost and Disabled, each with a Copy button."></a>
+        <figcaption class="text-body-s"><b>Documented by itself, handed off built in.</b> Each page reads its tokens live from <code>tokens.css</code>, so the docs can't drift from the code. Every page ends with copy-ready markup and a CDN link.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Results -->
+    <section class="cs-section" aria-labelledby="results">
+      <div class="prose">
+        <p class="cs-kicker text-label">08 · Results at the client</p>
+        <h2 id="results" class="text-heading-l">Faster, and a system people understand</h2>
+        <div class="stat">
+          <span class="stat__value text-display">40 to 50%</span>
+          <span class="stat__label text-body-m">more efficient design-to-development work, by my own estimate</span>
+        </div>
+      </div>
+      <ul class="results text-body-s">
+        <li><b>A shared language</b><span>Design and development use the same token names, from Figma to CSS.</span></li>
+        <li><b>Fewer follow-up questions</b><span>Developers start from a ready repository instead of a handoff file.</span></li>
+        <li><b>A defined set of tokens</b><span>The process showed which tokens and components were really needed, and the rest could go.</span></li>
+        <li><b>Ready for AI</b><span>A system this structured can be plugged into Claude directly, the next step I see.</span></li>
+      </ul>
+    </section>
+
+    <!-- Way back -->
+    <section class="cs-section" aria-labelledby="way-back">
+      <div class="prose">
+        <p class="cs-kicker text-label">09 · The way back</p>
+        <h2 id="way-back" class="text-heading-l">From code back to design</h2>
+        <p class="text-body-m">At the client, development took the ready repository, ran QA in code, and the result went back into Figma. In this rebuild that way back is a concept, not yet built.</p>
+      </div>
+      <figure class="figure">
+        <div class="diagram" role="img" aria-label="Figma, source of truth, leads to the GitHub repository with tokens and components, which leads to development with QA and refinement in code. A dashed arrow from development back to Figma marks the concept: changes from code update the Figma components.">
+          <svg viewBox="0 50 760 150" aria-hidden="true">
+            <defs>
+              <marker id="h3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
+              <marker id="h4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--concept" d="M0 0L10 5L0 10z"/></marker>
+            </defs>
+            <path class="dg-line" d="M214 96H290" marker-end="url(#h3)"/>
+            <path class="dg-line" d="M470 96H546" marker-end="url(#h3)"/>
+            <path class="dg-line dg-line--concept" d="M636 126V166H124V126" marker-end="url(#h4)"/>
+            <rect class="dg-box dg-box--source" x="34" y="66" width="180" height="60" rx="8"/>
+            <text class="dg-name" x="124" y="92" text-anchor="middle">Figma</text><text class="dg-sub" x="124" y="110" text-anchor="middle">source of truth</text>
+            <rect class="dg-box" x="290" y="66" width="180" height="60" rx="8"/>
+            <text class="dg-name" x="380" y="92" text-anchor="middle">GitHub repository</text><text class="dg-sub" x="380" y="110" text-anchor="middle">tokens and components</text>
+            <rect class="dg-box" x="546" y="66" width="180" height="60" rx="8"/>
+            <text class="dg-name" x="636" y="92" text-anchor="middle">Development</text><text class="dg-sub" x="636" y="110" text-anchor="middle">QA and refinement in code</text>
+            <text class="dg-note dg-note--concept" x="380" y="188" text-anchor="middle">concept: changes from code update the Figma components</text>
+          </svg>
+        </div>
+        <figcaption class="text-body-s"><b>The loop closes when code flows back into Figma.</b> The solid arrows exist today. The dashed one is the goal: when development refines a component, Figma follows, so design and code never drift apart.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Learnings -->
+    <section class="cs-section" aria-labelledby="learnings">
+      <div class="prose">
+        <p class="cs-kicker text-label">10 · Learnings</p>
+        <h2 id="learnings" class="text-heading-l">What I would keep, and what's next</h2>
+        <ul class="text-body-m">
+          <li><b>The import is a naming check.</b> Missing references pointed straight at naming mistakes in Figma.</li>
+          <li><b>Renaming has a cost.</b> Running the import again after renaming in Figma created duplicates. Names are a contract between design and code.</li>
+          <li><b>One export, one commit.</b> The first version created four commits per export; it now writes a single commit, and none when nothing changed.</li>
+          <li><b>The MCP sees bindings, not just pixels.</b> That turned design QA into a routine step instead of a visual guess.</li>
+          <li><b>Showing everything finds errors.</b> A page listing every token revealed a spacing value of 29 px under the name <code>space/20</code> and a duplicated radius token. Both were fixed in Figma and exported in minutes.</li>
+        </ul>
+        <p class="text-body-m"><b>What's next:</b> Code Connect, to show the snippets directly in Figma's Dev Mode, and theming through variable modes.</p>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="cs-section" aria-labelledby="links">
+      <div class="prose">
+        <h2 id="links" class="text-heading-l">See it yourself</h2>
+        <ul class="link-list">
+          <li><a class="btn btn--primary" href="https://tobias-stoll.github.io/DesignSystem/">Live demo</a></li>
+          <li><a class="btn btn--secondary" href="https://tobias-stoll.github.io/DesignSystem/#tokens">All tokens</a></li>
+          <li><a class="btn btn--ghost" href="https://www.figma.com/design/NvYNqHYZlROxpwRCq7yy3p/Design-System?node-id=46-693">Figma file (view only)</a></li>
+          <li><a class="btn btn--ghost" href="https://github.com/Tobias-Stoll/DesignSystem">Repository</a></li>
+          <li><a class="btn btn--ghost" href="https://github.com/Tobias-Stoll/DesignSystem/tree/main/token-bridge">Token Bridge plugin</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner text-body-s">
+    <p>© 2026 Tobias Stoll · Product Designer, Berlin</p>
+    <p>This page is built with the design system it describes.</p>
+  </div>
+</footer>
+</body>
+</html>
