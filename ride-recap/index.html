@@ -170,7 +170,7 @@
       </div>
 
       <figure class="figure figure--narrow">
-        <a class="figure__link" href="images/stat-component.png" title="Open full size"><img src="images/stat-component.png" width="1200" height="800" loading="lazy" alt="The Stat component in Figma: a large italic number above a small monospaced label, with the text properties Value and Label in the properties panel."></a>
+        <a class="figure__link" href="images/stat-component.png" title="Open full size"><img src="images/stat-component.png" width="1192" height="855" loading="lazy" alt="The Stat component in Figma: a large italic number above a small monospaced label, with the text properties Value and Label in the properties panel."></a>
         <figcaption class="text-body-s"><b>Edit numbers, not layers.</b> The two text properties turn the next ride into a two-minute job: type six values, done.</figcaption>
       </figure>
 
@@ -247,18 +247,17 @@
       </ol>
 
       <figure class="figure figure--pair figure--portrait">
-        <a class="figure__link" href="images/route.png" title="Open full size"><img src="images/route.png" width="600" height="1240" loading="lazy" alt="The route as a vector in Figma: a glowing orange line on a dim track, with a lime dot labeled Dresden at the bottom and Berlin at the top."></a>
+        <a class="figure__link" href="images/route.png" title="Open full size"><img class="on-dark" src="images/route.png" width="486" height="1546" loading="lazy" alt="The route as a vector in Figma: a glowing orange line with a lime dot labeled Dresden at the bottom and Berlin at the top."></a>
         <div class="spec text-body-s">
           <p class="text-label">How the route is layered</p>
           <dl>
-            <div><dt>Track</dt><dd>22 px stroke, <code>color/line</code></dd></div>
             <div><dt>Route</dt><dd>10 px stroke, <code>color/signal</code>, round caps</dd></div>
             <div><dt>Glow</dt><dd>Drop shadow, 0 offset, 28 blur, same orange at 70 %</dd></div>
             <div><dt>Start, finish</dt><dd>28 px circles in <code>color/lime</code>, 6 px outline in <code>color/asphalt</code></dd></div>
             <div><dt>Labels</dt><dd>DM Mono Medium, 24 px</dd></div>
           </dl>
         </div>
-        <figcaption class="text-body-s"><b>Two strokes make it glow.</b> A wide, dim track sits under the bright route, and a drop shadow with no offset turns into a neon glow.</figcaption>
+        <figcaption class="text-body-s"><b>One shadow makes it glow.</b> A drop shadow in the same orange, with no offset and a large blur, turns a plain stroke into a neon line.</figcaption>
       </figure>
 
       <div class="prose">
@@ -266,16 +265,16 @@
         <p class="text-body-m">If you want to try it with Claude and the Figma MCP, a prompt like this gets you there. Attach your two screenshots:</p>
         <pre class="prompt"><code>Here are the stats and the map of my ride. In my Figma file, draw the
 route as a smooth vector path from start to finish, about 200 × 640 px,
-next to the distance. Add a dim track behind it, a start and a finish
-dot, and labels with the city names. Then add an elevation profile,
+next to the distance. Add a start and a finish dot, and labels
+with the city names. Then add an elevation profile,
 904 × 130 px, based on the min, max and total climbing.</code></pre>
 
         <h3 class="text-heading-s">The elevation profile</h3>
-        <p class="text-body-m">The profile at the bottom is built the same way: a line with a gradient area below it, fading from orange at 55 % to transparent.</p>
+        <p class="text-body-m">The profile at the bottom is built the same way: a line in <code>color/lime</code> with a gradient area below it that fades to transparent.</p>
       </div>
 
       <figure class="figure figure--narrow">
-        <a class="figure__link" href="images/elevation.png" title="Open full size"><img src="images/elevation.png" width="1808" height="260" loading="lazy" alt="The elevation profile: a thin line with a gradient fill below it, rising to a peak in the first third and slowly falling towards the end."></a>
+        <a class="figure__link" href="images/elevation.png" title="Open full size"><img class="on-dark" src="images/elevation.png" width="1808" height="260" loading="lazy" alt="The elevation profile: a thin line with a gradient fill below it, rising to a peak in the first third and slowly falling towards the end."></a>
         <figcaption class="text-body-s"><b>Shape over precision.</b> The profile is stylized from three numbers in the stats: lowest point 40 m, highest point 226 m and 948 m of climbing.</figcaption>
       </figure>
 

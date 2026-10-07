@@ -112,6 +112,7 @@ main:focus { outline: none; }
 .figure--pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-16); }
 .figure--pair figcaption { grid-column: 1 / -1; margin-top: 0; }
 .figure--narrow { max-width: 820px; }
+.figure img.on-dark { background: #0B0C0E; padding: var(--space-16); }
 .figure--portrait { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); max-width: 820px; align-items: start; }
 
 /* Diagrams: inline SVG, colors from tokens */
