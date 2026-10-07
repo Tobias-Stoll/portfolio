@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ride Recap: Figma Motion for Social Media · Tobias Stoll</title>
+  <meta name="description" content="A fun project and tutorial: an animated ride recap story for Instagram, built entirely in Figma with components, a custom shader, a route from real ride data and Figma Motion.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Design System, pinned to one version (commit 15ba62f) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip-link btn btn--primary" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand text-heading-s" href="https://www.concept2design.de">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Page links">
+      <a class="btn btn--ghost" href="../design-to-code/">Design to Code</a>
+      <a class="btn btn--primary" href="https://www.instagram.com/ridewithtobi/">@ridewithtobi</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <!-- Hero -->
+    <section class="cs-hero" aria-labelledby="title">
+      <div>
+        <p class="cs-hero__eyebrow text-label">Fun project · Tutorial · Motion</p>
+        <h1 id="title" class="text-display">Ride Recap: Figma Motion for Social Media</h1>
+        <p class="cs-hero__lead text-body-l">
+          An animated Instagram story of a 207 km ride from Dresden to Berlin, built entirely in Figma.
+          No After Effects, no export round trip. This page walks through every step, so you can build your own.
+        </p>
+        <div class="cs-hero__links">
+          <a class="btn btn--primary" href="#result">See the result</a>
+          <a class="btn btn--secondary" href="#basics">Start building</a>
+        </div>
+      </div>
+      <dl class="facts text-body-s">
+        <div><dt class="text-label">Format</dt><dd>Instagram story, 1080 × 1920 px, 6 seconds</dd></div>
+        <div><dt class="text-label">Why</dt><dd>Trying out Figma Motion and shaders, launched at Config 2026, on a real use case</dd></div>
+        <div><dt class="text-label">Tools</dt><dd>Figma (Motion, Shaders, Variables), Claude with the Figma MCP</dd></div>
+        <div><dt class="text-label">Built from</dt><dd>1 component, 6 color variables, 1 custom shader, 18 animated layers</dd></div>
+      </dl>
+    </section>
+
+    <!-- 01 Problem -->
+    <section class="cs-section" aria-labelledby="problem">
+      <div class="prose">
+        <p class="cs-kicker text-label">01 · The problem</p>
+        <h2 id="problem" class="text-heading-l">Every ride looks the same when you share it</h2>
+        <p class="text-body-m">After a long ride, I want to share it on <a href="https://www.instagram.com/ridewithtobi/">@ridewithtobi</a>. The usual options are not great:</p>
+        <ul class="text-body-m">
+          <li><b>Screenshots of the app.</b> Every bike computer and tracking app has its own stats screen. It works, but it looks like everyone else's and not like my channel.</li>
+          <li><b>Motion means a second tool.</b> Animated stories used to mean designing in Figma, then rebuilding everything in After Effects or a video app.</li>
+        </ul>
+        <div class="principle">
+          <p class="text-body-l">Can I design and animate a branded ride recap in one tool, from real ride data, in a way I can reuse for every ride?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Solution -->
+    <section class="cs-section" aria-labelledby="solution">
+      <div class="prose">
+        <p class="cs-kicker text-label">02 · The solution</p>
+        <h2 id="solution" class="text-heading-l">One story template, designed and animated in Figma</h2>
+        <p class="text-body-m">Figma now ships its own motion timeline and WebGPU shaders. That covers everything a short story needs:</p>
+        <ul class="text-body-m">
+          <li><b>Reusable layout.</b> Stats are one component with text properties, colors are variables. Next ride, I only change the numbers.</li>
+          <li><b>A living background.</b> A shader fill with light streaks that moves by itself.</li>
+          <li><b>The real route.</b> The line is drawn from my ride, not a stock illustration.</li>
+          <li><b>Motion on the canvas.</b> Keyframes sit on the same layers I designed, so design changes never break the animation.</li>
+        </ul>
+      </div>
+
+      <figure class="figure">
+        <div class="diagram" role="img" aria-label="Build order in five steps: ride data, layout with component and variables, shader background, route and elevation profile, Figma Motion, then export as video.">
+          <svg viewBox="0 40 760 120" aria-hidden="true">
+            <defs>
+              <marker id="r1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
+            </defs>
+            <path class="dg-line" d="M150 96H172" marker-end="url(#r1)"/>
+            <path class="dg-line" d="M296 96H318" marker-end="url(#r1)"/>
+            <path class="dg-line" d="M442 96H464" marker-end="url(#r1)"/>
+            <path class="dg-line" d="M588 96H610" marker-end="url(#r1)"/>
+            <rect class="dg-box" x="26" y="70" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="88" y="93" text-anchor="middle">Ride data</text><text class="dg-sub" x="88" y="110" text-anchor="middle">stats + map</text>
+            <rect class="dg-box" x="172" y="70" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="234" y="93" text-anchor="middle">Layout</text><text class="dg-sub" x="234" y="110" text-anchor="middle">component, variables</text>
+            <rect class="dg-box" x="318" y="70" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="380" y="93" text-anchor="middle">Background</text><text class="dg-sub" x="380" y="110" text-anchor="middle">shader fill</text>
+            <rect class="dg-box" x="464" y="70" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="526" y="93" text-anchor="middle">Route</text><text class="dg-sub" x="526" y="110" text-anchor="middle">path + elevation</text>
+            <rect class="dg-box dg-box--source" x="610" y="70" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="672" y="93" text-anchor="middle">Figma Motion</text><text class="dg-sub" x="672" y="110" text-anchor="middle">6 s timeline</text>
+            <text class="dg-note" x="380" y="150" text-anchor="middle">Static design first, motion last: the animation only adds time to layers that already exist</text>
+          </svg>
+        </div>
+        <figcaption class="text-body-s"><b>Five steps, one file.</b> The same order as the chapters below.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 03 Basics -->
+    <section class="cs-section" aria-labelledby="basics">
+      <div class="prose">
+        <p class="cs-kicker text-label">03 · The basics</p>
+        <h2 id="basics" class="text-heading-l">What you need</h2>
+        <p class="text-body-m">Nothing exotic. If you have a paid Figma seat and a ride, you are good to go.</p>
+      </div>
+      <ul class="results text-body-s">
+        <li><b>Figma, paid plan with a Full seat</b><span>Shaders and Figma Motion run on paid plans. Motion was in open beta when I built this, so check that it shows up in your account.</span></li>
+        <li><b>Your ride data</b><span>A screenshot of the stats from your bike computer or app, plus the map. A GPX export is even better for an exact route.</span></li>
+        <li><b>Two free fonts</b><span><a href="https://fonts.google.com/specimen/Barlow+Condensed">Barlow Condensed</a> (Black and Bold Italic) for numbers, <a href="https://fonts.google.com/specimen/DM+Mono">DM Mono</a> for labels.</span></li>
+        <li><b>Optional: Claude with the Figma MCP</b><span>It drew the route from my data and wrote the shader. You can also trace the route by hand with the Pen tool and use a built-in shader.</span></li>
+      </ul>
+
+      <figure class="figure figure--pair">
+        <a class="figure__link" href="images/ride-data.png" title="Open full size"><img src="images/ride-data.png" width="370" height="682" loading="lazy" alt="Ride stats from the bike computer app: Velo Tour 2026, 4 Oct 2026, 207.3 km, 7:09:49 riding time, 948 m climbing, average speed 28.9 km/h, average heart rate 152 bpm, normalized power 181 W."></a>
+        <a class="figure__link" href="images/ride-map.png" title="Open full size"><img src="images/ride-map.png" width="497" height="750" loading="lazy" alt="Map of the route from Dresden in the south to Berlin in the north, drawn as a grey line."></a>
+        <figcaption class="text-body-s"><b>The input: two screenshots.</b> The stats from the app on the left, the route on the map on the right. Everything on the story comes from these.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3 class="text-heading-s">Set up the frame</h3>
+        <ol class="text-body-m">
+          <li>Create a frame of <b>1080 × 1920</b> px, the size of an Instagram story.</li>
+          <li>Create a variable collection with your colors. Mine is called <code>Ride Recap</code>:</li>
+        </ol>
+        <div class="table-scroll">
+          <table class="cs-table text-body-s">
+            <thead><tr><th>Variable</th><th>Value</th><th>Used for</th></tr></thead>
+            <tbody>
+              <tr><td><code>color/asphalt</code></td><td><span class="swatch" style="--swatch:#0B0C0E"></span>#0B0C0E</td><td>Base background</td></tr>
+              <tr><td><code>color/signal</code></td><td><span class="swatch" style="--swatch:#FF5B1F"></span>#FF5B1F</td><td>The route</td></tr>
+              <tr><td><code>color/lime</code></td><td><span class="swatch" style="--swatch:#D4FF3A"></span>#D4FF3A</td><td>Accents, start and finish, labels</td></tr>
+              <tr><td><code>color/ink</code></td><td><span class="swatch" style="--swatch:#FFFFFF"></span>#FFFFFF</td><td>Numbers and headlines</td></tr>
+              <tr><td><code>color/ink-muted</code></td><td><span class="swatch" style="--swatch:rgba(255,255,255,.56)"></span>white, 56 %</td><td>Secondary text</td></tr>
+              <tr><td><code>color/line</code></td><td><span class="swatch" style="--swatch:rgba(255,255,255,.14)"></span>white, 14 %</td><td>Divider, route track</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-body-m muted">Binding every fill to a variable pays off later: changing <code>color/lime</code> once recolors labels, dots and the elevation line at the same time.</p>
+      </div>
+    </section>
+
+    <!-- 04 Component -->
+    <section class="cs-section" aria-labelledby="component">
+      <div class="prose">
+        <p class="cs-kicker text-label">04 · The component</p>
+        <h2 id="component" class="text-heading-l">One Stat component, six instances</h2>
+        <p class="text-body-m">Six numbers sit under the distance. They all share the same structure, so they are one component:</p>
+        <ul class="text-body-m">
+          <li><b>Vertical auto layout</b> with a gap of 4 px, hugging its content.</li>
+          <li><b>Value:</b> Barlow Condensed Bold Italic, 104 px, line height 90 %.</li>
+          <li><b>Label:</b> DM Mono, 24 px, letter spacing 8 %, in <code>color/ink-muted</code>.</li>
+          <li><b>Two text properties,</b> <code>Value</code> and <code>Label</code>, so each instance is edited in the properties panel, not on the canvas.</li>
+        </ul>
+      </div>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/stat-component.png" title="Open full size"><img src="images/stat-component.png" width="1192" height="855" loading="lazy" alt="The Stat component in Figma: a large italic number above a small monospaced label, with the text properties Value and Label in the properties panel."></a>
+        <figcaption class="text-body-s"><b>Edit numbers, not layers.</b> The two text properties turn the next ride into a two-minute job: type six values, done.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p class="text-body-m">The instances sit in two horizontal auto layout rows with <b>space between</b>, so the columns line up whatever the numbers are. Three per row keeps them readable on a phone.</p>
+        <div class="table-scroll">
+          <table class="cs-table text-body-s">
+            <thead><tr><th>Row</th><th>Value</th><th>Label</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>948 · 7:09 · 28,9</td><td>Höhenmeter · Fahrzeit · Ø km/h</td></tr>
+              <tr><td>2</td><td>181 · 152 · 53,0</td><td>NP watt · Ø HF bpm · Max km/h</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-body-m muted">The distance itself is not a Stat instance. It is the hero of the story and gets its own, much larger type: 260 px with the unit in <code>color/lime</code>.</p>
+      </div>
+    </section>
+
+    <!-- 05 Background -->
+    <section class="cs-section" aria-labelledby="background">
+      <div class="prose">
+        <p class="cs-kicker text-label">05 · The background</p>
+        <h2 id="background" class="text-heading-l">A shader fill that moves by itself</h2>
+        <p class="text-body-m">Shaders are small programs that run on the graphics card and compute every pixel. In Figma they appear as a new fill type, next to solid and gradient. Two ways to get one:</p>
+        <ul class="text-body-m">
+          <li><b>Built-in:</b> Figma ships ready-made fills like <i>Moving gradient</i>, <i>Glowing wave</i> or <i>Nebula</i>. Pick one, tune the controls, done.</li>
+          <li><b>Custom:</b> describe what you want and let Figma's agent or Claude via the Figma MCP write it. That is how I made <i>Speed Streaks</i>.</li>
+        </ul>
+      </div>
+
+      <ol class="steps text-body-s">
+        <li><b>Add a rectangle</b><span>1080 × 1920 px at the bottom of the layer stack, constraints set to stretch.</span></li>
+        <li><b>Choose a shader fill</b><span>In the fill panel, switch the type to shader and pick yours.</span></li>
+        <li><b>Tune the controls</b><span>Every value the shader exposes shows up as a slider or color picker.</span></li>
+        <li><b>Put content on top</b><span>Keep the content in its own auto layout frame above it, so text never touches the shader.</span></li>
+      </ol>
+
+      <figure class="figure figure--pair figure--portrait">
+        <a class="figure__link" href="images/background.jpg" title="Open full size"><img src="images/background.jpg" width="1080" height="1920" loading="lazy" alt="The background layer on its own: dark asphalt with diagonal purple light streaks and a soft purple glow at the bottom."></a>
+        <div class="spec text-body-s">
+          <p class="text-label">Speed Streaks · my settings</p>
+          <dl>
+            <div><dt>Asphalt</dt><dd><span class="swatch" style="--swatch:#0B0C0E"></span>#0B0C0E</dd></div>
+            <div><dt>Streaks</dt><dd><span class="swatch" style="--swatch:#B300FF"></span>#B300FF</dd></div>
+            <div><dt>Glow</dt><dd><span class="swatch" style="--swatch:#C43AFF"></span>#C43AFF</dd></div>
+            <div><dt>Speed</dt><dd>1</dd></div>
+            <div><dt>Lanes</dt><dd>48</dd></div>
+            <div><dt>Angle</dt><dd>−12°</dd></div>
+            <div><dt>Glow</dt><dd>0.55</dd></div>
+            <div><dt>Grain</dt><dd>0.06</dd></div>
+          </dl>
+        </div>
+        <figcaption class="text-body-s"><b>Streaks, glow and grain.</b> The shader draws thin light streaks in lanes that drift at different speeds, a soft glow in one corner and a little film grain. It reads the timeline clock, so it animates in Figma Motion without a single keyframe.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p class="text-body-m muted">Tip: the angle matters more than you think. A slight tilt of −12° makes the streaks feel like speed instead of a pattern.</p>
+      </div>
+    </section>
+
+    <!-- 06 Route -->
+    <section class="cs-section" aria-labelledby="route">
+      <div class="prose">
+        <p class="cs-kicker text-label">06 · The route and elevation profile</p>
+        <h2 id="route" class="text-heading-l">From a map screenshot to a vector path</h2>
+        <p class="text-body-m">This is the part where Claude did the work. I shared the two screenshots, and Claude drew the route line from them and placed it straight into the Figma file through the Figma MCP.</p>
+      </div>
+
+      <ol class="steps text-body-s">
+        <li><b>Trace</b><span>About 20 points are read along the route on the map, from Dresden to Berlin.</span></li>
+        <li><b>Scale</b><span>The points are stretched to fit next to the distance, keeping the shape recognizable.</span></li>
+        <li><b>Smooth</b><span>Each pair of points becomes a Bézier curve, so the line flows instead of zigzagging.</span></li>
+        <li><b>Place</b><span>The path lands in Figma as an editable vector, colored with <code>color/signal</code>.</span></li>
+      </ol>
+
+      <figure class="figure figure--pair figure--portrait">
+        <a class="figure__link" href="images/route.png" title="Open full size"><img class="on-dark" src="images/route.png" width="486" height="1546" loading="lazy" alt="The route as a vector in Figma: a glowing orange line with a lime dot labeled Dresden at the bottom and Berlin at the top."></a>
+        <div class="spec text-body-s">
+          <p class="text-label">How the route is layered</p>
+          <dl>
+            <div><dt>Route</dt><dd>10 px stroke, <code>color/signal</code>, round caps</dd></div>
+            <div><dt>Glow</dt><dd>Drop shadow, 0 offset, 28 blur, same orange at 70 %</dd></div>
+            <div><dt>Start, finish</dt><dd>28 px circles in <code>color/lime</code>, 6 px outline in <code>color/asphalt</code></dd></div>
+            <div><dt>Labels</dt><dd>DM Mono Medium, 24 px</dd></div>
+          </dl>
+        </div>
+        <figcaption class="text-body-s"><b>One shadow makes it glow.</b> A drop shadow in the same orange, with no offset and a large blur, turns a plain stroke into a neon line.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3 class="text-heading-s">The prompt</h3>
+        <p class="text-body-m">If you want to try it with Claude and the Figma MCP, a prompt like this gets you there. Attach your two screenshots:</p>
+        <pre class="prompt"><code>Here are the stats and the map of my ride. In my Figma file, draw the
+route as a smooth vector path from start to finish, about 200 × 640 px,
+next to the distance. Add a start and a finish dot, and labels
+with the city names. Then add an elevation profile,
+904 × 130 px, based on the min, max and total climbing.</code></pre>
+
+        <h3 class="text-heading-s">The elevation profile</h3>
+        <p class="text-body-m">The profile at the bottom is built the same way: a line in <code>color/lime</code> with a gradient area below it that fades to transparent.</p>
+      </div>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/elevation.png" title="Open full size"><img class="on-dark" src="images/elevation.png" width="1808" height="260" loading="lazy" alt="The elevation profile: a thin line with a gradient fill below it, rising to a peak in the first third and slowly falling towards the end."></a>
+        <figcaption class="text-body-s"><b>Shape over precision.</b> The profile is stylized from three numbers in the stats: lowest point 40 m, highest point 226 m and 948 m of climbing.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p class="text-body-m muted"><b>Honest note:</b> both the route and the profile are approximations from screenshots. They are close enough for a story. For an exact line, export the GPX file of your ride and let Claude convert the coordinates and heights directly.</p>
+      </div>
+    </section>
+
+    <!-- 07 Motion -->
+    <section class="cs-section" aria-labelledby="motion">
+      <div class="prose">
+        <p class="cs-kicker text-label">07 · Figma Motion explained</p>
+        <h2 id="motion" class="text-heading-l">Keyframes on the layers you already have</h2>
+        <p class="text-body-m">Figma Motion adds a timeline under the canvas. Three words are all you need:</p>
+        <ul class="text-body-m">
+          <li><b>Timeline:</b> the length of the animation for one top-level frame. Mine is 6 seconds.</li>
+          <li><b>Keyframe:</b> a value at a point in time, for example opacity 0 at 0.7 s and opacity 1 at 1.1 s. Figma fills in the frames between.</li>
+          <li><b>Easing:</b> how the value travels between keyframes. <i>Ease out</i> starts fast and lands softly, which suits almost everything that enters the screen.</li>
+        </ul>
+        <p class="text-body-m">Besides manual keyframes there are presets like fade or slide. I used a fade preset on the title and added a scale on top.</p>
+
+        <h3 class="text-heading-s">Example: drawing the route</h3>
+        <p class="text-body-m">The most satisfying moment of the story is the route drawing itself from Dresden to Berlin. It needs only one property: <b>Path trim end</b>, which controls how much of a stroke is visible.</p>
+      </div>
+
+      <div class="motion-demo">
+        <div class="motion-demo__stage" id="route-demo">
+          <svg viewBox="0 0 300 660" role="img" aria-label="Live demo: the route draws itself from Dresden at the bottom to Berlin at the top, then the finish dot appears.">
+            <defs>
+              <filter id="glow" x="-50%" y="-10%" width="200%" height="120%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g transform="translate(20 8)">
+              <path class="md-track" d="M43.2 629.1 C39.7 620.9 20.7 592.9 22.4 580.1 C24.1 567.4 42.3 564.0 53.6 552.6 C64.9 541.2 88.3 525.4 90.0 511.8 C91.7 498.2 73.5 483.8 64.0 471.0 C54.5 458.2 41.5 447.7 32.8 435.3 C24.1 422.9 11.1 408.4 12.0 396.5 C12.9 384.6 30.2 376.5 38.0 363.9 C45.8 351.3 59.7 334.3 58.8 321.1 C57.9 307.8 38.0 297.3 32.8 284.3 C27.6 271.4 31.1 257.5 27.6 243.5 C24.1 229.6 8.5 214.6 12.0 200.7 C15.5 186.8 29.3 169.1 48.4 159.9 C67.5 150.7 104.7 150.7 126.4 145.6 C148.1 140.5 167.1 136.8 178.4 129.3 C189.7 121.8 194.9 108.9 194.0 100.7 C193.1 92.6 181.9 88.2 173.2 80.3 C164.5 72.5 155.9 62.3 142.0 53.8 C128.1 45.3 104.7 36.3 90.0 29.3 C75.3 22.4 59.7 14.9 53.6 12.0"/>
+              <path class="md-route" filter="url(#glow)" pathLength="1" d="M43.2 629.1 C39.7 620.9 20.7 592.9 22.4 580.1 C24.1 567.4 42.3 564.0 53.6 552.6 C64.9 541.2 88.3 525.4 90.0 511.8 C91.7 498.2 73.5 483.8 64.0 471.0 C54.5 458.2 41.5 447.7 32.8 435.3 C24.1 422.9 11.1 408.4 12.0 396.5 C12.9 384.6 30.2 376.5 38.0 363.9 C45.8 351.3 59.7 334.3 58.8 321.1 C57.9 307.8 38.0 297.3 32.8 284.3 C27.6 271.4 31.1 257.5 27.6 243.5 C24.1 229.6 8.5 214.6 12.0 200.7 C15.5 186.8 29.3 169.1 48.4 159.9 C67.5 150.7 104.7 150.7 126.4 145.6 C148.1 140.5 167.1 136.8 178.4 129.3 C189.7 121.8 194.9 108.9 194.0 100.7 C193.1 92.6 181.9 88.2 173.2 80.3 C164.5 72.5 155.9 62.3 142.0 53.8 C128.1 45.3 104.7 36.3 90.0 29.3 C75.3 22.4 59.7 14.9 53.6 12.0"/>
+              <circle class="md-dot md-dot--start" cx="43.2" cy="629.1" r="11"/>
+              <circle class="md-dot md-dot--end" cx="53.6" cy="12" r="11"/>
+              <text class="md-label md-label--start" x="66" y="635">DRESDEN</text>
+              <text class="md-label md-label--end" x="76" y="18">BERLIN</text>
+            </g>
+          </svg>
+        </div>
+        <div class="motion-demo__side">
+          <p class="text-label">Path trim end on the route</p>
+          <div class="table-scroll">
+            <table class="cs-table text-body-s">
+              <thead><tr><th>Time</th><th>Value</th><th>Easing</th></tr></thead>
+              <tbody>
+                <tr><td>0.9 s</td><td>0 %</td><td>(start)</td></tr>
+                <tr><td>2.9 s</td><td>100 %</td><td>Ease in and out</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-body-s muted">Two keyframes, two seconds. <i>Ease in and out</i> makes the line accelerate out of Dresden and slow down before Berlin. The start dot pops in just before (scale 0 to 1, 0.6 to 0.9 s, <i>ease out back</i> for a small overshoot), the finish dot right after.</p>
+          <button class="btn btn--secondary" type="button" id="replay">Replay</button>
+        </div>
+      </div>
+      <p class="text-body-s muted demo-note">This demo is rebuilt in the browser with the same path and timing. In Figma, it is exactly these two keyframes.</p>
+
+      <div class="prose">
+        <h3 class="text-heading-s">The whole choreography</h3>
+        <p class="text-body-m">Once one animation works, the rest is timing. The rule I followed: <b>tell the story in reading order</b>. Title, then where I rode, then how far, then the details.</p>
+      </div>
+
+      <figure class="figure">
+        <div class="diagram" role="img" aria-label="Timeline from 0 to 6 seconds. Title 0 to 0.7, header 0.7 to 1.1, start dot 0.6 to 0.9, route 0.9 to 2.9, finish dot 2.8 to 3.1, distance 1.65 to 2.7, divider 3.2 to 3.7, six stats staggered from 3.4 to 4.4, elevation 4.1 to 5.5, footer 5.2 to 5.6.">
+          <svg viewBox="0 0 760 330" aria-hidden="true">
+            <g class="tl-grid">
+              <path d="M170 24V300M263 24V300M356 24V300M449 24V300M542 24V300M635 24V300M728 24V300"/>
+            </g>
+            <g class="dg-sub" text-anchor="middle">
+              <text x="170" y="320">0 s</text><text x="263" y="320">1 s</text><text x="356" y="320">2 s</text><text x="449" y="320">3 s</text><text x="542" y="320">4 s</text><text x="635" y="320">5 s</text><text x="728" y="320">6 s</text>
+            </g>
+            <g class="dg-name" text-anchor="end">
+              <text x="156" y="44">Title</text>
+              <text x="156" y="72">Header</text>
+              <text x="156" y="100">Start dot</text>
+              <text x="156" y="128">Route</text>
+              <text x="156" y="156">Finish dot</text>
+              <text x="156" y="184">Distance</text>
+              <text x="156" y="212">Divider</text>
+              <text x="156" y="240">6 stats</text>
+              <text x="156" y="268">Elevation</text>
+              <text x="156" y="296">Footer</text>
+            </g>
+            <!-- x = 170 + t * 93 -->
+            <rect class="tl-bar" x="170" y="32" width="65" height="16" rx="4"/>
+            <rect class="tl-bar" x="235" y="60" width="37" height="16" rx="4"/>
+            <rect class="tl-bar" x="226" y="88" width="28" height="16" rx="4"/>
+            <rect class="tl-bar tl-bar--focus" x="254" y="116" width="186" height="16" rx="4"/>
+            <rect class="tl-bar" x="430" y="144" width="28" height="16" rx="4"/>
+            <rect class="tl-bar" x="324" y="172" width="97" height="16" rx="4"/>
+            <rect class="tl-bar" x="468" y="200" width="46" height="16" rx="4"/>
+            <g class="tl-stagger">
+              <rect class="tl-bar" x="486" y="228.0" width="37" height="2.4" rx="1.2"/>
+              <rect class="tl-bar" x="497" y="230.8" width="37" height="2.4" rx="1.2"/>
+              <rect class="tl-bar" x="508" y="233.6" width="37" height="2.4" rx="1.2"/>
+              <rect class="tl-bar" x="519" y="236.4" width="37" height="2.4" rx="1.2"/>
+              <rect class="tl-bar" x="531" y="239.2" width="37" height="2.4" rx="1.2"/>
+              <rect class="tl-bar" x="542" y="242.0" width="37" height="2.4" rx="1.2"/>
+            </g>
+            <rect class="tl-bar" x="551" y="256" width="130" height="16" rx="4"/>
+            <rect class="tl-bar" x="654" y="284" width="37" height="16" rx="4"/>
+            <text class="dg-note tl-note" x="448" y="128">path trim</text>
+            <text class="dg-note" x="588" y="240">staggered 0.12 s</text>
+          </svg>
+        </div>
+        <figcaption class="text-body-s"><b>18 animated layers, 6 seconds.</b> Most entries are a fade plus a short move up of 20 to 80 px, between 0.3 and 0.6 s long. The stats start 0.12 s apart, which reads as one wave instead of six separate events. The shader runs underneath the whole time.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3 class="text-heading-s">Three things I learned</h3>
+        <ul class="text-body-m">
+          <li><b>The first keyframe holds back to zero.</b> A layer with opacity 0 at 2.9 s stays invisible from the start. No extra keyframe needed.</li>
+          <li><b>Transform values are relative.</b> A move of 30 px means "30 px below where it rests", so moving the layer in the design never breaks the animation.</li>
+          <li><b>Path trim is the hero property.</b> Lines that draw themselves, like the route and the elevation profile, are what makes the story feel alive.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 08 Result -->
+    <section class="cs-section" aria-labelledby="result">
+      <div class="prose">
+        <p class="cs-kicker text-label">08 · The result</p>
+        <h2 id="result" class="text-heading-l">A reusable story, made in one file</h2>
+      </div>
+
+      <div class="result">
+        <figure class="result__media">
+          <video class="result__video" src="images/ride-recap.mp4" poster="images/ride-recap.jpg" width="1080" height="1920" controls muted loop playsinline preload="none" aria-label="The finished 6-second ride recap story."></video>
+          <figcaption class="text-body-s"><b>Velo Tour 2026,</b> Dresden to Berlin, as a 6-second story, exported straight from Figma Motion.</figcaption>
+        </figure>
+        <div>
+          <div class="stat">
+            <span class="stat__value text-display">1 file</span>
+            <span class="stat__label text-body-m">for design, motion and export, no second tool</span>
+          </div>
+          <ul class="results results--single text-body-s">
+            <li><b>Reusable for every ride</b><span>New numbers in six component properties, a new route path, done. The motion stays.</span></li>
+            <li><b>On brand</b><span>Colors, type and the streak background are mine, not the app's.</span></li>
+            <li><b>Design and motion stay in sync</b><span>Keyframes live on the design layers, so a layout change never means rebuilding the animation.</span></li>
+            <li><b>A good first test of Figma Motion</b><span>For short social formats, it replaces my After Effects step completely.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p class="text-body-m"><b>What's next:</b> a carousel version for the feed, and reading the route straight from a GPX file instead of a screenshot.</p>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="cs-section" aria-labelledby="links">
+      <div class="prose">
+        <h2 id="links" class="text-heading-l">Keep exploring</h2>
+        <ul class="link-list">
+          <li><a class="btn btn--primary" href="https://www.instagram.com/ridewithtobi/">@ridewithtobi on Instagram</a></li>
+          <li><a class="btn btn--secondary" href="../design-to-code/">Case study: Design to Code</a></li>
+          <li><a class="btn btn--ghost" href="https://help.figma.com/hc/en-us/articles/39582753756695">What's new in Figma (Config 2026)</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner text-body-s">
+    <p>© 2026 Tobias Stoll · Product Designer, Berlin</p>
+    <p>This page is built with my own design system.</p>
+  </div>
+</footer>
+
+<script>
+  // Route demo: plays once when it scrolls into view, again on Replay.
+  (function () {
+    var stage = document.getElementById('route-demo');
+    var btn = document.getElementById('replay');
+    if (!stage || !btn) return;
+    function play() {
+      stage.classList.remove('is-playing');
+      void stage.offsetWidth; // restart the CSS animation
+      stage.classList.add('is-playing');
+    }
+    btn.addEventListener('click', play);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { play(); io.disconnect(); } });
+      }, { threshold: 0.5 });
+      io.observe(stage);
+    } else { play(); }
+  })();
+</script>
+</body>
+</html>

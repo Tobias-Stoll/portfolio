@@ -5,6 +5,7 @@ Portfolio site, built on my own [Design System](https://github.com/Tobias-Stoll/
 | Page | Path |
 |---|---|
 | Design to Code: A Token Workflow | [`/design-to-code/`](design-to-code/) |
+| Ride Recap: Figma Motion for Social Media | [`/ride-recap/`](ride-recap/) |
 
 ## How it uses the Design System
 
