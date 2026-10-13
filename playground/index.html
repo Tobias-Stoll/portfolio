@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offer Box Playground · Tobias Stoll</title>
+<meta name="description" content="One component, four slots: an interactive playground of the Offer Box I redesigned at Invia Flights. Watch it rebuild itself, or take over the controls.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Offer Box Playground · Tobias Stoll">
+<meta property="og:description" content="One component, four slots: an interactive playground of the Offer Box I redesigned at Invia Flights. Watch it rebuild itself, or take over the controls.">
+<meta property="og:url" content="https://tobias-stoll.github.io/portfolio/playground/">
+<meta property="og:image" content="https://tobias-stoll.github.io/portfolio/playground/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://tobias-stoll.github.io/portfolio/playground/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&family=Roboto+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Design System, pinned to one version (commit 15ba62f) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+<style>
+/* Layout: one centred column. Page chrome = Tobias' design system (light only, on purpose).
+   The Offer Box inside uses the product's own look, scoped under .ob. */
+:root {
+  --paper: #fbfbfd; --ink: #2b2b2f; --muted: #6d6e75; --subtle: #a3a4ac; --rule: #dadadf;
+  --accent: #5f2cff; --accent-soft: #eceaff; --accent-ink: #5025d8; --surface: #ffffff;
+  --display: 'Oswald', 'Arial Narrow', sans-serif; --sans: 'Roboto', system-ui, sans-serif; --mono: 'Roboto Mono', ui-monospace, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.pg { max-width: 920px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 64px; display: grid; gap: 24px; }
+
+.pg__head { display: grid; gap: 8px; max-width: 62ch; }
+.pg__eyebrow { margin: 0; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.pg__title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.05; text-transform: uppercase; text-wrap: balance; }
+.pg__lead { margin: 0; color: var(--muted); font-size: 18px; line-height: 28px; }
+
+/* Stage */
+.stage {
+  container-type: inline-size;
+  padding: clamp(16px, 4vw, 40px); border-radius: 16px;
+  background: linear-gradient(140deg, #f2f7ff, #e2eeff);
+  border: 1px solid #c5ddff;
+}
+
+/* Controls */
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding: 16px 20px; border-radius: 12px; background: #f6f7f8; border: 1px solid var(--rule); }
+.ctl { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+.ctl__label { color: var(--muted); font-weight: 400; }
+.seg { display: inline-flex; padding: 3px; border-radius: 9999px; background: #ececef; }
+.seg button {
+  border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--muted);
+  padding: 5px 12px; border-radius: 9999px; cursor: pointer; transition: background-color .15s, color .15s;
+}
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.switch input { appearance: none; margin: 0; width: 34px; height: 20px; border-radius: 9999px; background: #c1c2c8; position: relative; cursor: pointer; transition: background-color .2s; }
+.switch input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s; }
+.switch input:checked { background: var(--accent); }
+.switch input:checked::after { transform: translateX(14px); }
+.switch--slots input:checked { background: #007b99; }
+:focus-visible { outline: 2px solid #7b70ff; outline-offset: 2px; }
+
+/* Intro + toolbar (tell the story) above the stage; customize controls (try it) below */
+.intro { display: grid; gap: 6px; max-width: 64ch; }
+.intro .intro__title { margin: 0; font-family: var(--display); font-weight: 500; font-size: 24px; line-height: 32px; }
+.intro .intro__text { margin: 0; color: var(--muted); font-size: 16px; line-height: 24px; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.toolbar__right { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.toolbar .steps { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.toolbar .steps li { margin: 0; }
+.step {
+  all: unset; box-sizing: border-box; cursor: pointer; position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 10px; min-width: 132px;
+  padding: 10px 14px 12px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface);
+  font-size: 15px; font-weight: 500; color: var(--muted); transition: border-color .2s, color .2s, background-color .2s;
+}
+.step:hover { border-color: var(--subtle); color: var(--ink); }
+.step:focus-visible { outline: 2px solid #7b70ff; outline-offset: 2px; }
+.step__n { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #ececef; color: var(--ink); font-size: 13px; }
+.step.is-on { border-color: var(--accent); color: var(--ink); background: var(--accent-soft); }
+.step.is-on .step__n { background: var(--accent); color: #fff; }
+.step__bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.toolbar.is-playing .step.is-on .step__bar { animation: step-fill 2.8s linear both; }
+@keyframes step-fill { to { transform: scaleX(1); } }
+.tour-ico { margin-right: 8px; font-size: 11px; }
+
+.controls__label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+
+.note.note { margin: 0; color: var(--muted); font-size: 14px; line-height: 20px; max-width: 70ch; }
+.note b { color: var(--ink); font-weight: 500; }
+
+/* =================== The Offer Box (product look) =================== */
+.ob {
+  --o-orange: #f2a23c; --o-orange-ink: #ffffff; --o-green-bg: #e4f0d6; --o-green-ink: #23500f;
+  --o-ink: #26272b; --o-muted: #64656c; --o-line: #cfd1d6; --o-link: #2357c5; --o-chip: #e7f3f6; --o-chip-ink: #0f5a6b;
+  font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; color: var(--o-ink);
+  background: #fff; border-radius: 10px;   /* no overflow clip: hints may reach past the card edge */
+  box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 18px 40px -20px rgba(0, 40, 120, .45);
+  view-transition-name: ob-card;
+}
+.ob__top { view-transition-name: ob-top; }
+.ob__ribbon { border-radius: 10px 10px 0 0; background: var(--o-green-bg); color: var(--o-green-ink); font-weight: 700; font-size: 17px; padding: 10px 24px; }
+.ob[data-ribbon="false"] .ob__ribbon { display: none; }
+.ob__chips { display: none; flex-wrap: wrap; gap: 8px; padding: 14px 24px 0; }
+.ob[data-chips="true"] .ob__chips { display: flex; }
+.ob__chip {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600;
+  padding: 3px 10px; border-radius: 9999px; background: #f0f0f2; color: var(--o-muted);
+}
+.ob__chip--flex { background: var(--o-chip); color: var(--o-chip-ink); }
+.ob__chip--fast { background: #e6eeff; color: #1d4aa8; }   /* blue, so the two chips read as different kinds */
+.ob__chip svg { width: 14px; height: 14px; }
+
+.ob__body { display: grid; grid-template-columns: minmax(0, 1fr); }
+.ob__itin { padding: 18px 24px 8px; display: grid; gap: 18px; view-transition-name: ob-itin; }
+.leg { display: grid; grid-template-columns: 70px minmax(0, 1fr) 70px auto; align-items: center; column-gap: 16px; }
+.leg__end b { display: block; font-size: 22px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.leg__end span { display: block; color: var(--o-muted); font-size: 14px; white-space: nowrap; }
+.leg__end--to { text-align: right; }
+.leg__mid { position: relative; display: grid; justify-items: center; gap: 4px; }
+.leg__track { position: absolute; left: 0; right: 0; top: 13px; height: 2px; background: #6d6e75; border-radius: 2px; }
+.leg__track::before, .leg__track::after { content: ""; position: absolute; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: #6d6e75; }
+.leg__track::before { left: -2px; } .leg__track::after { right: -2px; }
+.leg__stop { all: unset; box-sizing: border-box; cursor: help; position: relative; z-index: 2; background: #fff; border: 1px solid #6d6e75; border-radius: 4px; padding: 0 6px; font-size: 14px; line-height: 24px; color: var(--o-ink); }
+.leg__stop:hover { border-color: var(--o-ink); }
+.leg__stop:focus-visible { outline: 2px solid #2357c5; outline-offset: 2px; }
+
+.leg__dur { font-size: 14px; color: var(--o-muted); }
+.leg__bags { all: unset; box-sizing: border-box; position: relative; cursor: help; display: none; align-items: center; gap: 6px; padding: 2px 4px; margin: -2px -4px; border-radius: 4px; color: var(--o-ink); }
+.leg__bags .bt__info { width: 15px; height: 15px; flex: none; color: #2357c5; margin-left: 2px; }
+.leg__bags:focus-visible { outline: 2px solid #2357c5; outline-offset: 1px; }
+.ob[data-bags="icons"] .leg__bags { display: inline-flex; }
+/* Baggage as text: a hint, not a link. Opens on hover and keyboard focus, tap toggles on touch. */
+.leg__bagtext {
+  all: unset; box-sizing: border-box; position: relative; cursor: help;
+  display: none; align-items: center; gap: 6px; padding: 2px 4px; margin: -2px -4px; border-radius: 4px;
+  color: #3f4046; font-size: 15px; white-space: nowrap;   /* #3f4046 on white ≈ 10:1 contrast */
+}
+.ob[data-bags="text"] .leg__bagtext { display: inline-flex; }
+.leg__bagtext .bt__bag { width: 18px; height: 15px; flex: none; }
+.leg__bagtext .bt__info { width: 15px; height: 15px; flex: none; color: #2357c5; }
+.leg__bagtext:focus-visible { outline: 2px solid #2357c5; outline-offset: 1px; }
+.tip {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 5; width: 240px; white-space: normal;
+  background: #26272b; color: #fff; font-size: 14px; line-height: 1.4; padding: 8px 12px; border-radius: 6px;
+  box-shadow: 0 8px 20px -8px rgba(0,0,0,.4);
+  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .15s, transform .15s, visibility .15s;
+}
+.tip::before { content: ""; position: absolute; right: 14px; top: -5px; width: 10px; height: 10px; background: inherit; transform: rotate(45deg); border-radius: 2px; }
+.tip.tip--above { right: auto; left: 50%; top: auto; bottom: calc(100% + 8px); width: max-content; max-width: min(400px, calc(100vw - 48px)); text-align: left; transform: translate(-50%, 4px); }
+.tip.tip--above::before { right: auto; left: calc(50% - 5px); top: auto; bottom: -5px; }
+.tip b { font-weight: 700; }
+.has-tip:hover .tip, .has-tip:focus-visible .tip, .has-tip.is-open .tip { opacity: 1; visibility: visible; transform: none; }
+.has-tip:hover .tip--above, .has-tip:focus-visible .tip--above, .has-tip.is-open .tip--above { transform: translate(-50%, 0); }
+.leg__bags svg:not(.bt__info) { width: 18px; height: 18px; }
+.leg__air { grid-column: 1 / -1; font-size: 14px; color: var(--o-muted); margin-top: -4px; }
+.ob__details { justify-self: end; color: var(--o-link); font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+
+.ob__prices {
+  view-transition-name: ob-prices;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+  padding: 18px 24px 16px; border-top: 1px dashed var(--o-line); margin: 0 0;
+}
+.price {
+  all: unset; box-sizing: border-box; cursor: pointer; position: relative;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px;
+  padding: 14px 18px; border-radius: 6px; min-height: 84px;
+  transition: transform .15s, box-shadow .15s;
+}
+.price__label { font-size: 17px; display: inline-flex; align-items: center; gap: 6px; }
+.price__amount { grid-row: span 2; justify-self: end; text-align: right; }
+.price__amount strong { display: block; font-size: 30px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.price__amount small { display: block; font-size: 15px; margin-top: 4px; }
+.price__amount s { font-size: 15px; font-weight: 400; margin-left: 6px; opacity: .85; }
+.price--normal { border: 1px solid #b9bbc2; background: #fff; view-transition-name: ob-normal; }
+.price--plus { background: var(--o-orange); color: var(--o-orange-ink); box-shadow: 0 6px 14px -8px rgba(160, 90, 0, .7); view-transition-name: ob-plus; }
+.plus-mark { display: inline-flex; gap: 2px; }
+.plus-mark i { font-style: normal; font-weight: 700; font-size: 12px; line-height: 16px; width: 15px; text-align: center; background: #fff; color: var(--o-orange); border-radius: 2px; }
+.price:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px rgba(35, 87, 197, .25); }
+.price--plus:hover { box-shadow: 0 0 0 2px rgba(35, 87, 197, .25), 0 6px 14px -8px rgba(160, 90, 0, .7); }
+.price.is-picked { box-shadow: 0 0 0 3px #2357c5; }
+.price:focus-visible { outline: 3px solid #2357c5; outline-offset: 2px; }
+
+.ob__foot { view-transition-name: ob-foot; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 4px 24px 18px; }
+.pay { display: flex; flex-wrap: wrap; gap: 6px; }
+.pay span { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: #3b3c42; border: 1px solid #e2e3e7; border-radius: 4px; padding: 2px 8px; }
+.ob__links { display: flex; gap: 16px; font-size: 15px; }
+.ob__links a { color: var(--o-link); text-underline-offset: 3px; }
+
+/* Layout = vertical: the price actions move into a column on the right */
+.ob[data-layout="v"] .ob__body { grid-template-columns: minmax(0, 1fr) minmax(200px, 250px); }
+.ob[data-layout="v"] .ob__prices { grid-template-columns: minmax(0, 1fr); border-top: 0; border-left: 1px dashed var(--o-line); align-content: center; padding: 18px 24px; }
+.ob[data-layout="v"] .price { min-height: 0; grid-template-columns: 1fr; padding: 12px 16px; }
+.ob[data-layout="v"] .price__amount { grid-row: auto; justify-self: start; text-align: left; }
+.ob[data-layout="v"] .price__amount strong { font-size: 26px; }
+
+/* Slots overlay: shows the four building blocks.
+   The dashed border sits 6px inside each slot; the tag sits inside the slot, 8px from that border (14px from the edge).
+   While slots are shown, each slot gets enough inner space so tags and border never touch the content. */
+.ob__slot { position: relative; }
+.ob[data-slots="true"] .ob__slot { outline: 2px dashed #007b99; outline-offset: -6px; }
+.ob[data-slots="true"] .ob__slot::after {
+  content: attr(data-slot); position: absolute; right: 14px; top: 14px; z-index: 3;
+  font-family: var(--mono); font-size: 11px; line-height: 15px; letter-spacing: .06em; text-transform: uppercase;
+  background: #007b99; color: #fff; padding: 2px 8px; border-radius: 4px; pointer-events: none;
+}
+.ob[data-slots="true"] .ob__itin,
+.ob[data-slots="true"] .ob__prices,
+.ob[data-slots="true"] .ob__foot { padding-top: 46px; }
+.ob[data-slots="true"] .ob__top { padding-bottom: 16px; }                         /* border clears the chips */
+.ob[data-slots="true"][data-ribbon="false"] .ob__chips { padding-top: 16px; padding-right: 96px; }  /* no banner: tag sits in the chip row, chips wrap before reaching it */
+.ob[data-slots="true"][data-ribbon="true"] .ob__ribbon { padding-top: 16px; padding-bottom: 16px; } /* tag fits inside the banner */
+.ob[data-slots="true"][data-ribbon="false"][data-chips="false"] .ob__top { outline: 0; padding: 0; } /* empty slot: nothing to mark */
+.ob[data-slots="true"][data-ribbon="false"][data-chips="false"] .ob__top::after { display: none; }
+
+@media (max-width: 560px) { .step { min-width: 0; flex: 1 1 calc(50% - 8px); } }
+
+/* Toast */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0;
+  background: var(--ink); color: #fff; font-size: 14px; padding: 8px 14px; border-radius: 8px; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* Narrow stages */
+@container (max-width: 620px) {
+  .leg { grid-template-columns: auto minmax(40px, 1fr) auto; column-gap: 10px; }
+  .leg__end span { white-space: normal; font-size: 13px; }
+  .leg__dur { font-size: 12px; text-align: center; }
+  .leg__stop { font-size: 12px; line-height: 20px; }
+  .leg__track { top: 11px; }
+  .price__label { font-size: 15px; flex-wrap: wrap; }
+  .plus-mark i { width: 13px; font-size: 11px; }
+  .price__amount strong { white-space: nowrap; }
+  .price__amount s { display: block; margin-left: 0; }
+  .leg__bags, .leg__bagtext { grid-column: 1 / -1; justify-self: start; }
+  .leg__bagtext .tip, .leg__bags .tip { left: 0; right: auto; }
+  .leg__bagtext .tip::before, .leg__bags .tip::before { left: 14px; right: auto; }
+  .tip.tip--above { white-space: normal; width: 260px; }
+  .leg__end b { font-size: 19px; }
+  .ob[data-layout="v"] .ob__body { grid-template-columns: minmax(0, 1fr); }
+  .ob__prices { gap: 10px; }
+  .ob[data-layout="v"] .ob__prices { border-left: 0; border-top: 1px dashed var(--o-line); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .price { grid-template-columns: 1fr; min-height: 0; padding: 12px; }
+  .price__amount { grid-row: auto; justify-self: start; text-align: left; }
+  .price__amount strong { font-size: 21px !important; }
+  .ob__ribbon, .ob__itin, .ob__prices, .ob__foot, .ob__chips { padding-left: 16px; padding-right: 16px; }
+}
+
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+::view-transition-old(*), ::view-transition-new(*) { height: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  .toolbar.is-playing .step.is-on .step__bar { animation: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .price, .switch input, .switch input::after { transition: none; }
+}
+</style>
+<style>
+.pg__foot { margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; }
+.pg__foot a { color: var(--accent-ink); text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+<main class="pg">
+  <header class="pg__head">
+    <p class="pg__eyebrow">Invia Flights · Offer Box</p>
+    <h1 class="pg__title">Explore the component</h1>
+    <p class="pg__lead">One component, four slots. Watch it rebuild itself, or take over the controls.</p>
+  </header>
+
+  <div class="intro">
+    <h3 class="intro__title">Modular component</h3>
+    <p class="intro__text">One box, four slots: top, itinerary, price actions and footer. Each slot changes on its own, so new features were added without a redesign and button layouts could be A/B tested. The tour plays one round, then it's your turn.</p>
+  </div>
+
+  <div class="toolbar" id="tour">
+    <ol class="steps" aria-label="Tour steps">
+      <li><button type="button" class="step" data-step="0"><span class="step__n">1</span><span class="step__l">Standard</span><span class="step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="step" data-step="1"><span class="step__n">2</span><span class="step__l">Recommended</span><span class="step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="step" data-step="2"><span class="step__n">3</span><span class="step__l">With chips</span><span class="step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="step" data-step="3"><span class="step__n">4</span><span class="step__l">Stacked</span><span class="step__bar" aria-hidden="true"></span></button></li>
+    </ol>
+    <div class="toolbar__right">
+      <label class="switch switch--slots ctl"><input type="checkbox" id="t-slots">Show slots</label>
+      <button class="btn btn--secondary" type="button" id="tour-btn" aria-pressed="true"><span class="tour-ico" aria-hidden="true">❚❚</span>Pause tour</button>
+    </div>
+  </div>
+
+  <div class="stage">
+    <article class="ob" id="ob" data-layout="h" data-ribbon="false" data-chips="false" data-bags="none" data-slots="false" aria-label="Offer Box component demo">
+      <div class="ob__slot ob__top" data-slot="Top">
+        <div class="ob__ribbon">Unsere Empfehlung</div>
+        <div class="ob__chips">
+          <span class="ob__chip ob__chip--flex"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Flex Ticket verfügbar</span>
+          <span class="ob__chip ob__chip--fast"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.6V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Kürzeste Reisezeit</span>
+        </div>
+      </div>
+
+      <div class="ob__body">
+        <div class="ob__slot ob__itin" data-slot="Itinerary">
+          <div class="leg">
+            <div class="leg__end"><b>21:40</b><span>BER · 09. Nov</span></div>
+            <div class="leg__mid"><span class="leg__track"></span><button class="leg__stop has-tip" type="button" aria-describedby="stop-tip-1">1 Stopp<span class="tip tip--above" role="tooltip" id="stop-tip-1">Aufenthalt:<br><b>Hamad International</b> (DOH) <span style="white-space:nowrap">in <b>Doha</b> · <b>14 Std. 30 Min.</b></span></span></button><span class="leg__dur">27 Std. 35 Min.</span></div>
+            <div class="leg__end leg__end--to"><b>07:15</b><span>SGN · 11. Nov</span></div>
+            <button class="leg__bags has-tip" type="button" aria-label="Gepäck" aria-describedby="bagi-tip-1">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 6V4h4v2M7 11h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V3h4v4M7 11h6M7 14h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="5" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5V3h4v2M8 8v6M12 8v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bagi-tip-1">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <button class="leg__bagtext has-tip" type="button" aria-describedby="bag-tip-1"><svg class="bt__bag" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 5V2.5h6V5M8 5v13M16 5v13" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>1x Aufgabegepäck inkl.</span><svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bag-tip-1">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <div class="leg__air">Qatar Airways</div>
+          </div>
+          <div class="leg">
+            <div class="leg__end"><b>19:40</b><span>SGN · 16. Nov</span></div>
+            <div class="leg__mid"><span class="leg__track"></span><button class="leg__stop has-tip" type="button" aria-describedby="stop-tip-2">1 Stopp<span class="tip tip--above" role="tooltip" id="stop-tip-2">Aufenthalt:<br><b>Hamad International</b> (DOH) <span style="white-space:nowrap">in <b>Doha</b> · <b>17 Std. 10 Min.</b></span></span></button><span class="leg__dur">30 Std. 15 Min.</span></div>
+            <div class="leg__end leg__end--to"><b>19:55</b><span>BER · 17. Nov</span></div>
+            <button class="leg__bags has-tip" type="button" aria-label="Gepäck" aria-describedby="bagi-tip-2">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 6V4h4v2M7 11h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V3h4v4M7 11h6M7 14h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="5" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5V3h4v2M8 8v6M12 8v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bagi-tip-2">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <button class="leg__bagtext has-tip" type="button" aria-describedby="bag-tip-2"><svg class="bt__bag" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 5V2.5h6V5M8 5v13M16 5v13" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>1x Aufgabegepäck inkl.</span><svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bag-tip-2">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <div class="leg__air">Qatar Airways</div>
+          </div>
+          <a class="ob__details" href="#ob" onclick="return false">Flugdetails anzeigen</a>
+        </div>
+
+        <div class="ob__slot ob__prices" data-slot="Price actions">
+          <button class="price price--normal" type="button" data-name="Normal price">
+            <span class="price__label">Normalpreis</span>
+            <span class="price__amount"><strong>710,48 €</strong><small>Pro Person</small></span>
+          </button>
+          <button class="price price--plus" type="button" data-name="Member price">
+            <span class="price__label"><span class="plus-mark" aria-label="PLUS"><i>P</i><i>L</i><i>U</i><i>S</i></span>Preis</span>
+            <span class="price__amount"><strong>649,49 €</strong><small>Pro Person <s>710,48 €</s></small></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ob__slot ob__foot" data-slot="Footer">
+        <div class="pay" aria-label="Payment methods"><span>VISA</span><span>Mastercard</span><span>AMEX</span><span>SEPA</span><span>Klarna</span><span>PayPal</span></div>
+        <div class="ob__links"><a href="#ob" onclick="return false">Was ist PLUS?</a><a href="#ob" onclick="return false">Kostenübersicht</a></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="controls" role="group" aria-label="Customize the component">
+    <span class="controls__label">Customize</span>
+    <div class="ctl"><span class="ctl__label">Price actions</span>
+      <div class="seg" role="group" aria-label="Price layout">
+        <button type="button" id="lay-h" aria-pressed="true">Side by side</button>
+        <button type="button" id="lay-v" aria-pressed="false">Stacked right</button>
+      </div>
+    </div>
+    <label class="switch ctl"><input type="checkbox" id="t-ribbon">Recommendation banner</label>
+    <label class="switch ctl"><input type="checkbox" id="t-chips">Chips</label>
+    <div class="ctl"><span class="ctl__label">Baggage</span>
+      <div class="seg" role="group" aria-label="Baggage display">
+        <button type="button" id="bag-none" aria-pressed="true">Off</button>
+        <button type="button" id="bag-icons" aria-pressed="false">Icons</button>
+        <button type="button" id="bag-text" aria-pressed="false">Text</button>
+      </div>
+    </div>
+  </div>
+  <p class="note">Both price buttons are equal choices. Try them.</p>
+  <div class="toast" id="toast" role="status"></div>
+  <footer class="pg__foot">
+    <span>Designed &amp; built by Tobias Stoll</span>
+    <a href="https://www.concept2design.de">concept2design.de</a>
+  </footer>
+</main>
+
+<script>
+(() => {
+  const ob = document.getElementById('ob');
+  const $ = id => document.getElementById(id);
+  const ctl = { h: $('lay-h'), v: $('lay-v'), ribbon: $('t-ribbon'), chips: $('t-chips'), bagNone: $('bag-none'), bagIcons: $('bag-icons'), bagText: $('bag-text'), slots: $('t-slots') };
+  const tour = $('tour'), tourBtn = $('tour-btn'), steps = [...tour.querySelectorAll('.step')];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const STATES = [
+    { layout: 'h', ribbon: false, chips: false, bags: 'none'  },  // a regular offer
+    { layout: 'h', ribbon: true,  chips: false, bags: 'text'  },  // top choice, baggage as text
+    { layout: 'h', ribbon: true,  chips: true,  bags: 'icons' },  // top choice + chips, baggage as icons
+    { layout: 'v', ribbon: false, chips: true,  bags: 'icons' },  // chips without banner, stacked prices
+  ];
+  let step = 0, timer = null, playing = false;
+
+  function apply(s) {
+    ob.dataset.layout = s.layout; ob.dataset.ribbon = s.ribbon; ob.dataset.chips = s.chips; ob.dataset.bags = s.bags;
+    ctl.ribbon.checked = s.ribbon;
+    ctl.h.setAttribute('aria-pressed', s.layout === 'h'); ctl.v.setAttribute('aria-pressed', s.layout === 'v');
+    ctl.chips.checked = s.chips;
+    ctl.bagNone.setAttribute('aria-pressed', s.bags === 'none'); ctl.bagIcons.setAttribute('aria-pressed', s.bags === 'icons'); ctl.bagText.setAttribute('aria-pressed', s.bags === 'text');
+  }
+  function current() { return { layout: ob.dataset.layout, ribbon: ob.dataset.ribbon === 'true', chips: ob.dataset.chips === 'true', bags: ob.dataset.bags }; }
+  function morph(next) {
+    if (document.startViewTransition && !reduced) document.startViewTransition(() => apply(next));
+    else apply(next);
+  }
+  function mark() {
+    steps.forEach((b, i) => { b.classList.toggle('is-on', i === step); b.setAttribute('aria-current', i === step ? 'step' : 'false'); });
+    const bar = steps[step].querySelector('.step__bar');   // restart the progress fill
+    bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+  }
+
+  function play() {
+    playing = true; tour.classList.remove('is-paused'); tour.classList.add('is-playing'); mark();
+    tourBtn.setAttribute('aria-pressed', 'true'); tourBtn.innerHTML = '<span class="tour-ico" aria-hidden="true">❚❚</span>Pause tour';
+    clearInterval(timer);
+    let ticks = 0;
+    timer = setInterval(() => {
+      step = (step + 1) % STATES.length; morph(STATES[step]); mark();
+      // WCAG 2.2.2: the tour stops by itself after one full round (about 11 s) and rests on step 1
+      if (++ticks >= STATES.length) pause();
+    }, 2800);
+  }
+  function pause() {
+    playing = false; clearInterval(timer); tour.classList.add('is-paused'); tour.classList.remove('is-playing');
+    tourBtn.setAttribute('aria-pressed', 'false'); tourBtn.innerHTML = '<span class="tour-ico" aria-hidden="true">▶</span>Play tour';
+  }
+  tourBtn.addEventListener('click', () => {
+    if (playing) pause(); else { step = 0; morph(STATES[0]); mark(); play(); }
+  });
+
+  // Steps are clickable: jump to that state and pause
+  steps.forEach((b, i) => b.addEventListener('click', () => { pause(); step = i; morph(STATES[i]); mark(); }));
+
+  // Taking over: any control pauses the tour
+  const take = fn => () => { pause(); morph({ ...current(), ...fn() }); };
+  ctl.h.addEventListener('click', take(() => ({ layout: 'h' })));
+  ctl.v.addEventListener('click', take(() => ({ layout: 'v' })));
+  ctl.ribbon.addEventListener('change', take(() => ({ ribbon: ctl.ribbon.checked })));
+  ctl.chips.addEventListener('change', take(() => ({ chips: ctl.chips.checked })));
+  ctl.bagNone.addEventListener('click', take(() => ({ bags: 'none' })));
+  ctl.bagIcons.addEventListener('click', take(() => ({ bags: 'icons' })));
+  ctl.bagText.addEventListener('click', take(() => ({ bags: 'text' })));
+  ctl.slots.addEventListener('change', () => { ob.dataset.slots = ctl.slots.checked; });
+
+  // Hints (stops, baggage): tap toggles on touch, Escape and outside clicks close it
+  ob.querySelectorAll('.has-tip').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation(); const open = !b.classList.contains('is-open');
+    ob.querySelectorAll('.has-tip').forEach(x => x.classList.remove('is-open')); b.classList.toggle('is-open', open);
+  }));
+  document.addEventListener('click', () => ob.querySelectorAll('.has-tip.is-open').forEach(x => x.classList.remove('is-open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') ob.querySelectorAll('.has-tip.is-open').forEach(x => x.classList.remove('is-open')); });
+
+  // Both prices are equal choices
+  const toast = $('toast'); let tt;
+  ob.querySelectorAll('.price').forEach(b => b.addEventListener('click', () => {
+    ob.querySelectorAll('.price').forEach(x => x.classList.toggle('is-picked', x === b));
+    toast.textContent = `${b.dataset.name} selected. In the live product this continues to booking.`;
+    toast.classList.add('is-on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('is-on'), 2200);
+  }));
+
+  apply(STATES[0]); mark();
+  // Stop the tour when the tab is hidden, so it never runs unseen
+  document.addEventListener('visibilitychange', () => { if (document.hidden && playing) pause(); });
+
+  // Autoplay once while visible, never for reduced motion
+  if (reduced) { pause(); return; }
+  if ('IntersectionObserver' in window) {
+    let started = false;
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started) { started = true; play(); }
+      else if (!e.isIntersecting && playing) { clearInterval(timer); timer = null; }
+      else if (e.isIntersecting && playing && !timer) play();
+    }, { threshold: .4 }).observe(ob);
+  } else play();
+})();
+</script>
+</body>
+</html>
