@@ -291,4 +291,29 @@
     }
     setTimeout(() => { copyBtn.textContent = 'Copy email'; }, 2200);
   });
+
+  /* ---------- My path: draw the line once it scrolls into view ---------- */
+  const path = $('.path');
+  if (path && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    path.classList.add('is-armed');
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { path.classList.add('is-drawn'); io.disconnect(); }
+    }), { threshold: .6 });
+    io.observe(path);
+  }
+
+  /* ---------- About photo: two shots, one polaroid ---------- */
+  const polaroid = $('#polaroid');
+  if (polaroid) {
+    const toggles = [...document.querySelectorAll('.shot-toggle button')];
+    const show = shot => {
+      if (polaroid.dataset.shot === shot) return;
+      polaroid.dataset.shot = shot;
+      toggles.forEach(b => b.setAttribute('aria-pressed', b.dataset.shot === shot));
+      polaroid.classList.remove('is-flipping'); void polaroid.offsetWidth; polaroid.classList.add('is-flipping');
+    };
+    polaroid.addEventListener('animationend', () => polaroid.classList.remove('is-flipping'));
+    $('#polaroid-flip').addEventListener('click', () => show(polaroid.dataset.shot === 'bike' ? 'stage' : 'bike'));
+    toggles.forEach(b => b.addEventListener('click', () => show(b.dataset.shot)));
+  }
 })();

@@ -190,13 +190,20 @@
   <section class="section wrap" id="about" aria-labelledby="about-title">
     <div class="about">
       <div class="about__photo">
-        <div class="polaroid">
-          <div class="polaroid__img" role="img" aria-label="Photo placeholder">Photo</div>
-          <p class="polaroid__cap">Berlin, usually on a bike</p>
+        <div class="polaroid" id="polaroid" data-shot="bike">
+          <button type="button" class="polaroid__img" id="polaroid-flip" aria-label="Switch photo">
+            <img class="polaroid__shot polaroid__shot--bike" src="assets/home/about-bike.jpg" alt="Tobias on his gravel bike on a gravel path by a lake, helmet and sunglasses on" width="500" height="625" loading="lazy">
+            <img class="polaroid__shot polaroid__shot--stage" src="assets/home/about-stage.jpg" alt="Tobias on stage as an esports commentator, wearing a headset" width="500" height="625" loading="lazy">
+          </button>
+          <p class="polaroid__cap" aria-live="polite"><span class="polaroid__cap--bike">Berlin, usually on a bike</span><span class="polaroid__cap--stage">On stage, headset on</span></p>
+        </div>
+        <div class="shot-toggle" role="group" aria-label="Photo">
+          <button type="button" data-shot="bike" aria-pressed="true">On the bike</button>
+          <button type="button" data-shot="stage" aria-pressed="false">On stage</button>
         </div>
         <ul class="stickers" role="list" aria-label="Fun facts">
-          <li class="sticker sticker--a">Ex-esports caster</li>
-          <li class="sticker sticker--b">207 km in one day</li>
+          <li class="sticker sticker--a">Former esports caster &amp; moderator</li>
+          <li class="sticker sticker--b">Passionate about gravel cycling</li>
           <li class="sticker sticker--c">Trained in hospitality</li>
         </ul>
       </div>
@@ -206,10 +213,10 @@
         <p>I started out in restaurants, studied science, and called esports matches live before I moved into UX. Each stop still shows up in how I work: I read people quickly, I trust data over gut feeling, and I explain complex things in plain words.</p>
         <p>Today I design products across B2B SaaS, travel and gaming, and I build the systems that keep them consistent.</p>
         <ol class="path" aria-label="My path">
-          <li><b>Hospitality</b><span>Trained restaurant specialist</span></li>
+          <li><b>Hospitality</b><span>Restaurant &amp; Convention Management</span></li>
           <li><b>Science</b><span>Data-driven work</span></li>
-          <li><b>Esports</b><span>Live commentator</span></li>
-          <li><b>Product design</b><span>Research, UI, design systems</span></li>
+          <li><b>Esports</b><span>Commentator &amp; Analyst<br>Stage Host</span></li>
+          <li><b>UX/UI Designer</b><span>Research, UX &amp; design systems</span></li>
         </ol>
         <p class="about__links"><a class="btn btn--secondary" href="https://drive.proton.me/urls/X6RHFJ4ZWW#HY4E29UNOimK">Download CV</a> <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/">LinkedIn</a></p>
       </div>
