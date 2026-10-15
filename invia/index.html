@@ -18,6 +18,7 @@
 
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="stylesheet" href="../assets/nav.css">
+  <link rel="stylesheet" href="../assets/cards.css">
   <link rel="stylesheet" href="../assets/offer-box.css">
 </head>
 <body>
@@ -34,6 +35,7 @@
     </nav>
     <span class="status"><span class="status__dot" aria-hidden="true"></span>Open for freelance</span>
   </div>
+  <div class="hd__progress" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -386,6 +388,43 @@
         <p class="text-body-l">Curious about the tests, the iterations and what didn't work? That's the part I like to tell in person.</p>
         <a class="btn btn--primary" href="../#notes">Let's talk</a>
       </div>
+    </section>
+
+    <!-- More to explore: the landing page's case cards, 1:1 -->
+    <section class="cs-section" aria-labelledby="more">
+      <div class="prose">
+        <p class="cs-kicker text-label">Next case study</p>
+        <h2 id="more" class="text-heading-l">More to explore</h2>
+      </div>
+      <ul class="cases" role="list">
+        <li class="case case--dark">
+          <a class="case__link" href="https://concept2design.de/#freakcms">
+            <div class="case__stage"><img src="../assets/home/esports-brackets.jpg" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="lazy"></div>
+            <div class="case__body">
+              <p class="case__pillar">Research &amp; UX strategy</p>
+              <h3 class="case__title">An esports platform people can follow</h3>
+              <p class="case__meta"><span class="chip chip--metric">−30% registration drop-off</span><span class="chip">4 products · 50k+ users</span></p>
+            </div>
+          </a>
+        </li>
+        <li class="case case--purple">
+          <a class="case__link" href="../design-to-code/">
+            <div class="case__stage"><img src="../assets/home/d2c-states.jpg" alt="Sign-up card from the design system in default and error state" width="1200" height="749" loading="lazy"></div>
+            <div class="case__body">
+              <p class="case__pillar">Design systems 0→1</p>
+              <h3 class="case__title">Design to Code: a token workflow</h3>
+              <p class="case__meta"><span class="chip chip--metric">202 tokens, synced in 1 click</span><span class="chip">Live demo</span></p>
+            </div>
+          </a>
+        </li>
+        <li class="case case--all">
+          <a class="case__link" href="../#work">
+            <p class="case__pillar">Portfolio</p>
+            <h3 class="case__title">See all work, side projects and notes</h3>
+            <span class="case__arrow">Back to the overview →</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
   </div>

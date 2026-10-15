@@ -45,3 +45,7 @@
   .hd__nav a { padding: var(--space-4) 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .hd .status__dot::after { animation: none; } }
+
+/* Reading progress under the navigation (case studies): primary colour, follows the scroll */
+.hd__progress { position: absolute; left: 0; right: 0; bottom: calc(-1 * var(--border-width-default)); height: 3px; pointer-events: none; }
+.hd__progress span { display: block; height: 100%; background: var(--color-action-primary-bg-default); transform-origin: left; transform: scaleX(var(--hd-p, 0)); border-radius: 0 2px 2px 0; }
