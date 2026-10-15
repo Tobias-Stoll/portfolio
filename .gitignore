@@ -1,0 +1,6 @@
+# local preview only
+.fonts/
+preview.html
+invia/preview.html
+invia/_playground.html
+NOTES-SETUP.md

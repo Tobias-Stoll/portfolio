@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Three Moments That Decide a Flight Booking · Tobias Stoll</title>
+  <meta name="description" content="Case study: three A/B tested features for Invia Flights (fluege.de), each answering a customer's doubt at the moment it appears. Includes an interactive playground of the modular Offer Box.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&family=Roboto+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- @ds:start Design System, pinned to one version (commit 15ba62f) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+  <!-- @ds:end -->
+
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/nav.css">
+  <link rel="stylesheet" href="../assets/offer-box.css">
+</head>
+<body>
+<a class="skip-link btn btn--primary" href="#main">Skip to content</a>
+
+<header class="hd">
+  <div class="hd__inner">
+    <a class="hd__brand" href="../">Tobias Stoll</a>
+    <nav class="hd__nav" aria-label="Sections">
+      <a href="../#work" aria-current="page">Work</a>
+      <a href="../#fun">Fun</a>
+      <a href="../#about">About</a>
+      <a href="../#notes">Notes</a>
+    </nav>
+    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open for freelance</span>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <!-- Hero -->
+    <section class="cs-hero cs-hero--bottom" aria-labelledby="title">
+      <div>
+        <p class="cs-hero__eyebrow text-label">Case study · Invia Flights · 2025 to 2026</p>
+        <h1 id="title" class="text-display">Three moments that decide a flight booking</h1>
+        <p class="cs-hero__lead text-body-l">
+          Three features for an online travel agency, each answering a customer's doubt at the moment it appears.
+          All A/B tested, all measured against conversion.
+        </p>
+        <ul class="kpis" role="list">
+          <li><b>Conversion ↑</b> high single digits</li>
+          <li><b>~1 in 3</b> chose the Flex Ticket</li>
+          <li><b>3 features</b> · 3 platforms · all A/B tested</li>
+        </ul>
+      </div>
+      <dl class="facts text-body-s">
+        <div><dt class="text-label">Role</dt><dd>UX/UI Designer in a design team, owner of these three features end to end</dd></div>
+        <div><dt class="text-label">Product</dt><dd>Invia Flights: fluege.de and other flight booking brands</dd></div>
+        <div><dt class="text-label">Platforms</dt><dd>Web, iOS, Android</dd></div>
+        <div><dt class="text-label">Method</dt><dd>UX KPIs, A/B tests, session recordings</dd></div>
+      </dl>
+    </section>
+
+    <!-- The three moments -->
+    <section class="cs-section" aria-labelledby="context">
+      <div class="prose">
+        <p class="cs-kicker text-label">Context</p>
+        <h2 id="context" class="text-heading-l">Customers compare the same flight everywhere. Trust decides where they book.</h2>
+        <p class="text-body-m">Invia Flights is one of the largest online travel agencies in the German market, with brands like fluege.de and airline-direct.de on web, iOS and Android.</p>
+        <p class="text-body-m">I owned three features at three points of the funnel. Each one answers a question that used to cost us bookings.</p>
+      </div>
+      <ol class="moments" role="list">
+        <li class="moment">
+          <span class="moment__step text-label">1 · Search results</span>
+          <a class="moment__name text-heading-m" href="#offer-box">Offer Box</a>
+          <span class="moment__q text-body-m">"Is this the best offer, and is the member price worth it?"</span>
+          <span class="moment__r text-body-s">Conversion uplift · still live</span>
+        </li>
+        <li class="moment">
+          <span class="moment__step text-label">2 · Booking</span>
+          <a class="moment__name text-heading-m" href="#flex-ticket">Flex Ticket</a>
+          <span class="moment__q text-body-m">"What if my plans change?"</span>
+          <span class="moment__r text-body-s">~1 in 3 chose it · conversion ↑</span>
+        </li>
+        <li class="moment">
+          <span class="moment__step text-label">3 · Payment</span>
+          <a class="moment__name text-heading-m" href="#price-guarantee">Price Guarantee</a>
+          <span class="moment__q text-body-m">"What if the price drops after I book?"</span>
+          <span class="moment__r text-body-s">Over a third booked it</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 1 · Offer Box -->
+    <section class="cs-section" aria-labelledby="offer-box">
+      <div class="prose">
+        <p class="cs-kicker text-label">1 · Search results</p>
+        <h2 id="offer-box" class="text-heading-l">The Offer Box: from a push to an honest choice</h2>
+        <p class="quote text-body-l">"Is this the best offer, and is the member price worth it?"</p>
+        <p class="text-body-m"><b>Problem.</b> The old card had one big button that selected the member price. The normal price hid in a small text link. Customer reviews on Trustpilot and drop-offs in the booking funnel, analyzed in session recordings and analytics, showed the cost: customers felt pushed.</p>
+        <p class="text-body-m"><b>Tension.</b> Making the normal price visible could cost member sign-ups, and the Product Owner was concerned about that. So before designing, we agreed on bookings as the success metric and member clicks as the guardrail.</p>
+      </div>
+
+      <figure class="figure evo">
+        <ol class="evo__steps" role="list">
+          <li class="evo__step">
+            <p class="evo__tag text-label"><span>1</span> Earlier</p>
+            <a class="figure__link" href="images/offerbox-v1.png"><img src="images/offerbox-v1.png" alt="Earliest offer card: a dark green 'Unser Tipp' banner, the normal price as a small link, and a big orange 'Angebot wählen' button next to the member price" width="1902" height="920" loading="lazy"></a>
+            <p class="evo__note text-body-s"><b>One button, one path.</b> "Angebot wählen" picks the member price. The normal price is a small link.</p>
+          </li>
+          <li class="evo__step">
+            <p class="evo__tag text-label"><span>2</span> Before my redesign</p>
+            <a class="figure__link" href="images/offerbox-old.png"><img src="images/offerbox-old.png" alt="Offer card before the redesign: outbound and return flight as separate blocks, normal price in a grey box with a small 'Wählen' link, member price with a big orange 'Angebot wählen' button" width="706" height="516" loading="lazy"></a>
+            <p class="evo__note text-body-s"><b>Same push, more height.</b> The big button still picks the member price, and the card grew taller.</p>
+          </li>
+          <li class="evo__step evo__step--now">
+            <p class="evo__tag text-label"><span>3</span> My redesign · live today</p>
+            <a class="figure__link" href="images/offerbox-redesign.png"><img src="images/offerbox-redesign.png" alt="Redesigned offer card: 'Unsere Empfehlung' banner, both flights on a compact timeline with baggage icons, normal price and member price as two equal buttons side by side" width="830" height="424" loading="lazy"></a>
+            <p class="evo__note text-body-s"><b>Two equal choices.</b> Both prices are their own button, in almost a third less height than version 2.</p>
+          </li>
+        </ol>
+        <figcaption class="text-body-s"><b>Three versions, same frame.</b> The push toward the member price disappears, and the card gets compact again. The dashed line: the component is ready for what comes next. Click a card to see it full size.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p class="text-body-m"><b>Approach.</b> I turned the card into an honest choice: two equal price buttons, side by side. I defined UX KPIs for the layout, A/B tested it against the previous card and checked real behavior in session recordings. I built the box as a modular component, so new features and layouts can be tested slot by slot without a redesign. The chip slot was planned from the start for features still to come, like the <a href="#flex-ticket">Flex Ticket</a> in the next chapter.</p>
+      </div>
+
+<div class="pgx" id="playground">
+<div class="pgx-intro">
+    <h3 class="pgx-intro__title">Modular component</h3>
+    <p class="pgx-intro__text">One box, four slots: top, itinerary, price actions and footer. Each slot changes on its own, so new features were added without a redesign and button layouts could be A/B tested. The tour plays one round, then it's your turn.</p>
+  </div>
+
+  <div class="pgx-shell" id="shell">
+  <div class="pgx-toolbar pgx-shell__head" id="tour">
+    <span class="pgx-live-badge"><span class="pgx-live-badge__dot" aria-hidden="true"></span>Interactive</span>
+    <ol class="pgx-steps" aria-label="Tour steps">
+      <li><button type="button" class="pgx-step" data-step="0"><span class="pgx-step__n">1</span><span class="pgx-step__l">Standard</span><span class="pgx-step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="pgx-step" data-step="1"><span class="pgx-step__n">2</span><span class="pgx-step__l">Recommended</span><span class="pgx-step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="pgx-step" data-step="2"><span class="pgx-step__n">3</span><span class="pgx-step__l">With chips</span><span class="pgx-step__bar" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="pgx-step" data-step="3"><span class="pgx-step__n">4</span><span class="pgx-step__l">Stacked</span><span class="pgx-step__bar" aria-hidden="true"></span></button></li>
+    </ol>
+    <div class="pgx-toolbar__right">
+      <button class="btn btn--secondary" type="button" id="tour-btn" aria-pressed="true"><span class="pgx-tour-ico" aria-hidden="true">❚❚</span>Pause tour</button>
+    </div>
+  </div>
+
+  <div class="pgx-stage pgx-shell__canvas">
+    <article class="ob" id="ob" data-layout="h" data-ribbon="false" data-chips="false" data-bags="none" data-slots="false" aria-label="Offer Box component demo">
+      <div class="ob__slot ob__top" data-slot="Top">
+        <div class="ob__ribbon">Unsere Empfehlung</div>
+        <div class="ob__chips">
+          <span class="ob__chip ob__chip--flex"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Flex Ticket verfügbar</span>
+          <span class="ob__chip ob__chip--fast"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.6V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Kürzeste Reisezeit</span>
+        </div>
+      </div>
+
+      <div class="ob__body">
+        <div class="ob__slot ob__itin" data-slot="Itinerary">
+          <div class="leg">
+            <div class="leg__end"><b>21:40</b><span>BER · 09. Nov</span></div>
+            <div class="leg__mid"><span class="leg__track"></span><button class="leg__stop has-tip" type="button" aria-describedby="stop-tip-1">1 Stopp<span class="tip tip--above" role="tooltip" id="stop-tip-1">Aufenthalt:<br><b>Hamad International</b> (DOH) <span style="white-space:nowrap">in <b>Doha</b> · <b>14 Std. 30 Min.</b></span></span></button><span class="leg__dur">27 Std. 35 Min.</span></div>
+            <div class="leg__end leg__end--to"><b>07:15</b><span>SGN · 11. Nov</span></div>
+            <button class="leg__bags has-tip" type="button" aria-label="Gepäck" aria-describedby="bagi-tip-1">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 6V4h4v2M7 11h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V3h4v4M7 11h6M7 14h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="5" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5V3h4v2M8 8v6M12 8v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bagi-tip-1">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <button class="leg__bagtext has-tip" type="button" aria-describedby="bag-tip-1"><svg class="bt__bag" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 5V2.5h6V5M8 5v13M16 5v13" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>1x Aufgabegepäck inkl.</span><svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bag-tip-1">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <div class="leg__air">Qatar Airways</div>
+          </div>
+          <div class="leg">
+            <div class="leg__end"><b>19:40</b><span>SGN · 16. Nov</span></div>
+            <div class="leg__mid"><span class="leg__track"></span><button class="leg__stop has-tip" type="button" aria-describedby="stop-tip-2">1 Stopp<span class="tip tip--above" role="tooltip" id="stop-tip-2">Aufenthalt:<br><b>Hamad International</b> (DOH) <span style="white-space:nowrap">in <b>Doha</b> · <b>17 Std. 10 Min.</b></span></span></button><span class="leg__dur">30 Std. 15 Min.</span></div>
+            <div class="leg__end leg__end--to"><b>19:55</b><span>BER · 17. Nov</span></div>
+            <button class="leg__bags has-tip" type="button" aria-label="Gepäck" aria-describedby="bagi-tip-2">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 6V4h4v2M7 11h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V3h4v4M7 11h6M7 14h6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="5" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5V3h4v2M8 8v6M12 8v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bagi-tip-2">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <button class="leg__bagtext has-tip" type="button" aria-describedby="bag-tip-2"><svg class="bt__bag" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 5V2.5h6V5M8 5v13M16 5v13" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>1x Aufgabegepäck inkl.</span><svg class="bt__info" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".95" fill="currentColor"/></svg><span class="tip" role="tooltip" id="bag-tip-2">Pro Person inklusive: persönlicher Gegenstand, Handgepäck und 1 Aufgabegepäckstück.</span></button>
+            <div class="leg__air">Qatar Airways</div>
+          </div>
+          <a class="ob__details" href="#ob" onclick="return false">Flugdetails anzeigen</a>
+        </div>
+
+        <div class="ob__slot ob__prices" data-slot="Price actions">
+          <button class="price price--normal" type="button" data-name="Normal price">
+            <span class="price__label">Normalpreis</span>
+            <span class="price__amount"><strong>710,48 €</strong><small>Pro Person</small></span>
+          </button>
+          <button class="price price--plus" type="button" data-name="Member price">
+            <span class="price__label"><span class="plus-mark" aria-label="PLUS"><i>P</i><i>L</i><i>U</i><i>S</i></span>Preis</span>
+            <span class="price__amount"><strong>649,49 €</strong><small>Pro Person <s>710,48 €</s></small></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ob__slot ob__foot" data-slot="Footer">
+        <div class="pay" aria-label="Payment methods"><span>VISA</span><span>Mastercard</span><span>AMEX</span><span>SEPA</span><span>Klarna</span><span>PayPal</span></div>
+        <div class="ob__links"><a href="#ob" onclick="return false">Was ist PLUS?</a><a href="#ob" onclick="return false">Kostenübersicht</a></div>
+      </div>
+    </article>
+    <p class="pgx-canvas-tip">Try it: hover a stop, click a price</p>
+  </div>
+
+  <div class="pgx-controls pgx-shell__panel" id="panel" role="group" aria-label="Customize the component">
+    <span class="pgx-controls__label">Controls <span class="pgx-your-turn" aria-hidden="true">Your turn</span></span>
+    <div class="pgx-ctl"><span class="pgx-ctl__label">Price actions</span>
+      <div class="pgx-seg" role="group" aria-label="Price layout">
+        <button type="button" id="lay-h" aria-pressed="true">Side by side</button>
+        <button type="button" id="lay-v" aria-pressed="false">Stacked right</button>
+      </div>
+    </div>
+    <label class="pgx-switch pgx-ctl"><input type="checkbox" id="t-ribbon">Banner</label>
+    <label class="pgx-switch pgx-ctl"><input type="checkbox" id="t-chips">Chips</label>
+    <div class="pgx-ctl"><span class="pgx-ctl__label">Baggage</span>
+      <div class="pgx-seg" role="group" aria-label="Baggage display">
+        <button type="button" id="bag-none" aria-pressed="true">Off</button>
+        <button type="button" id="bag-icons" aria-pressed="false">Icons</button>
+        <button type="button" id="bag-text" aria-pressed="false">Text</button>
+      </div>
+    </div>
+      <span class="pgx-panel-sep" aria-hidden="true"></span>
+    <label class="pgx-switch pgx-switch--slots pgx-ctl"><input type="checkbox" id="t-slots">Show slots</label>
+  </div>
+  </div>
+  <div class="pgx-toast" id="toast" role="status"></div>
+</div>
+
+      <div class="cs-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-l">A measurable conversion uplift, despite fewer upsell clicks. A less pushy offer sold more flights, and it is still live today. The test also surfaced ideas for the next round, ready to be tested in their own slots.</p>
+      </div>
+    </section>
+
+    <!-- 2 · Flex Ticket -->
+    <section class="cs-section" aria-labelledby="flex-ticket">
+      <div class="prose">
+        <p class="cs-kicker text-label">2 · Booking</p>
+        <h2 id="flex-ticket" class="text-heading-l">The Flex Ticket: compare first, then a nudge</h2>
+        <p class="quote text-body-l">"What if my plans change?"</p>
+        <p class="text-body-m">A flexible ticket lets customers cancel shortly before departure and get most of the price back. We A/B tested two layouts, iterated on the winner, then adapted it for the apps. Thanks to the chip slot in the <a href="#offer-box">Offer Box</a>, the Flex Ticket also shows up right in the search results, without touching the card's design.</p>
+      </div>
+      <figure class="figure ft" aria-label="How the Flex Ticket layout evolved">
+        <ol class="ft__steps" role="list">
+          <li class="ft-step ft-step--a">
+            <span class="ft__dot" aria-hidden="true">A</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Variant A · Vertical</p>
+              <h3 class="ft__title text-heading-s">Matches the page</h3>
+              <p class="ft__body text-body-s">Stacked like the other products on the page. The safe default, and our control.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/flex-vertical.png"><img src="images/flex-vertical.png" alt="Variant A, vertical layout: the Standard ticket on top, the Flexible ticket below it, each with its benefits, price and button" width="454" height="770" loading="lazy"></a>
+          </li>
+          <li class="ft-step ft-step--b">
+            <span class="ft__dot" aria-hidden="true">B</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Variant B · Horizontal <span class="abtest__badge">Won</span></p>
+              <h3 class="ft__title text-heading-s">Compare at a glance</h3>
+              <p class="ft__body text-body-s">Ran in parallel to A, to learn whether a different structure works better. Side by side, the benefits line up row by row, and customers decided significantly better.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/flex-horizontal.png"><img src="images/flex-horizontal.png" alt="Variant B, horizontal layout: Standard ticket and Flexible ticket side by side, so benefits and prices line up for comparison" width="830" height="484" loading="lazy"></a>
+          </li>
+          <li class="ft-step ft-step--iter">
+            <span class="ft__dot" aria-hidden="true">+</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Iteration · B with hint</p>
+              <h3 class="ft__title text-heading-s">A nudge at the right moment</h3>
+              <p class="ft__body text-body-s">Once someone picks the Standard ticket, a short hint reminds them that plans can change. It helps people judge whether the flexible ticket fits them, and it raised the take rate.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/flex-horizontal-hint.png">
+              <span class="abtest__shot">
+                <img src="images/flex-horizontal-hint.png" alt="Iteration of variant B: under the selected Standard ticket, a green hint says plans can change and offers flexible cancellation" width="830" height="484" loading="lazy">
+                <span class="abtest__mark" aria-hidden="true"><span class="abtest__mark-label">New: hint on Standard</span></span>
+              </span>
+            </a>
+          </li>
+          <li class="ft-step ft-step--branch">
+            <span class="ft__hline" aria-hidden="true"></span>
+            <span class="ft__dot" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><rect x="4" y="1.5" width="8" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 12h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Branch</p>
+              <div class="ft__stick">
+              <p class="ft__tag ft__stick-tag text-label" aria-hidden="true">iOS &amp; Android</p>
+              <h3 class="ft__title text-heading-s">Variant A, reused in the apps</h3>
+              <p class="ft__body text-body-s">We redesigned the booking funnel in the iOS and Android apps. Variant A's vertical structure became the bridge to the web: same content, same order, built within Apple's Human Interface Guidelines and Material Design.</p>
+              </div>
+            </div>
+            <div class="ft__phones">
+              <div class="ft-shot">
+                <p class="ft-shot__tag text-label">iOS</p>
+                <a class="figure__link ft__frame" href="images/flex-ios.png"><img src="images/flex-ios.png" alt="iOS: both tickets as stacked cards with radio buttons, Standard selected" width="402" height="932" loading="lazy"></a>
+              </div>
+              <div class="ft-shot">
+                <p class="ft-shot__tag text-label">Android</p>
+                <a class="figure__link ft__frame" href="images/flex-android.png"><img src="images/flex-android.png" alt="Android: both tickets as stacked cards with radio buttons, Standard selected" width="412" height="920" loading="lazy"></a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </figure>
+      <div class="cs-result ft-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-l">About 1 in 3 customers chose the Flex Ticket, and conversion rose by a high single-digit percentage. People booked who would otherwise have waited.</p>
+        <p class="ft-result__also text-body-m">We also aligned design system decisions with the mobile development team. Web and apps now feel more consistent, and both teams avoid duplicate work.</p>
+      </div>
+    </section>
+
+    <!-- 3 · Price Guarantee -->
+    <section class="cs-section" aria-labelledby="price-guarantee">
+      <div class="prose">
+        <p class="cs-kicker text-label">3 · Payment</p>
+        <h2 id="price-guarantee" class="text-heading-l">The Price Guarantee: the right moment, in plain words</h2>
+        <p class="quote text-body-l">"What if the price drops after I book?"</p>
+        <p class="text-body-m">If the fare drops after booking, customers get part of the saving back as a voucher. We tested where in the funnel the offer belongs, then made the mechanics easy to understand.</p>
+      </div>
+      <figure class="figure ft" aria-label="How the Price Guarantee found its place">
+        <ol class="ft__steps" role="list">
+          <li class="ft-step ft-step--a ft-step--wide">
+            <span class="ft__dot" aria-hidden="true">A</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Variant A · Early in the funnel</p>
+              <h3 class="ft__title text-heading-s">Next to the other add-ons</h3>
+              <p class="ft__body text-body-s">Right after the contact details, next to offers like the Flex Ticket. The assumption: early means more attention.</p>
+            </div>
+            <div class="ft__frame funnel" role="img" aria-label="Booking funnel with five steps: search results, traveller details, flight extras, service level and payment. In variant A the Price Guarantee sits in flight extras, next to the Flex Ticket, far from the payment step.">
+              <ol class="funnel__steps" aria-hidden="true">
+                <li><span>1</span>Suchergebnisse</li>
+                <li><span>2</span>Daten der Reisenden</li>
+                <li class="is-here"><span>3</span>Flug-Extras</li>
+                <li><span>4</span>Service Stufe</li>
+                <li class="is-pay"><span>5</span>Zahldaten</li>
+              </ol>
+              <div class="funnel__stack" aria-hidden="true">
+                <div class="funnel__card">Flex Ticket</div>
+                <div class="funnel__card funnel__card--pg"><span class="funnel__check"></span>Intelligente Preissuche</div>
+                <div class="funnel__card">…</div>
+              </div>
+            </div>
+          </li>
+          <li class="ft-step ft-step--b">
+            <span class="ft__dot" aria-hidden="true">B</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Variant B · At the payment step <span class="abtest__badge">Won</span></p>
+              <h3 class="ft__title text-heading-s">One decision at a time</h3>
+              <p class="ft__body text-body-s">Moved to the payment step, after all other add-ons. With fewer choices on screen, customers decided with less cognitive load, and more of them took it.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/pg-optin.png"><img src="images/pg-optin.png" alt="Price Guarantee box at the payment step: heading 'Intelligente Preissuche', a short explanation, a checked box to receive a cheaper fare if available, and a link 'Intelligente Preissuche? so geht's'" width="1660" height="546" loading="lazy"></a>
+          </li>
+          <li class="ft-step ft-step--iter">
+            <span class="ft__dot" aria-hidden="true">+</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">UX writing · How it works</p>
+              <h3 class="ft__title text-heading-s">Explained in three steps</h3>
+              <p class="ft__body text-body-s">The link under the box opens a short dialog: three numbered steps first, the fine print after. Customers see what they get before they decide.</p>
+            </div>
+            <a class="figure__link ft__frame ft__frame--narrow" href="images/pg-modal.png"><img src="images/pg-modal.png" alt="Dialog 'Wie funktioniert die Intelligente Preissuche?': three numbered steps (search for a cheaper fare after booking, issue the ticket, half the saving as a voucher), followed by the voucher terms" width="1200" height="862" loading="lazy"></a>
+          </li>
+        </ol>
+      </figure>
+      <div class="cs-result ft-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-l">Over a third of customers booked with the Price Guarantee.</p>
+      </div>
+      <div class="principle cs-next">
+        <p class="text-label cs-next__label">What I would change next</p>
+        <p class="text-body-m">Today the box ships pre-selected. I would make it an active choice: a guarantee customers pick themselves builds more trust, and trust is what all three features are about.</p>
+      </div>
+    </section>
+
+    <!-- Takeaways -->
+    <section class="cs-section" aria-labelledby="takeaways">
+      <div class="prose">
+        <p class="cs-kicker text-label">What I took away</p>
+        <h2 id="takeaways" class="text-heading-l">Honest beats pushy, and the test decides</h2>
+      </div>
+      <ul class="results results--3 text-body-m" role="list">
+        <li><b>Measure the right thing</b><span>A click is a means, a booking is the goal.</span></li>
+        <li><b>Trust beats tricks</b><span>The honest version won more than once.</span></li>
+        <li><b>Test your assumptions about placement</b><span>The best moment for an offer is not always the earliest.</span></li>
+      </ul>
+      <div class="talk">
+        <p class="text-body-l">Curious about the tests, the iterations and what didn't work? That's the part I like to tell in person.</p>
+        <a class="btn btn--primary" href="../#notes">Let's talk</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner text-body-s">
+    <p>© 2026 Tobias Stoll · Product Designer, Berlin</p>
+    <p>Built with <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a>.</p>
+  </div>
+</footer>
+<script src="../assets/offer-box.js"></script>
+<script src="../assets/nav.js"></script>
+<script src="../assets/ft-timeline.js"></script>
+<script src="../assets/lightbox.js"></script>
+</body>
+</html>

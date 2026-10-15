@@ -2,12 +2,279 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tobias Stoll · Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=design-to-code/">
-  <link rel="canonical" href="design-to-code/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tobias Stoll · Product Designer</title>
+  <meta name="description" content="Tobias Stoll, independent product designer in Berlin. Product design from the first data point to the final pixel: research, UI and design systems that scale.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <!-- @ds:start Design System, pinned to one version (commit 15ba62f) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/input.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/form-field.css">
+  <!-- @ds:end -->
+
+  <link rel="stylesheet" href="assets/home.css">
 </head>
-<body>
-  <p>The portfolio is moving here. Until the landing page is ready: <a href="design-to-code/">read the case study Design to Code</a>.</p>
+<body class="home">
+<a class="skip-link btn btn--primary" href="#main">Skip to content</a>
+
+<header class="hd">
+  <div class="hd__inner">
+    <a class="hd__brand" href="#top">Tobias Stoll</a>
+    <nav class="hd__nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#fun">Fun</a>
+      <a href="#about">About</a>
+      <a href="#notes">Notes</a>
+    </nav>
+    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open for freelance</span>
+  </div>
+</header>
+
+<!-- The route: a line that draws itself while you scroll, Dresden (top) to Berlin (bottom) -->
+<svg class="route" aria-hidden="true" focusable="false">
+  <path class="route__track"></path>
+  <path class="route__line"></path>
+  <g class="route__marks"></g>
+</svg>
+
+<main id="main" tabindex="-1">
+
+  <!-- ============ First screen ============ -->
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <p class="kicker" data-km="0">Independent product designer · Berlin</p>
+    <h1 id="hero-title" class="hero__title">
+      Product design, from the <span class="hl hl--data">first data point<svg class="hl__spark" viewBox="0 0 64 20" aria-hidden="true"><polyline points="2,16 14,12 24,14 36,6 48,9 60,3"/><circle cx="60" cy="3" r="2.6"/></svg></span>
+      to the <span class="hl hl--pixel">final pixel<i class="hl__px" aria-hidden="true"></i></span>.
+    </h1>
+    <div class="hero__row">
+      <p class="hero__lead">I'm Tobias. I help teams turn requirements into clear decisions, crafted UI and design systems that scale. Web, iOS and Android.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#work">See selected work</a>
+        <a class="btn btn--ghost" href="#notes">Leave a note</a>
+      </div>
+    </div>
+
+    <h2 class="sr-only" id="work">Selected work</h2>
+    <ul class="cases" role="list">
+      <li class="case case--dark">
+        <a class="case__link" href="https://concept2design.de/#freakcms">
+          <div class="case__stage"><img src="assets/home/esports-brackets.jpg" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="eager"></div>
+          <div class="case__body">
+            <p class="case__pillar">Research &amp; UX strategy</p>
+            <h3 class="case__title">An esports platform people can follow</h3>
+            <p class="case__meta"><span class="chip chip--metric">−30% registration drop-off</span><span class="chip">4 products · 50k+ users</span></p>
+          </div>
+        </a>
+      </li>
+      <li class="case case--purple">
+        <a class="case__link" href="design-to-code/">
+          <div class="case__stage"><img src="assets/home/d2c-states.jpg" alt="Sign-up card from the design system in default and error state" width="1200" height="749" loading="eager"></div>
+          <div class="case__body">
+            <p class="case__pillar">Design systems 0→1</p>
+            <h3 class="case__title">Design to Code: a token workflow</h3>
+            <p class="case__meta"><span class="chip chip--metric">202 tokens, synced in 1 click</span><span class="chip">Live demo</span></p>
+          </div>
+        </a>
+      </li>
+      <li class="case case--blue">
+        <a class="case__link" href="invia/">
+          <div class="case__stage case__stage--anim" role="img" aria-label="Offer card before and after: one big button that picked the member price becomes two equal price buttons">
+            <div class="oa">
+              <span class="oa__pill"><span class="oa__before">Before</span><span class="oa__after">After</span></span>
+              <div class="oa__card">
+                <div class="oa__head oa__head--new">Unsere Empfehlung</div>
+                <div class="oa__head oa__head--old"></div>
+                <div class="oa__leg" style="top:52px"><b>21:40</b><i>BER</i><span class="oa__line"></span><b>13:05</b><i>SGN</i></div>
+                <div class="oa__leg" style="top:94px"><b>08:55</b><i>SGN</i><span class="oa__line"></span><b>19:55</b><i>BER</i></div>
+                <div class="oa__rule"></div>
+                <div class="oa__panel"></div>
+                <div class="oa__oldprice"><span>PLUS Preis</span><strong>647 €</strong></div>
+                <div class="oa__normal">
+                  <span class="oa__old"><span>Normalpreis<br><b>708 € p.P.</b></span><u>Wählen ›</u></span>
+                  <span class="oa__new"><span>Normalpreis</span><strong>708 €</strong></span>
+                </div>
+                <div class="oa__cta">
+                  <span class="oa__old">Angebot wählen ›</span>
+                  <span class="oa__new"><span>PLUS Preis</span><strong>647 €</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case__body">
+            <p class="case__pillar">KPI-driven product · Mobile</p>
+            <h3 class="case__title">A price guarantee after booking</h3>
+            <p class="case__meta"><span class="chip">Web · iOS · Android</span><span class="chip">Flight booking</span></p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ More work ============ -->
+  <section class="section wrap" aria-labelledby="more-title">
+    <div class="section__head">
+      <p class="kicker" data-km>More work</p>
+      <h2 id="more-title" class="section__title">Smaller projects, same care</h2>
+    </div>
+    <ul class="rows" role="list">
+      <li class="row" data-preview="assets/home/flex-ticket.jpg">
+        <span class="row__name">Flex Ticket</span>
+        <span class="row__what">Booking flow add-on, solo-designed for web, iOS and Android in a two-week sprint</span>
+        <span class="row__tag">Shipped</span>
+      </li>
+      <li class="row" data-preview="assets/home/enterprise-ds.jpg">
+        <span class="row__name">Enterprise design system</span>
+        <span class="row__what">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span>
+        <span class="row__tag">Foundation</span>
+      </li>
+      <li class="row" data-preview="assets/home/esports-team.jpg">
+        <span class="row__name">Team profiles</span>
+        <span class="row__what">Performance history across seasons for 1,500+ esports teams</span>
+        <span class="row__tag">Shipped</span>
+      </li>
+    </ul>
+    <img class="peek" alt="" aria-hidden="true">
+  </section>
+
+  <!-- ============ Fun ============ -->
+  <section class="section wrap" id="fun" aria-labelledby="fun-title">
+    <div class="section__head">
+      <p class="kicker" data-km>Fun</p>
+      <h2 id="fun-title" class="section__title">Things I build to learn</h2>
+      <p class="section__lead">New tools get tested on real use cases first. Each one comes with a tutorial, so you can build it too.</p>
+    </div>
+    <ul class="fun" role="list">
+      <li class="fun__item fun__item--video">
+        <a class="fun__link" href="ride-recap/">
+          <div class="fun__media fun__media--story">
+            <video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none" aria-label="Animated ride recap story: 207.3 km from Dresden to Berlin"></video>
+          </div>
+          <div class="fun__body">
+            <p class="case__pillar">Tutorial · Figma Motion</p>
+            <h3 class="fun__title">Ride Recap</h3>
+            <p class="fun__text">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</p>
+            <span class="fun__go">Read the tutorial <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <button class="vid-toggle" type="button" id="vid-toggle" aria-pressed="false" hidden><span aria-hidden="true">❚❚</span> Pause video</button>
+      </li>
+      <li class="fun__item fun__item--stat">
+        <a class="fun__link" href="https://www.instagram.com/ridewithtobi/">
+          <div class="fun__body">
+            <p class="case__pillar">Growth experiment</p>
+            <h3 class="fun__title">@ridewithtobi</h3>
+            <p class="fun__big"><span>1M+</span> views in 2 months</p>
+            <p class="fun__text">My cycling channel is a test lab for hooks, retention and storytelling. 3,000+ followers so far.</p>
+            <span class="fun__go">Follow along <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </li>
+      <li class="fun__item fun__item--next">
+        <div class="fun__body">
+          <p class="case__pillar">Next up</p>
+          <h3 class="fun__title">Ride Recap carousel</h3>
+          <p class="fun__text">A feed version of the story, with routes read straight from GPX files.</p>
+          <span class="chip">In the works</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ About ============ -->
+  <section class="section wrap" id="about" aria-labelledby="about-title">
+    <div class="about">
+      <div class="about__photo">
+        <div class="polaroid">
+          <div class="polaroid__img" role="img" aria-label="Photo placeholder">Photo</div>
+          <p class="polaroid__cap">Berlin, usually on a bike</p>
+        </div>
+        <ul class="stickers" role="list" aria-label="Fun facts">
+          <li class="sticker sticker--a">Ex-esports caster</li>
+          <li class="sticker sticker--b">207 km in one day</li>
+          <li class="sticker sticker--c">Trained in hospitality</li>
+        </ul>
+      </div>
+      <div class="about__text">
+        <p class="kicker" data-km>About</p>
+        <h2 id="about-title" class="section__title">Not the usual route into design</h2>
+        <p>I started out in restaurants, studied science, and called esports matches live before I moved into UX. Each stop still shows up in how I work: I read people quickly, I trust data over gut feeling, and I explain complex things in plain words.</p>
+        <p>Today I design products across B2B SaaS, travel and gaming, and I build the systems that keep them consistent.</p>
+        <ol class="path" aria-label="My path">
+          <li><b>Hospitality</b><span>Trained restaurant specialist</span></li>
+          <li><b>Science</b><span>Data-driven work</span></li>
+          <li><b>Esports</b><span>Live commentator</span></li>
+          <li><b>Product design</b><span>Research, UI, design systems</span></li>
+        </ol>
+        <p class="about__links"><a class="btn btn--secondary" href="https://drive.proton.me/urls/X6RHFJ4ZWW#HY4E29UNOimK">Download CV</a> <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/">LinkedIn</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Notes ============ -->
+  <section class="section wrap" id="notes" aria-labelledby="notes-title">
+    <div class="section__head">
+      <p class="kicker" data-km>Notes</p>
+      <h2 id="notes-title" class="section__title">Leave a note</h2>
+      <p class="section__lead">Say hi, give feedback on a case study, or tell me what you're building. Notes show up here after I've read them.</p>
+    </div>
+
+    <div class="wall" id="wall">
+      <form class="note note--form" id="note-form" novalidate>
+        <div class="form-field">
+          <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
+          <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
+          <span class="form-field__message" id="note-err" role="alert"></span>
+        </div>
+        <div class="form-field">
+          <div class="form-field__header">
+            <label class="form-field__label" for="note-name">Name</label>
+            <span class="form-field__description">Optional</span>
+          </div>
+          <input class="input" id="note-name" name="name" maxlength="40" autocomplete="name">
+        </div>
+        <!-- honeypot: humans never see this field -->
+        <input class="hp" type="text" name="website" id="note-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="note__actions">
+          <span class="note__count" id="note-count">0 / 280</span>
+          <button class="btn btn--primary" type="submit">Pin it</button>
+        </div>
+        <p class="note__status" id="note-status" role="status"></p>
+      </form>
+
+      <article class="note note--tobias">
+        <p class="note__text">Hi! I read every note. Feedback on a case study is especially welcome, the honest kind.</p>
+        <p class="note__by">Tobias</p>
+      </article>
+      <!-- approved notes are inserted here -->
+    </div>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section class="contact wrap" aria-labelledby="contact-title">
+    <p class="kicker" data-km="207">Finish · Berlin</p>
+    <h2 id="contact-title" class="contact__title">You made it to the end. Let's talk.</h2>
+    <div class="contact__row">
+      <span class="contact__mail" id="mail">tobiasstoll@pm.me</span>
+      <button class="btn btn--primary" type="button" id="copy-mail">Copy email</button>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/">LinkedIn</a>
+      <a class="btn btn--ghost" href="https://www.instagram.com/ridewithtobi/">Instagram</a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft__inner wrap">
+    <p>© 2026 Tobias Stoll · Product Designer, Berlin</p>
+    <p>Built with <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
+  </div>
+</footer>
+
+<script src="assets/home.js"></script>
 </body>
 </html>

@@ -31,7 +31,7 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-.pg { max-width: 920px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 64px; display: grid; gap: 24px; }
+.pg { max-width: 1120px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 64px; display: grid; gap: 24px; }
 
 .pg__head { display: grid; gap: 8px; max-width: 62ch; }
 .pg__eyebrow { margin: 0; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
@@ -259,6 +259,144 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
   .price, .switch input, .switch input::after { transition: none; }
 }
+
+/* New semantic tokens, proposed for the Design System: "selected" is a state, not an action.
+   Aliases on the primary palette, so the brand colour stays, but buttons keep action/* to themselves. */
+:root {
+  --color-selected-bg: var(--color-purple-50);
+  --color-selected-border: var(--color-purple-600);
+  --color-selected-fg: var(--color-purple-700);
+}
+
+/* ================= Playground shell (Design System tokens only) =================
+   Colour logic: selected (purple, new tokens) = the state you picked, primary = switch on, secondary (cyan) = tour + slot inspection,
+   success (green) = live/interactive, neutral = surfaces. Candidates for the Design System:
+   Tabs (steps), Segmented control, Switch, Badge. */
+.shell {
+  display: grid; grid-template-columns: minmax(0, 1fr) 224px; grid-template-areas: "head head" "canvas panel";
+  border: var(--border-width-default) solid var(--color-border-default); border-radius: var(--radius-container);
+  background: var(--color-bg-default); box-shadow: 0 1px 2px rgba(43,43,47,.04), 0 24px 48px -32px rgba(43,43,47,.25);
+}
+.shell > * { min-width: 0; }
+
+/* header: badge, tabs, tour */
+.toolbar.shell__head {
+  grid-area: head; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: var(--space-gap-md) var(--space-gap-lg);
+  padding: var(--space-12) var(--space-16); border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+.shell__head .toolbar__right { margin-left: auto; }
+.shell__head .steps { gap: var(--space-gap-xs); }
+.shell__head .btn { white-space: nowrap; }
+
+/* Badge (success): this is live, not a screenshot */
+.live-badge {
+  display: inline-flex; align-items: center; gap: var(--space-gap-sm); padding: var(--space-4) var(--space-12) var(--space-4) var(--space-8);
+  border-radius: var(--radius-pill); background: var(--color-feedback-success-bg); color: var(--color-feedback-success-fg);
+  font-family: var(--font-family-sans); font-size: var(--font-size-100); line-height: var(--font-line-height-100); font-weight: var(--font-weight-medium); white-space: nowrap;
+}
+.live-badge__dot { position: relative; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--color-green-500); }
+/* the dot breathes slowly while the tour runs, and rests when it stops (pause button = WCAG 2.2.2) */
+.shell:has(.toolbar.is-playing) .live-badge__dot { animation: live-breathe 1.8s ease-in-out infinite; }
+@keyframes live-breathe { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-green-500) 45%, transparent); } 50% { opacity: .45; box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-green-500) 0%, transparent); } }
+
+/* Tabs (tour steps), Material 3 style: no borders, text only, the selected tab gets an underline
+   that sits on the header's divider. During the tour the underline fills up as progress. */
+.toolbar.shell__head { padding-top: 0; padding-bottom: 0; align-items: stretch; }
+.shell__head .live-badge, .shell__head .toolbar__right { align-self: center; margin-block: var(--space-12); }
+.shell__head .steps { align-self: stretch; display: flex; gap: 0; margin: 0 0 calc(-1 * var(--border-width-default)) !important; }
+.shell__head .steps li { display: flex; }
+.step {
+  min-width: 0; gap: var(--space-gap-sm); padding: 0 var(--space-16); border: 0; border-radius: var(--radius-control) var(--radius-control) 0 0; background: transparent;
+  font-family: var(--font-family-sans); font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-weight: var(--font-weight-medium);
+  color: var(--color-fg-muted); transition: color .2s, background-color .2s;
+}
+.step:hover { background: var(--color-bg-subtle); color: var(--color-fg-default); border: 0; }
+.step:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: -2px; }
+.step__n { width: 20px; height: 20px; border-radius: var(--radius-full); background: var(--color-bg-muted); color: var(--color-fg-muted); font-size: var(--font-size-100); transition: background-color .2s, color .2s; }
+.step.is-on { border: 0; background: transparent; color: var(--color-selected-fg); }
+.step.is-on:hover { background: var(--color-bg-subtle); }
+.step.is-on .step__n { background: var(--color-selected-border); color: var(--color-fg-inverse); }
+/* the indicator: 3px, rounded on top, inset to the label like M3 primary tabs */
+.step__bar { left: var(--space-12); right: var(--space-12); width: auto; height: 3px; border-radius: 3px 3px 0 0; background: var(--color-selected-border); }
+.toolbar:not(.is-playing) .step.is-on .step__bar { transform: scaleX(1); transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+
+/* Canvas: neutral work surface with a dot grid */
+.stage.shell__canvas {
+  grid-area: canvas; position: relative; border: 0; border-radius: 0 0 0 var(--radius-container);
+  background-color: var(--color-bg-subtle);
+  background-image: radial-gradient(circle, var(--color-neutral-300) 1px, transparent 1.2px);
+  background-size: 16px 16px; background-position: 8px 8px;
+  padding: var(--space-48) var(--space-16) var(--space-48);
+}
+.canvas-tip {
+  position: absolute; left: var(--space-16); bottom: var(--space-12); margin: 0; display: inline-flex; align-items: center; gap: var(--space-gap-xs);
+  font-family: var(--font-family-sans); font-size: var(--font-size-100); line-height: var(--font-line-height-100); color: var(--color-fg-muted);
+}
+.canvas-tip::before { content: ""; width: 14px; height: 14px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 1.5l9.5 5.6-4.2 1 2.6 4.6-1.7.9-2.6-4.6-3 3z'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 1.5l9.5 5.6-4.2 1 2.6 4.6-1.7.9-2.6-4.6-3 3z'/%3E%3C/svg%3E") center/contain no-repeat; }
+
+/* Controls panel */
+.controls.shell__panel {
+  grid-area: panel; position: relative; display: flex; flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: var(--space-16);
+  padding: var(--space-16); border: 0; border-left: var(--border-width-default) solid var(--color-border-default);
+  border-radius: 0 0 var(--radius-container) 0; background: var(--color-bg-default);
+}
+.controls__label {
+  display: flex; align-items: center; justify-content: space-between; margin: 0;
+  font-family: var(--font-family-sans); font-size: var(--font-size-100); line-height: var(--font-line-height-100); font-weight: var(--font-weight-medium);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted);
+}
+.shell__panel .ctl { flex-direction: column; align-items: flex-start; gap: var(--space-gap-sm); font-family: var(--font-family-sans); font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-weight: var(--font-weight-regular); color: var(--color-fg-default); }
+.shell__panel .switch.ctl { flex-direction: row; align-items: center; }
+.ctl__label { color: var(--color-fg-muted); font-weight: var(--font-weight-regular); }
+.panel-sep { display: block; height: var(--border-width-default); background: var(--color-border-default); }
+
+/* Segmented control: neutral track, selected = default surface */
+.seg { display: flex; width: 100%; padding: 2px; border-radius: var(--radius-control); background: var(--color-bg-muted); }
+.seg button {
+  flex: 1; white-space: nowrap; padding: var(--space-4) var(--space-8); border-radius: calc(var(--radius-control) - 2px);
+  font-family: var(--font-family-sans); font-size: var(--font-size-100); line-height: var(--font-line-height-200); font-weight: var(--font-weight-medium); color: var(--color-fg-muted);
+}
+.seg button:hover { color: var(--color-fg-default); }
+.seg button[aria-pressed="true"] { background: var(--color-selected-bg); color: var(--color-selected-fg); box-shadow: 0 0 0 var(--border-width-default) var(--color-selected-border); }
+.seg button:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 1px; }
+
+/* Switch: off = strong border colour, on = primary; the slot switch uses secondary, like the slot outlines it reveals */
+.switch input { width: 32px; height: 18px; border-radius: var(--radius-pill); background: var(--color-border-strong); }
+.switch input::after { width: 14px; height: 14px; background: var(--color-bg-default); }
+.switch input:checked { background: var(--color-action-primary-bg-default); }
+.switch--slots input:checked { background: var(--color-action-secondary-bg-default); }
+.switch input:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
+
+/* "Your turn": once the tour ends by itself, the panel lights up once (focus colour) */
+.your-turn { display: none; padding: 2px var(--space-8); border-radius: var(--radius-indicator); background: var(--color-action-primary-bg-default); color: var(--color-action-primary-fg); letter-spacing: 0; text-transform: none; }
+.shell.is-your-turn .your-turn { display: inline-block; animation: turn-in .4s cubic-bezier(.34,1.56,.64,1) both; }
+.shell__panel::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-focus); opacity: 0; pointer-events: none; }
+.shell.is-your-turn .shell__panel::after { animation: panel-glow 1.4s ease-out 2; }
+@keyframes turn-in { from { transform: scale(.7); opacity: 0; } }
+@keyframes panel-glow { 30% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Narrow: panel moves under the canvas (keeps room for "Stacked right" next to the panel) */
+@media (max-width: 1000px) {
+  .shell { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "canvas" "panel"; }
+  .stage.shell__canvas { border-radius: 0; }
+  .controls.shell__panel { border-left: 0; border-top: var(--border-width-default) solid var(--color-border-default); border-radius: 0 0 var(--radius-container) var(--radius-container); }
+}
+@media (max-width: 700px) {
+  .toolbar.shell__head { padding-inline: 0; }
+  .shell__head .live-badge { margin-left: var(--space-16); }
+  .shell__head .toolbar__right { margin-right: var(--space-16); }
+  .shell__head .steps { order: 3; width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; border-top: var(--border-width-default) solid var(--color-border-default); padding-inline: var(--space-4) !important; }
+  .shell__head .steps::-webkit-scrollbar { display: none; }
+  .step { padding: var(--space-12) var(--space-12); white-space: nowrap; flex: none; }
+}
+@media (max-width: 560px) {
+  .stage.shell__canvas { padding: var(--space-24) var(--space-12) var(--space-40); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-badge__dot, .shell.is-your-turn .shell__panel::after, .shell.is-your-turn .your-turn { animation: none; }
+}
 </style>
 <style>
 .pg__foot { margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; }
@@ -278,7 +416,9 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
     <p class="intro__text">One box, four slots: top, itinerary, price actions and footer. Each slot changes on its own, so new features were added without a redesign and button layouts could be A/B tested. The tour plays one round, then it's your turn.</p>
   </div>
 
-  <div class="toolbar" id="tour">
+  <div class="shell" id="shell">
+  <div class="toolbar shell__head" id="tour">
+    <span class="live-badge"><span class="live-badge__dot" aria-hidden="true"></span>Interactive</span>
     <ol class="steps" aria-label="Tour steps">
       <li><button type="button" class="step" data-step="0"><span class="step__n">1</span><span class="step__l">Standard</span><span class="step__bar" aria-hidden="true"></span></button></li>
       <li><button type="button" class="step" data-step="1"><span class="step__n">2</span><span class="step__l">Recommended</span><span class="step__bar" aria-hidden="true"></span></button></li>
@@ -286,12 +426,11 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
       <li><button type="button" class="step" data-step="3"><span class="step__n">4</span><span class="step__l">Stacked</span><span class="step__bar" aria-hidden="true"></span></button></li>
     </ol>
     <div class="toolbar__right">
-      <label class="switch switch--slots ctl"><input type="checkbox" id="t-slots">Show slots</label>
       <button class="btn btn--secondary" type="button" id="tour-btn" aria-pressed="true"><span class="tour-ico" aria-hidden="true">❚❚</span>Pause tour</button>
     </div>
   </div>
 
-  <div class="stage">
+  <div class="stage shell__canvas">
     <article class="ob" id="ob" data-layout="h" data-ribbon="false" data-chips="false" data-bags="none" data-slots="false" aria-label="Offer Box component demo">
       <div class="ob__slot ob__top" data-slot="Top">
         <div class="ob__ribbon">Unsere Empfehlung</div>
@@ -347,17 +486,18 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
         <div class="ob__links"><a href="#ob" onclick="return false">Was ist PLUS?</a><a href="#ob" onclick="return false">Kostenübersicht</a></div>
       </div>
     </article>
+    <p class="canvas-tip">Try it: hover a stop, click a price</p>
   </div>
 
-  <div class="controls" role="group" aria-label="Customize the component">
-    <span class="controls__label">Customize</span>
+  <div class="controls shell__panel" id="panel" role="group" aria-label="Customize the component">
+    <span class="controls__label">Controls <span class="your-turn" aria-hidden="true">Your turn</span></span>
     <div class="ctl"><span class="ctl__label">Price actions</span>
       <div class="seg" role="group" aria-label="Price layout">
         <button type="button" id="lay-h" aria-pressed="true">Side by side</button>
         <button type="button" id="lay-v" aria-pressed="false">Stacked right</button>
       </div>
     </div>
-    <label class="switch ctl"><input type="checkbox" id="t-ribbon">Recommendation banner</label>
+    <label class="switch ctl"><input type="checkbox" id="t-ribbon">Banner</label>
     <label class="switch ctl"><input type="checkbox" id="t-chips">Chips</label>
     <div class="ctl"><span class="ctl__label">Baggage</span>
       <div class="seg" role="group" aria-label="Baggage display">
@@ -366,12 +506,14 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
         <button type="button" id="bag-text" aria-pressed="false">Text</button>
       </div>
     </div>
+      <span class="panel-sep" aria-hidden="true"></span>
+    <label class="switch switch--slots ctl"><input type="checkbox" id="t-slots">Show slots</label>
   </div>
-  <p class="note">Both price buttons are equal choices. Try them.</p>
+  </div>
   <div class="toast" id="toast" role="status"></div>
   <footer class="pg__foot">
     <span>Designed &amp; built by Tobias Stoll</span>
-    <a href="https://www.concept2design.de">concept2design.de</a>
+    <a href="../invia/">Read the case study</a>
   </footer>
 </main>
 
@@ -416,7 +558,7 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
     timer = setInterval(() => {
       step = (step + 1) % STATES.length; morph(STATES[step]); mark();
       // WCAG 2.2.2: the tour stops by itself after one full round (about 11 s) and rests on step 1
-      if (++ticks >= STATES.length) pause();
+      if (++ticks >= STATES.length) { pause(); yourTurn(); }
     }, 2800);
   }
   function pause() {
@@ -427,6 +569,11 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
     if (playing) pause(); else { step = 0; morph(STATES[0]); mark(); play(); }
   });
 
+
+  // When the tour ends by itself: point at the controls once. Any control interaction retires the cue.
+  const shell = $('shell'), panel = $('panel');
+  function yourTurn() { shell.classList.remove('is-your-turn'); void shell.offsetWidth; shell.classList.add('is-your-turn'); }
+  panel.addEventListener('click', () => shell.classList.remove('is-your-turn'));
   // Steps are clickable: jump to that state and pause
   steps.forEach((b, i) => b.addEventListener('click', () => { pause(); step = i; morph(STATES[i]); mark(); }));
 
