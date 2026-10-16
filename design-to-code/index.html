@@ -75,37 +75,38 @@
 
       <figure class="figure merge" data-merge>
         <div class="merge__shell">
-          <div class="merge__meta">
-            <span class="merge__pill">Before</span>
-            <span class="merge__count" aria-hidden="true">60</span>
-            <p class="merge__label text-body-m" aria-hidden="true">components, grown over years</p>
-            <button class="btn btn--secondary merge__btn" type="button" aria-pressed="false">Pause</button>
+          <ol class="merge__problems" role="list">
+            <li class="merge__problem">
+              <span class="text-label merge__kicker">Legacy</span>
+              <a class="merge__title text-heading-s" href="#audit">Years of special cases</a>
+              <span class="merge__q text-body-s">Many components were built once, for a single device or use case.</span>
+              <span class="merge__r text-body-s">→ Merge, don't just delete</span>
+            </li>
+            <li class="merge__problem">
+              <span class="text-label merge__kicker">No tokens</span>
+              <a class="merge__title text-heading-s" href="#tiers">A loose color scheme</a>
+              <span class="merge__q text-body-s">Values were typed in by hand.</span>
+              <span class="merge__r text-body-s">→ Three token tiers</span>
+            </li>
+            <li class="merge__problem">
+              <span class="text-label merge__kicker">Two truths</span>
+              <a class="merge__title text-heading-s" href="#source">Code vs. Figma</a>
+              <span class="merge__q text-body-s">Parts only existed in code. Figma was out of date.</span>
+              <span class="merge__r text-body-s">→ Figma as the single source</span>
+            </li>
+          </ol>
+          <div class="merge__stage">
+            <div class="merge__hud">
+              <span class="merge__pill">Before</span>
+              <span class="merge__count" aria-hidden="true">60</span>
+              <span class="merge__label text-body-s" aria-hidden="true">components</span>
+              <button class="btn btn--ghost merge__btn" type="button" aria-pressed="false">Pause</button>
+            </div>
+            <div class="merge__field" role="img" aria-label="Animation: 60 uneven grey tiles merge pairwise into 30 even tiles, one for each standardized core component."></div>
           </div>
-          <div class="merge__field" role="img" aria-label="Animation: 60 uneven grey tiles merge pairwise into 30 even tiles, one for each standardized core component."></div>
         </div>
-        <figcaption class="text-body-s"><b>60 became 30.</b> Duplicates went, variants were cut, and special cases merged into flexible components.</figcaption>
+        <figcaption class="text-body-s"><b>Three problems, one system.</b> Each problem points to the decision that solved it.</figcaption>
       </figure>
-
-      <ol class="moments" role="list">
-        <li class="moment">
-          <span class="moment__step text-label">Legacy</span>
-          <a class="moment__name text-heading-m" href="#audit">60 components</a>
-          <span class="moment__q text-body-m">Many built once, for a single device or use case.</span>
-          <span class="moment__r text-body-s">→ Merged into 30</span>
-        </li>
-        <li class="moment">
-          <span class="moment__step text-label">No tokens</span>
-          <a class="moment__name text-heading-m" href="#tiers">A loose color scheme</a>
-          <span class="moment__q text-body-m">Values typed in by hand.</span>
-          <span class="moment__r text-body-s">→ 440+ tokens in three tiers</span>
-        </li>
-        <li class="moment">
-          <span class="moment__step text-label">Two truths</span>
-          <a class="moment__name text-heading-m" href="#source">Code vs. Figma</a>
-          <span class="moment__q text-body-m">Parts only existed in code. Figma was out of date.</span>
-          <span class="moment__r text-body-s">→ Figma as the single source</span>
-        </li>
-      </ol>
 
       <div class="prose">
         <p class="text-body-m">At the same time, the company was moving toward AI-supported development. Without a clean base, AI has nothing reliable to work from.</p>
@@ -280,7 +281,7 @@
       </div>
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">60 became 30 standardized core components, all maintained in Figma. Nothing lives only in code anymore.</p>
+        <p class="text-body-l">30 standardized core components, all maintained in Figma. Nothing lives only in code anymore.</p>
       </div>
     </section>
 
@@ -432,7 +433,7 @@
         </div>
       </div>
       <ul class="results text-body-s" role="list">
-        <li><b>60 → 30 core components</b><span>All maintained in Figma, nothing left only in code.</span></li>
+        <li><b>30 core components</b><span>All maintained in Figma, nothing left only in code.</span></li>
         <li><b>440+ tokens in three tiers</b><span>Aligned with the brand and WCAG AA, the raw values locked.</span></li>
         <li><b>One source across teams</b><span>Design, development, marketing and AI work from the same system.</span></li>
         <li><b>A repository, not a handoff file</b><span>Developers start from ready tokens and base code.</span></li>

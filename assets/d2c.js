@@ -45,7 +45,7 @@
         t.el.style.width = pct(b[2], W); t.el.style.height = pct(b[3], H);
       });
       count.textContent = after ? '30' : '60';
-      label.textContent = after ? 'standardized core components' : 'components, grown over years';
+      label.textContent = after ? 'core components' : 'components';
       pill.textContent = after ? 'After' : 'Before';
     }
     render();
