@@ -222,7 +222,7 @@
 }
 
 /* Decision 1: Figma as the core of an atom. Tools on the inner orbit, the teams that use it on the outer orbit.
-   Two arcs between Figma and GitHub: design to code, and reviewed code back to design. */
+   Both directions (design to code, code back to design) are shown in the rebuild diagram. */
 .atom__scroll { overflow-x: auto; }
 .atom__frame {
   position: relative; min-width: 820px; aspect-ratio: 1000 / 640;
@@ -233,12 +233,6 @@
 .atom__orbit { fill: none; stroke: var(--color-border-default); stroke-width: 1.5; stroke-dasharray: 3 7; }
 .atom__orbit--outer { stroke: var(--color-border-strong); opacity: .7; }
 .atom__spokes line { stroke: var(--color-action-primary-bg-default); stroke-width: 1.25; opacity: .28; }
-.atom__flow { fill: none; stroke: var(--color-action-primary-bg-default); stroke-width: 2; }
-.atom__flow--back { stroke: var(--color-action-secondary-bg-default); stroke-dasharray: 6 5; }
-#atom-arrow path { fill: var(--color-action-primary-bg-default); }
-#atom-arrow-back path { fill: var(--color-action-secondary-bg-default); }
-.atom__label { font-family: var(--font-family-sans); font-size: 13px; font-weight: var(--font-weight-medium); fill: var(--color-action-ghost-fg); }
-.atom__label--back { fill: var(--color-action-secondary-bg-default); }
 .atom__electron { fill: var(--color-action-primary-bg-default); }
 .atom__electron--outer { fill: var(--color-action-secondary-bg-default); }
 

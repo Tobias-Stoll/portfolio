@@ -129,17 +129,9 @@
         <div class="atom__scroll">
           <div class="atom__frame">
             <svg class="atom__svg" viewBox="0 0 1000 640" aria-hidden="true">
-              <defs>
-                <marker id="atom-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
-                <marker id="atom-arrow-back" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
-              </defs>
               <ellipse class="atom__orbit" cx="500" cy="320" rx="270" ry="175"/>
               <ellipse class="atom__orbit atom__orbit--outer" cx="500" cy="320" rx="400" ry="270"/>
               <g class="atom__spokes"><line x1="500" y1="320" x2="230" y2="320"/><line x1="500" y1="320" x2="408" y2="150"/><line x1="500" y1="320" x2="408" y2="490"/><line x1="500" y1="320" x2="892" y2="320"/><line x1="500" y1="320" x2="757" y2="108"/><line x1="500" y1="320" x2="640" y2="570"/></g>
-              <path class="atom__flow" d="M598 296 C 670 236, 740 236, 800 286" marker-end="url(#atom-arrow)"/>
-              <path class="atom__flow atom__flow--back" d="M800 354 C 740 404, 670 404, 598 344" marker-end="url(#atom-arrow-back)"/>
-              <text class="atom__label" x="700" y="236" text-anchor="middle">design to code</text>
-              <text class="atom__label atom__label--back" x="700" y="418" text-anchor="middle">code back to design</text>
               <circle class="atom__electron" r="5"><animateMotion dur="16s" repeatCount="indefinite" path="M230 320 a270 175 0 1 0 540 0 a270 175 0 1 0 -540 0"/></circle>
               <circle class="atom__electron atom__electron--outer" r="5"><animateMotion dur="26s" repeatCount="indefinite" path="M900 320 a400 270 0 1 0 -800 0 a400 270 0 1 0 800 0"/></circle>
             </svg>
@@ -180,7 +172,7 @@
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Figma at the core.</b> The tools that feed it sit close, the teams that use it further out. Design flows to code, and reviewed code flows back to design.</figcaption>
+        <figcaption class="text-body-s"><b>Figma at the core.</b> The tools that feed it sit close, the teams that use it further out.</figcaption>
       </figure>
 
       <div class="cs-result">
@@ -320,16 +312,17 @@
     <section class="cs-section" aria-labelledby="proof">
       <div class="prose">
         <p class="cs-kicker text-label">The rebuild · Client work under NDA</p>
-        <h2 id="proof" class="text-heading-l">Two tracks, one source, rebuilt so you can click through it</h2>
+        <h2 id="proof" class="text-heading-l">Two tracks to code, one way back</h2>
         <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system. This page is built with it too.</p>
       </div>
 
       <figure class="figure">
-        <div class="diagram" role="img" aria-label="Two tracks from Figma to code. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, Design QA, Claude, HTML and CSS. Design QA loops back to Figma.">
-          <svg viewBox="0 48 760 260" aria-hidden="true">
+        <div class="diagram" role="img" aria-label="Two tracks from Figma to code and one way back. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, design QA with Claude, HTML and CSS; token errors are fixed in Figma. Back to design: developers review the code in GitHub, adjust and approve it, the component is updated in Figma, and the approved push updates the Storybook.">
+          <svg viewBox="0 48 760 460" aria-hidden="true">
             <defs>
               <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
               <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--qa" d="M0 0L10 5L0 10z"/></marker>
+              <marker id="h5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--concept" d="M0 0L10 5L0 10z"/></marker>
             </defs>
             <text class="dg-lane" x="26" y="66">Tokens: fully automated</text>
             <text class="dg-lane" x="26" y="186">Components: via the Figma MCP</text>
@@ -366,10 +359,26 @@
             <text class="dg-name" x="526" y="221" text-anchor="middle">Claude</text><text class="dg-sub" x="526" y="238" text-anchor="middle">translates</text>
             <rect class="dg-box" x="610" y="198" width="124" height="52" rx="8"/>
             <text class="dg-name" x="672" y="221" text-anchor="middle">HTML + CSS</text><text class="dg-sub" x="672" y="238" text-anchor="middle">reuses components</text>
-            <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">QA routine: errors are fixed in Figma, then read again</text>
+            <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">Design QA: token errors are fixed in Figma, then read again</text>
+
+            <text class="dg-lane" x="26" y="334">Code back to design: at the client, a concept in this rebuild</text>
+            <path class="dg-line" d="M672 250V342" marker-end="url(#h1)"/>
+            <path class="dg-line" d="M610 372H592" marker-end="url(#h1)"/>
+            <path class="dg-line dg-line--concept" d="M464 372H300" marker-end="url(#h5)"/>
+            <path class="dg-line" d="M526 398V442" marker-end="url(#h1)"/>
+            <rect class="dg-box dg-box--qa" x="610" y="346" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="672" y="369" text-anchor="middle">GitHub</text><text class="dg-sub" x="672" y="386" text-anchor="middle">developers review</text>
+            <rect class="dg-box" x="464" y="346" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="526" y="369" text-anchor="middle">Developers</text><text class="dg-sub" x="526" y="386" text-anchor="middle">adjust and approve</text>
+            <rect class="dg-box dg-box--source" x="172" y="346" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="234" y="369" text-anchor="middle">Figma</text><text class="dg-sub" x="234" y="386" text-anchor="middle">component updated</text>
+            <text class="dg-note dg-note--concept" x="382" y="364" text-anchor="middle">back to design</text>
+            <rect class="dg-box" x="464" y="446" width="124" height="52" rx="8"/>
+            <text class="dg-name" x="526" y="469" text-anchor="middle">Storybook</text><text class="dg-sub" x="526" y="486" text-anchor="middle">auto-update</text>
+            <text class="dg-note" x="536" y="426">approved push</text>
           </svg>
         </div>
-        <figcaption class="text-body-s"><b>Tokens flow automatically.</b> Components are read via the Figma MCP and checked before they become code.</figcaption>
+        <figcaption class="text-body-s"><b>Two checks, two directions.</b> The design QA checks the tokens before code exists. The developer review checks the code, and what they approve flows back into Figma.</figcaption>
       </figure>
 
       <div class="prose">
