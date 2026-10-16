@@ -122,61 +122,65 @@
         <h2 id="source" class="text-heading-l">Figma as the single source, for people and for AI</h2>
         <p class="quote text-body-l">"Where does the truth live?"</p>
         <p class="text-body-m"><b>Problem.</b> Code was the de facto truth, but only developers could read it. Every handover meant translating between two sources.</p>
-        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude helps on both ends: it structures the tokens going in and checks the components coming out.</p>
+        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude structures the tokens going in and runs a design QA on the components coming out. Then developers review the code in GitHub, adjust and approve it, and send it back to Figma. Every approved push updates the internal Storybook.</p>
       </div>
 
-      <figure class="figure hub" aria-label="Claude helps structure the tokens in Figma. Figma is the single source of truth. Tokens go to GitHub through the Token Bridge plugin. Components are read through the Figma MCP, checked by Claude and pushed to the same GitHub repository. Every push updates the internal Storybook. Marketing uses Figma and the Storybook as sources.">
-        <div class="hub__scroll">
-          <div class="hub__grid" data-hub>
-            <svg class="hub__lines" aria-hidden="true">
+      <figure class="figure atom" aria-label="Figma at the core. Around it, the tools that feed it: Claude structures the tokens, the Token Bridge sends them to GitHub, the Figma MCP reads components and Claude runs the design QA. Further out, the teams that use it: developers review, adjust and approve the code in GitHub and send it back to Figma, the internal Storybook updates itself on every approved push, and marketing uses Figma and the Storybook.">
+        <div class="atom__scroll">
+          <div class="atom__frame">
+            <svg class="atom__svg" viewBox="0 0 1000 640" aria-hidden="true">
               <defs>
-                <marker id="hub-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
-                <marker id="hub-arrow-qa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
+                <marker id="atom-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
+                <marker id="atom-arrow-back" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
               </defs>
+              <ellipse class="atom__orbit" cx="500" cy="320" rx="270" ry="175"/>
+              <ellipse class="atom__orbit atom__orbit--outer" cx="500" cy="320" rx="400" ry="270"/>
+              <g class="atom__spokes"><line x1="500" y1="320" x2="230" y2="320"/><line x1="500" y1="320" x2="408" y2="150"/><line x1="500" y1="320" x2="408" y2="490"/><line x1="500" y1="320" x2="892" y2="320"/><line x1="500" y1="320" x2="757" y2="108"/><line x1="500" y1="320" x2="640" y2="570"/></g>
+              <path class="atom__flow" d="M598 296 C 670 236, 740 236, 800 286" marker-end="url(#atom-arrow)"/>
+              <path class="atom__flow atom__flow--back" d="M800 354 C 740 404, 670 404, 598 344" marker-end="url(#atom-arrow-back)"/>
+              <text class="atom__label" x="700" y="236" text-anchor="middle">design to code</text>
+              <text class="atom__label atom__label--back" x="700" y="418" text-anchor="middle">code back to design</text>
+              <circle class="atom__electron" r="5"><animateMotion dur="16s" repeatCount="indefinite" path="M230 320 a270 175 0 1 0 540 0 a270 175 0 1 0 -540 0"/></circle>
+              <circle class="atom__electron atom__electron--outer" r="5"><animateMotion dur="26s" repeatCount="indefinite" path="M900 320 a400 270 0 1 0 -800 0 a400 270 0 1 0 800 0"/></circle>
             </svg>
-            <div class="hub__node" data-node="claude">
+            <div class="atom__core" style="left: 50%; top: 50%;">
+              <b class="atom__core-title">Figma</b>
+              <span class="hub__logo" data-initial="F"><img src="../assets/logos/figma.svg" alt="Figma logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="atom__core-desc">Single source of truth<br>Reference tokens locked</span>
+            </div>
+            <div class="atom__node" data-node="claude" style="left: 23.0%; top: 50.00%;">
               <b class="hub__title">Claude</b>
               <span class="hub__logo" data-initial="C"><img src="../assets/logos/claude.svg" alt="Claude logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">Helps organize the token base</span>
+              <span class="hub__desc">Helps structure the token base</span>
             </div>
-            <div class="hub__node hub__node--source" data-node="figma">
-              <b class="hub__title">Figma</b>
-              <span class="hub__logo" data-initial="F"><img src="../assets/logos/figma.svg" alt="Figma logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">Single source of truth, reference tokens locked</span>
-            </div>
-            <div class="hub__node" data-node="bridge">
+            <div class="atom__node" data-node="bridge" style="left: 40.8%; top: 23.44%;">
               <b class="hub__title">Token Bridge</b>
               <span class="hub__logo hub__logo--icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 17h18M5 17V11M19 17V11M3 11c3-4 15-4 18 0M9 17v-4.5M15 17v-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-              <span class="hub__desc">My plugin: all tokens in one commit</span>
+              <span class="hub__desc">Tokens to GitHub in one commit</span>
             </div>
-            <div class="hub__node" data-node="mcp">
+            <div class="atom__node atom__node--qa" data-node="mcp" style="left: 40.8%; top: 76.56%;">
               <b class="hub__title">Figma MCP</b>
               <span class="hub__logo" data-initial="F"><img src="../assets/logos/figma.svg" alt="Figma logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">Reads components with every binding</span>
+              <span class="hub__desc">Reads components, Claude runs the design QA on the tokens</span>
             </div>
-            <div class="hub__node hub__node--qa" data-node="qa">
-              <b class="hub__title">Claude QA</b>
-              <span class="hub__logo" data-initial="C"><img src="../assets/logos/claude.svg" alt="Claude logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">Checks every component before the push</span>
-            </div>
-            <div class="hub__node" data-node="github">
+            <div class="atom__node atom__node--dev" data-node="github" style="left: 89.2%; top: 50.00%;">
               <b class="hub__title">GitHub</b>
               <span class="hub__logo" data-initial="G"><img src="../assets/logos/github.svg" alt="GitHub logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">One repository for tokens and components</span>
+              <span class="hub__desc">Developers review, adjust and approve the code</span>
             </div>
-            <div class="hub__node" data-node="storybook">
+            <div class="atom__node" data-node="storybook" style="left: 75.7%; top: 16.88%;">
               <b class="hub__title">Internal Storybook</b>
               <span class="hub__logo" data-initial="S"><img src="../assets/logos/storybook.svg" alt="Storybook logo" width="28" height="28" onerror="this.remove()"></span>
-              <span class="hub__desc">Updates itself on every push</span>
+              <span class="hub__desc">Updates itself on every approved push</span>
             </div>
-            <div class="hub__node" data-node="marketing">
+            <div class="atom__node" data-node="marketing" style="left: 64.0%; top: 89.06%;">
               <b class="hub__title">Marketing</b>
               <span class="hub__logo hub__logo--icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 10v4h3l7 4V6L7 10H4zM17 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
               <span class="hub__desc">Uses Figma and the Storybook as sources</span>
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>One source, one repository.</b> Claude helps structure the tokens and checks every component before it is pushed. Each push updates the internal Storybook, and marketing works from Figma and the Storybook.</figcaption>
+        <figcaption class="text-body-s"><b>Figma at the core.</b> The tools that feed it sit close, the teams that use it further out. Design flows to code, and reviewed code flows back to design.</figcaption>
       </figure>
 
       <div class="cs-result">
