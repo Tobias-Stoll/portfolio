@@ -65,12 +65,12 @@
     if (reduce) { after = true; render(); }
   }
 
-  /* 2 · Token tiers: follow the primary or the secondary button down to its locked value */
+  /* 2 · Token map: switch the variant, follow a line, and one run through all three lines on first view */
   var tiersEl = document.querySelector('[data-tiers]');
   if (tiersEl) {
     var chains = {
-      primary: { comp: 'button/primary/bg/default', sys: 'color/action/primary/bg/default', ref: 'purple/600', hex: '#5F2CFF', label: 'Create account' },
-      secondary: { comp: 'button/secondary/bg/default', sys: 'color/action/secondary/bg/default', ref: 'cyan/600', hex: '#007B99', label: 'Log in' }
+      primary: { comp: 'button/primary/bg/default', sys: 'color/action/primary/bg/default', ref: 'purple/600', hex: '#5F2CFF' },
+      secondary: { comp: 'button/secondary/bg/default', sys: 'color/action/secondary/bg/default', ref: 'cyan/600', hex: '#007B99' }
     };
     var buttons = tiersEl.querySelectorAll('[data-swap]');
     Array.prototype.forEach.call(buttons, function (b) {
@@ -78,40 +78,59 @@
         var c = chains[b.getAttribute('data-swap')];
         tiersEl.setAttribute('data-theme', b.getAttribute('data-swap'));
         Array.prototype.forEach.call(buttons, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
-        ['comp', 'sys', 'ref', 'hex', 'label'].forEach(function (k) {
+        ['comp', 'sys', 'ref', 'hex'].forEach(function (k) {
           tiersEl.querySelectorAll('[data-' + k + ']').forEach(function (n) {
-            if (k === 'comp' || k === 'sys' || k === 'ref') n.innerHTML = c[k].replace(/\//g, '/<wbr>');
-            else n.textContent = c[k];
+            if (k === 'hex') n.textContent = c[k];
+            else n.innerHTML = c[k].replace(/\//g, '/<wbr>');
           });
         });
       });
     });
+
     /* draw the three lines from the measured column centers up into the button */
     var svg = tiersEl.querySelector('.map__merge svg');
-    var lastLink = tiersEl.querySelector('.map__link');
+    var firstLink = tiersEl.querySelector('.map__link');
     function drawMerge() {
-      if (!svg || !lastLink) return;
+      if (!svg || !firstLink) return;
       var box = svg.getBoundingClientRect();
       if (!box.width) return;
-      var w = box.width, h = 56, mid = w / 2;
+      var w = box.width, h = box.height || 48, mid = w / 2;
       svg.setAttribute('viewBox', '0 0 ' + w.toFixed(1) + ' ' + h);
-      var lines = lastLink.querySelectorAll('i');
-      svg.querySelectorAll('path').forEach(function (path, k) {
-        var r = lines[k].getBoundingClientRect();
-        var x = r.left + r.width / 2 - box.left;
-        path.setAttribute('d', 'M' + x.toFixed(1) + ' ' + h + ' C' + x.toFixed(1) + ' ' + h * .4 + ' ' + mid.toFixed(1) + ' ' + h * .6 + ' ' + mid.toFixed(1) + ' 0');
+      var cols = {};
+      firstLink.querySelectorAll('i').forEach(function (n) {
+        var r = n.getBoundingClientRect();
+        cols[n.getAttribute('data-route')] = r.left + r.width / 2 - box.left;
+      });
+      svg.querySelectorAll('path').forEach(function (path) {
+        var x = cols[path.getAttribute('data-route')].toFixed(1);
+        path.setAttribute('d', 'M' + x + ' ' + h + ' C' + x + ' ' + (h * .4) + ' ' + mid.toFixed(1) + ' ' + (h * .6) + ' ' + mid.toFixed(1) + ' 0');
       });
     }
     drawMerge();
     window.addEventListener('resize', drawMerge);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawMerge);
 
-    /* follow a line: hover or focus a chip or a route label to highlight that line */
+    /* follow a line: hover or focus a token or a station */
+    var tour = null;
+    function stopTour() { if (tour) { tour.forEach(clearTimeout); tour = null; } }
+    function light(route) { if (route) tiersEl.setAttribute('data-active', route); else tiersEl.removeAttribute('data-active'); }
     tiersEl.querySelectorAll('.map__chip, .map__route').forEach(function (n) {
       var route = n.getAttribute('data-route');
       if (n.classList.contains('map__chip')) n.setAttribute('tabindex', '0');
-      ['mouseenter', 'focus'].forEach(function (ev) { n.addEventListener(ev, function () { tiersEl.setAttribute('data-active', route); }); });
-      ['mouseleave', 'blur'].forEach(function (ev) { n.addEventListener(ev, function () { tiersEl.removeAttribute('data-active'); }); });
+      ['mouseenter', 'focus'].forEach(function (ev) { n.addEventListener(ev, function () { stopTour(); light(route); }); });
+      ['mouseleave', 'blur'].forEach(function (ev) { n.addEventListener(ev, function () { light(null); }); });
     });
+
+    /* one run on first view: color, radius, padding */
+    var reduceMap = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMap && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var steps = ['color', 'radius', 'padding', null];
+        tour = steps.map(function (r, k) { return setTimeout(function () { light(r); if (r === null) tour = null; }, 400 + k * 1900); });
+      }, { threshold: .6 });
+      io.observe(tiersEl);
+    }
   }
 })();

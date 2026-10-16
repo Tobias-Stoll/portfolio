@@ -177,9 +177,9 @@
 
       <figure class="figure">
         <div class="map" data-tiers data-theme="primary">
+          <span class="map__sticker" aria-hidden="true">Try it: follow a line</span>
           <div class="map__bar">
-            <p class="text-label map__hint">Try it: follow a line, or switch the variant</p>
-            <div class="tiers__seg" role="group" aria-label="Button variant">
+            <div class="map__seg" role="group" aria-label="Button variant">
               <button type="button" data-swap="primary" aria-pressed="true">Primary</button>
               <button type="button" data-swap="secondary" aria-pressed="false">Secondary</button>
             </div>
@@ -187,59 +187,58 @@
           <div class="map__scroll">
             <div class="map__grid">
               <div class="map__row map__result">
-                <span class="map__button" data-label>Create account</span>
+                <span class="map__button">Button</span>
                 <span class="map__note text-body-s">What developers use: the button and its component tokens</span>
               </div>
               <div class="map__row map__merge" aria-hidden="true">
                 <span></span>
                 <svg viewBox="0 0 600 56">
-                  <path data-route="color" d="M100 56 C100 22 300 34 300 0"/>
-                  <path data-route="radius" d="M300 56 V0"/>
-                  <path data-route="padding" d="M500 56 C500 22 300 34 300 0"/>
+                  <path class="map__base" data-route="color" d=""/><path class="map__base" data-route="radius" d=""/><path class="map__base" data-route="padding" d=""/>
+                  <path class="map__live" data-route="color" pathLength="1" d=""/><path class="map__live" data-route="radius" pathLength="1" d=""/><path class="map__live" data-route="padding" pathLength="1" d=""/>
                 </svg>
               </div>
               <div class="map__row map__head">
                 <span></span>
-                <span class="map__route" data-route="color"><i class="map__dot"></i>Color</span>
-                <span class="map__route" data-route="radius"><i class="map__dot"></i>Radius</span>
-                <span class="map__route" data-route="padding"><i class="map__dot"></i>Padding</span>
+                <span class="map__route" data-route="color" title="Color"><span class="map__dot"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2S3.6 7 3.6 9.9a4.4 4.4 0 0 0 8.8 0C12.4 7 8 2.2 8 2.2z"/></svg></span><span class="sr-only">Color</span></span>
+                <span class="map__route" data-route="radius" title="Radius"><span class="map__dot"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 12.5V8.5a5 5 0 0 1 5-5h4"/></svg></span><span class="sr-only">Radius</span></span>
+                <span class="map__route" data-route="padding" title="Padding"><span class="map__dot"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="1.5" stroke-dasharray="2 2"/><rect x="5.5" y="5.5" width="5" height="5" rx="1"/></svg></span><span class="sr-only">Padding</span></span>
                 <span></span>
               </div>
-              <div class="map__row map__band">
+              <div class="map__row map__band" data-step="3">
                 <span class="map__tier"><span class="map__n">~200</span><span class="map__tname">Component tokens</span></span>
                 <code class="map__chip" data-route="color" data-comp>button/<wbr>primary/<wbr>bg/<wbr>default</code>
                 <code class="map__chip" data-route="radius">button/<wbr>radius</code>
                 <span class="map__chip" data-route="padding"><code>button/<wbr>padding-x</code><code>button/<wbr>padding-y</code></span>
                 <span class="map__access">People and AI</span>
               </div>
-              <div class="map__row map__link" aria-hidden="true">
+              <div class="map__row map__link" data-step="2" aria-hidden="true">
                 <span class="map__pt">feeds</span>
                 <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
                 <span></span>
               </div>
-              <div class="map__row map__band">
+              <div class="map__row map__band" data-step="2">
                 <span class="map__tier"><span class="map__n">140+</span><span class="map__tname">System tokens</span></span>
                 <code class="map__chip" data-route="color" data-sys>color/<wbr>action/<wbr>primary/<wbr>bg/<wbr>default</code>
-                <code class="map__chip" data-route="radius">radius/<wbr>control</code>
+                <code class="map__chip" data-route="radius">radius/<wbr>action</code>
                 <span class="map__chip" data-route="padding"><code>space/<wbr>inset/<wbr>md</code><code>space/<wbr>inset/<wbr>sm</code></span>
                 <span class="map__access">People and AI</span>
               </div>
-              <div class="map__row map__link" aria-hidden="true">
+              <div class="map__row map__link" data-step="1" aria-hidden="true">
                 <span class="map__pt">feeds</span>
                 <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
                 <span></span>
               </div>
-              <div class="map__row map__band map__band--locked">
+              <div class="map__row map__band map__band--locked" data-step="1">
                 <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Reference tokens</span><span class="map__sub">the foundation</span></span>
                 <span class="map__chip" data-route="color"><code data-ref>purple/<wbr>600</code><span class="map__val"><i class="map__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span></span>
                 <span class="map__chip" data-route="radius"><code>radius/<wbr>md</code><span class="map__val"><i class="map__corner" aria-hidden="true"></i>8 px</span></span>
                 <span class="map__chip" data-route="padding"><code>space/<wbr>16 · space/<wbr>8</code><span class="map__val"><i class="map__pad" aria-hidden="true"><b></b></i>16 × 8 px</span></span>
-                <span class="map__access map__access--locked"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Locked</span>
+                <span class="map__access map__access--locked"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Locked for AI agents and people</span></span>
               </div>
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Switch the variant: only the color line changes.</figcaption>
+        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Hover a token to follow its line, or switch the variant: only the color changes.</figcaption>
       </figure>
 
       <div class="cs-result">
