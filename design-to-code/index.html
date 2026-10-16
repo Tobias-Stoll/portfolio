@@ -306,9 +306,9 @@
     <!-- The rebuild -->
     <section class="cs-section" aria-labelledby="proof">
       <div class="prose">
-        <p class="cs-kicker text-label">The rebuild · Client work under NDA</p>
+        <p class="cs-kicker text-label">The workflow</p>
         <h2 id="proof" class="text-heading-l">Two tracks to code, one way back</h2>
-        <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system. This page is built with it too. The diagram shows the workflow as it ran at the client, with React and Tailwind. In my rebuild, Claude turns the same Figma MCP output into HTML and CSS.</p>
+        <p class="text-body-m">This is how tokens and components moved between design and code at the client. Two checks keep it clean: a design QA before any code exists, and a developer review before anything goes back to Figma.</p>
       </div>
 
       <figure class="figure">
@@ -386,6 +386,11 @@
         <li><b>Fix in Figma</b><span>Errors are corrected at the source, never patched in code.</span></li>
         <li><b>Read again</b><span>A clean second read, then the component becomes code.</span></li>
       </ol>
+
+      <div class="prose">
+        <h3 class="text-heading-s">Try it in the rebuild</h3>
+        <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system, with a Storybook-style demo you can click through. This page uses it too. The one difference: in the rebuild, Claude turns the Figma MCP output into HTML and CSS instead of React and Tailwind.</p>
+      </div>
 
       <figure class="figure figure--pair">
         <a class="figure__link" href="images/semantic-aliases.png" title="Open full size"><img src="images/semantic-aliases.png" width="1762" height="1458" loading="lazy" alt="Figma Variables panel, collection Semantic: color/action/primary/bg default, hover, pressed and disabled, each shown as an alias pill of a purple or neutral primitive."></a>
