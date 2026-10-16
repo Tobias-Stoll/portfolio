@@ -86,10 +86,9 @@
         });
       });
     });
-    /* draw the three lines from the measured column centers into the button */
+    /* draw the three lines from the measured column centers up into the button */
     var svg = tiersEl.querySelector('.map__merge svg');
-    var lastLink = tiersEl.querySelectorAll('.map__link');
-    lastLink = lastLink[lastLink.length - 1];
+    var lastLink = tiersEl.querySelector('.map__link');
     function drawMerge() {
       if (!svg || !lastLink) return;
       var box = svg.getBoundingClientRect();
@@ -100,7 +99,7 @@
       svg.querySelectorAll('path').forEach(function (path, k) {
         var r = lines[k].getBoundingClientRect();
         var x = r.left + r.width / 2 - box.left;
-        path.setAttribute('d', 'M' + x.toFixed(1) + ' 0 C' + x.toFixed(1) + ' ' + h * .6 + ' ' + mid.toFixed(1) + ' ' + h * .4 + ' ' + mid.toFixed(1) + ' ' + h);
+        path.setAttribute('d', 'M' + x.toFixed(1) + ' ' + h + ' C' + x.toFixed(1) + ' ' + h * .4 + ' ' + mid.toFixed(1) + ' ' + h * .6 + ' ' + mid.toFixed(1) + ' 0');
       });
     }
     drawMerge();

@@ -186,6 +186,18 @@
           </div>
           <div class="map__scroll">
             <div class="map__grid">
+              <div class="map__row map__result">
+                <span class="map__button" data-label>Create account</span>
+                <span class="map__note text-body-s">What developers use: the button and its component tokens</span>
+              </div>
+              <div class="map__row map__merge" aria-hidden="true">
+                <span></span>
+                <svg viewBox="0 0 600 56">
+                  <path data-route="color" d="M100 56 C100 22 300 34 300 0"/>
+                  <path data-route="radius" d="M300 56 V0"/>
+                  <path data-route="padding" d="M500 56 C500 22 300 34 300 0"/>
+                </svg>
+              </div>
               <div class="map__row map__head">
                 <span></span>
                 <span class="map__route" data-route="color"><i class="map__dot"></i>Color</span>
@@ -201,7 +213,7 @@
                 <span class="map__access">People and AI</span>
               </div>
               <div class="map__row map__link" aria-hidden="true">
-                <span class="map__pt">points to</span>
+                <span class="map__pt">feeds</span>
                 <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
                 <span></span>
               </div>
@@ -213,45 +225,21 @@
                 <span class="map__access">People and AI</span>
               </div>
               <div class="map__row map__link" aria-hidden="true">
-                <span class="map__pt">points to</span>
+                <span class="map__pt">feeds</span>
                 <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
                 <span></span>
               </div>
               <div class="map__row map__band map__band--locked">
-                <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Reference tokens</span></span>
-                <code class="map__chip" data-route="color" data-ref>purple/<wbr>600</code>
-                <code class="map__chip" data-route="radius">radius/<wbr>md</code>
-                <span class="map__chip" data-route="padding"><code>space/<wbr>16</code><code>space/<wbr>8</code></span>
+                <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Reference tokens</span><span class="map__sub">the foundation</span></span>
+                <span class="map__chip" data-route="color"><code data-ref>purple/<wbr>600</code><span class="map__val"><i class="map__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span></span>
+                <span class="map__chip" data-route="radius"><code>radius/<wbr>md</code><span class="map__val"><i class="map__corner" aria-hidden="true"></i>8 px</span></span>
+                <span class="map__chip" data-route="padding"><code>space/<wbr>16 · space/<wbr>8</code><span class="map__val"><i class="map__pad" aria-hidden="true"><b></b></i>16 × 8 px</span></span>
                 <span class="map__access map__access--locked"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Locked</span>
-              </div>
-              <div class="map__row map__link" aria-hidden="true">
-                <span class="map__pt">points to</span>
-                <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
-                <span></span>
-              </div>
-              <div class="map__row map__values">
-                <span class="map__tier"><span class="map__tname">Value</span></span>
-                <span class="map__chip map__chip--value" data-route="color"><i class="map__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span>
-                <span class="map__chip map__chip--value" data-route="radius"><i class="map__corner" aria-hidden="true"></i>8 px</span>
-                <span class="map__chip map__chip--value" data-route="padding"><i class="map__pad" aria-hidden="true"><b></b></i>16 × 8 px</span>
-                <span></span>
-              </div>
-              <div class="map__row map__merge" aria-hidden="true">
-                <span></span>
-                <svg viewBox="0 0 600 56">
-                  <path data-route="color" d="M100 0 C100 34 300 22 300 56"/>
-                  <path data-route="radius" d="M300 0 V56"/>
-                  <path data-route="padding" d="M500 0 C500 34 300 22 300 56"/>
-                </svg>
-              </div>
-              <div class="map__row map__result">
-                <span class="map__button" data-label>Create account</span>
-                <span class="map__note text-body-s">The button only reads its component tokens.</span>
               </div>
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Three lines, one button.</b> Color, radius and padding each run through the same three tiers. Switch the variant: only the color line changes, the structure stays.</figcaption>
+        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Switch the variant: only the color line changes.</figcaption>
       </figure>
 
       <div class="cs-result">
