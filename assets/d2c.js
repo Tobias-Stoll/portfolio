@@ -191,4 +191,76 @@
       io.observe(tiersEl);
     }
   }
+
+  /* 3 · Hub diagram (decision 1): connectors drawn from the measured node positions */
+  var hub = document.querySelector('[data-hub]');
+  if (hub) {
+    var lines = hub.querySelector('.hub__lines');
+    var NS = 'http://www.w3.org/2000/svg';
+    /* from, side, to, side, label, qa */
+    var edges = [
+      ['claude', 'r', 'figma', 'l', 'structure'],
+      ['figma', 'r', 'bridge', 'l', 'tokens'],
+      ['figma', 'r', 'mcp', 'l', 'components'],
+      ['bridge', 'r', 'github', 't', 'one commit'],
+      ['mcp', 'r', 'qa', 'l', 'QA check', true],
+      ['qa', 't', 'github', 'b', 'push', true],
+      ['github', 'r', 'storybook', 'l', 'auto-update'],
+      ['figma', 'b', 'marketing', 't', 'source'],
+      ['storybook', 'b', 'marketing', 't', 'source']
+    ];
+    function anchor(r, side, g) {
+      var x = r.left - g.left, y = r.top - g.top;
+      if (side === 'l') return { x: x, y: y + r.height / 2 };
+      if (side === 'r') return { x: x + r.width, y: y + r.height / 2 };
+      if (side === 't') return { x: x + r.width / 2, y: y };
+      return { x: x + r.width / 2, y: y + r.height };
+    }
+    function n(v) { return v.toFixed(1); }
+    function drawHub() {
+      var g = hub.getBoundingClientRect();
+      if (!g.width) return;
+      lines.setAttribute('viewBox', '0 0 ' + n(g.width) + ' ' + n(g.height));
+      lines.querySelectorAll('path:not(marker path), text').forEach(function (el) { if (!el.closest('marker')) el.remove(); });
+      var rects = {};
+      hub.querySelectorAll('[data-node]').forEach(function (el) { rects[el.getAttribute('data-node')] = el.getBoundingClientRect(); });
+      edges.forEach(function (e) {
+        var a = anchor(rects[e[0]], e[1], g), b = anchor(rects[e[2]], e[3], g);
+        var gap = 4, R = 10, d, lx, ly;
+        if (e[3] === 'l') b.x -= gap; if (e[3] === 't') b.y -= gap; if (e[3] === 'b') b.y += gap;
+        /* a marketing arrow lands where its source sits, straight down */
+        if (e[2] === 'marketing') b.x = a.x;
+        if ((e[1] === 'r' && e[3] === 'l')) {
+          if (Math.abs(a.y - b.y) < 1) { d = 'M' + n(a.x) + ' ' + n(a.y) + ' H' + n(b.x); lx = (a.x + b.x) / 2; ly = a.y - 8; }
+          else {
+            var mx = a.x + 20, dy = b.y > a.y ? 1 : -1, r = Math.min(R, Math.abs(b.y - a.y) / 2);
+            d = 'M' + n(a.x) + ' ' + n(a.y) + ' H' + n(mx - r) + ' Q' + n(mx) + ' ' + n(a.y) + ' ' + n(mx) + ' ' + n(a.y + dy * r) +
+                ' V' + n(b.y - dy * r) + ' Q' + n(mx) + ' ' + n(b.y) + ' ' + n(mx + r) + ' ' + n(b.y) + ' H' + n(b.x);
+            lx = mx + 8; ly = (a.y + b.y) / 2 + 4; e.anchorStart = true;
+          }
+        } else if (e[1] === 'r' && e[3] === 't') {
+          d = 'M' + n(a.x) + ' ' + n(a.y) + ' H' + n(b.x - R) + ' Q' + n(b.x) + ' ' + n(a.y) + ' ' + n(b.x) + ' ' + n(a.y + R) + ' V' + n(b.y);
+          lx = (a.x + b.x) / 2; ly = a.y - 8;
+        } else {
+          d = 'M' + n(a.x) + ' ' + n(a.y) + ' V' + n(b.y);
+          lx = a.x + 8; ly = (a.y + b.y) / 2 + 4;
+        }
+        var path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('marker-end', e[5] ? 'url(#hub-arrow-qa)' : 'url(#hub-arrow)');
+        if (e[5]) path.setAttribute('class', 'is-qa');
+        lines.appendChild(path);
+        var t = document.createElementNS(NS, 'text');
+        t.textContent = e[4];
+        t.setAttribute('x', n(lx)); t.setAttribute('y', n(ly));
+        t.setAttribute('text-anchor', (e[1] === 'r' && !e.anchorStart) ? 'middle' : 'start');
+        if (e[5]) t.setAttribute('class', 'is-qa');
+        lines.appendChild(t);
+      });
+    }
+    drawHub();
+    window.addEventListener('resize', drawHub);
+    window.addEventListener('load', drawHub);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawHub);
+  }
 })();

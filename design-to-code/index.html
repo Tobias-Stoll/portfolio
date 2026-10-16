@@ -122,41 +122,61 @@
         <h2 id="source" class="text-heading-l">Figma as the single source, for people and for AI</h2>
         <p class="quote text-body-l">"Where does the truth live?"</p>
         <p class="text-body-m"><b>Problem.</b> Code was the de facto truth, but only developers could read it. Every handover meant translating between two sources.</p>
-        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let it feed every other channel. AI gets a clear frame instead of guessing.</p>
+        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude helps on both ends: it structures the tokens going in and checks the components coming out.</p>
       </div>
 
-      <figure class="figure">
-        <div class="diagram" role="img" aria-label="Figma in the center as the single source of truth, with reference tokens locked. Four channels read from it: the Figma MCP above (base code), the GitHub repository on the left (tokens), the internal Storybook on the right (auto-update) and marketing below (brand assets). A second arrow brings QA results from the repository back into Figma.">
-          <svg viewBox="0 0 760 340" aria-hidden="true">
-            <defs>
-              <marker id="hb1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--concept" d="M0 0L10 5L0 10z"/></marker>
-              <marker id="hb2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head--qa" d="M0 0L10 5L0 10z"/></marker>
-            </defs>
-            <path class="dg-line" style="stroke: var(--color-action-primary-bg-default); stroke-width: 1.5" d="M380 134V76" marker-end="url(#hb1)"/>
-            <path class="dg-line" style="stroke: var(--color-action-primary-bg-default); stroke-width: 1.5" d="M290 158H200" marker-end="url(#hb1)"/>
-            <path class="dg-line" style="stroke: var(--color-action-primary-bg-default); stroke-width: 1.5" d="M470 170H560" marker-end="url(#hb1)"/>
-            <path class="dg-line" style="stroke: var(--color-action-primary-bg-default); stroke-width: 1.5" d="M380 206V264" marker-end="url(#hb1)"/>
-            <path class="dg-line dg-line--qa" style="stroke-dasharray: 5 4" d="M196 184H286" marker-end="url(#hb2)"/>
-
-            <rect class="dg-box" x="290" y="16" width="180" height="56" rx="8"/>
-            <text class="dg-name" x="380" y="40" text-anchor="middle">Figma MCP</text><text class="dg-sub" x="380" y="57" text-anchor="middle">base code for developers</text>
-            <rect class="dg-box" x="16" y="142" width="180" height="56" rx="8"/>
-            <text class="dg-name" x="106" y="166" text-anchor="middle">GitHub repository</text><text class="dg-sub" x="106" y="183" text-anchor="middle">tokens, synced in one click</text>
-            <rect class="dg-box dg-box--source" x="290" y="134" width="180" height="72" rx="8"/>
-            <text class="dg-name" x="380" y="160" text-anchor="middle">Figma</text><text class="dg-sub" x="380" y="177" text-anchor="middle">single source of truth</text><text class="dg-sub" x="380" y="193" text-anchor="middle">reference tokens locked</text>
-            <rect class="dg-box" x="564" y="142" width="180" height="56" rx="8"/>
-            <text class="dg-name" x="654" y="166" text-anchor="middle">Internal Storybook</text><text class="dg-sub" x="654" y="183" text-anchor="middle">for the team and Claude</text>
-            <rect class="dg-box" x="290" y="268" width="180" height="56" rx="8"/>
-            <text class="dg-name" x="380" y="292" text-anchor="middle">Marketing</text><text class="dg-sub" x="380" y="309" text-anchor="middle">on-brand assets, WCAG AA</text>
-
-            <text class="dg-note" x="245" y="150" text-anchor="middle">tokens</text>
-            <text class="dg-note dg-note--qa" x="241" y="202" text-anchor="middle">QA result</text>
-            <text class="dg-note" x="515" y="162" text-anchor="middle">auto-update</text>
-            <text class="dg-note" x="390" y="108">reads bindings</text>
-            <text class="dg-note" x="390" y="240">brand assets</text>
-          </svg>
+      <figure class="figure hub" aria-label="Claude helps structure the tokens in Figma. Figma is the single source of truth. Tokens go to GitHub through the Token Bridge plugin. Components are read through the Figma MCP, checked by Claude and pushed to the same GitHub repository. Every push updates the internal Storybook. Marketing uses Figma and the Storybook as sources.">
+        <div class="hub__scroll">
+          <div class="hub__grid" data-hub>
+            <svg class="hub__lines" aria-hidden="true">
+              <defs>
+                <marker id="hub-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
+                <marker id="hub-arrow-qa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker>
+              </defs>
+            </svg>
+            <div class="hub__node" data-node="claude">
+              <b class="hub__title">Claude</b>
+              <span class="hub__logo" data-initial="C"><img src="../assets/logos/claude.svg" alt="Claude logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">Helps organize the token base</span>
+            </div>
+            <div class="hub__node hub__node--source" data-node="figma">
+              <b class="hub__title">Figma</b>
+              <span class="hub__logo" data-initial="F"><img src="../assets/logos/figma.svg" alt="Figma logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">Single source of truth, reference tokens locked</span>
+            </div>
+            <div class="hub__node" data-node="bridge">
+              <b class="hub__title">Token Bridge</b>
+              <span class="hub__logo hub__logo--icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 17h18M5 17V11M19 17V11M3 11c3-4 15-4 18 0M9 17v-4.5M15 17v-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="hub__desc">My plugin: all tokens in one commit</span>
+            </div>
+            <div class="hub__node" data-node="mcp">
+              <b class="hub__title">Figma MCP</b>
+              <span class="hub__logo" data-initial="F"><img src="../assets/logos/figma.svg" alt="Figma logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">Reads components with every binding</span>
+            </div>
+            <div class="hub__node hub__node--qa" data-node="qa">
+              <b class="hub__title">Claude QA</b>
+              <span class="hub__logo" data-initial="C"><img src="../assets/logos/claude.svg" alt="Claude logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">Checks every component before the push</span>
+            </div>
+            <div class="hub__node" data-node="github">
+              <b class="hub__title">GitHub</b>
+              <span class="hub__logo" data-initial="G"><img src="../assets/logos/github.svg" alt="GitHub logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">One repository for tokens and components</span>
+            </div>
+            <div class="hub__node" data-node="storybook">
+              <b class="hub__title">Internal Storybook</b>
+              <span class="hub__logo" data-initial="S"><img src="../assets/logos/storybook.svg" alt="Storybook logo" width="28" height="28" onerror="this.remove()"></span>
+              <span class="hub__desc">Updates itself on every push</span>
+            </div>
+            <div class="hub__node" data-node="marketing">
+              <b class="hub__title">Marketing</b>
+              <span class="hub__logo hub__logo--icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 10v4h3l7 4V6L7 10H4zM17 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+              <span class="hub__desc">Uses Figma and the Storybook as sources</span>
+            </div>
+          </div>
         </div>
-        <figcaption class="text-body-s"><b>One source, four channels.</b> QA results from development flow back into Figma, so the component stays the source.</figcaption>
+        <figcaption class="text-body-s"><b>One source, one repository.</b> Claude helps structure the tokens and checks every component before it is pushed. Each push updates the internal Storybook, and marketing works from Figma and the Storybook.</figcaption>
       </figure>
 
       <div class="cs-result">
