@@ -88,8 +88,16 @@
 .map__grid { position: relative; }
 .map__labels { padding: 0 var(--space-16) var(--space-24); }
 .map__label { justify-self: center; font-size: 12px; font-weight: var(--font-weight-medium); letter-spacing: .04em; text-transform: uppercase; color: var(--live); }
-.map__result { padding: 0 var(--space-16); min-height: 112px; }
-.map__stage { grid-column: 2 / 5; display: flex; justify-content: center; align-items: center; }
+.map__result { padding: 0 var(--space-16); min-height: 140px; }
+.map__stage { grid-column: 2 / 5; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--space-12); }
+/* the component's name, like the token chips below */
+.map__btnname {
+  padding: 4px 10px; border-radius: var(--radius-sm, 4px); background: var(--color-bg-default);
+  border: var(--border-width-default) solid var(--color-border-strong);
+  font-family: 'Roboto Mono', ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.45; color: var(--color-fg-default);
+}
+.map__foot { margin: 0 !important; font-size: 12px; line-height: 1.5; color: var(--color-fg-muted); }
+.map__foot::before { content: "* "; }
 .map__button {
   --s: 1.6;
   position: relative; display: inline-flex; align-items: center;

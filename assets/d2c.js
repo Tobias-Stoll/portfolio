@@ -77,6 +77,8 @@
       b.addEventListener('click', function () {
         var c = chains[b.getAttribute('data-swap')];
         tiersEl.setAttribute('data-theme', b.getAttribute('data-swap'));
+        tiersEl.querySelectorAll('[data-btnname]').forEach(function (n) { n.textContent = 'Button / ' + (b.getAttribute('data-swap') === 'primary' ? 'Primary' : 'Secondary'); });
+        drawMerge();
         Array.prototype.forEach.call(buttons, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
         ['comp', 'sys', 'ref', 'hex'].forEach(function (k) {
           tiersEl.querySelectorAll('[data-' + k + ']').forEach(function (n) {
