@@ -299,4 +299,6 @@
 }
 .qa-report__list svg { flex: none; margin-top: 3px; color: var(--color-feedback-warning-fg); }
 .qa-report__list b { display: block; font-weight: var(--font-weight-medium); color: var(--color-feedback-warning-fg); }
-.ft__frame--tall { max-width: 440px; }
+/* all four frames share one width; tall screenshots are fitted inside */
+.ft--qa .ft-step > .ft__frame { width: 100%; max-width: 560px; box-sizing: border-box; }
+.ft--qa .ft__frame img { max-height: 420px; width: 100%; object-fit: contain; object-position: top center; }
