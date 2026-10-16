@@ -176,42 +176,55 @@
       </div>
 
       <figure class="figure">
-        <div class="tiers" data-tiers data-theme="primary">
-          <div class="tiers__stack">
-            <div class="tier">
-              <span class="tier__n">~200</span>
-              <span class="tier__text"><span class="tier__name">Component tokens</span><span class="tier__code" data-comp>button/primary/bg</span></span>
-              <span class="tier__access">People and AI</span>
-            </div>
-            <div class="tier__arrow" aria-hidden="true"><svg width="10" height="16" viewBox="0 0 10 16"><path d="M5 1V14M1.5 10.5L5 14L8.5 10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>points to</div>
-            <div class="tier">
-              <span class="tier__n">140+</span>
-              <span class="tier__text"><span class="tier__name">System tokens</span><span class="tier__code" data-sys>color/action/primary</span></span>
-              <span class="tier__access">People and AI</span>
-            </div>
-            <div class="tier__arrow" aria-hidden="true"><svg width="10" height="16" viewBox="0 0 10 16"><path d="M5 1V14M1.5 10.5L5 14L8.5 10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>points to</div>
-            <div class="tier tier--locked">
-              <span class="tier__n">100+</span>
-              <span class="tier__text"><span class="tier__name">Reference tokens</span><span class="tier__code" data-ref>purple/600</span></span>
-              <span class="tier__access"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Locked</span>
-            </div>
-          </div>
-          <div class="tiers__swap">
-            <p class="text-label" style="margin: 0; color: var(--color-fg-muted);">Try it: follow a button to its value</p>
-            <div class="tiers__seg" role="group" aria-label="Button">
+        <div class="pillars" data-tiers data-theme="primary">
+          <div class="pillars__bar">
+            <p class="text-label pillars__hint">Try it: switch the button variant</p>
+            <div class="tiers__seg" role="group" aria-label="Button variant">
               <button type="button" data-swap="primary" aria-pressed="true">Primary</button>
               <button type="button" data-swap="secondary" aria-pressed="false">Secondary</button>
             </div>
-            <span class="tiers__sample" aria-hidden="true" data-label>Create account</span>
-            <ul class="tiers__chain" role="list" aria-live="polite">
-              <li><code data-comp>button/primary/bg</code><span>Component</span></li>
-              <li><code data-sys>color/action/primary</code><span>System</span></li>
-              <li><code data-ref>purple/600</code><span>Reference</span></li>
-              <li><code><i class="tiers__swatch" aria-hidden="true"></i><b data-hex style="font-weight: inherit">#5F2CFF</b></code><span>Value</span></li>
-            </ul>
+          </div>
+          <div class="pillars__scroll">
+            <table class="pillars__table">
+              <caption class="sr-only">How the button's color, radius and padding run through the three token tiers</caption>
+              <thead>
+                <tr><th scope="col"><span class="sr-only">Tier</span></th><th scope="col">Color</th><th scope="col">Radius</th><th scope="col">Padding</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="pillars__tier">Component</span><span class="pillars__count">~200 tokens</span></th>
+                  <td><code data-comp>button/primary/bg/default</code></td>
+                  <td><code>button/radius</code></td>
+                  <td><code>button/padding-x</code><code>button/padding-y</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="pillars__tier">System</span><span class="pillars__count">140+ tokens</span></th>
+                  <td><code data-sys>color/action/primary/bg/default</code></td>
+                  <td><code>radius/control</code></td>
+                  <td><code>space/inset/md</code><code>space/inset/sm</code></td>
+                </tr>
+                <tr class="pillars__locked">
+                  <th scope="row"><span class="pillars__tier"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Reference</span><span class="pillars__count">100+ tokens, locked</span></th>
+                  <td><code data-ref>purple/600</code></td>
+                  <td><code>radius/md</code></td>
+                  <td><code>space/16</code><code>space/8</code></td>
+                </tr>
+                <tr class="pillars__values">
+                  <th scope="row"><span class="pillars__tier">Value</span></th>
+                  <td><span class="pillars__val"><i class="pillars__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span></td>
+                  <td><span class="pillars__val"><i class="pillars__corner" aria-hidden="true"></i>8 px</span></td>
+                  <td><span class="pillars__val"><i class="pillars__pad" aria-hidden="true"><b></b></i>16 × 8 px</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pillars__result">
+            <span class="pillars__eq text-label">Together</span>
+            <span class="pillars__button" data-label>Create account</span>
+            <span class="pillars__note text-body-s">The button only reads its component tokens.</span>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Every button traces back to one locked value.</b> Change a reference token once, and every component that points to it follows.</figcaption>
+        <figcaption class="text-body-s"><b>Three tokens, one button.</b> Color, radius and padding each run through the same three tiers. Switch the variant: only the color chain changes, the structure stays.</figcaption>
       </figure>
 
       <div class="cs-result">

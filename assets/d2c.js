@@ -69,8 +69,8 @@
   var tiersEl = document.querySelector('[data-tiers]');
   if (tiersEl) {
     var chains = {
-      primary: { comp: 'button/primary/bg', sys: 'color/action/primary', ref: 'purple/600', hex: '#5F2CFF', label: 'Create account' },
-      secondary: { comp: 'button/secondary/bg', sys: 'color/action/secondary', ref: 'cyan/600', hex: '#007B99', label: 'Log in' }
+      primary: { comp: 'button/primary/bg/default', sys: 'color/action/primary/bg/default', ref: 'purple/600', hex: '#5F2CFF', label: 'Create account' },
+      secondary: { comp: 'button/secondary/bg/default', sys: 'color/action/secondary/bg/default', ref: 'cyan/600', hex: '#007B99', label: 'Log in' }
     };
     var buttons = tiersEl.querySelectorAll('[data-swap]');
     Array.prototype.forEach.call(buttons, function (b) {
