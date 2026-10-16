@@ -307,11 +307,11 @@
       <div class="prose">
         <p class="cs-kicker text-label">The rebuild · Client work under NDA</p>
         <h2 id="proof" class="text-heading-l">Two tracks to code, one way back</h2>
-        <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system. This page is built with it too.</p>
+        <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system. This page is built with it too. The diagram shows the workflow as it ran at the client, with React and Tailwind. In my rebuild, Claude turns the same Figma MCP output into HTML and CSS.</p>
       </div>
 
       <figure class="figure">
-        <div class="diagram" role="img" aria-label="Two tracks from Figma to code and one way back. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, design QA with Claude, HTML and CSS; token errors are fixed in Figma. Back to design: developers review the code in GitHub, adjust and approve it, the component is updated in Figma, and the approved push updates the Storybook.">
+        <div class="diagram" role="img" aria-label="Two tracks from Figma to code and one way back. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, design QA with Claude, Claude builds the React and Tailwind component; token errors are fixed in Figma. Back to design: developers review the code in GitHub, adjust and approve it, the component is updated in Figma, and the approved push updates the Storybook.">
           <svg viewBox="0 48 760 460" aria-hidden="true">
             <defs>
               <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
@@ -350,9 +350,9 @@
             <rect class="dg-box dg-box--qa" x="318" y="198" width="124" height="52" rx="8"/>
             <text class="dg-name" x="380" y="221" text-anchor="middle">Design QA</text><text class="dg-sub" x="380" y="238" text-anchor="middle">checks tokens</text>
             <rect class="dg-box" x="464" y="198" width="124" height="52" rx="8"/>
-            <text class="dg-name" x="526" y="221" text-anchor="middle">Claude</text><text class="dg-sub" x="526" y="238" text-anchor="middle">translates</text>
+            <text class="dg-name" x="526" y="221" text-anchor="middle">Claude</text><text class="dg-sub" x="526" y="238" text-anchor="middle">builds the component</text>
             <rect class="dg-box" x="610" y="198" width="124" height="52" rx="8"/>
-            <text class="dg-name" x="672" y="221" text-anchor="middle">HTML + CSS</text><text class="dg-sub" x="672" y="238" text-anchor="middle">reuses components</text>
+            <text class="dg-name" x="672" y="221" text-anchor="middle">React + Tailwind</text><text class="dg-sub" x="672" y="238" text-anchor="middle">uses the tokens</text>
             <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">Design QA: token errors are fixed in Figma, then read again</text>
 
             <text class="dg-lane" x="26" y="334">Code back to design: how it runs at the client</text>
