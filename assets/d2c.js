@@ -50,19 +50,29 @@
     }
     render();
 
+    /* plays 3 times (60 → 30), then rests on 30; Play starts it again */
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var playing = !reduce, visible = false, timer = null;
+    var RUNS = 3, steps = 0, playing = !reduce, visible = false, timer = null;
+    var ICON_PAUSE = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></svg>';
+    var ICON_PLAY = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7z" fill="currentColor"/></svg>';
+    function tick() {
+      after = !after; render(); steps++;
+      if (steps >= RUNS * 2 - 1) { playing = false; sync(); }
+    }
     function sync() {
       clearInterval(timer); timer = null;
-      if (playing && visible) timer = setInterval(function () { after = !after; render(); }, 2800);
-      btn.textContent = playing ? 'Pause' : 'Play';
-      btn.setAttribute('aria-pressed', String(!playing));
+      if (playing && visible) timer = setInterval(tick, 2800);
+      btn.innerHTML = (playing ? ICON_PAUSE : ICON_PLAY) + '<span>' + (playing ? 'Pause' : 'Play') + '</span>';
+      btn.setAttribute('aria-label', playing ? 'Pause the animation' : 'Play the animation');
     }
-    btn.addEventListener('click', function () { playing = !playing; sync(); });
+    btn.addEventListener('click', function () {
+      if (!playing && steps >= RUNS * 2 - 1) { steps = 0; after = false; render(); }
+      playing = !playing; sync();
+    });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; sync(); }, { threshold: .3 }).observe(merge);
     } else { visible = true; sync(); }
-    if (reduce) { after = true; render(); }
+    if (reduce) { after = true; render(); sync(); }
   }
 
   /* 2 · Token map: switch the variant, follow a line, and one run through all three lines on first view */
