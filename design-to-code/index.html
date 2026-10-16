@@ -176,55 +176,82 @@
       </div>
 
       <figure class="figure">
-        <div class="pillars" data-tiers data-theme="primary">
-          <div class="pillars__bar">
-            <p class="text-label pillars__hint">Try it: switch the button variant</p>
+        <div class="map" data-tiers data-theme="primary">
+          <div class="map__bar">
+            <p class="text-label map__hint">Try it: follow a line, or switch the variant</p>
             <div class="tiers__seg" role="group" aria-label="Button variant">
               <button type="button" data-swap="primary" aria-pressed="true">Primary</button>
               <button type="button" data-swap="secondary" aria-pressed="false">Secondary</button>
             </div>
           </div>
-          <div class="pillars__scroll">
-            <table class="pillars__table">
-              <caption class="sr-only">How the button's color, radius and padding run through the three token tiers</caption>
-              <thead>
-                <tr><th scope="col"><span class="sr-only">Tier</span></th><th scope="col">Color</th><th scope="col">Radius</th><th scope="col">Padding</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><span class="pillars__tier">Component</span><span class="pillars__count">~200 tokens</span></th>
-                  <td><code data-comp>button/primary/bg/default</code></td>
-                  <td><code>button/radius</code></td>
-                  <td><code>button/padding-x</code><code>button/padding-y</code></td>
-                </tr>
-                <tr>
-                  <th scope="row"><span class="pillars__tier">System</span><span class="pillars__count">140+ tokens</span></th>
-                  <td><code data-sys>color/action/primary/bg/default</code></td>
-                  <td><code>radius/control</code></td>
-                  <td><code>space/inset/md</code><code>space/inset/sm</code></td>
-                </tr>
-                <tr class="pillars__locked">
-                  <th scope="row"><span class="pillars__tier"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Reference</span><span class="pillars__count">100+ tokens, locked</span></th>
-                  <td><code data-ref>purple/600</code></td>
-                  <td><code>radius/md</code></td>
-                  <td><code>space/16</code><code>space/8</code></td>
-                </tr>
-                <tr class="pillars__values">
-                  <th scope="row"><span class="pillars__tier">Value</span></th>
-                  <td><span class="pillars__val"><i class="pillars__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span></td>
-                  <td><span class="pillars__val"><i class="pillars__corner" aria-hidden="true"></i>8 px</span></td>
-                  <td><span class="pillars__val"><i class="pillars__pad" aria-hidden="true"><b></b></i>16 × 8 px</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="pillars__result">
-            <span class="pillars__eq text-label">Together</span>
-            <span class="pillars__button" data-label>Create account</span>
-            <span class="pillars__note text-body-s">The button only reads its component tokens.</span>
+          <div class="map__scroll">
+            <div class="map__grid">
+              <div class="map__row map__head">
+                <span></span>
+                <span class="map__route" data-route="color"><i class="map__dot"></i>Color</span>
+                <span class="map__route" data-route="radius"><i class="map__dot"></i>Radius</span>
+                <span class="map__route" data-route="padding"><i class="map__dot"></i>Padding</span>
+                <span></span>
+              </div>
+              <div class="map__row map__band">
+                <span class="map__tier"><span class="map__n">~200</span><span class="map__tname">Component tokens</span></span>
+                <code class="map__chip" data-route="color" data-comp>button/<wbr>primary/<wbr>bg/<wbr>default</code>
+                <code class="map__chip" data-route="radius">button/<wbr>radius</code>
+                <span class="map__chip" data-route="padding"><code>button/<wbr>padding-x</code><code>button/<wbr>padding-y</code></span>
+                <span class="map__access">People and AI</span>
+              </div>
+              <div class="map__row map__link" aria-hidden="true">
+                <span class="map__pt">points to</span>
+                <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
+                <span></span>
+              </div>
+              <div class="map__row map__band">
+                <span class="map__tier"><span class="map__n">140+</span><span class="map__tname">System tokens</span></span>
+                <code class="map__chip" data-route="color" data-sys>color/<wbr>action/<wbr>primary/<wbr>bg/<wbr>default</code>
+                <code class="map__chip" data-route="radius">radius/<wbr>control</code>
+                <span class="map__chip" data-route="padding"><code>space/<wbr>inset/<wbr>md</code><code>space/<wbr>inset/<wbr>sm</code></span>
+                <span class="map__access">People and AI</span>
+              </div>
+              <div class="map__row map__link" aria-hidden="true">
+                <span class="map__pt">points to</span>
+                <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
+                <span></span>
+              </div>
+              <div class="map__row map__band map__band--locked">
+                <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Reference tokens</span></span>
+                <code class="map__chip" data-route="color" data-ref>purple/<wbr>600</code>
+                <code class="map__chip" data-route="radius">radius/<wbr>md</code>
+                <span class="map__chip" data-route="padding"><code>space/<wbr>16</code><code>space/<wbr>8</code></span>
+                <span class="map__access map__access--locked"><svg width="12" height="14" viewBox="0 0 14 16" aria-hidden="true"><rect x="1.5" y="7" width="11" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7V4.5a3 3 0 0 1 6 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Locked</span>
+              </div>
+              <div class="map__row map__link" aria-hidden="true">
+                <span class="map__pt">points to</span>
+                <i data-route="color"></i><i data-route="radius"></i><i data-route="padding"></i>
+                <span></span>
+              </div>
+              <div class="map__row map__values">
+                <span class="map__tier"><span class="map__tname">Value</span></span>
+                <span class="map__chip map__chip--value" data-route="color"><i class="map__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span>
+                <span class="map__chip map__chip--value" data-route="radius"><i class="map__corner" aria-hidden="true"></i>8 px</span>
+                <span class="map__chip map__chip--value" data-route="padding"><i class="map__pad" aria-hidden="true"><b></b></i>16 × 8 px</span>
+                <span></span>
+              </div>
+              <div class="map__row map__merge" aria-hidden="true">
+                <span></span>
+                <svg viewBox="0 0 600 56">
+                  <path data-route="color" d="M100 0 C100 34 300 22 300 56"/>
+                  <path data-route="radius" d="M300 0 V56"/>
+                  <path data-route="padding" d="M500 0 C500 34 300 22 300 56"/>
+                </svg>
+              </div>
+              <div class="map__row map__result">
+                <span class="map__button" data-label>Create account</span>
+                <span class="map__note text-body-s">The button only reads its component tokens.</span>
+              </div>
+            </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Three tokens, one button.</b> Color, radius and padding each run through the same three tiers. Switch the variant: only the color chain changes, the structure stays.</figcaption>
+        <figcaption class="text-body-s"><b>Three lines, one button.</b> Color, radius and padding each run through the same three tiers. Switch the variant: only the color line changes, the structure stays.</figcaption>
       </figure>
 
       <div class="cs-result">

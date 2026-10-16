@@ -79,9 +79,40 @@
         tiersEl.setAttribute('data-theme', b.getAttribute('data-swap'));
         Array.prototype.forEach.call(buttons, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
         ['comp', 'sys', 'ref', 'hex', 'label'].forEach(function (k) {
-          tiersEl.querySelectorAll('[data-' + k + ']').forEach(function (n) { n.textContent = c[k]; });
+          tiersEl.querySelectorAll('[data-' + k + ']').forEach(function (n) {
+            if (k === 'comp' || k === 'sys' || k === 'ref') n.innerHTML = c[k].replace(/\//g, '/<wbr>');
+            else n.textContent = c[k];
+          });
         });
       });
+    });
+    /* draw the three lines from the measured column centers into the button */
+    var svg = tiersEl.querySelector('.map__merge svg');
+    var lastLink = tiersEl.querySelectorAll('.map__link');
+    lastLink = lastLink[lastLink.length - 1];
+    function drawMerge() {
+      if (!svg || !lastLink) return;
+      var box = svg.getBoundingClientRect();
+      if (!box.width) return;
+      var w = box.width, h = 56, mid = w / 2;
+      svg.setAttribute('viewBox', '0 0 ' + w.toFixed(1) + ' ' + h);
+      var lines = lastLink.querySelectorAll('i');
+      svg.querySelectorAll('path').forEach(function (path, k) {
+        var r = lines[k].getBoundingClientRect();
+        var x = r.left + r.width / 2 - box.left;
+        path.setAttribute('d', 'M' + x.toFixed(1) + ' 0 C' + x.toFixed(1) + ' ' + h * .6 + ' ' + mid.toFixed(1) + ' ' + h * .4 + ' ' + mid.toFixed(1) + ' ' + h);
+      });
+    }
+    drawMerge();
+    window.addEventListener('resize', drawMerge);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawMerge);
+
+    /* follow a line: hover or focus a chip or a route label to highlight that line */
+    tiersEl.querySelectorAll('.map__chip, .map__route').forEach(function (n) {
+      var route = n.getAttribute('data-route');
+      if (n.classList.contains('map__chip')) n.setAttribute('tabindex', '0');
+      ['mouseenter', 'focus'].forEach(function (ev) { n.addEventListener(ev, function () { tiersEl.setAttribute('data-active', route); }); });
+      ['mouseleave', 'blur'].forEach(function (ev) { n.addEventListener(ev, function () { tiersEl.removeAttribute('data-active'); }); });
     });
   }
 })();
