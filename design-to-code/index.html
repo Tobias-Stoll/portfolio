@@ -378,30 +378,66 @@
 
       <div class="prose">
         <h3 class="text-heading-s">Design QA before code</h3>
-        <p class="text-body-m">A screenshot shows how a component looks. The MCP shows what it is bound to.</p>
+        <p class="text-body-m">Every component runs through the same four steps before it becomes code.</p>
       </div>
-      <ol class="steps text-body-s">
-        <li><b>Read</b><span>Claude reads the component via the Figma MCP, with every bound token.</span></li>
-        <li><b>Compare</b><span>Foreign tokens, mixed-up tokens and hard-coded values are flagged.</span></li>
-        <li><b>Fix in Figma</b><span>Errors are corrected at the source, never patched in code.</span></li>
-        <li><b>Read again</b><span>A clean second read, then the component becomes code.</span></li>
-      </ol>
+
+      <figure class="figure ft" aria-label="The design QA in four steps: read, compare, fix in Figma, read again">
+        <ol class="ft__steps" role="list">
+          <li class="ft-step ft-step--a">
+            <span class="ft__dot" aria-hidden="true">1</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Read</p>
+              <h4 class="ft__title text-heading-s">See the bindings, not just pixels</h4>
+              <p class="ft__body text-body-s">Claude reads the component via the Figma MCP. A screenshot shows how it looks, the MCP shows what every layer is bound to.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/button-bindings.png"><img src="images/button-bindings.png" width="1882" height="1292" loading="lazy" alt="Figma design panel for Button Primary Default: padding 16 and 8, gap 4 and corner radius 8 bound to variables, fill button/primary/bg/default, text button/primary/fg."></a>
+          </li>
+          <li class="ft-step ft-step--b">
+            <span class="ft__dot" aria-hidden="true">2</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Compare</p>
+              <h4 class="ft__title text-heading-s">Flag what does not belong</h4>
+              <p class="ft__body text-body-s">Foreign tokens, mixed-up tokens and hard-coded values are flagged. Example: the first read of the Sign-up Card in the rebuild.</p>
+            </div>
+            <div class="ft__frame qa-report" role="img" aria-label="QA report: tokens from a foreign library, a card border bound to an input token, input padding bound to a button token, and values typed in by hand.">
+              <p class="qa-report__head" aria-hidden="true">Sign-up Card · first read</p>
+              <ul class="qa-report__list" aria-hidden="true">
+                <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></svg><span><b>Foreign library</b> Variables from Figma's Simple Design System</span></li>
+                <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></svg><span><b>Mixed-up token</b> Card border bound to an input token</span></li>
+                <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></svg><span><b>Mixed-up token</b> Input padding bound to a button token</span></li>
+                <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.8 15 14H1L8 1.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.2v3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></svg><span><b>Hard-coded</b> Values typed in instead of bound</span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ft-step ft-step--b">
+            <span class="ft__dot" aria-hidden="true">3</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Fix in Figma</p>
+              <h4 class="ft__title text-heading-s">Correct it at the source</h4>
+              <p class="ft__body text-body-s">Errors are fixed in Figma, never patched in code. Every value points to a system token again.</p>
+            </div>
+            <a class="figure__link ft__frame" href="images/semantic-aliases.png"><img src="images/semantic-aliases.png" width="1762" height="1458" loading="lazy" alt="Figma Variables panel, collection Semantic: color/action/primary/bg default, hover, pressed and disabled, each shown as an alias pill of a purple or neutral primitive."></a>
+          </li>
+          <li class="ft-step ft-step--iter">
+            <span class="ft__dot" aria-hidden="true">4</span>
+            <div class="ft__text">
+              <p class="ft__tag text-label">Read again</p>
+              <h4 class="ft__title text-heading-s">A clean second read, then code</h4>
+              <p class="ft__body text-body-s">Only a component that comes back clean becomes code. Figma and code then share the same tokens and states.</p>
+            </div>
+            <a class="figure__link ft__frame ft__frame--tall" href="images/figma-vs-code.png"><img src="images/figma-vs-code.png" width="2048" height="2531" loading="lazy" alt="Left: the Sign-up Card component set exported from Figma with four states. Right: the same card built in code, in its default state."></a>
+          </li>
+        </ol>
+      </figure>
+      <div class="cs-result ft-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-l">Design QA became a routine step instead of a visual guess. In the rebuild, the first read found four problems, the second came back clean.</p>
+      </div>
 
       <div class="prose">
         <h3 class="text-heading-s">Try it in the rebuild</h3>
         <p class="text-body-m">The client work is under NDA, so I rebuilt the workflow with my own design system, with a Storybook-style demo you can click through. This page uses it too. The one difference: in the rebuild, Claude turns the Figma MCP output into HTML and CSS instead of React and Tailwind.</p>
       </div>
-
-      <figure class="figure figure--pair">
-        <a class="figure__link" href="images/semantic-aliases.png" title="Open full size"><img src="images/semantic-aliases.png" width="1762" height="1458" loading="lazy" alt="Figma Variables panel, collection Semantic: color/action/primary/bg default, hover, pressed and disabled, each shown as an alias pill of a purple or neutral primitive."></a>
-        <a class="figure__link" href="images/button-bindings.png" title="Open full size"><img src="images/button-bindings.png" width="1882" height="1292" loading="lazy" alt="Figma design panel for Button Primary Default: padding 16 and 8, gap 4 and corner radius 8 bound to variables, fill button/primary/bg/default, text button/primary/fg."></a>
-        <figcaption class="text-body-s"><b>Nothing is hard-coded.</b> Fill, text, padding and radius are bound to tokens, and the code reads the same names. (In the rebuild, primitives and semantic tokens are the reference and system tier.)</figcaption>
-      </figure>
-
-      <figure class="figure figure--narrow">
-        <a class="figure__link" href="images/figma-vs-code.png" title="Open full size"><img src="images/figma-vs-code.png" width="2048" height="2531" loading="lazy" alt="Left: the Sign-up Card component set exported from Figma with four states. Right: the same card built in code, in its default state."></a>
-        <figcaption class="text-body-s"><b>Figma on the left, code on the right.</b> Same tokens, same states.</figcaption>
-      </figure>
 
       <div class="prose">
         <ul class="link-list">
@@ -512,6 +548,7 @@
   </div>
 </footer>
 <script src="../assets/nav.js"></script>
+<script src="../assets/ft-timeline.js"></script>
 <script src="../assets/lightbox.js"></script>
 <script src="../assets/d2c.js"></script>
 </body>

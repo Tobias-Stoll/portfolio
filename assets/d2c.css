@@ -287,3 +287,16 @@
   content: attr(data-initial); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 6px;
   border: 1px dashed var(--color-border-strong); font-size: 12px; font-weight: var(--font-weight-medium); color: var(--color-fg-muted);
 }
+
+/* Design QA timeline: the step 2 frame is a small QA report instead of a screenshot */
+.qa-report { display: grid; gap: var(--space-12); }
+.qa-report__head { margin: 0 !important; font-family: 'Roboto Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--color-fg-muted); }
+.qa-report__list { list-style: none; margin: 0 !important; padding: 0 !important; display: grid; gap: var(--space-8); }
+.qa-report__list li {
+  display: flex; align-items: flex-start; gap: var(--space-8); margin: 0 !important; padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-md); background: var(--color-bg-default); border: var(--border-width-default) solid var(--color-feedback-warning-border);
+  font-size: var(--font-size-200); line-height: var(--font-line-height-200); color: var(--color-fg-default);
+}
+.qa-report__list svg { flex: none; margin-top: 3px; color: var(--color-feedback-warning-fg); }
+.qa-report__list b { display: block; font-weight: var(--font-weight-medium); color: var(--color-feedback-warning-fg); }
+.ft__frame--tall { max-width: 440px; }
