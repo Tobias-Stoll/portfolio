@@ -192,14 +192,22 @@
 .map[data-active] .map__band[data-step="3"] .map__chip { transition-delay: .26s; }
 .map[data-active] .map__dot { transition-delay: .3s; animation-delay: .3s; }
 .map[data-active] .map__live { transition-delay: .34s; }
-/* the active line's arrow on the button gets bolder */
-.map__notes-svg path[data-note] { transition: stroke-width .15s, opacity .15s; }
-.map[data-active] .map__notes-svg path[data-note] { opacity: .35; }
+/* the arrows on the button: hidden at rest, they pop in once the blue line has reached the button */
+.map__label { opacity: 0; transform: translateY(8px) scale(.85); transition: opacity .12s, transform .12s; }
+.map__notes-svg path[data-note] { opacity: 0; stroke-width: 2; transition: opacity .12s; }
+.map[data-active="color"] .map__label[data-note="color"],
+.map[data-active="radius"] .map__label[data-note="radius"],
+.map[data-active="padding"] .map__label[data-note="padding"] {
+  opacity: 1; transform: none; transition: opacity .2s .55s, transform .5s cubic-bezier(.34, 1.56, .64, 1) .55s;
+}
 .map[data-active="color"] .map__notes-svg path[data-note="color"],
 .map[data-active="radius"] .map__notes-svg path[data-note="radius"],
-.map[data-active="padding"] .map__notes-svg path[data-note^="pad"] { opacity: 1; stroke-width: 2.25; }
+.map[data-active="padding"] .map__notes-svg path[data-note^="pad"] { opacity: 1; transition: opacity .25s .6s; }
+/* the button gives a small bounce when a line arrives */
+.map[data-active] .map__button { animation: map-arrive .5s cubic-bezier(.34, 1.56, .64, 1) .5s both; }
+@keyframes map-arrive { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
 @keyframes map-pop { 0% { transform: scale(.7); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .merge__tile, .map__swatch, .map__button, .map__chip, .map__link i, .map__link i::after, .map__live, .map__dot { transition: none !important; animation: none !important; }
+  .merge__tile, .map__swatch, .map__button, .map__chip, .map__link i, .map__link i::after, .map__live, .map__dot, .map__label, .map__notes-svg path { transition: none !important; animation: none !important; }
   .map__sticker { transition: none; }
 }

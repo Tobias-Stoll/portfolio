@@ -164,7 +164,14 @@
     /* follow a line: hover or focus a token or a station */
     var tour = null;
     function stopTour() { if (tour) { tour.forEach(clearTimeout); tour = null; } }
-    function light(route) { if (route) tiersEl.setAttribute('data-active', route); else tiersEl.removeAttribute('data-active'); }
+    function light(route) {
+      if (route === tiersEl.getAttribute('data-active')) return;
+      if (route) {
+        tiersEl.setAttribute('data-active', route);
+        /* restart the arrival bounce for every new line */
+        mapBtn.style.animation = 'none'; void mapBtn.offsetWidth; mapBtn.style.animation = '';
+      } else tiersEl.removeAttribute('data-active');
+    }
     tiersEl.querySelectorAll('.map__chip, .map__route').forEach(function (n) {
       var route = n.getAttribute('data-route');
       if (n.classList.contains('map__chip')) n.setAttribute('tabindex', '0');
