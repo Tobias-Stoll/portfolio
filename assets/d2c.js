@@ -87,28 +87,79 @@
       });
     });
 
-    /* draw the three lines from the measured column centers up into the button */
+    /* lines: straight, with rounded corners, from each station up into the button (like the Invia timelines) */
     var svg = tiersEl.querySelector('.map__merge svg');
     var firstLink = tiersEl.querySelector('.map__link');
-    function drawMerge() {
-      if (!svg || !firstLink) return;
-      var box = svg.getBoundingClientRect();
-      if (!box.width) return;
-      var w = box.width, h = box.height || 48, mid = w / 2;
-      svg.setAttribute('viewBox', '0 0 ' + w.toFixed(1) + ' ' + h);
+    var notes = tiersEl.querySelector('.map__notes-svg');
+    var grid = tiersEl.querySelector('.map__grid');
+    var mapBtn = tiersEl.querySelector('.map__button');
+    function centers(box) {
       var cols = {};
       firstLink.querySelectorAll('i').forEach(function (n) {
         var r = n.getBoundingClientRect();
         cols[n.getAttribute('data-route')] = r.left + r.width / 2 - box.left;
       });
+      return cols;
+    }
+    function f(n) { return n.toFixed(1); }
+    function drawMerge() {
+      if (!svg || !firstLink) return;
+      var box = svg.getBoundingClientRect();
+      if (!box.width) return;
+      var w = box.width, h = box.height || 48, mid = w / 2, t = h / 2, R = 10;
+      svg.setAttribute('viewBox', '0 0 ' + f(w) + ' ' + h);
+      var cols = centers(box);
       svg.querySelectorAll('path').forEach(function (path) {
-        var x = cols[path.getAttribute('data-route')].toFixed(1);
-        path.setAttribute('d', 'M' + x + ' ' + h + ' C' + x + ' ' + (h * .4) + ' ' + mid.toFixed(1) + ' ' + (h * .6) + ' ' + mid.toFixed(1) + ' 0');
+        var x = cols[path.getAttribute('data-route')], d;
+        if (Math.abs(x - mid) < 2) d = 'M' + f(mid) + ' ' + h + ' V0';
+        else {
+          var dir = x < mid ? 1 : -1;
+          d = 'M' + f(x) + ' ' + h + ' V' + f(t + R) + ' Q' + f(x) + ' ' + f(t) + ' ' + f(x + dir * R) + ' ' + f(t) +
+              ' H' + f(mid - dir * R) + ' Q' + f(mid) + ' ' + f(t) + ' ' + f(mid) + ' ' + f(t - R) + ' V0';
+        }
+        path.setAttribute('d', d);
       });
+      drawNotes();
+    }
+    /* blue arrows from each column label to what it defines on the button */
+    function drawNotes() {
+      if (!notes || !mapBtn) return;
+      var g = grid.getBoundingClientRect(), b = mapBtn.getBoundingClientRect();
+      if (!g.width) return;
+      notes.setAttribute('viewBox', '0 0 ' + f(g.width) + ' ' + f(g.height));
+      notes.querySelectorAll('path[data-note]').forEach(function (n) { n.remove(); });
+      var s = parseFloat(getComputedStyle(mapBtn).getPropertyValue('--s')) || 1;
+      var px = 16 * s, py = 8 * s;
+      var L = b.left - g.left, T = b.top - g.top, Rr = b.right - g.left, B = b.bottom - g.top, CY = (T + B) / 2;
+      function from(key) {
+        var el = tiersEl.querySelector('.map__label[data-note="' + key + '"]').getBoundingClientRect();
+        return { x: el.left + el.width / 2 - g.left, y: el.bottom - g.top + 4 };
+      }
+      function arrow(key, p0, c1, c2, p1) {
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('data-note', key);
+        path.setAttribute('d', 'M' + f(p0.x) + ' ' + f(p0.y) + ' C' + f(c1.x) + ' ' + f(c1.y) + ' ' + f(c2.x) + ' ' + f(c2.y) + ' ' + f(p1.x) + ' ' + f(p1.y));
+        path.setAttribute('marker-end', 'url(#map-arrow)');
+        notes.appendChild(path);
+      }
+      var c = from('color'), r = from('radius'), p = from('padding');
+      /* color: into the left face of the fill */
+      var tc = { x: L - 4, y: CY + 4 };
+      arrow('color', c, { x: c.x, y: CY + 4 }, { x: L - 70, y: CY + 4 }, tc);
+      /* radius: down onto the top-left corner */
+      var tr = { x: L - 2, y: T - 2 };
+      arrow('radius', { x: r.x - 24, y: r.y }, { x: r.x - 60, y: r.y + 14 }, { x: L - 34, y: T - 26 }, tr);
+      /* padding x: into the right padding band */
+      var tx = { x: Rr - px / 2, y: CY };
+      arrow('padx', p, { x: p.x, y: p.y + 40 }, { x: Rr + 60, y: CY }, { x: Rr + 4, y: CY });
+      /* padding y: under the button, into the bottom padding band */
+      var ty = { x: L + b.width * .62, y: B + 3 };
+      arrow('pady', { x: p.x + 6, y: p.y }, { x: p.x + 70, y: p.y + 60 }, { x: ty.x + 40, y: B + 34 }, ty);
     }
     drawMerge();
     window.addEventListener('resize', drawMerge);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawMerge);
+    window.addEventListener('load', drawMerge);
 
     /* follow a line: hover or focus a token or a station */
     var tour = null;

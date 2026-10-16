@@ -177,7 +177,7 @@
 
       <figure class="figure">
         <div class="map" data-tiers data-theme="primary">
-          <span class="map__sticker" aria-hidden="true">Try it: follow a line</span>
+          <span class="map__sticker" aria-hidden="true">Try it: hover a line, switch Primary and Secondary</span>
           <div class="map__bar">
             <div class="map__seg" role="group" aria-label="Button variant">
               <button type="button" data-swap="primary" aria-pressed="true">Primary</button>
@@ -186,9 +186,20 @@
           </div>
           <div class="map__scroll">
             <div class="map__grid">
+              <svg class="map__notes-svg" aria-hidden="true">
+                <defs><marker id="map-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+              </svg>
+              <div class="map__row map__labels" aria-hidden="true">
+                <span></span>
+                <span class="map__label" data-note="color">Fill color</span>
+                <span class="map__label" data-note="radius">Corner radius</span>
+                <span class="map__label" data-note="padding">Padding x · y</span>
+                <span></span>
+              </div>
               <div class="map__row map__result">
-                <span class="map__button">Button</span>
-                <span class="map__note text-body-s">What developers use: the button and its component tokens</span>
+                <span class="map__tier"><span class="map__tname">The button</span><span class="map__sub">what developers use</span></span>
+                <span class="map__stage"><span class="map__button" role="img" aria-label="Button built from its color, radius and padding tokens">Button</span></span>
+                <span></span>
               </div>
               <div class="map__row map__merge" aria-hidden="true">
                 <span></span>
@@ -238,7 +249,7 @@
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Hover a token to follow its line, or switch the variant: only the color changes.</figcaption>
+        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Hover a token to follow its line, or switch the variant: only the color changes. The arrows show what each line defines on the button.</figcaption>
       </figure>
 
       <div class="cs-result">
