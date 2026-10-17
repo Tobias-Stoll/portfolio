@@ -11,8 +11,8 @@
    * row level security policies decide what it can do.
    * ------------------------------------------------------------------ */
   const NOTES = {
-    url: '',       // e.g. 'https://abcd1234.supabase.co'
-    anonKey: '',   // Supabase → Project Settings → API Keys → publishable key (sb_publishable_…)
+    url: 'https://paaocbyjevitxiugvdar.supabase.co',
+    anonKey: 'sb_publishable_oIb6RLrCkn1BmzIxIODrZQ_lo2UHQHC',   // publishable key: public by design, grants and RLS decide what it can do
   };
   /* Publishable keys go in the apikey header only. A legacy anon key (a JWT, starts with eyJ) also goes in Authorization. */
   const notesHeaders = (extra = {}) => Object.assign(
