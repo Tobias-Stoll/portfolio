@@ -718,6 +718,8 @@ html.has-lightbox { overflow: hidden; }
 .cs-grid + .figure, .cs-grid + .moments { margin-top: 0; }
 /* Results and notes: left aligned, two thirds wide */
 .cs-grid ~ .cs-result, .cs-grid ~ .principle { margin-left: 0; max-width: calc((100% - var(--space-48, 48px)) * 2 / 3 + var(--space-48, 48px) / 2); }
+/* After a timeline the result sits on the rail (13px), and the note below follows the same edge */
+.cs-grid ~ .ft-result, .cs-grid ~ .ft-result ~ .principle { margin-left: 13px; max-width: calc((100% - var(--space-48, 48px)) * 2 / 3 + var(--space-48, 48px) / 2 - 13px); }
 /* Sub-blocks (My approach, Modular component): title on its own line, text across the full width */
 .cs-sub { margin: var(--space-48, 48px) 0 var(--space-32); }
 .cs-section .cs-sub__title { margin: 0 0 6px; font-family: var(--font-family-display); font-weight: 500; font-size: 24px; line-height: 32px; color: var(--color-fg-default); }
@@ -727,4 +729,5 @@ html.has-lightbox { overflow: hidden; }
   .cs-grid { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-32); }
   .cs-body { padding-top: var(--space-8); }
   .cs-grid ~ .cs-result, .cs-grid ~ .principle { max-width: none; }
+  .cs-grid ~ .ft-result, .cs-grid ~ .ft-result ~ .principle { max-width: none; }
 }
