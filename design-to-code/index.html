@@ -67,10 +67,14 @@
 
     <!-- Context -->
     <section class="cs-section" aria-labelledby="context">
-      <div class="prose">
-        <p class="cs-kicker text-label">Context</p>
-        <h2 id="context" class="text-heading-l">Complete on paper. Nobody could trust it.</h2>
-        <p class="text-body-m">The system covered almost every case. Years of special requests had made it hard to use. Three problems, one system: each one points to the decision that solved it.</p>
+      <p class="cs-kicker text-label">Context</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="context" class="text-heading-l">Complete on paper. Nobody could trust it.</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">The system covered almost every case. Years of special requests had made it hard to use. Three problems, one system: each one points to the decision that solved it.</p>
+        </div>
       </div>
 
       <figure class="figure merge" data-merge>
@@ -183,12 +187,16 @@
 
     <!-- 2 · Token tiers -->
     <section class="cs-section" aria-labelledby="tiers">
-      <div class="prose">
-        <p class="cs-kicker text-label">2 · Token architecture</p>
-        <h2 id="tiers" class="text-heading-l">Material's three token tiers, with the raw values locked</h2>
-        <p class="quote text-body-l">"How do we change a brand color without breaking anything?"</p>
-        <p class="text-body-m"><b>Approach.</b> I followed Material Design's token model, a structure everyone on the team understood at once, and built the token base from zero with the UI designer. Reference tokens hold the raw values, system tokens name their purpose, component tokens apply them to one component.</p>
-        <p class="text-body-m"><b>The lock.</b> Reference tokens are hidden from Figma users and not available to AI agents. Everyone works with system and component tokens only, so nobody binds a raw value by accident.</p>
+      <p class="cs-kicker text-label">2 · Token architecture</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="tiers" class="text-heading-l">Material's three token tiers, with the raw values locked</h2>
+          <p class="quote text-body-l">"How do we change a brand color without breaking anything?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Approach.</b> I followed Material Design's token model, a structure everyone on the team understood at once, and built the token base from zero with the UI designer. Reference tokens hold the raw values, system tokens name their purpose, component tokens apply them to one component.</p>
+          <p class="text-body-m"><b>The lock.</b> Reference tokens are hidden from Figma users and not available to AI agents. Everyone works with system and component tokens only, so nobody binds a raw value by accident.</p>
+        </div>
       </div>
 
       <figure class="figure">
@@ -277,12 +285,16 @@
 
     <!-- 3 · The audit -->
     <section class="cs-section" aria-labelledby="audit">
-      <div class="prose">
-        <p class="cs-kicker text-label">3 · The audit</p>
-        <h2 id="audit" class="text-heading-l">Merge, don't just delete</h2>
-        <p class="quote text-body-l">"Which of these 60 do we really need?"</p>
-        <p class="text-body-m"><b>Tension.</b> Many components had been built for one device or one use case. Deleting them would break real screens. Keeping them all would keep the chaos.</p>
-        <p class="text-body-m"><b>Approach.</b> The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Duplicates went, variants were cut, and many special components merged into one flexible component for several use cases. Where a real need was missing, a new component was built.</p>
+      <p class="cs-kicker text-label">3 · The audit</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="audit" class="text-heading-l">Merge, don't just delete</h2>
+          <p class="quote text-body-l">"Which of these 60 do we really need?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Tension.</b> Many components had been built for one device or one use case. Deleting them would break real screens. Keeping them all would keep the chaos.</p>
+          <p class="text-body-m"><b>Approach.</b> The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Duplicates went, variants were cut, and many special components merged into one flexible component for several use cases. Where a real need was missing, a new component was built.</p>
+        </div>
       </div>
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
@@ -296,12 +308,16 @@
 
     <!-- 4 · Tooling -->
     <section class="cs-section" aria-labelledby="bridge">
-      <div class="prose">
-        <p class="cs-kicker text-label">4 · Tooling</p>
-        <h2 id="bridge" class="text-heading-l">Build the bridge instead of buying Enterprise</h2>
-        <p class="quote text-body-l">"Do we need Figma Enterprise for this?"</p>
-        <p class="text-body-m"><b>Tension.</b> Figma's Variables API needs an Enterprise plan, and the client considered upgrading. I advised against it: most Enterprise features didn't fit their use case.</p>
-        <p class="text-body-m"><b>Approach.</b> I built a Figma plugin instead. It imports token structures defined with Claude and exports all tokens to GitHub in one commit. Missing references are reported on import, which doubles as a naming check.</p>
+      <p class="cs-kicker text-label">4 · Tooling</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="bridge" class="text-heading-l">Build the bridge instead of buying Enterprise</h2>
+          <p class="quote text-body-l">"Do we need Figma Enterprise for this?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Tension.</b> Figma's Variables API needs an Enterprise plan, and the client considered upgrading. I advised against it: most Enterprise features didn't fit their use case.</p>
+          <p class="text-body-m"><b>Approach.</b> I built a Figma plugin instead. It imports token structures defined with Claude and exports all tokens to GitHub in one commit. Missing references are reported on import, which doubles as a naming check.</p>
+        </div>
       </div>
       <figure class="figure">
         <a class="figure__link" href="images/token-bridge.png" title="Open full size"><img src="images/token-bridge.png" width="1898" height="1274" loading="lazy" alt="Token Bridge plugin windows. Import log: Semantic 0 new, 53 updated, 0 missing; Component 0 new, 35 updated, 0 missing; Text Styles 0 new, 9 updated. Export log: token counts and no changes since the last export."></a>
@@ -315,10 +331,14 @@
 
     <!-- The rebuild -->
     <section class="cs-section" aria-labelledby="proof">
-      <div class="prose">
-        <p class="cs-kicker text-label">The workflow</p>
-        <h2 id="proof" class="text-heading-l">Two tracks to code, one way back</h2>
-        <p class="text-body-m">This is how tokens and components moved between design and code at the client. Two checks keep it clean: a design QA before any code exists, and a developer review before anything goes back to Figma.</p>
+      <p class="cs-kicker text-label">The workflow</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="proof" class="text-heading-l">Two tracks to code, one way back</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">This is how tokens and components moved between design and code at the client. Two checks keep it clean: a design QA before any code exists, and a developer review before anything goes back to Figma.</p>
+        </div>
       </div>
 
       <figure class="figure">
