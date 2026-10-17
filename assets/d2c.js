@@ -205,8 +205,101 @@
   }
 
   /* 3 · Atom (decision 1): the electrons stand still for reduced motion */
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.atom__electron animateMotion').forEach(function (m) { m.remove(); });
-    document.querySelectorAll('.atom__electron').forEach(function (c) { c.remove(); });
+})();
+
+/* Atom in perspective: the orbits are seen from the side, nodes in front are larger and sit above the core.
+   The plane sways a little on its own, follows the mouse with a soft spring and settles back when the mouse leaves. */
+(function () {
+  var frame = document.querySelector('.atom__frame');
+  if (!frame) return;
+  var svg = frame.querySelector('.atom__svg');
+  var orbits = svg.querySelectorAll('.atom__orbit');
+  var spokes = svg.querySelectorAll('.atom__spokes line');
+  var electrons = svg.querySelectorAll('.atom__electron');
+  var core = frame.querySelector('.atom__core');
+  var CX = 500, CY = 340, W = 1000, H = 680;
+  /* angle in degrees, 90 = front (bottom), 270 = back (top) */
+  var plan = {
+    claude:    { orbit: 0, a: 180 },
+    bridge:    { orbit: 0, a: 250 },
+    mcp:       { orbit: 0, a: 112 },
+    github:    { orbit: 1, a: 0 },
+    storybook: { orbit: 1, a: 302 },
+    marketing: { orbit: 1, a: 66 }
+  };
+  var RX = [330, 405];
+  var nodes = Array.prototype.map.call(frame.querySelectorAll('.atom__node'), function (el) {
+    var p = plan[el.getAttribute('data-node')] || { orbit: 0, a: 0 };
+    el.style.left = ''; el.style.top = '';
+    return { el: el, orbit: p.orbit, a: p.a };
+  });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var tilt = 0.55, spin = 0, par = 0;           /* current values */
+  var tTilt = 0.55, tSpin = 0, tPar = 0;        /* targets */
+  var hover = false, t0 = performance.now(), running = false, visible = false;
+
+  function point(orbit, deg) {
+    var r = deg * Math.PI / 180;
+    return { x: CX + RX[orbit] * Math.cos(r), y: CY + RX[orbit] * tilt * Math.sin(r), d: Math.sin(r) };
   }
+  function place(el, p, base) {
+    var depth = (p.d + 1) / 2;                  /* 0 back, 1 front */
+    el.style.left = (p.x / W * 100).toFixed(3) + '%';
+    el.style.top = (p.y / H * 100).toFixed(3) + '%';
+    el.style.setProperty('--s', (base + (1 - base) * depth).toFixed(3));
+    el.style.zIndex = p.d > 0.1 ? 3 : 1;
+    el.style.opacity = (0.82 + 0.18 * depth).toFixed(3);
+  }
+  function draw(now) {
+    var t = (now - t0) / 1000;
+    var sway = reduce ? 0 : 7 * Math.sin(t / 5.5);
+    var k = 0.075;
+    tilt += (tTilt - tilt) * k; spin += (tSpin - spin) * k; par += (tPar - par) * k;
+    var off = spin + (hover ? 0 : sway);
+    orbits[0].setAttribute('rx', RX[0]); orbits[1].setAttribute('rx', RX[1]);
+    orbits[0].setAttribute('ry', (RX[0] * tilt).toFixed(1));
+    orbits[1].setAttribute('ry', (RX[1] * tilt).toFixed(1));
+    nodes.forEach(function (n, i) {
+      var p = point(n.orbit, n.a + off);
+      place(n.el, p, 0.84);
+      if (spokes[i]) { spokes[i].setAttribute('x2', p.x.toFixed(1)); spokes[i].setAttribute('y2', p.y.toFixed(1)); }
+    });
+    core.style.setProperty('--px', (par * -10).toFixed(2) + 'px');
+    if (!reduce) {
+      electrons.forEach(function (e, i) {
+        var deg = (t * (i ? 16 : 26) + (i ? 200 : 20)) % 360;
+        var p = point(i, deg);
+        e.setAttribute('cx', p.x.toFixed(1)); e.setAttribute('cy', p.y.toFixed(1));
+        e.setAttribute('r', (3.5 + 2.5 * (p.d + 1) / 2).toFixed(2));
+      });
+    } else {
+      electrons.forEach(function (e) { e.style.display = 'none'; });
+    }
+  }
+  function loop(now) {
+    draw(now);
+    if (running) requestAnimationFrame(loop);
+  }
+  function sync() {
+    var should = visible && !reduce;
+    if (should && !running) { running = true; requestAnimationFrame(loop); }
+    if (!should) running = false;
+  }
+  frame.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    var r = frame.getBoundingClientRect();
+    var mx = (e.clientX - r.left) / r.width - 0.5;   /* -0.5 … 0.5 */
+    var my = (e.clientY - r.top) / r.height - 0.5;
+    tSpin = mx * -30;                 /* the plane turns toward the cursor */
+    tTilt = 0.55 + my * 0.2;          /* higher cursor, flatter view */
+    tPar = mx;
+    hover = true;
+  });
+  frame.addEventListener('pointerleave', function () { tSpin = 0; tTilt = 0.55; tPar = 0; hover = false; });
+
+  draw(performance.now());
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; sync(); }).observe(frame);
+  } else { visible = true; sync(); }
 })();
