@@ -122,11 +122,15 @@
         <p class="cs-kicker text-label">1 · Source of truth</p>
         <h2 id="source" class="text-heading-l">Figma as the single source, for people and for AI</h2>
         <p class="quote text-body-l">"Where does the truth live?"</p>
-        <p class="text-body-m"><b>Problem.</b> Code was the de facto truth, but only developers could read it. Every handover meant translating between two sources.</p>
-        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude structures the tokens going in and runs a design QA on the components coming out. Then developers review the code in GitHub, adjust and approve it, and send it back to Figma. Every approved push updates the internal Storybook.</p>
       </div>
 
-      <figure class="figure atom" aria-label="Figma at the core. Around it, the tools that feed it: Claude structures the tokens, the Token Bridge sends them to GitHub, the Figma MCP reads components and Claude runs the design QA. Further out, the teams that use it: developers review and approve the code in GitHub, the internal Storybook updates itself on every approved push, and marketing uses Figma and the Storybook.">
+      <div class="split">
+        <div class="split__text">
+        <p class="text-body-m"><b>Problem.</b> Code was the de facto truth, but only developers could read it. Every handover meant translating between two sources.</p>
+        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude structures the tokens going in and runs a design QA on the components coming out. Then developers review the code in GitHub, adjust and approve it, and send it back to Figma. Every approved push updates the internal Storybook.</p>
+        </div>
+
+      <figure class="figure atom split__visual" aria-label="Figma at the core. Around it, the tools that feed it: Claude structures the tokens, the Token Bridge sends them to GitHub, the Figma MCP reads components and Claude runs the design QA. Further out, the teams that use it: developers review and approve the code in GitHub, the internal Storybook updates itself on every approved push, and marketing uses Figma and the Storybook.">
         <div class="atom__scroll">
           <div class="atom__frame">
             <svg class="atom__svg" viewBox="0 0 1000 680" aria-hidden="true">
@@ -153,7 +157,7 @@
               <b class="hub__title">Figma MCP</b>
               <span class="hub__desc">Reads components, design QA with Claude</span>
             </div>
-            <div class="atom__node atom__node--dev" data-node="github" style="left: 91.0%; top: 50.00%; --float-d: 7.6s; --float-delay: -2.2s;">
+            <div class="atom__node atom__node--dev" data-node="github" style="left: 89.6%; top: 50.00%; --float-d: 7.6s; --float-delay: -2.2s;">
               <b class="hub__title">GitHub</b>
               <span class="hub__desc">Developers review and approve</span>
             </div>
@@ -169,6 +173,7 @@
         </div>
         <figcaption class="text-body-s"><b>Figma at the core.</b> The tools that feed it sit close, the teams that use it further out.</figcaption>
       </figure>
+      </div>
 
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
