@@ -716,11 +716,15 @@ html.has-lightbox { overflow: hidden; }
 .cs-body { padding-top: 6px; }                /* first text line on the H2's cap line */
 .cs-body > :last-child { margin-bottom: 0; }
 .cs-grid + .figure, .cs-grid + .moments { margin-top: 0; }
-.cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-indent {
-  margin-left: calc((100% - var(--space-48, 48px)) * 5 / 12 + var(--space-48, 48px)); max-width: none;
-}
+/* Results and notes: left aligned, two thirds wide */
+.cs-grid ~ .cs-result, .cs-grid ~ .principle { margin-left: 0; max-width: calc((100% - var(--space-48, 48px)) * 2 / 3 + var(--space-48, 48px) / 2); }
+/* Sub-blocks (My approach, Modular component): title on its own line, text across the full width */
+.cs-sub { margin: var(--space-48, 48px) 0 var(--space-32); }
+.cs-section .cs-sub__title { margin: 0 0 6px; font-family: var(--font-family-display); font-weight: 500; font-size: 24px; line-height: 32px; color: var(--color-fg-default); }
+.cs-sub p { margin: 0; }
+.cs-grid ~ .pgx .pgx-intro { max-width: none; }
 @media (max-width: 900px) {
   .cs-grid { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-32); }
   .cs-body { padding-top: var(--space-8); }
-  .cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-indent { margin-left: 0; }
+  .cs-grid ~ .cs-result, .cs-grid ~ .principle { max-width: none; }
 }
