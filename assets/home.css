@@ -214,7 +214,7 @@ main::before {
 .row--soon .row__name, .row--soon .row__what { color: var(--color-fg-subtle); }
 .row--soon .row__tag { color: var(--button-ghost-fg); }
 .peek {
-  position: fixed; left: 0; top: 0; z-index: 15; width: min(880px, 58vw); height: auto; pointer-events: none;
+  position: fixed; left: 0; top: 0; z-index: 15; width: min(704px, 46vw); height: auto; pointer-events: none;
   border-radius: var(--radius-lg); box-shadow: var(--home-shadow-lift);
   opacity: 0; transform: translate(-50%, -50%) scale(.9) rotate(-3deg); transition: opacity .2s, transform .3s var(--home-ease);
 }
