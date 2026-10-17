@@ -7,13 +7,19 @@
 
   /* ------------------------------------------------------------------
    * Notes backend. Leave empty for preview mode (nothing is stored).
-   * Setup: see NOTES-SETUP.md. The anon key is public by design; the
+   * Setup: see tools/notes/README.md. The anon key is public by design; the
    * row level security policies decide what it can do.
    * ------------------------------------------------------------------ */
   const NOTES = {
     url: '',       // e.g. 'https://abcd1234.supabase.co'
-    anonKey: '',   // Supabase project → Settings → API → anon public key
+    anonKey: '',   // Supabase → Project Settings → API Keys → publishable key (sb_publishable_…)
   };
+  /* Publishable keys go in the apikey header only. A legacy anon key (a JWT, starts with eyJ) also goes in Authorization. */
+  const notesHeaders = (extra = {}) => Object.assign(
+    { apikey: NOTES.anonKey },
+    NOTES.anonKey.startsWith('eyJ') ? { Authorization: `Bearer ${NOTES.anonKey}` } : {},
+    extra
+  );
   const RIDE_KM = 207; // Dresden → Berlin, 4 Oct 2026
 
   const $ = (s, el = document) => el.querySelector(s);
@@ -220,7 +226,7 @@
     if (!live) return;
     try {
       const r = await fetch(`${NOTES.url}/rest/v1/notes?select=name,message,created_at&order=created_at.desc&limit=60`, {
-        headers: { apikey: NOTES.anonKey, Authorization: `Bearer ${NOTES.anonKey}` },
+        headers: notesHeaders(),
       });
       if (!r.ok) throw new Error(r.status);
       (await r.json()).forEach(n => wall.appendChild(noteEl(n)));
@@ -253,10 +259,7 @@
       if (live) {
         const r = await fetch(`${NOTES.url}/rest/v1/notes`, {
           method: 'POST',
-          headers: {
-            apikey: NOTES.anonKey, Authorization: `Bearer ${NOTES.anonKey}`,
-            'Content-Type': 'application/json', Prefer: 'return=minimal',
-          },
+          headers: notesHeaders({ 'Content-Type': 'application/json', Prefer: 'return=minimal' }),
           body: JSON.stringify({ name: name || null, message }),
         });
         if (!r.ok) throw new Error(r.status);
