@@ -141,8 +141,9 @@
       row.addEventListener('mouseenter', () => { peek.src = row.dataset.preview; peek.classList.add('is-on'); });
       row.addEventListener('mouseleave', () => peek.classList.remove('is-on'));
       row.addEventListener('mousemove', e => {
-        peek.style.left = `${e.clientX + 250}px`;
-        peek.style.top = `${e.clientY}px`;
+        peek.style.left = `${Math.min(e.clientX + 40 + peek.offsetWidth / 2, innerWidth - peek.offsetWidth / 2 - 16)}px`;
+        const h = peek.offsetHeight / 2;
+        peek.style.top = `${Math.max(h + 16, Math.min(e.clientY, innerHeight - h - 16))}px`;
       });
     });
   }
