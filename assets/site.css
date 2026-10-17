@@ -63,17 +63,22 @@ main:focus { outline: none; }
 .cs-hero__links { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); margin-top: var(--space-32); }
 .cs-hero__links .btn { text-decoration: none; }
 
-/* Facts = the Sign-up Card surface */
+/* Facts: the same card as on the landing page, variant with a definition list */
 .facts {
   margin: 0;
   display: grid; gap: var(--space-16);
-  padding: var(--space-inset-lg);
-  background: var(--color-bg-subtle);
+  padding: var(--space-20) var(--space-24);
+  background: var(--color-bg-default);
   border: var(--border-width-default) solid var(--color-border-default);
-  border-radius: var(--radius-container);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
 }
 .facts div { display: grid; gap: var(--space-4); }
-.facts dt { color: var(--color-fg-muted); }
+.facts dt {
+  font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);
+}
 .facts dd { margin: 0; }
 
 /* ---------- Sections ---------- */
@@ -159,13 +164,18 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
 .stat { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--space-8) var(--space-16); margin: var(--space-16) 0 var(--space-24); }
 .stat__value { color: var(--color-action-primary-bg-default); }
 .stat__label { color: var(--color-fg-muted); max-width: 32ch; }
-.results { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-gap-md); }
+.results { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-20); }
+/* Result and takeaway cards: the landing page card, variant with title and text only */
 .results li {
-  margin: 0 !important; padding: var(--space-inset-md);
-  background: var(--color-bg-subtle); border-radius: var(--radius-control);
-  display: flex; flex-direction: column; gap: var(--space-4);
+  margin: 0 !important; padding: var(--space-20);
+  background: var(--color-bg-default); border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-xl); box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
+  display: flex; flex-direction: column; gap: var(--space-8);
 }
-.results li b { font-weight: var(--font-weight-medium); }
+.results li b {
+  font-family: var(--font-family-display); font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-500); line-height: var(--font-line-height-500); color: var(--color-fg-default); text-wrap: balance;
+}
 .results li span { color: var(--color-fg-muted); }
 
 /* ---------- Tutorial pieces (Ride Recap) ---------- */
