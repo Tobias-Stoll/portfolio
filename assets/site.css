@@ -767,3 +767,12 @@ html.has-lightbox { overflow: hidden; }
 .built .ico { display: inline-block; width: 1.05em; height: 1.05em; vertical-align: -0.15em; fill: var(--color-action-primary-bg-default); }
 .built .ico--love { fill: var(--color-red-500, #e5484d); }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Legal pages (Impressum, Datenschutz) */
+.legal { padding: var(--space-48) 0 var(--space-64, 64px); }
+.legal h1 { margin: 0 0 var(--space-8); }
+.legal h2 { margin: var(--space-32) 0 var(--space-8); }
+.legal p, .legal ul { margin: 0 0 var(--space-12); }
+.legal__en, .legal__date { color: var(--color-fg-muted); }
+.legal__links { margin-top: var(--space-40) !important; }
+.footer-legal a { color: inherit; }

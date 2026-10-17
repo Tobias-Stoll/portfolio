@@ -567,3 +567,6 @@ main, .ft { position: relative; z-index: 1; }
   .contact__title { font-size: clamp(36px, 4.4vw, 64px); }
   .contact__line:first-child { white-space: nowrap; }   /* one row on desktop */
 }
+
+.note__privacy { margin: var(--space-8) 0 0; font-size: var(--font-size-100); line-height: var(--font-line-height-100); color: var(--color-fg-muted); }
+.note__privacy a, .footer-legal a { color: inherit; }
