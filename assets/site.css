@@ -708,22 +708,19 @@ html.has-lightbox { overflow: hidden; }
   .funnel__stack { width: 80%; }
 }
 
-/* Case study grid: section head left (5/12), text right (7/12), visuals full width.
-   Results, notes and the talk box start on the text column, so every block shares the same edges. */
-.cs-grid { --cs-gap: var(--space-48, 48px); margin-bottom: var(--space-32); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0 var(--cs-gap); align-items: start; }
+/* Case study grid: kicker on top, then the H2 left (5/12) and the text right (7/12), both starting on the same line.
+   Visuals stay full width. Results and notes start on the text column, so blocks share the same edges. */
+.cs-grid { --cs-gap: var(--space-48, 48px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0 var(--cs-gap); align-items: start; margin-bottom: var(--space-48, 48px); }
 .cs-head > :last-child { margin-bottom: 0 !important; }
 .cs-head h2 { margin-bottom: var(--space-12); }
-.cs-body { padding-top: 26px; }               /* first line sits on the kicker's baseline row */
+.cs-body { padding-top: 6px; }                /* first text line on the H2's cap line */
 .cs-body > :last-child { margin-bottom: 0; }
-.cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-grid ~ .talk, .cs-indent {
+.cs-grid + .figure, .cs-grid + .moments { margin-top: 0; }
+.cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-indent {
   margin-left: calc((100% - var(--space-48, 48px)) * 5 / 12 + var(--space-48, 48px)); max-width: none;
 }
-.cs-grid ~ .pgx .pgx-intro {      /* the playground intro follows the same head | text split */
-  max-width: none; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0 var(--space-48, 48px); align-items: baseline;
-}
 @media (max-width: 900px) {
-  .cs-grid { grid-template-columns: minmax(0, 1fr); }
-  .cs-grid ~ .pgx .pgx-intro { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .cs-grid { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-32); }
   .cs-body { padding-top: var(--space-8); }
-  .cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-grid ~ .talk, .cs-indent { margin-left: 0; }
+  .cs-grid ~ .cs-result, .cs-grid ~ .principle, .cs-indent { margin-left: 0; }
 }
