@@ -92,7 +92,7 @@ main:focus { outline: none; }
 .kicker {
   display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-8); margin: 0;
   font-family: var(--home-mono); font-size: var(--font-size-100); line-height: var(--font-line-height-100);
-  font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted);
+  font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);   /* primary, like the card labels */
 }
 .kicker[data-km]::before {
   display: none;   /* km chips retired; data-km still positions the route line */
