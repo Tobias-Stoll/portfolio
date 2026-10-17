@@ -289,18 +289,39 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
 }
 .kpis b { font-weight: var(--font-weight-medium); }
 
-.moments { list-style: none; padding: 0 !important; margin: var(--space-32) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-gap-md); counter-reset: none; }
+.moments { list-style: none; padding: 0 !important; margin: var(--space-32) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20); counter-reset: none; }
+/* Same card as on the landing page (cards.css), the variant without an image */
 .moment {
-  display: flex; flex-direction: column; gap: var(--space-8); min-width: 0;
-  padding: var(--space-inset-lg); border-radius: var(--radius-container);
+  position: relative; display: flex; flex-direction: column; gap: var(--space-8); min-width: 0; margin: 0 !important;
+  padding: var(--space-20); border-radius: var(--radius-xl);
   background: var(--color-bg-default); border: var(--border-width-default) solid var(--color-border-default);
-  border-top: var(--border-width-focus) solid var(--color-action-primary-bg-default);
+  box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s cubic-bezier(.2, .8, .2, 1);
 }
-.moment__step { color: var(--color-fg-muted); }
-.moment__name { color: var(--color-fg-default); text-decoration: none; }
-.moment__name:hover { color: var(--button-ghost-fg); }
-.moment__q { color: var(--color-fg-default); }
-.moment__r { margin-top: auto; padding-top: var(--space-8); color: var(--color-feedback-success-fg); font-weight: var(--font-weight-medium); }
+.moment__step {
+  margin: 0; font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);
+}
+.moment__name {
+  font-family: var(--font-family-display) !important; font-weight: var(--font-weight-medium) !important;
+  font-size: var(--font-size-600) !important; line-height: var(--font-line-height-600) !important;
+  color: var(--color-fg-default); text-decoration: none; text-wrap: balance;
+}
+a.moment__name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* whole card is the link */
+.moment__q { color: var(--color-fg-muted); }
+.moment__r {
+  align-self: flex-start; margin-top: auto; display: inline-flex; padding: 2px var(--space-8); border-radius: var(--radius-pill);
+  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important; font-weight: var(--font-weight-medium);
+  color: var(--color-feedback-success-fg); background: var(--color-feedback-success-bg); font-variant-numeric: tabular-nums;
+}
+.moment__q + .moment__r { margin-top: auto; }
+.moment:has(.moment__r) .moment__q { margin-bottom: var(--space-8); }
+@media (hover: hover) {
+  .moment:has(a.moment__name):hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 2px 4px rgba(43, 43, 47, .06), 0 24px 48px -16px rgba(43, 43, 47, .22); }
+  .moment:has(a.moment__name):nth-child(2):hover { rotate: 1.2deg; }
+}
+@media (prefers-reduced-motion: reduce) { .moment { transition: none; } }
 
 .quote { margin: var(--space-8) 0 var(--space-16) !important; color: var(--button-ghost-fg); font-style: italic; }
 
