@@ -22,3 +22,9 @@ The "Leave a note" form on the landing page saves notes to Supabase. New notes s
 - Can: read approved notes.
 - Cannot: approve, edit or delete notes, or read unapproved ones.
 - A hidden honeypot field in the form drops simple bots.
+
+## Get a push message for every new note
+
+1. Install the free **ntfy** app (iOS or Android) and subscribe to a topic with a long, random name. Keep it private.
+2. Open `notify.sql`, replace `YOUR-TOPIC` with that name (only in the SQL Editor, never commit it), and run it in Supabase → SQL Editor.
+3. Every new note now arrives as a push message. Tapping it opens the Supabase table, where you approve it.
