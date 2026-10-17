@@ -184,6 +184,7 @@ main::before {
   color: var(--color-fg-muted); background: var(--color-bg-muted);
 }
 .chip--metric { color: var(--color-feedback-success-fg); background: var(--color-feedback-success-bg); font-variant-numeric: tabular-nums; }
+.chip--info { color: var(--color-blue-700); background: var(--color-blue-50); box-shadow: inset 0 0 0 1px var(--color-blue-100); }
 
 @media (hover: hover) {
   .case__link:hover { transform: translateY(-6px) rotate(var(--_tilt)); box-shadow: var(--home-shadow-lift); }
@@ -209,9 +210,11 @@ main::before {
 .row__name { font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-500); line-height: var(--font-line-height-500); }
 .row__what { color: var(--color-fg-muted); min-width: 0; }
 .row__tag { font-family: var(--home-mono); font-size: var(--font-size-100); letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-subtle); }
-@media (hover: hover) { .row:hover { background: var(--color-bg-default); padding-left: var(--space-16); } }
+@media (hover: hover) { .row:not(.row--soon):hover { background: var(--color-bg-default); padding-left: var(--space-16); } }
+.row--soon .row__name, .row--soon .row__what { color: var(--color-fg-subtle); }
+.row--soon .row__tag { color: var(--button-ghost-fg); }
 .peek {
-  position: fixed; left: 0; top: 0; z-index: 15; width: 280px; height: auto; pointer-events: none;
+  position: fixed; left: 0; top: 0; z-index: 15; width: 440px; height: auto; pointer-events: none;
   border-radius: var(--radius-lg); box-shadow: var(--home-shadow-lift);
   opacity: 0; transform: translate(-50%, -50%) scale(.9) rotate(-3deg); transition: opacity .2s, transform .3s var(--home-ease);
 }

@@ -44,6 +44,7 @@
   color: var(--color-fg-muted); background: var(--color-bg-muted);
 }
 .cases .chip--metric { color: var(--color-feedback-success-fg); background: var(--color-feedback-success-bg); font-variant-numeric: tabular-nums; }
+.cases .chip--info { color: var(--color-blue-700); background: var(--color-blue-50); box-shadow: inset 0 0 0 1px var(--color-blue-100); }
 /* third tile: back to all work */
 .case--all .case__link { box-shadow: none; border-style: dashed; background: transparent; justify-content: center; align-items: flex-start; padding: var(--space-24); gap: var(--space-8); }
 .case--all .case__title { font-size: var(--font-size-500); line-height: var(--font-line-height-500); }

@@ -135,7 +135,7 @@
       row.addEventListener('mouseenter', () => { peek.src = row.dataset.preview; peek.classList.add('is-on'); });
       row.addEventListener('mouseleave', () => peek.classList.remove('is-on'));
       row.addEventListener('mousemove', e => {
-        peek.style.left = `${e.clientX + 170}px`;
+        peek.style.left = `${e.clientX + 250}px`;
         peek.style.top = `${e.clientY}px`;
       });
     });
