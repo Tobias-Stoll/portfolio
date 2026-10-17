@@ -67,11 +67,15 @@
 
     <!-- The three moments -->
     <section class="cs-section" aria-labelledby="context">
-      <div class="prose">
-        <p class="cs-kicker text-label">Context</p>
-        <h2 id="context" class="text-heading-l">Customers compare the same flight everywhere. Trust decides where they book.</h2>
-        <p class="text-body-m">Invia Flights is one of the largest online travel agencies in the German market, with brands like fluege.de and airline-direct.de on web, iOS and Android.</p>
-        <p class="text-body-m">I owned three features at three points of the funnel. Each one answers a question that used to cost us bookings.</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">Context</p>
+          <h2 id="context" class="text-heading-l">Customers compare the same flight everywhere. Trust decides where they book.</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">Invia Flights is one of the largest online travel agencies in the German market, with brands like fluege.de and airline-direct.de on web, iOS and Android.</p>
+          <p class="text-body-m">I owned three features at three points of the funnel. Each one answers a question that used to cost us bookings.</p>
+        </div>
       </div>
       <ol class="moments" role="list">
         <li class="moment">
@@ -97,13 +101,17 @@
 
     <!-- 1 · Offer Box -->
     <section class="cs-section" aria-labelledby="offer-box">
-      <div class="prose">
-        <p class="cs-kicker text-label">1 · Search results</p>
-        <h2 id="offer-box" class="text-heading-l">The Offer Box: from a push to an honest choice</h2>
-        <p class="quote text-body-l">"Is this the best offer, and is the member price worth it?"</p>
-        <p class="text-body-m"><b>Problem.</b> The old card had one big button that selected the member price. The normal price hid in a small text link. Customer reviews on Trustpilot and drop-offs in the booking funnel, analyzed in session recordings and analytics, showed the cost: customers felt pushed.</p>
-        <p class="text-body-m"><b>Tension.</b> Making the normal price visible could cost member sign-ups, and the Product Owner was concerned about that. So before designing, we agreed on bookings as the success metric and member clicks as the guardrail.</p>
-        <p class="text-body-m"><b>Hypothesis.</b> If both prices carry equal weight, customers feel less pushed and book more, even if fewer pick the member price.</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">1 · Search results</p>
+          <h2 id="offer-box" class="text-heading-l">The Offer Box: from a push to an honest choice</h2>
+          <p class="quote text-body-l">"Is this the best offer, and is the member price worth it?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Problem.</b> The old card had one big button that selected the member price. The normal price hid in a small text link. Customer reviews on Trustpilot and drop-offs in the booking funnel, analyzed in session recordings and analytics, showed the cost: customers felt pushed.</p>
+          <p class="text-body-m"><b>Tension.</b> Making the normal price visible could cost member sign-ups, and the Product Owner was concerned about that. So before designing, we agreed on bookings as the success metric and member clicks as the guardrail.</p>
+          <p class="text-body-m"><b>Hypothesis.</b> If both prices carry equal weight, customers feel less pushed and book more, even if fewer pick the member price.</p>
+        </div>
       </div>
 
       <figure class="figure evo">
@@ -127,7 +135,7 @@
         <figcaption class="text-body-s"><b>Three versions, same frame.</b> The push toward the member price disappears, and the card gets compact again. The dashed line: the component is ready for what comes next. Click a card to see it full size.</figcaption>
       </figure>
 
-      <div class="prose">
+      <div class="prose cs-indent">
         <p class="text-body-m"><b>Approach.</b> I turned the card into an honest choice: two equal price buttons, side by side. I defined UX KPIs for the layout, A/B tested it against the previous card and checked real behavior in session recordings. I built the box as a modular component, so new features and layouts can be tested slot by slot without a redesign. The chip slot was planned from the start for features still to come, like the <a href="#flex-ticket">Flex Ticket</a> in the next chapter.</p>
       </div>
 
@@ -242,11 +250,15 @@
 
     <!-- 2 · Flex Ticket -->
     <section class="cs-section" aria-labelledby="flex-ticket">
-      <div class="prose">
-        <p class="cs-kicker text-label">2 · Booking</p>
-        <h2 id="flex-ticket" class="text-heading-l">The Flex Ticket: compare first, then a nudge</h2>
-        <p class="quote text-body-l">"What if my plans change?"</p>
-        <p class="text-body-m">A flexible ticket lets customers cancel shortly before departure and get most of the price back. We A/B tested two layouts, iterated on the winner, then adapted it for the apps. Thanks to the chip slot in the <a href="#offer-box">Offer Box</a>, the Flex Ticket also shows up right in the search results, without touching the card's design.</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">2 · Booking</p>
+          <h2 id="flex-ticket" class="text-heading-l">The Flex Ticket: compare first, then a nudge</h2>
+          <p class="quote text-body-l">"What if my plans change?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">A flexible ticket lets customers cancel shortly before departure and get most of the price back. We A/B tested two layouts, iterated on the winner, then adapted it for the apps. Thanks to the chip slot in the <a href="#offer-box">Offer Box</a>, the Flex Ticket also shows up right in the search results, without touching the card's design.</p>
+        </div>
       </div>
       <figure class="figure ft" aria-label="How the Flex Ticket layout evolved">
         <ol class="ft__steps" role="list">
@@ -315,11 +327,15 @@
 
     <!-- 3 · Price Guarantee -->
     <section class="cs-section" aria-labelledby="price-guarantee">
-      <div class="prose">
-        <p class="cs-kicker text-label">3 · Payment</p>
-        <h2 id="price-guarantee" class="text-heading-l">The Price Guarantee: the right moment, in plain words</h2>
-        <p class="quote text-body-l">"What if the price drops after I book?"</p>
-        <p class="text-body-m">If the fare drops after booking, customers get part of the saving back as a voucher. We tested where in the funnel the offer belongs, then made the mechanics easy to understand.</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">3 · Payment</p>
+          <h2 id="price-guarantee" class="text-heading-l">The Price Guarantee: the right moment, in plain words</h2>
+          <p class="quote text-body-l">"What if the price drops after I book?"</p>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">If the fare drops after booking, customers get part of the saving back as a voucher. We tested where in the funnel the offer belongs, then made the mechanics easy to understand.</p>
+        </div>
       </div>
       <figure class="figure ft" aria-label="How the Price Guarantee found its place">
         <ol class="ft__steps" role="list">
@@ -377,9 +393,11 @@
 
     <!-- Takeaways -->
     <section class="cs-section" aria-labelledby="takeaways">
-      <div class="prose">
-        <p class="cs-kicker text-label">What I took away</p>
-        <h2 id="takeaways" class="text-heading-l">Honest beats pushy, and the test decides</h2>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">What I took away</p>
+          <h2 id="takeaways" class="text-heading-l">Honest beats pushy, and the test decides</h2>
+        </div>
       </div>
       <ul class="results results--3 text-body-m" role="list">
         <li><b>Measure the right thing</b><span>A click is a means, a booking is the goal.</span></li>
@@ -394,9 +412,11 @@
 
     <!-- More to explore: the landing page's case cards, 1:1 -->
     <section class="cs-section" aria-labelledby="more">
-      <div class="prose">
-        <p class="cs-kicker text-label">Next case study</p>
-        <h2 id="more" class="text-heading-l">More to explore</h2>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <p class="cs-kicker text-label">Next case study</p>
+          <h2 id="more" class="text-heading-l">More to explore</h2>
+        </div>
       </div>
       <ul class="cases" role="list">
         <li class="case case--dark">
