@@ -12,8 +12,8 @@ PERSON_ID = BASE + '/#person'
 
 PERSON = {
   '@type': 'Person', '@id': PERSON_ID, 'name': NAME,
-  'jobTitle': 'Freelance Product Designer (UX/UI)',
-  'description': 'Freelance UX/UI and product designer in Berlin. UX design, UI design and design systems for web, iOS and Android, from research to interactive prototypes in code.',
+  'jobTitle': 'Product Designer (UX/UI)',
+  'description': 'Product designer (UX/UI) in Berlin. UX design, UI design and design systems for web, iOS and Android, from research to interactive prototypes in code. Open to freelance projects and selected roles.',
   'url': BASE + '/', 'image': BASE + '/assets/home/about-bike.jpg', 'email': 'mailto:tobiasstoll@pm.me',
   'address': {'@type': 'PostalAddress', 'addressLocality': 'Berlin', 'addressCountry': 'DE'},
   'knowsLanguage': ['de', 'en'],
@@ -38,8 +38,8 @@ SERVICE = {
 
 PAGES = [
   # path, title, description, og image source, type, indexed
-  ('', 'Tobias Stoll · Freelance UX/UI & Product Designer in Berlin',
-   'Tobias Stoll is a freelance product designer (UX/UI) in Berlin. UX design, UI design and design systems for web, iOS and Android, from research to interactive prototypes in code.',
+  ('', 'Tobias Stoll · Product Designer (UX/UI) in Berlin',
+   'Tobias Stoll is a product designer (UX/UI) in Berlin. UX design, UI design and design systems for web, iOS and Android, from research to interactive prototypes in code. Open to freelance projects and selected roles.',
    'home', 'home', True),
   ('invia/', 'Three Moments That Decide a Flight Booking · UX Case Study by Tobias Stoll',
    'UX/UI case study for Invia Flights (fluege.de): three A/B tested booking features that raised conversion by a high single-digit percentage. Includes an interactive playground of the Offer Box.',
@@ -114,9 +114,9 @@ for path, title, desc, og, kind, indexed in PAGES:
 urls = ''.join(f'  <url><loc>{BASE}/{p}</loc><lastmod>{TODAY}</lastmod></url>\n' for p, *_r, idx in PAGES if idx)
 (root / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
 (root / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n')
-(root / 'llms.txt').write_text(f'''# Tobias Stoll · Freelance UX/UI & Product Designer in Berlin
+(root / 'llms.txt').write_text(f'''# Tobias Stoll · Product Designer (UX/UI) in Berlin
 
-> Tobias Stoll is a freelance product designer (UX/UI) based in Berlin, Germany, with six years of experience in UX. He designs web, iOS and Android products from research to UI, builds design systems with design tokens, and turns ideas into interactive prototypes in code with AI. Available for freelance projects (Berlin, DACH or remote) and selected roles. Works in German and English.
+> Tobias Stoll is a product designer (UX/UI) based in Berlin, Germany, with six years of experience in UX. He designs web, iOS and Android products from research to UI, builds design systems with design tokens, and turns ideas into interactive prototypes in code with AI. Available for freelance projects (Berlin, DACH or remote) and selected roles. Works in German and English.
 
 Business name: Concept2Design (Tobias Stoll UX/UI Design), Berlin
 Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-ux/
