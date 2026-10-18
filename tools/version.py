@@ -5,17 +5,21 @@
   python3 tools/version.py fix       +0.01  small fixes
   python3 tools/version.py feature   +0.10  bigger changes and new things
   python3 tools/version.py release   +1.00  milestone release
+  python3 tools/version.py set=1.53.1      set an exact label (hotfix)
 """
 import re, sys, pathlib
 root = pathlib.Path(__file__).resolve().parent.parent
 vf = root / 'VERSION'
-cur = float(vf.read_text().strip())
-step = {'fix': 0.01, 'feature': 0.10, 'release': 1.00}.get(sys.argv[1] if len(sys.argv) > 1 else '', 0)
-if step == 1.00:
-    new = float(int(cur) + 1)
+arg = sys.argv[1] if len(sys.argv) > 1 else ''
+step = {'fix': 0.01, 'feature': 0.10, 'release': 1.00}.get(arg, 0)
+if arg.startswith('set='):                 # e.g. set=1.53.1 for a hotfix label
+    v = arg[4:]
+elif step:
+    cur = float('.'.join(vf.read_text().strip().split('.')[:2]))
+    new = float(int(cur) + 1) if step == 1.00 else round(cur + step, 2)
+    v = f'{new:.2f}'.rstrip('0').rstrip('.') if new != int(new) else f'{int(new)}.0'
 else:
-    new = round(cur + step, 2)
-v = f'{new:.2f}'.rstrip('0').rstrip('.') if new != int(new) else f'{int(new)}.0'
+    v = vf.read_text().strip()
 vf.write_text(v + '\n')
 
 for page in list(root.glob('**/index.html')) + [root / '404.html']:
