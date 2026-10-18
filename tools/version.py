@@ -18,11 +18,11 @@ else:
 v = f'{new:.2f}'.rstrip('0').rstrip('.') if new != int(new) else f'{int(new)}.0'
 vf.write_text(v + '\n')
 
-for page in root.glob('**/index.html'):
+for page in list(root.glob('**/index.html')) + [root / '404.html']:
     if '.git' in page.parts: continue
     s = page.read_text()
     # local CSS and JS: add or replace ?v=
-    s = re.sub(r'((?:href|src)="(?:\.\./)?assets/[^"?#]+\.(?:css|js))(?:\?v=[0-9.]+)?"', rf'\1?v={v}"', s)
+    s = re.sub(r'((?:href|src)="(?:\.\./|/)?assets/[^"?#]+\.(?:css|js))(?:\?v=[0-9.]+)?"', rf'\1?v={v}"', s)
     # footer version badge
     if 'class="site-version"' in s:
         s = re.sub(r'<span class="site-version">v[0-9.]+</span>', f'<span class="site-version">v{v}</span>', s)

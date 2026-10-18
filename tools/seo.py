@@ -71,7 +71,10 @@ def ld_for(path, title, desc, img, kind):
                 'description': desc, 'url': url, 'image': img, 'inLanguage': 'en',
                 'author': {'@id': PERSON_ID}, 'creator': {'@id': PERSON_ID}, 'dateModified': TODAY}
         if kind == 'case': node['genre'] = 'UX case study'
-        graph = [node, {'@type': 'Person', '@id': PERSON_ID, 'name': NAME, 'url': BASE + '/'}]
+        crumbs = {'@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Tobias Stoll · Portfolio', 'item': BASE + '/'},
+            {'@type': 'ListItem', 'position': 2, 'name': title.split(' · ')[0], 'item': url}]}
+        graph = [node, crumbs, {'@type': 'Person', '@id': PERSON_ID, 'name': NAME, 'url': BASE + '/'}]
     return json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, indent=1)
 
 for path, title, desc, og, kind, indexed in PAGES:
@@ -86,6 +89,7 @@ for path, title, desc, og, kind, indexed in PAGES:
     pre = '../' if path else ''
     block = [f'<link rel="canonical" href="{url}">',
              f'<link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml">',
+             f'<link rel="icon" href="{pre}assets/favicon-32.png" sizes="32x32" type="image/png">',
              f'<link rel="apple-touch-icon" href="{pre}assets/apple-touch-icon.png">']
     if indexed:
         block += [f'<meta property="og:type" content="{"profile" if kind == "home" else "article"}">',

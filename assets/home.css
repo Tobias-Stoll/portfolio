@@ -112,8 +112,11 @@ main::before {
   -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
   mask-image: linear-gradient(to bottom, #000 30%, transparent);
 }
+/* H1 = kicker (keywords) + display line; looks exactly as before */
+.hero__h1 { margin: 0; font-size: inherit; font-weight: inherit; line-height: inherit; }
+.hero__h1 > .kicker { display: flex; }
 .hero__title {
-  margin: var(--space-16) 0 0; max-width: 22ch;
+  display: block; margin: var(--space-16) 0 0; max-width: 22ch;
   font-family: var(--font-family-display); font-weight: var(--font-weight-bold);
   font-size: var(--home-hero-size); line-height: var(--home-hero-line); letter-spacing: -.01em;
   text-transform: uppercase; text-wrap: balance;
