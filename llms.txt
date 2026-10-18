@@ -1,0 +1,24 @@
+# Tobias Stoll · Freelance UX/UI & Product Designer in Berlin
+
+> Tobias Stoll is a freelance product designer (UX/UI) based in Berlin, Germany, with six years of experience in UX. He designs web, iOS and Android products from research to UI, builds design systems with design tokens, and turns ideas into interactive prototypes in code with AI. Available for freelance projects (Berlin, DACH or remote) and selected roles. Works in German and English.
+
+Business name: Concept2Design (Tobias Stoll UX/UI Design), Berlin
+Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-ux/
+
+## Services
+- UX design and UI design for web, iOS and Android
+- Product design, from requirements to clear decisions
+- Design systems 0→1: design tokens, component libraries, Figma to code workflows
+- User research, usability testing, information architecture, A/B testing
+- Interactive prototypes in code, AI-assisted (Claude Code, Figma MCP)
+
+## Case studies
+- [Three moments that decide a flight booking](https://concept2design.de/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up by a high single-digit percentage, about 1 in 3 customers chose the Flex Ticket.
+- [From 60 legacy components to one source of truth](https://concept2design.de/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
+- [An esports platform people can follow](https://concept2design.de/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. New information architecture around the match; registration drop-off fell by 30 %.
+
+## More
+- [Offer Box playground](https://concept2design.de/playground/): interactive component built in code
+- [Ride Recap tutorial](https://concept2design.de/ride-recap/): Figma Motion for social media
+- Background: trained in hospitality, studied science, former esports commentator and host
+- [Impressum](https://concept2design.de/impressum/) · [Privacy](https://concept2design.de/datenschutz/)
