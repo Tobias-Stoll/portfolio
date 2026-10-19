@@ -153,6 +153,8 @@ main::before {
   list-style: none; margin: clamp(var(--space-32), 4vw, var(--space-48)) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20);
 }
+.hero__work { margin-top: clamp(var(--space-48), 6vw, 80px); }
+.hero__work + .cases { margin-top: 0; }
 .case { min-width: 0; }
 .case__link {
   display: flex; flex-direction: column; height: 100%;
