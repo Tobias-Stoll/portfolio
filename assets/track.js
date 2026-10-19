@@ -5,7 +5,9 @@
 //   scroll/<page>/<25|50|75|100>   deepest scroll point reached (share of <main>)
 //   section/<page>/<section-id>    section scrolled into view
 //   click/<target>                 contact + outbound clicks (email, linkedin, cv, repo, ...)
-//   case/<slug>                    click on a case study card or link
+//   case/<slug>                    click on a case study card on the start page
+//   more/<page>/<slug>             click on a case card at the end of a case study
+//   cta/<page>/<anchor>            CTA to an anchor on the start page (e.g. cta/design-to-code/notes)
 //   ui/<page>/<label>              first use of an interactive element per page view
 //   note/submit                    Notes wall form sent
 //
@@ -100,6 +102,7 @@
 		if (d.step !== undefined) return 'step-' + (parseInt(d.step, 10) + 1)
 		if (d.swap) return 'swap-' + slug(d.swap)
 		if (d.shot) return 'shot-' + slug(d.shot)
+		if (d.name) return slug(d.name) // e.g. price buttons: stable name instead of changing prices
 		if (el.id) return slug(el.id)
 		var aria = el.getAttribute('aria-label')
 		if (aria) return slug(aria)
@@ -114,9 +117,12 @@
 		try { u = new URL(a.href, location.href) } catch (e) { return null }
 		var host = u.hostname.replace(/^www\./, '')
 		if (host === location.hostname.replace(/^www\./, '') || host === 'tobias-stoll.github.io' && /^\/portfolio/.test(u.pathname)) {
-			// internal link: only case study cards are interesting
-			var m = u.pathname.replace(/^\/portfolio/, '').match(/^\/(invia|design-to-code|prime-league|ride-recap|playground)\/?/)
-			if (m && (a.closest('.case, .card, [class*="case"], [class*="card"]') || a.classList.contains('btn'))) return 'case/' + m[1]
+			// internal link: CTAs to an anchor on the start page, and case study cards
+			var path = u.pathname.replace(/^\/portfolio/, '') || '/'
+			if (u.hash && path === '/') return 'cta/' + page + '/' + slug(u.hash.slice(1)) // e.g. cta/design-to-code/notes
+			var m = path.match(/^\/(invia|design-to-code|prime-league|ride-recap|playground)\/?/)
+			if (m && m[1] !== page && (a.closest('.case, .card, [class*="case"], [class*="card"]') || a.classList.contains('btn')))
+				return page === 'home' ? 'case/' + m[1] : 'more/' + page + '/' + m[1] // cross-links at the end of a case
 			return null
 		}
 		if (host === 'linkedin.com' || host.slice(-13) === '.linkedin.com') return 'click/linkedin'
@@ -144,9 +150,6 @@
 		if (a) {
 			var t = linkTarget(a)
 			if (t) track(t, (a.textContent || '').trim().slice(0, 60) || t)
-			// in-page anchors for the main CTAs
-			var h = a.getAttribute('href') || ''
-			if (h === '#contact' || h === '#notes' || h === '#work') track('click/anchor-' + h.slice(1), a.textContent.trim().slice(0, 60))
 			return
 		}
 
