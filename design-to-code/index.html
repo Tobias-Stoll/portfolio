@@ -70,27 +70,32 @@
 </script>
   <!-- @seo:end -->
 
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.74">
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <!-- @ds:start Design System, pinned to one version (commit 15ba62f) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+  <!-- @ds:start Design System, pinned to one version (commit a4b84a9) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/chip.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/status.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/case-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/info-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-header.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-footer.css">
   <!-- @ds:end -->
 
-  <link rel="stylesheet" href="../assets/site.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/nav.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/cards.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/d2c.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/site.css?v=1.74">
+  <link rel="stylesheet" href="../assets/cards.css?v=1.74">
+  <link rel="stylesheet" href="../assets/d2c.css?v=1.74">
 </head>
 <body>
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="hd">
-  <div class="hd__inner">
-    <a class="hd__brand" href="../">Tobias Stoll</a>
-    <nav class="hd__nav" aria-label="Sections">
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="../">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Sections">
       <a href="../#work" aria-current="page">Work</a>
       <a href="../#how">How</a>
       <a href="../#fun">Fun</a>
@@ -99,7 +104,7 @@
     </nav>
     <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
   </div>
-  <div class="hd__progress" aria-hidden="true"><span></span></div>
+  <div class="site-header__progress" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -120,11 +125,11 @@
           <li><b>40 to 50 %</b> less handover time</li>
         </ul>
       </div>
-      <dl class="facts text-body-s">
-        <div><dt class="text-label">Role</dt><dd>Freelance UX consultant, set up the foundation of the design system with the team</dd></div>
-        <div><dt class="text-label">Team</dt><dd>3 developers, a UI designer (brand), a UX lead (requirements)</dd></div>
-        <div><dt class="text-label">Duration</dt><dd>3 months, plus a follow-up</dd></div>
-        <div><dt class="text-label">Tools</dt><dd>Figma, Figma MCP, Claude, GitHub, my own Figma plugin</dd></div>
+      <dl class="info-card info-card--facts facts text-body-s">
+        <div><dt>Role</dt><dd>Freelance UX consultant, set up the foundation of the design system with the team</dd></div>
+        <div><dt>Team</dt><dd>3 developers, a UI designer (brand), a UX lead (requirements)</dd></div>
+        <div><dt>Duration</dt><dd>3 months, plus a follow-up</dd></div>
+        <div><dt>Tools</dt><dd>Figma, Figma MCP, Claude, GitHub, my own Figma plugin</dd></div>
       </dl>
     </section>
 
@@ -549,9 +554,9 @@
         <h2 id="people" class="text-heading-l">The harder part was not the tooling</h2>
       </div>
       <ul class="results results--3 text-body-m" role="list">
-        <li><b>Accessibility vs. brand</b><span>Marketing uses the system too, so WCAG AA was a target. That meant adjusting brand colors. I made the case with concrete examples, and the brand side agreed.</span></li>
-        <li><b>Developers and habits</b><span>Moving the source from code to Figma changed routines. Most developers were positively surprised and now call it a productivity gain.</span></li>
-        <li><b>One voice</b><span>I was the single point of contact between brand, UX lead and development, so every question got one answer, not three.</span></li>
+        <li class="info-card"><b class="info-card__title">Accessibility vs. brand</b><span class="info-card__text">Marketing uses the system too, so WCAG AA was a target. That meant adjusting brand colors. I made the case with concrete examples, and the brand side agreed.</span></li>
+        <li class="info-card"><b class="info-card__title">Developers and habits</b><span class="info-card__text">Moving the source from code to Figma changed routines. Most developers were positively surprised and now call it a productivity gain.</span></li>
+        <li class="info-card"><b class="info-card__title">One voice</b><span class="info-card__text">I was the single point of contact between brand, UX lead and development, so every question got one answer, not three.</span></li>
       </ul>
     </section>
 
@@ -569,10 +574,10 @@
         <p class="text-body-m muted">The system went live in 2026. It is a technical foundation, so end users do not see it directly yet. The gains so far show in how design and development work together.</p>
       </div>
       <ul class="results text-body-s" role="list">
-        <li><b>30 core components</b><span>All maintained in Figma, nothing left only in code.</span></li>
-        <li><b>440+ tokens in three tiers</b><span>Aligned with the brand and WCAG AA, the raw values locked.</span></li>
-        <li><b>One source across teams</b><span>Design, development, marketing and AI work from the same system.</span></li>
-        <li><b>A repository, not a handoff file</b><span>Developers start from ready tokens and base code.</span></li>
+        <li class="info-card"><b class="info-card__title">30 core components</b><span class="info-card__text">All maintained in Figma, nothing left only in code.</span></li>
+        <li class="info-card"><b class="info-card__title">440+ tokens in three tiers</b><span class="info-card__text">Aligned with the brand and WCAG AA, the raw values locked.</span></li>
+        <li class="info-card"><b class="info-card__title">One source across teams</b><span class="info-card__text">Design, development, marketing and AI work from the same system.</span></li>
+        <li class="info-card"><b class="info-card__title">A repository, not a handoff file</b><span class="info-card__text">Developers start from ready tokens and base code.</span></li>
       </ul>
       <div class="principle cs-next">
         <p class="text-label cs-next__label">The follow-up</p>
@@ -587,9 +592,9 @@
         <h2 id="takeaways" class="text-heading-l">AI needs a frame, and building it is design work</h2>
       </div>
       <ul class="results results--3 text-body-m" role="list">
-        <li><b>AI needs a frame</b><span>Claude only builds reliable code from a clean, bound system.</span></li>
-        <li><b>Merging beats deleting</b><span>Most special components were the same pattern with different content.</span></li>
-        <li><b>Names are a contract</b><span>Renaming after an import creates duplicates. Agree on naming before you scale.</span></li>
+        <li class="info-card"><b class="info-card__title">AI needs a frame</b><span class="info-card__text">Claude only builds reliable code from a clean, bound system.</span></li>
+        <li class="info-card"><b class="info-card__title">Merging beats deleting</b><span class="info-card__text">Most special components were the same pattern with different content.</span></li>
+        <li class="info-card"><b class="info-card__title">Names are a contract</b><span class="info-card__text">Renaming after an import creates duplicates. Agree on naming before you scale.</span></li>
       </ul>
       <div class="talk">
         <p class="text-body-l">Curious how the merge decisions played out, or how the internal Storybook is built? That's the part I like to tell in person.</p>
@@ -604,31 +609,31 @@
         <h2 id="more" class="text-heading-l">More to explore</h2>
       </div>
       <ul class="cases" role="list">
-        <li class="case case--dark">
-          <a class="case__link" href="../prime-league/">
-            <div class="case__stage"><img src="../assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="lazy"></div>
-            <div class="case__body">
-              <p class="case__pillar">Research &amp; UX strategy</p>
-              <h3 class="case__title">An esports platform people can follow</h3>
-              <p class="case__meta"><span class="chip chip--metric">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
+        <li class="case-card case-card--dark">
+          <a class="case-card__link" href="../prime-league/">
+            <div class="case-card__stage"><img src="../assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="lazy"></div>
+            <div class="case-card__body">
+              <p class="case-card__pillar">Research &amp; UX strategy</p>
+              <h3 class="case-card__title">An esports platform people can follow</h3>
+              <p class="case-card__meta"><span class="chip chip--success">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
             </div>
           </a>
         </li>
-        <li class="case case--blue">
-          <a class="case__link" href="../invia/">
-            <div class="case__stage"><img src="../assets/home/invia-platforms.webp" alt="Flight booking screens for web, iOS and Android" width="1200" height="750" loading="lazy"></div>
-            <div class="case__body">
-              <p class="case__pillar">KPI-driven product design</p>
-              <h3 class="case__title">Three moments that decide a booking</h3>
-              <p class="case__meta"><span class="chip chip--metric">Conversion ↑ high single digits</span><span class="chip">Desktop &amp; Mobile</span><span class="chip">B2C</span><span class="chip">E-Commerce</span><span class="chip">UX/UI</span><span class="chip">Design Systems</span></p>
+        <li class="case-card case-card--blue">
+          <a class="case-card__link" href="../invia/">
+            <div class="case-card__stage"><img src="../assets/home/invia-platforms.webp" alt="Flight booking screens for web, iOS and Android" width="1200" height="750" loading="lazy"></div>
+            <div class="case-card__body">
+              <p class="case-card__pillar">KPI-driven product design</p>
+              <h3 class="case-card__title">Three moments that decide a booking</h3>
+              <p class="case-card__meta"><span class="chip chip--success">Conversion ↑ high single digits</span><span class="chip">Desktop &amp; Mobile</span><span class="chip">B2C</span><span class="chip">E-Commerce</span><span class="chip">UX/UI</span><span class="chip">Design Systems</span></p>
             </div>
           </a>
         </li>
-        <li class="case case--all">
-          <a class="case__link" href="../#work">
-            <p class="case__pillar">Portfolio</p>
-            <h3 class="case__title">See all work, side projects and notes</h3>
-            <span class="case__arrow">Back to the overview →</span>
+        <li class="case-card case-card--all">
+          <a class="case-card__link" href="../#work">
+            <p class="case-card__pillar">Portfolio</p>
+            <h3 class="case-card__title">See all work, side projects and notes</h3>
+            <span class="case-card__arrow">Back to the overview →</span>
           </a>
         </li>
       </ul>
@@ -638,16 +643,16 @@
 </main>
 
 <footer class="site-footer">
-  <div class="site-footer__inner text-body-s">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.64.1</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Built with AI <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="ico ico--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
+  <div class="site-footer__inner">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.74</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
+    <p class="built">Built with AI <svg class="site-footer__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="site-footer__icon site-footer__icon--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
   </div>
 </footer>
-<script src="../assets/nav.js?v=1.64.1"></script>
-<script src="../assets/ft-timeline.js?v=1.64.1"></script>
-<script src="../assets/lightbox.js?v=1.64.1"></script>
-<script src="../assets/d2c.js?v=1.64.1"></script>
-<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.64.1"></script>
-<script async src="../assets/track.js?v=1.64.1"></script>
+<script src="../assets/nav.js?v=1.74"></script>
+<script src="../assets/ft-timeline.js?v=1.74"></script>
+<script src="../assets/lightbox.js?v=1.74"></script>
+<script src="../assets/d2c.js?v=1.74"></script>
+<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.74"></script>
+<script async src="../assets/track.js?v=1.74"></script>
 </body>
 </html>

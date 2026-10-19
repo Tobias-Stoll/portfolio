@@ -69,23 +69,26 @@
 </script>
   <!-- @seo:end -->
 
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.74">
 
-  <!-- Design System, pinned to one version (commit 15ba62f) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+  <!-- Design System, pinned to one version (commit a4b84a9) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/status.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/info-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-header.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-footer.css">
 
-  <link rel="stylesheet" href="../assets/site.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/nav.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/site.css?v=1.74">
 </head>
 <body>
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="hd">
-  <div class="hd__inner">
-    <a class="hd__brand" href="../">Tobias Stoll</a>
-    <nav class="hd__nav" aria-label="Sections">
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="../">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Sections">
       <a href="../#work">Work</a>
       <a href="../#how">How</a>
       <a href="../#fun" aria-current="page">Fun</a>
@@ -94,7 +97,7 @@
     </nav>
     <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
   </div>
-  <div class="hd__progress" aria-hidden="true"><span></span></div>
+  <div class="site-header__progress" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -114,11 +117,11 @@
           <a class="btn btn--secondary" href="#basics">Start building</a>
         </div>
       </div>
-      <dl class="facts text-body-s">
-        <div><dt class="text-label">Format</dt><dd>Instagram story, 1080 × 1920 px, 6 seconds</dd></div>
-        <div><dt class="text-label">Why</dt><dd>Trying out Figma Motion and shaders, launched at Config 2026, on a real use case</dd></div>
-        <div><dt class="text-label">Tools</dt><dd>Figma (Motion, Shaders, Variables), Claude with the Figma MCP</dd></div>
-        <div><dt class="text-label">Built from</dt><dd>1 component, 6 color variables, 1 custom shader, 18 animated layers</dd></div>
+      <dl class="info-card info-card--facts facts text-body-s">
+        <div><dt>Format</dt><dd>Instagram story, 1080 × 1920 px, 6 seconds</dd></div>
+        <div><dt>Why</dt><dd>Trying out Figma Motion and shaders, launched at Config 2026, on a real use case</dd></div>
+        <div><dt>Tools</dt><dd>Figma (Motion, Shaders, Variables), Claude with the Figma MCP</dd></div>
+        <div><dt>Built from</dt><dd>1 component, 6 color variables, 1 custom shader, 18 animated layers</dd></div>
       </dl>
     </section>
 
@@ -187,10 +190,10 @@
         <p class="text-body-m">Nothing exotic. If you have a paid Figma seat and a ride, you are good to go.</p>
       </div>
       <ul class="results text-body-s">
-        <li><b>Figma, paid plan with a Full seat</b><span>Shaders and Figma Motion run on paid plans. Motion was in open beta when I built this, so check that it shows up in your account.</span></li>
-        <li><b>Your ride data</b><span>A screenshot of the stats from your bike computer or app, plus the map. A GPX export is even better for an exact route.</span></li>
-        <li><b>Two free fonts</b><span><a href="https://fonts.google.com/specimen/Barlow+Condensed">Barlow Condensed</a> (Black and Bold Italic) for numbers, <a href="https://fonts.google.com/specimen/DM+Mono">DM Mono</a> for labels.</span></li>
-        <li><b>Optional: Claude with the Figma MCP</b><span>It drew the route from my data and wrote the shader. You can also trace the route by hand with the Pen tool and use a built-in shader.</span></li>
+        <li class="info-card"><b class="info-card__title">Figma, paid plan with a Full seat</b><span class="info-card__text">Shaders and Figma Motion run on paid plans. Motion was in open beta when I built this, so check that it shows up in your account.</span></li>
+        <li class="info-card"><b class="info-card__title">Your ride data</b><span class="info-card__text">A screenshot of the stats from your bike computer or app, plus the map. A GPX export is even better for an exact route.</span></li>
+        <li class="info-card"><b class="info-card__title">Two free fonts</b><span class="info-card__text"><a href="https://fonts.google.com/specimen/Barlow+Condensed">Barlow Condensed</a> (Black and Bold Italic) for numbers, <a href="https://fonts.google.com/specimen/DM+Mono">DM Mono</a> for labels.</span></li>
+        <li class="info-card"><b class="info-card__title">Optional: Claude with the Figma MCP</b><span class="info-card__text">It drew the route from my data and wrote the shader. You can also trace the route by hand with the Pen tool and use a built-in shader.</span></li>
       </ul>
 
       <figure class="figure figure--pair">
@@ -479,10 +482,10 @@ with the city names. Then add an elevation profile,
             <span class="stat__label text-body-m">for design, motion and export, no second tool</span>
           </div>
           <ul class="results results--single text-body-s">
-            <li><b>Reusable for every ride</b><span>New numbers in six component properties, a new route path, done. The motion stays.</span></li>
-            <li><b>On brand</b><span>Colors, type and the streak background are mine, not the app's.</span></li>
-            <li><b>Design and motion stay in sync</b><span>Keyframes live on the design layers, so a layout change never means rebuilding the animation.</span></li>
-            <li><b>A good first test of Figma Motion</b><span>For short social formats, it replaces my After Effects step completely.</span></li>
+            <li class="info-card"><b class="info-card__title">Reusable for every ride</b><span class="info-card__text">New numbers in six component properties, a new route path, done. The motion stays.</span></li>
+            <li class="info-card"><b class="info-card__title">On brand</b><span class="info-card__text">Colors, type and the streak background are mine, not the app's.</span></li>
+            <li class="info-card"><b class="info-card__title">Design and motion stay in sync</b><span class="info-card__text">Keyframes live on the design layers, so a layout change never means rebuilding the animation.</span></li>
+            <li class="info-card"><b class="info-card__title">A good first test of Figma Motion</b><span class="info-card__text">For short social formats, it replaces my After Effects step completely.</span></li>
           </ul>
         </div>
       </div>
@@ -507,9 +510,9 @@ with the city names. Then add an elevation profile,
 </main>
 
 <footer class="site-footer">
-  <div class="site-footer__inner text-body-s">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.64.1</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Built with AI <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="ico ico--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
+  <div class="site-footer__inner">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.74</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
+    <p class="built">Built with AI <svg class="site-footer__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="site-footer__icon site-footer__icon--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
   </div>
 </footer>
 
@@ -533,9 +536,9 @@ with the city names. Then add an elevation profile,
     } else { play(); }
   })();
 </script>
-<script src="../assets/lightbox.js?v=1.64.1"></script>
-<script src="../assets/nav.js?v=1.64.1"></script>
-<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.64.1"></script>
-<script async src="../assets/track.js?v=1.64.1"></script>
+<script src="../assets/lightbox.js?v=1.74"></script>
+<script src="../assets/nav.js?v=1.74"></script>
+<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.74"></script>
+<script async src="../assets/track.js?v=1.74"></script>
 </body>
 </html>

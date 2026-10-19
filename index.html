@@ -156,26 +156,35 @@
 </script>
   <!-- @seo:end -->
 
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=1.64.1">
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=1.74">
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <!-- @ds:start Design System, pinned to one version (commit 15ba62f) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/input.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/form-field.css">
+  <!-- @ds:start Design System, pinned to one version (commit a4b84a9) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/input.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/form-field.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/chip.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/status.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/kicker.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/case-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/work-row.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/note.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-header.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/contact-block.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-footer.css">
   <!-- @ds:end -->
 
-  <link rel="stylesheet" href="assets/home.css?v=1.64.1">
+  <link rel="stylesheet" href="assets/home.css?v=1.74">
 </head>
 <body class="home">
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="hd">
-  <div class="hd__inner">
-    <a class="hd__brand" href="#top">Tobias Stoll</a>
-    <nav class="hd__nav" aria-label="Sections">
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="#top">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#how">How</a>
       <a href="#fun">Fun</a>
@@ -215,9 +224,9 @@
       <h2 id="work-title" class="section__title">Selected work</h2>
     </div>
     <ul class="cases" role="list">
-      <li class="case case--blue">
-        <a class="case__link" href="invia/">
-          <div class="case__stage case__stage--anim" role="img" aria-label="Offer card before and after: one big button that picked the member price becomes two equal price buttons">
+      <li class="case-card case-card--blue">
+        <a class="case-card__link" href="invia/">
+          <div class="case-card__stage case-card__stage--anim" role="img" aria-label="Offer card before and after: one big button that picked the member price becomes two equal price buttons">
             <div class="oa">
               <span class="oa__pill"><span class="oa__before">Before</span><span class="oa__after">After</span></span>
               <div class="oa__card">
@@ -239,16 +248,16 @@
               </div>
             </div>
           </div>
-          <div class="case__body">
-            <p class="case__pillar">KPI-driven product design</p>
-            <h3 class="case__title">Three moments that decide a booking</h3>
-            <p class="case__meta"><span class="chip chip--metric">Conversion ↑ high single digits</span><span class="chip">Desktop &amp; Mobile</span><span class="chip">B2C</span><span class="chip">E-Commerce</span><span class="chip">UX/UI</span><span class="chip">Design Systems</span></p>
+          <div class="case-card__body">
+            <p class="case-card__pillar">KPI-driven product design</p>
+            <h3 class="case-card__title">Three moments that decide a booking</h3>
+            <p class="case-card__meta"><span class="chip chip--success">Conversion ↑ high single digits</span><span class="chip">Desktop &amp; Mobile</span><span class="chip">B2C</span><span class="chip">E-Commerce</span><span class="chip">UX/UI</span><span class="chip">Design Systems</span></p>
           </div>
         </a>
       </li>
-      <li class="case case--purple">
-        <a class="case__link" href="design-to-code/">
-          <div class="case__stage case__stage--anim" role="img" aria-label="60 uneven grey tiles merge pairwise into 30 even component tiles">
+      <li class="case-card case-card--purple">
+        <a class="case-card__link" href="design-to-code/">
+          <div class="case-card__stage case-card__stage--anim" role="img" aria-label="60 uneven grey tiles merge pairwise into 30 even component tiles">
             <div class="m3">
               <div class="m3__card">
                 <div class="m3__hud"><span class="m3__pill"><span class="m3__before">Before</span><span class="m3__after">After</span></span><span class="m3__count"><span class="m3__before"><b>60</b> components</span><span class="m3__after"><b>30</b> core components</span></span></div>
@@ -256,20 +265,20 @@
               </div>
             </div>
           </div>
-          <div class="case__body">
-            <p class="case__pillar">Design systems 0→1</p>
-            <h3 class="case__title">60 legacy components, one source of truth</h3>
-            <p class="case__meta"><span class="chip chip--metric">440+ tokens</span><span class="chip chip--info">Live demo</span><span class="chip">B2B</span><span class="chip">Design Systems</span><span class="chip">UX</span></p>
+          <div class="case-card__body">
+            <p class="case-card__pillar">Design systems 0→1</p>
+            <h3 class="case-card__title">60 legacy components, one source of truth</h3>
+            <p class="case-card__meta"><span class="chip chip--success">440+ tokens</span><span class="chip chip--info">Live demo</span><span class="chip">B2B</span><span class="chip">Design Systems</span><span class="chip">UX</span></p>
           </div>
         </a>
       </li>
-      <li class="case case--dark">
-        <a class="case__link" href="prime-league/">
-          <div class="case__stage"><img src="assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="eager"></div>
-          <div class="case__body">
-            <p class="case__pillar">Research &amp; UX strategy</p>
-            <h3 class="case__title">An esports platform people can follow</h3>
-            <p class="case__meta"><span class="chip chip--metric">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
+      <li class="case-card case-card--dark">
+        <a class="case-card__link" href="prime-league/">
+          <div class="case-card__stage"><img src="assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="eager"></div>
+          <div class="case-card__body">
+            <p class="case-card__pillar">Research &amp; UX strategy</p>
+            <h3 class="case-card__title">An esports platform people can follow</h3>
+            <p class="case-card__meta"><span class="chip chip--success">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
           </div>
         </a>
       </li>
@@ -282,21 +291,21 @@
       <p class="kicker" data-km>More work</p>
       <h2 id="more-title" class="section__title">Smaller projects, same care</h2>
     </div>
-    <ul class="rows" role="list">
-      <li class="row" data-preview="assets/home/enterprise-ds.jpg">
-        <span class="row__name">Enterprise design system</span>
-        <span class="row__what">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span>
-        <span class="row__tag">Foundation</span>
+    <ul class="work-rows" role="list">
+      <li class="work-row" data-preview="assets/home/enterprise-ds.jpg">
+        <span class="work-row__name">Enterprise design system</span>
+        <span class="work-row__what">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span>
+        <span class="work-row__tag">Foundation</span>
       </li>
-      <li class="row" data-preview="assets/home/esports-team.webp">
-        <span class="row__name">Team profiles</span>
-        <span class="row__what">Performance history across seasons for 1,500+ esports teams</span>
-        <span class="row__tag">Shipped</span>
+      <li class="work-row" data-preview="assets/home/esports-team.webp">
+        <span class="work-row__name">Team profiles</span>
+        <span class="work-row__what">Performance history across seasons for 1,500+ esports teams</span>
+        <span class="work-row__tag">Shipped</span>
       </li>
-      <li class="row row--soon">
-        <span class="row__name">More coming soon</span>
-        <span class="row__what">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span>
-        <span class="row__tag">Soon</span>
+      <li class="work-row work-row--soon">
+        <span class="work-row__name">More coming soon</span>
+        <span class="work-row__what">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span>
+        <span class="work-row__tag">Soon</span>
       </li>
     </ul>
     <img class="peek" alt="" aria-hidden="true">
@@ -339,7 +348,7 @@
             <video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none" aria-label="Animated ride recap story: 207.3 km from Dresden to Berlin"></video>
           </div>
           <div class="fun__body">
-            <p class="case__pillar">Tutorial · Figma Motion</p>
+            <p class="case-card__pillar">Tutorial · Figma Motion</p>
             <h3 class="fun__title">Ride Recap</h3>
             <p class="fun__text">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</p>
             <span class="fun__go">Read the tutorial <span aria-hidden="true">→</span></span>
@@ -350,7 +359,7 @@
       <li class="fun__item fun__item--stat">
         <a class="fun__link" href="https://www.instagram.com/ridewithtobi/">
           <div class="fun__body">
-            <p class="case__pillar">Growth experiment</p>
+            <p class="case-card__pillar">Growth experiment</p>
             <h3 class="fun__title">@ridewithtobi</h3>
             <p class="fun__big"><span>4M+</span> views in 6 months</p>
             <p class="fun__text">My cycling channel is a test lab for hooks, retention and storytelling. 5,000+ followers so far.</p>
@@ -360,7 +369,7 @@
       </li>
       <li class="fun__item fun__item--next">
         <div class="fun__body">
-          <p class="case__pillar">Next up</p>
+          <p class="case-card__pillar">Next up</p>
           <h3 class="fun__title">Ride Recap carousel</h3>
           <p class="fun__text">A feed version of the story, with routes read straight from GPX files.</p>
           <span class="chip">In the works</span>
@@ -415,7 +424,7 @@
     </div>
 
     <div class="wall" id="wall">
-      <form class="note note--form" id="note-form" novalidate>
+      <form class="note note--plain" id="note-form" novalidate>
         <div class="form-field">
           <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
           <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
@@ -438,7 +447,7 @@
         <p class="note__privacy">Your note and name are stored and shown here once I approve them. <a href="datenschutz/">Privacy</a></p>
       </form>
 
-      <article class="note note--tobias">
+      <article class="note note--accent">
         <p class="note__text">Hi! I read every note. Feedback on a case study is especially welcome, the honest kind.</p>
         <p class="note__by">Tobias</p>
       </article>
@@ -447,11 +456,11 @@
   </section>
 
   <!-- ============ Contact ============ -->
-  <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+  <section class="contact-block wrap" id="contact" aria-labelledby="contact-title">
     <p class="kicker" data-km="207">Finish</p>
-    <h2 id="contact-title" class="contact__title"><span class="contact__line">Congrats! You made it to the end.</span> <span class="contact__line contact__line--cta">Let's talk!</span></h2>
-    <div class="contact__row">
-      <span class="contact__mail" id="mail">tobiasstoll@pm.me</span>
+    <h2 id="contact-title" class="contact-block__title"><span class="contact-block__line">Congrats! You made it to the end.</span> <span class="contact-block__line contact-block__line--cta">Let's talk!</span></h2>
+    <div class="contact-block__row">
+      <span class="contact-block__mail" id="mail">tobiasstoll@pm.me</span>
       <button class="btn btn--primary" type="button" id="copy-mail">Copy email</button>
       <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/">LinkedIn</a>
       <a class="btn btn--ghost" href="https://www.instagram.com/ridewithtobi/">Instagram</a>
@@ -459,15 +468,15 @@
   </section>
 </main>
 
-<footer class="ft">
-  <div class="ft__inner wrap">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.64.1</span> · <span class="footer-legal"><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Built with AI <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="ico ico--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.74</span> · <span class="footer-legal"><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a></span></p>
+    <p class="built">Built with AI <svg class="site-footer__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="site-footer__icon site-footer__icon--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
   </div>
 </footer>
 
-<script src="assets/home.js?v=1.64.1"></script>
-<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=1.64.1"></script>
-<script async src="assets/track.js?v=1.64.1"></script>
+<script src="assets/home.js?v=1.74"></script>
+<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=1.74"></script>
+<script async src="assets/track.js?v=1.74"></script>
 </body>
 </html>

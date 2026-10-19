@@ -27,12 +27,12 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Header: border on scroll, active section ---------- */
-  const header = $('.hd');
+  const header = $('.site-header');
   const onScrollHeader = () => header.classList.toggle('is-scrolled', scrollY > 8);
   addEventListener('scroll', onScrollHeader, { passive: true });
   onScrollHeader();
 
-  const navLinks = $$('.hd__nav a');
+  const navLinks = $$('.site-header__nav a');
   const sections = navLinks.map(a => document.getElementById(a.hash.slice(1))).filter(Boolean);
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
@@ -137,7 +137,7 @@
   /* ---------- More work: image follows the cursor ---------- */
   const peek = $('.peek');
   if (peek && matchMedia('(hover: hover)').matches) {
-    $$('.row[data-preview]').forEach(row => {
+    $$('.work-row[data-preview]').forEach(row => {
       row.addEventListener('mouseenter', () => { peek.src = row.dataset.preview; peek.classList.add('is-on'); });
       row.addEventListener('mouseleave', () => peek.classList.remove('is-on'));
       row.addEventListener('mousemove', e => {
@@ -169,7 +169,7 @@
   }
 
   /* ---------- Invia card: offer box animation ---------- */
-  $$('.case__stage--anim').forEach(stage => {
+  $$('.case-card__stage--anim').forEach(stage => {
     const fit = () => stage.style.setProperty('--s', stage.clientWidth / 432);
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(stage);
@@ -177,7 +177,7 @@
       // plays once when it scrolls into view (4.8 s), then rests on the new design
       new IntersectionObserver(([e]) => stage.classList.toggle('is-playing', e.isIntersecting), { threshold: .3 }).observe(stage);
       // hover or keyboard focus on the card plays it again
-      const card = stage.closest('.case__link');
+      const card = stage.closest('.case-card__link');
       const replay = () => { stage.classList.remove('is-playing'); void stage.offsetWidth; stage.classList.add('is-playing'); };
       card?.addEventListener('mouseenter', replay); card?.addEventListener('focus', replay);
     } else {
@@ -210,7 +210,7 @@
     el.className = 'note';
     el.style.setProperty('--_paper', `var(${paper})`);
     el.style.setProperty('--_pin', `var(${pin})`);
-    el.style.setProperty('--_r', `${((h % 7) - 3) * .8}deg`);
+    el.style.setProperty('--note-tilt', `${((h % 7) - 3) * .8}deg`);
     const p = document.createElement('p'); p.className = 'note__text'; p.textContent = message;
     const by = document.createElement('p'); by.className = 'note__by'; by.textContent = name || 'Anonymous';
     el.append(p);

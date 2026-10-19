@@ -70,27 +70,32 @@
 </script>
   <!-- @seo:end -->
 
-  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=1.74">
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <!-- @ds:start Design System, pinned to one version (commit 15ba62f) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/dist/typography.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@15ba62f623f090fd6abb2b5e9198fa5ce5d24344/components/button.css">
+  <!-- @ds:start Design System, pinned to one version (commit a4b84a9) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/chip.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/status.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/case-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/info-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-header.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@a4b84a99e813c6e7e4b93bf755355b20ed318d2b/components/site-footer.css">
   <!-- @ds:end -->
 
-  <link rel="stylesheet" href="../assets/site.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/nav.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/cards.css?v=1.64.1">
-  <link rel="stylesheet" href="../assets/offer-box.css?v=1.64.1">
+  <link rel="stylesheet" href="../assets/site.css?v=1.74">
+  <link rel="stylesheet" href="../assets/cards.css?v=1.74">
+  <link rel="stylesheet" href="../assets/offer-box.css?v=1.74">
 </head>
 <body>
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="hd">
-  <div class="hd__inner">
-    <a class="hd__brand" href="../">Tobias Stoll</a>
-    <nav class="hd__nav" aria-label="Sections">
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="../">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Sections">
       <a href="../#work" aria-current="page">Work</a>
       <a href="../#how">How</a>
       <a href="../#fun">Fun</a>
@@ -99,7 +104,7 @@
     </nav>
     <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
   </div>
-  <div class="hd__progress" aria-hidden="true"><span></span></div>
+  <div class="site-header__progress" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -120,11 +125,11 @@
           <li><b>3 features</b> · 3 platforms · all A/B tested</li>
         </ul>
       </div>
-      <dl class="facts text-body-s">
-        <div><dt class="text-label">Role</dt><dd>UX/UI Designer in a design team, owner of these three features end to end</dd></div>
-        <div><dt class="text-label">Product</dt><dd>Invia Flights: fluege.de and other flight booking brands</dd></div>
-        <div><dt class="text-label">Platforms</dt><dd>Web, iOS, Android</dd></div>
-        <div><dt class="text-label">Method</dt><dd>UX KPIs, A/B tests, session recordings</dd></div>
+      <dl class="info-card info-card--facts facts text-body-s">
+        <div><dt>Role</dt><dd>UX/UI Designer in a design team, owner of these three features end to end</dd></div>
+        <div><dt>Product</dt><dd>Invia Flights: fluege.de and other flight booking brands</dd></div>
+        <div><dt>Platforms</dt><dd>Web, iOS, Android</dd></div>
+        <div><dt>Method</dt><dd>UX KPIs, A/B tests, session recordings</dd></div>
       </dl>
     </section>
 
@@ -141,23 +146,23 @@
         </div>
       </div>
       <ol class="moments" role="list">
-        <li class="moment">
-          <span class="moment__step text-label">1 · Search results</span>
-          <a class="moment__name text-heading-m" href="#offer-box">Offer Box</a>
-          <span class="moment__q text-body-m">"Is this the best offer, and is the member price worth it?"</span>
-          <span class="moment__r text-body-s">Conversion uplift · still live</span>
+        <li class="info-card info-card--step">
+          <span class="info-card__kicker">1 · Search results</span>
+          <a class="info-card__title" href="#offer-box">Offer Box</a>
+          <span class="info-card__text">"Is this the best offer, and is the member price worth it?"</span>
+          <span class="chip chip--success info-card__chip">Conversion uplift · still live</span>
         </li>
-        <li class="moment">
-          <span class="moment__step text-label">2 · Booking</span>
-          <a class="moment__name text-heading-m" href="#flex-ticket">Flex Ticket</a>
-          <span class="moment__q text-body-m">"What if my plans change?"</span>
-          <span class="moment__r text-body-s">~1 in 3 chose it · conversion ↑</span>
+        <li class="info-card info-card--step">
+          <span class="info-card__kicker">2 · Booking</span>
+          <a class="info-card__title" href="#flex-ticket">Flex Ticket</a>
+          <span class="info-card__text">"What if my plans change?"</span>
+          <span class="chip chip--success info-card__chip">~1 in 3 chose it · conversion ↑</span>
         </li>
-        <li class="moment">
-          <span class="moment__step text-label">3 · Payment</span>
-          <a class="moment__name text-heading-m" href="#price-guarantee">Price Guarantee</a>
-          <span class="moment__q text-body-m">"What if the price drops after I book?"</span>
-          <span class="moment__r text-body-s">Over a third booked it</span>
+        <li class="info-card info-card--step">
+          <span class="info-card__kicker">3 · Payment</span>
+          <a class="info-card__title" href="#price-guarantee">Price Guarantee</a>
+          <span class="info-card__text">"What if the price drops after I book?"</span>
+          <span class="chip chip--success info-card__chip">Over a third booked it</span>
         </li>
       </ol>
     </section>
@@ -462,9 +467,9 @@
         <h2 id="takeaways" class="text-heading-l">Honest beats pushy, and the test decides</h2>
       </div>
       <ul class="results results--3 text-body-m" role="list">
-        <li><b>Measure the right thing</b><span>A click is a means, a booking is the goal.</span></li>
-        <li><b>Trust beats tricks</b><span>The honest version won more than once.</span></li>
-        <li><b>Test your assumptions about placement</b><span>The best moment for an offer is not always the earliest.</span></li>
+        <li class="info-card"><b class="info-card__title">Measure the right thing</b><span class="info-card__text">A click is a means, a booking is the goal.</span></li>
+        <li class="info-card"><b class="info-card__title">Trust beats tricks</b><span class="info-card__text">The honest version won more than once.</span></li>
+        <li class="info-card"><b class="info-card__title">Test your assumptions about placement</b><span class="info-card__text">The best moment for an offer is not always the earliest.</span></li>
       </ul>
       <div class="talk">
         <p class="text-body-l">Curious about the tests, the iterations and what didn't work? That's the part I like to tell in person.</p>
@@ -479,31 +484,31 @@
         <h2 id="more" class="text-heading-l">More to explore</h2>
       </div>
       <ul class="cases" role="list">
-        <li class="case case--purple">
-          <a class="case__link" href="../design-to-code/">
-            <div class="case__stage"><img src="../assets/home/d2c-merge.webp" alt="30 core components, merged from 60 legacy components" width="1200" height="751" loading="lazy"></div>
-            <div class="case__body">
-              <p class="case__pillar">Design systems 0→1</p>
-              <h3 class="case__title">60 legacy components, one source of truth</h3>
-              <p class="case__meta"><span class="chip chip--metric">440+ tokens</span><span class="chip chip--info">Live demo</span><span class="chip">B2B</span><span class="chip">Design Systems</span><span class="chip">UX</span></p>
+        <li class="case-card case-card--purple">
+          <a class="case-card__link" href="../design-to-code/">
+            <div class="case-card__stage"><img src="../assets/home/d2c-merge.webp" alt="30 core components, merged from 60 legacy components" width="1200" height="751" loading="lazy"></div>
+            <div class="case-card__body">
+              <p class="case-card__pillar">Design systems 0→1</p>
+              <h3 class="case-card__title">60 legacy components, one source of truth</h3>
+              <p class="case-card__meta"><span class="chip chip--success">440+ tokens</span><span class="chip chip--info">Live demo</span><span class="chip">B2B</span><span class="chip">Design Systems</span><span class="chip">UX</span></p>
             </div>
           </a>
         </li>
-        <li class="case case--dark">
-          <a class="case__link" href="../prime-league/">
-            <div class="case__stage"><img src="../assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="lazy"></div>
-            <div class="case__body">
-              <p class="case__pillar">Research &amp; UX strategy</p>
-              <h3 class="case__title">An esports platform people can follow</h3>
-              <p class="case__meta"><span class="chip chip--metric">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
+        <li class="case-card case-card--dark">
+          <a class="case-card__link" href="../prime-league/">
+            <div class="case-card__stage"><img src="../assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="lazy"></div>
+            <div class="case-card__body">
+              <p class="case-card__pillar">Research &amp; UX strategy</p>
+              <h3 class="case-card__title">An esports platform people can follow</h3>
+              <p class="case-card__meta"><span class="chip chip--success">−30% registration drop-off</span><span class="chip">3 communities · 50k+ users</span><span class="chip">B2C</span><span class="chip">Information Architecture</span><span class="chip">UX</span></p>
             </div>
           </a>
         </li>
-        <li class="case case--all">
-          <a class="case__link" href="../#work">
-            <p class="case__pillar">Portfolio</p>
-            <h3 class="case__title">See all work, side projects and notes</h3>
-            <span class="case__arrow">Back to the overview →</span>
+        <li class="case-card case-card--all">
+          <a class="case-card__link" href="../#work">
+            <p class="case-card__pillar">Portfolio</p>
+            <h3 class="case-card__title">See all work, side projects and notes</h3>
+            <span class="case-card__arrow">Back to the overview →</span>
           </a>
         </li>
       </ul>
@@ -513,16 +518,16 @@
 </main>
 
 <footer class="site-footer">
-  <div class="site-footer__inner text-body-s">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.64.1</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Built with AI <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="ico ico--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
+  <div class="site-footer__inner">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v1.74</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
+    <p class="built">Built with AI <svg class="site-footer__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="sr-only">(AI)</span> and love <svg class="site-footer__icon site-footer__icon--love" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg><span class="sr-only">(love)</span>, based on <a href="https://tobias-stoll.github.io/DesignSystem/">my own design system</a></p>
   </div>
 </footer>
-<script src="../assets/offer-box.js?v=1.64.1"></script>
-<script src="../assets/nav.js?v=1.64.1"></script>
-<script src="../assets/ft-timeline.js?v=1.64.1"></script>
-<script src="../assets/lightbox.js?v=1.64.1"></script>
-<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.64.1"></script>
-<script async src="../assets/track.js?v=1.64.1"></script>
+<script src="../assets/offer-box.js?v=1.74"></script>
+<script src="../assets/nav.js?v=1.74"></script>
+<script src="../assets/ft-timeline.js?v=1.74"></script>
+<script src="../assets/lightbox.js?v=1.74"></script>
+<script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=1.74"></script>
+<script async src="../assets/track.js?v=1.74"></script>
 </body>
 </html>

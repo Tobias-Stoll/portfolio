@@ -33,19 +33,6 @@ code {
 .skip-link { position: absolute; left: var(--space-16); top: var(--space-16); z-index: 20; transform: translateY(-200%); }
 .skip-link:focus { transform: none; }
 
-/* ---------- Header ---------- */
-.site-header {
-  position: sticky; top: 0; z-index: 10;
-  background: var(--color-bg-default);
-  border-bottom: var(--border-width-default) solid var(--color-border-default);
-}
-.site-header__inner {
-  max-width: 1120px; margin: 0 auto;
-  padding: var(--space-12) var(--space-24);
-  display: flex; align-items: center; justify-content: space-between; gap: var(--space-16);
-}
-.site-header__brand { color: var(--color-fg-default); text-decoration: none; }
-.site-header__nav { display: flex; gap: var(--space-8); }
 
 /* ---------- Layout ---------- */
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-24); }
@@ -63,23 +50,6 @@ main:focus { outline: none; }
 .cs-hero__links { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); margin-top: var(--space-32); }
 .cs-hero__links .btn { text-decoration: none; }
 
-/* Facts: the same card as on the landing page, variant with a definition list */
-.facts {
-  margin: 0;
-  display: grid; gap: var(--space-16);
-  padding: var(--space-20) var(--space-24);
-  background: var(--color-bg-default);
-  border: var(--border-width-default) solid var(--color-border-default);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
-}
-.facts div { display: grid; gap: var(--space-4); }
-.facts dt {
-  font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
-  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);
-}
-.facts dd { margin: 0; }
 
 /* ---------- Sections ---------- */
 .cs-section { padding: var(--space-48) 0; border-top: var(--border-width-default) solid var(--color-border-default); }
@@ -165,18 +135,8 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
 .stat__value { color: var(--color-action-primary-bg-default); }
 .stat__label { color: var(--color-fg-muted); max-width: 32ch; }
 .results { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-20); }
-/* Result and takeaway cards: the landing page card, variant with title and text only */
-.results li {
-  margin: 0 !important; padding: var(--space-20);
-  background: var(--color-bg-default); border: var(--border-width-default) solid var(--color-border-default);
-  border-radius: var(--radius-xl); box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
-  display: flex; flex-direction: column; gap: var(--space-8);
-}
-.results li b {
-  font-family: var(--font-family-display); font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-500); line-height: var(--font-line-height-500); color: var(--color-fg-default); text-wrap: balance;
-}
-.results li span { color: var(--color-fg-muted); }
+/* Result cards and moments are Info Cards from the Design System (info-card.css); here only the grid */
+.results > li, .moments > li { margin: 0 !important; }
 
 /* ---------- Tutorial pieces (Ride Recap) ---------- */
 /* Color swatch next to a hex value */
@@ -268,10 +228,11 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
 .link-list li { margin: 0 !important; }
 .link-list .btn { text-decoration: none; }
 
-/* ---------- Footer ---------- */
-.site-footer { border-top: var(--border-width-default) solid var(--color-border-default); margin-top: var(--space-48); }
-.site-footer__inner { max-width: 1120px; margin: 0 auto; padding: var(--space-32) var(--space-24); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-16); color: var(--color-fg-muted); }
-.site-footer p { margin: 0; }
+/* Site Header from the Design System blends into the white case study ground */
+:root { --site-header-bg: var(--color-bg-default); }
+
+/* ---------- Footer: Site Footer from the Design System, here only the distance ---------- */
+.site-footer { margin-top: var(--space-48); }
 
 /* ---------- Small screens ---------- */
 @media (max-width: 880px) {
@@ -281,9 +242,8 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
   .result__media { max-width: 360px; }
 }
 @media (max-width: 560px) {
-  .wrap, .site-header__inner, .site-footer__inner { padding-left: var(--space-16); padding-right: var(--space-16); }
+  .wrap { padding-left: var(--space-16); padding-right: var(--space-16); }
   .steps, .results, .figure--pair { grid-template-columns: minmax(0, 1fr); }
-  .site-header__nav .btn--ghost { display: none; }
   .motion-demo { grid-template-columns: minmax(0, 1fr); gap: var(--space-24); }
   .motion-demo__stage { max-width: 320px; }
   .spec dl div { grid-template-columns: 96px minmax(0, 1fr); }
@@ -300,38 +260,6 @@ table.cs-table { border-collapse: collapse; width: 100%; min-width: 520px; }
 .kpis b { font-weight: var(--font-weight-medium); }
 
 .moments { list-style: none; padding: 0 !important; margin: var(--space-32) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20); counter-reset: none; }
-/* Same card as on the landing page (cards.css), the variant without an image */
-.moment {
-  position: relative; display: flex; flex-direction: column; gap: var(--space-8); min-width: 0; margin: 0 !important;
-  padding: var(--space-20); border-radius: var(--radius-xl);
-  background: var(--color-bg-default); border: var(--border-width-default) solid var(--color-border-default);
-  box-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
-  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s cubic-bezier(.2, .8, .2, 1);
-}
-.moment__step {
-  margin: 0; font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
-  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);
-}
-.moment__name {
-  font-family: var(--font-family-display) !important; font-weight: var(--font-weight-medium) !important;
-  font-size: var(--font-size-600) !important; line-height: var(--font-line-height-600) !important;
-  color: var(--color-fg-default); text-decoration: none; text-wrap: balance;
-}
-a.moment__name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* whole card is the link */
-.moment__q { color: var(--color-fg-muted); }
-.moment__r {
-  align-self: flex-start; margin-top: auto; display: inline-flex; padding: 2px var(--space-8); border-radius: var(--radius-pill);
-  font-size: var(--font-size-100) !important; line-height: var(--font-line-height-100) !important; font-weight: var(--font-weight-medium);
-  color: var(--color-feedback-success-fg); background: var(--color-feedback-success-bg); font-variant-numeric: tabular-nums;
-}
-.moment__q + .moment__r { margin-top: auto; }
-.moment:has(.moment__r) .moment__q { margin-bottom: var(--space-8); }
-@media (hover: hover) {
-  .moment:has(a.moment__name):hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 2px 4px rgba(43, 43, 47, .06), 0 24px 48px -16px rgba(43, 43, 47, .22); }
-  .moment:has(a.moment__name):nth-child(2):hover { rotate: 1.2deg; }
-}
-@media (prefers-reduced-motion: reduce) { .moment { transition: none; } }
 
 .quote { margin: var(--space-8) 0 var(--space-16) !important; color: var(--button-ghost-fg); font-style: italic; }
 
@@ -775,4 +703,3 @@ html.has-lightbox { overflow: hidden; }
 .legal p, .legal ul { margin: 0 0 var(--space-12); }
 .legal__en, .legal__date { color: var(--color-fg-muted); }
 .legal__links { margin-top: var(--space-40) !important; }
-.footer-legal a { color: inherit; }

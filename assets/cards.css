@@ -1,59 +1,29 @@
 /**
- * Case cards, 1:1 the cards of the landing page (home.css), for the "More to explore" section of the case studies.
- * The landing's --home-* variables get the same values here.
+ * "More to explore" on the case studies: the Case Card from the Design System (case-card.css, chip.css).
+ * Here only the grid, the reset against the case study prose styles, and the "all work" tile.
  */
 .cases {
-  --home-ease: cubic-bezier(.2, .8, .2, 1);
-  --home-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --home-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
-  --home-shadow-lift: 0 2px 4px rgba(43, 43, 47, .06), 0 24px 48px -16px rgba(43, 43, 47, .22);
   list-style: none; margin: var(--space-32) 0 0 !important; padding: 0 !important;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20);
 }
 .cases > li { margin: 0 !important; }
-.case { min-width: 0; }
-.case__link {
-  display: flex; flex-direction: column; height: 100%;
-  background: var(--color-bg-default); color: inherit; text-decoration: none;
-  border: var(--border-width-default) solid var(--color-border-default);
-  border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--home-shadow);
-  transition: transform .35s var(--home-ease), box-shadow .35s var(--home-ease);
+
+/* .cs-section sets margins on p and h3; inside a card the component decides */
+.cases .case-card__pillar,
+.cases .case-card__title { margin: 0; }
+.cases .case-card__meta { margin: auto 0 0; }
+
+/* third tile: back to all work (a page-level variant of the Case Card, dashed and without a stage) */
+.case-card--all { --_tilt: 0deg; }
+.case-card--all .case-card__link {
+  justify-content: center; align-items: flex-start; gap: var(--space-gap-sm); padding: var(--space-inset-lg);
+  border-style: dashed; background: transparent; box-shadow: none;
 }
-.case__stage {
-  position: relative; aspect-ratio: 16 / 10; max-width: 100%; overflow: hidden;
-  background: var(--_stage); padding: var(--space-16) 0 0 var(--space-16);
-}
-.case__stage img {
-  display: block; width: 118%; max-width: none; height: auto; border: 0; border-radius: var(--radius-md) 0 0 0;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 12px 32px -12px rgba(0,0,0,.35);
-  transform-origin: 0 0; transition: transform .5s var(--home-ease);
-}
-.case--dark   { --_stage: linear-gradient(140deg, var(--color-neutral-800), var(--color-neutral-900)); --_tilt: -1.2deg; }
-.case--purple { --_stage: linear-gradient(140deg, var(--color-purple-100), var(--color-purple-200)); --_tilt: 1deg; }
-.case--blue   { --_stage: linear-gradient(140deg, var(--color-blue-50), var(--color-blue-100)); --_tilt: -.8deg; }
-.case__body { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16) var(--space-20) var(--space-20); flex: 1; }
-.cases .case__pillar {
-  margin: 0; font-family: var(--home-mono); font-size: var(--font-size-100); line-height: var(--font-line-height-100);
-  letter-spacing: .08em; text-transform: uppercase; color: var(--button-ghost-fg);
-}
-.cases .case__title { margin: 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-600); line-height: var(--font-line-height-600); text-wrap: balance; color: var(--color-fg-default); }
-.cases .case__meta { margin: auto 0 0; padding-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-gap-xs) var(--space-gap-sm); }
-.cases .chip {
-  display: inline-flex; align-items: center; padding: 2px var(--space-8); border-radius: var(--radius-pill);
-  font-size: var(--font-size-100); line-height: var(--font-line-height-100); font-weight: var(--font-weight-medium);
-  color: var(--color-fg-muted); background: var(--color-bg-muted);
-}
-.cases .chip--metric { color: var(--color-feedback-success-fg); background: var(--color-feedback-success-bg); font-variant-numeric: tabular-nums; }
-.cases .chip--info { color: var(--color-blue-700); background: var(--color-blue-50); box-shadow: inset 0 0 0 1px var(--color-blue-100); }
-/* third tile: back to all work */
-.case--all .case__link { box-shadow: none; border-style: dashed; background: transparent; justify-content: center; align-items: flex-start; padding: var(--space-24); gap: var(--space-8); }
-.case--all .case__title { font-size: var(--font-size-500); line-height: var(--font-line-height-500); }
-.case--all .case__arrow { color: var(--button-ghost-fg); font-family: var(--font-family-sans); font-weight: var(--font-weight-medium); font-size: var(--font-size-200); }
+.case-card--all .case-card__title { font-size: var(--font-size-500); line-height: var(--font-line-height-500); }
+.case-card--all .case-card__arrow { color: var(--color-action-ghost-fg); font-family: var(--font-family-sans); font-weight: var(--font-weight-medium); font-size: var(--font-size-200); }
 @media (hover: hover) {
-  .case__link:hover { transform: translateY(-6px) rotate(var(--_tilt, 0deg)); box-shadow: var(--home-shadow-lift); }
-  .case__link:hover .case__stage img { transform: translate(-3%, -3%) scale(1.04); }
-  .case--all .case__link:hover { box-shadow: none; border-color: var(--color-border-strong); background: var(--color-bg-subtle); }
+  .case-card--all .case-card__link:hover { box-shadow: none; border-color: var(--color-border-strong); background: var(--color-bg-subtle); }
 }
-@media (max-width: 880px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } .case--all { grid-column: 1 / -1; } }
+
+@media (max-width: 880px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } .case-card--all { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .cases { grid-template-columns: minmax(0, 1fr); } }
-@media (prefers-reduced-motion: reduce) { .case__link, .case__stage img { transition: none; } }
