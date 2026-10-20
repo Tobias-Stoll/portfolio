@@ -117,7 +117,8 @@
 		try { u = new URL(a.href, location.href) } catch (e) { return null }
 		var host = u.hostname.replace(/^www\./, '')
 		if (host === location.hostname.replace(/^www\./, '') || host === 'tobias-stoll.github.io' && /^\/portfolio/.test(u.pathname)) {
-			// internal link: CTAs to an anchor on the start page, and case study cards
+			// internal link: the CV, CTAs to an anchor on the start page, and case study cards
+			if (/\/cv\/[^/]+\.pdf$/i.test(u.pathname)) return 'click/cv'
 			var path = u.pathname.replace(/^\/portfolio/, '') || '/'
 			if (u.hash && path === '/') return 'cta/' + page + '/' + slug(u.hash.slice(1)) // e.g. cta/design-to-code/notes
 			var m = path.match(/^\/(invia|design-to-code|prime-league|ride-recap|playground)\/?/)
@@ -127,7 +128,6 @@
 		}
 		if (host === 'linkedin.com' || host.slice(-13) === '.linkedin.com') return 'click/linkedin'
 		if (host === 'instagram.com') return 'click/instagram'
-		if (host === 'drive.proton.me') return 'click/cv'
 		if (host === 'github.com') return 'click/repo'
 		if (host === 'tobias-stoll.github.io' && /^\/DesignSystem/i.test(u.pathname)) return 'click/design-system'
 		if (host === 'figma.com') return 'click/figma'
