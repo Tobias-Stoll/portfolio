@@ -66,15 +66,15 @@ main::before {
   text-wrap: balance;
 }
 .hl { white-space: nowrap; }
-.hl--data { color: var(--color-action-secondary-bg-default); }
+.hl--data { color: var(--color-action-primary-bg-default); }   /* one accent: both highlights in the primary color */
 .hl--pixel { color: var(--color-action-primary-bg-default); }
 .hl__spark {
   display: inline-block; width: .5em; height: .2em; margin-left: .08em; vertical-align: .62em;
   overflow: visible;
 }
-.hl__spark polyline { fill: none; stroke: var(--color-action-secondary-bg-default); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
+.hl__spark polyline { fill: none; stroke: var(--color-action-primary-bg-default); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: 80; stroke-dashoffset: 0; animation: spark 1.2s var(--home-ease) .3s both; }
-.hl__spark circle { fill: var(--color-action-secondary-bg-default); animation: pop .4s var(--home-ease) 1.3s both; transform-box: fill-box; transform-origin: center; }
+.hl__spark circle { fill: var(--color-action-primary-bg-default); animation: pop .4s var(--home-ease) 1.3s both; transform-box: fill-box; transform-origin: center; }
 .hl__px {
   display: inline-block; width: .16em; height: .16em; margin-left: .06em; vertical-align: .62em;
   background: var(--color-action-primary-bg-default); border-radius: 1px;
@@ -90,7 +90,6 @@ main::before {
 }
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); }
-.hero__cta .btn { padding: var(--space-12) var(--space-20); font-size: var(--font-size-300); }
 
 /* ---------- Case cards ---------- */
 .cases {
