@@ -45,7 +45,7 @@
   }
 
   /* ---------- km markers + route line ---------- */
-  const kickers = $$('.kicker[data-km]');
+  const kickers = $$('[data-km]');   // route stops: hero kicker + section titles
   const route = $('.route');
   const line = $('.route__line');
   const track = $('.route__track');
