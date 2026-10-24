@@ -52,7 +52,7 @@ main:focus { outline: none; }
 
 
 /* ---------- Sections ---------- */
-.cs-section { padding: var(--space-48) 0; border-top: var(--border-width-default) solid var(--color-border-default); }
+.cs-section { padding: calc(clamp(var(--space-section-md-min), 7vw, var(--space-section-md-max)) / 2) 0;   /* 64 to 96 px between sections, split around the divider */ border-top: var(--border-width-default) solid var(--color-border-default); }
 .cs-section h2 { margin: 0 0 var(--space-16); }
 .cs-section h3 { margin: var(--space-40) 0 var(--space-12); }
 .cs-section p { margin: 0 0 var(--space-16); }

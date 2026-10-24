@@ -10,7 +10,7 @@
   --home-gutter: var(--space-24);
   --home-hero-size: clamp(40px, 5vw, 68px);
   --home-hero-line: 1.08;   /* room for descenders now that the headline is sentence case */
-  --home-section-gap: clamp(72px, 10vw, 128px);
+  --home-section-gap: clamp(var(--space-section-lg-min), 10vw, var(--space-section-lg-max));   /* 72 to 128 px */
   --home-route: var(--color-purple-300);
   --home-route-done: var(--color-action-primary-bg-default);
   --home-paper: var(--color-bg-canvas);   /* page ground: white with a hint of the purple hue (token since v1.65) */
@@ -85,8 +85,8 @@ main::before {
 @keyframes drop { from { transform: translateY(-.9em) scale(.4); opacity: 0; } }
 
 .hero__row {
-  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
-  gap: var(--space-24) var(--space-48); margin-top: var(--space-24);
+  display: flex; flex-direction: column; align-items: flex-start;   /* buttons under the text on every viewport */
+  gap: var(--space-24); margin-top: var(--space-24);
 }
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); }
@@ -96,7 +96,7 @@ main::before {
   list-style: none; margin: clamp(var(--space-32), 4vw, var(--space-48)) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20);
 }
-.hero__work { margin-top: clamp(var(--space-48), 6vw, 80px); }
+.hero__work { margin-top: clamp(var(--space-48), 6vw, var(--space-64)); }
 .hero__work + .cases { margin-top: 0; }
 /* Case Card and Chip: Design System (case-card.css, chip.css). Here only the grid. */
 
