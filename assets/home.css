@@ -148,7 +148,7 @@ main::before {
 .fun__title { margin: 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-600); line-height: var(--font-line-height-600); }   /* Heading M, like the case card titles */
 .fun__text { margin: 0; color: var(--color-fg-muted); max-width: 46ch; }
 .fun__big { margin: var(--space-4) 0; font-size: var(--font-size-300); color: var(--color-fg-muted); }
-.fun__big span { display: block; font-family: var(--font-family-display); font-weight: var(--font-weight-bold); font-size: 56px; line-height: 1; color: var(--color-fg-default); font-variant-numeric: tabular-nums; }
+.fun__big span { display: block; font-family: var(--font-family-display); font-weight: var(--font-weight-bold); font-size: var(--font-size-800); line-height: var(--font-line-height-800); color: var(--color-fg-default); font-variant-numeric: tabular-nums; }
 .fun__go { margin-top: var(--space-8); font-weight: var(--font-weight-medium); color: var(--button-ghost-fg); }
 @media (hover: hover) {
   .fun__item--video .fun__link:hover .fun__media--story { transform: rotate(0deg) scale(1.03); }
@@ -161,7 +161,7 @@ main::before {
 .polaroid { background: var(--color-bg-default); padding: var(--space-12) var(--space-12) var(--space-8); box-shadow: var(--home-shadow-lift); transform: rotate(-3deg); border-radius: 2px; position: relative; }
 .polaroid::before { /* tape */
   content: ""; position: absolute; top: -12px; left: 50%; width: 88px; height: 26px; transform: translateX(-50%) rotate(2deg);
-  background: rgba(212, 255, 58, .55); border-radius: 2px;
+  background: var(--color-purple-200); opacity: .7; border-radius: 2px;
 }
 .polaroid__img {
   aspect-ratio: 4 / 5; max-width: 100%; display: grid; place-items: center;
@@ -177,29 +177,16 @@ main::before {
 .polaroid[data-shot="bike"] .polaroid__cap--bike, .polaroid[data-shot="stage"] .polaroid__cap--stage { display: inline; }
 .polaroid.is-flipping { animation: polaroid-wobble .55s cubic-bezier(.34, 1.56, .64, 1); }
 @keyframes polaroid-wobble { 0% { transform: rotate(-3deg); } 40% { transform: rotate(2deg) scale(1.02); } 100% { transform: rotate(-3deg); } }
-.shot-toggle { display: flex; width: fit-content; margin: var(--space-20) auto 0; padding: 3px; gap: 2px; border-radius: var(--radius-pill); background: var(--color-bg-muted); position: relative; z-index: 2; }
-.shot-toggle button { all: unset; cursor: pointer; padding: var(--space-4) var(--space-12); border-radius: var(--radius-pill); font-family: var(--font-family-sans); font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-weight: var(--font-weight-medium); color: var(--color-fg-muted); transition: background-color .2s, color .2s; }
-.shot-toggle button:hover { color: var(--color-fg-default); }
-.shot-toggle button[aria-pressed="true"] { background: var(--color-bg-default); color: var(--color-fg-default); box-shadow: 0 1px 2px rgba(43,43,47,.12); }
-.shot-toggle button:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
 .polaroid__cap { margin: var(--space-8) 0 0; font-family: var(--home-mono); font-size: var(--font-size-200); color: var(--color-fg-muted); text-align: center; }
-.stickers { list-style: none; margin: 0; padding: 0; }
-.sticker {
-  position: absolute; padding: var(--space-8) var(--space-12); border-radius: var(--radius-pill);
-  font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-weight: var(--font-weight-medium);
-  box-shadow: var(--home-shadow); white-space: nowrap; cursor: default;
-  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
-}
-.sticker--a { left: -8px; top: 57%; transform: rotate(-8deg); background: var(--color-purple-600); color: var(--color-base-white); }
-.sticker--b { right: -16px; top: 1%; transform: rotate(6deg); background: #d4ff3a; color: var(--color-neutral-900); }
-.sticker--c { right: -32px; bottom: 29%; transform: rotate(4deg); background: var(--color-cyan-100); color: var(--color-cyan-800); }
-@media (hover: hover) { .sticker:hover { transform: rotate(0deg) scale(1.08); } }
+.facts { list-style: none; margin: var(--space-24) 0 0; padding: 0; display: grid; gap: var(--space-8); }   /* quiet list instead of stickers */
+.facts li { position: relative; padding-left: var(--space-20); color: var(--color-fg-muted); font-size: var(--font-size-200); line-height: var(--font-line-height-200); }
+.facts li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--color-action-primary-bg-default); }
 .about__text { display: grid; gap: var(--space-16); max-width: 62ch; }
 .about__text p { margin: 0; }
 .about__text > p:not(.kicker):not(.about__links) { color: var(--color-fg-muted); font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
-/* My path: blue like the case study timelines. The line draws from stop to stop once the list scrolls in,
+/* My path: in the primary color (one accent). The line draws from stop to stop once the list scrolls in,
    and each dot fills as the line reaches it (one pass, about 2 s). Without JS it shows complete. */
-.path { --path-c: var(--color-blue-600); --path-step: .5s;
+.path { --path-c: var(--color-action-primary-bg-default); --path-step: .5s;
   list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8); }
 .path li { position: relative; display: grid; align-content: start; gap: 2px; padding-top: var(--space-24); min-width: 0; }
 .path li::before {   /* the stop */
@@ -212,7 +199,7 @@ main::before {
 }
 .path li:last-child::after { display: none; }
 /* armed by JS, drawn when it scrolls into view */
-.path.is-armed li::before { background: var(--home-paper); border-color: var(--color-blue-200); }
+.path.is-armed li::before { background: var(--home-paper); border-color: var(--color-purple-200); }
 .path.is-armed li::after { transform: scaleX(0); }
 .path.is-drawn li::before { background: var(--path-c); border-color: var(--path-c); animation: path-pop .45s cubic-bezier(.34, 1.56, .64, 1) both; transition: background-color .2s, border-color .2s; }
 .path.is-drawn li::after { transform: scaleX(1); transition: transform var(--path-step) linear; }
@@ -291,7 +278,7 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 @media (max-width: 640px) {
   :root { --home-gutter: var(--space-16); }
-  .sticker--a { left: 0; } .sticker--b { right: 0; } .sticker--c { right: 0; }
+
   .cases { grid-template-columns: minmax(0, 1fr); }
   .cases .case-card:last-child .case-card__link { flex-direction: column; }
   .hl__spark { display: none; }
