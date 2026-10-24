@@ -95,15 +95,15 @@
     marks.innerHTML = '';
     dots = pts.map(p => {
       const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 6);
+      c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 4);
       c.setAttribute('class', 'route__dot');
       marks.appendChild(c);
       return { el: c, y: p.y };
     });
     const halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    halo.setAttribute('r', 12); halo.setAttribute('class', 'route__rider-halo');
+    halo.setAttribute('r', 8); halo.setAttribute('class', 'route__rider-halo');
     rider = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    rider.setAttribute('r', 5); rider.setAttribute('class', 'route__rider');
+    rider.setAttribute('r', 3.5); rider.setAttribute('class', 'route__rider');
     marks.append(halo, rider);
     rider.halo = halo;
     drawRoute();
