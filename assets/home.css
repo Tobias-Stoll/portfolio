@@ -77,9 +77,22 @@ main::before {
 .word-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
 .word-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
   stroke-dasharray: 1; stroke-dashoffset: 1;
-  animation: word-sketch .7s var(--home-ease) calc(var(--start) + var(--i) * .08s) forwards, word-ink .45s ease var(--ink) forwards; }
+  animation: word-sketch .7s var(--home-ease) calc(var(--start) + var(--i) * .08s) forwards,
+             word-ink .8s cubic-bezier(.4, 0, .2, 1) calc(var(--start) + var(--i) * .08s + .45s) forwards; }   /* each letter inks right after its own outline, overlapping */
 @keyframes word-sketch { to { stroke-dashoffset: 0; } }
-@keyframes word-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes word-ink { 0% { fill-opacity: 0; stroke-opacity: 1; } 60% { stroke-opacity: .6; } 100% { fill-opacity: 1; stroke-opacity: 0; } }
+
+/* Landing order: 1 headline builds, 2 nav and kicker fade in when the drawing starts, 3 lead and buttons once it is done.
+   Selected work waits for the first interaction (assets/reveal.js). */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__title > span { animation: intro-up .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero__title > span + span { animation-delay: .12s; }
+  .site-header, .hero__h1 > .kicker { animation: intro-fade .6s ease .45s both; }
+  .hero__lead { animation: intro-up .6s cubic-bezier(.2, .7, .2, 1) 1.9s both; }
+  .hero__cta { animation: intro-up .6s cubic-bezier(.2, .7, .2, 1) 2.05s both; }
+}
+@keyframes intro-up { from { opacity: 0; transform: translateY(16px); } }
+@keyframes intro-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .word-draw path { animation: none; fill-opacity: 1; stroke: none; } }
 .hero__title > span { display: block; }
 .hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
