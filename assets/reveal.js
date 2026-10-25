@@ -1,5 +1,5 @@
 /* Scroll reveal: chapters and sections fade in as they come into view, one after the other.
-   On the landing page, Selected work waits for the first interaction (scroll, wheel, touch, key).
+   On the landing page, Selected work waits for the first interaction (scroll, wheel, touch, key) or 3 s after the intro.
    Runs only with JS, IntersectionObserver and no reduced-motion preference; otherwise everything is visible. */
 (() => {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -24,4 +24,8 @@
   };
   if (scrollY > 0 || location.hash) { open(); return; }   // returning visitor or deep link: show at once
   events.forEach(ev => addEventListener(ev, open, { passive: true }));
+  // no interaction: show 3 s after the landing sequence ends (the nav is its last step)
+  const header = document.querySelector('.site-header');
+  let timer = setTimeout(open, 9000);   // safety net if the animation never reports its end
+  header && header.addEventListener('animationend', () => { clearTimeout(timer); timer = setTimeout(open, 3000); }, { once: true });
 })();
