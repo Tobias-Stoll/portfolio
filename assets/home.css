@@ -77,7 +77,7 @@ main::before {
 .fix-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
 .fix-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
   stroke-dasharray: 1; stroke-dashoffset: 1;
-  animation: fix-sketch .8s var(--home-ease) calc(.5s + var(--i) * .1s) forwards, fix-ink .5s ease 1.6s forwards; }
+  animation: fix-sketch .8s var(--home-ease) calc(.5s + var(--i) * .1s) forwards, fix-ink .5s ease 1.85s forwards; }
 @keyframes fix-sketch { to { stroke-dashoffset: 0; } }
 @keyframes fix-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .fix-draw path { animation: none; fill-opacity: 1; stroke: none; } }
