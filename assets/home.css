@@ -10,8 +10,9 @@
   --home-hero-size: clamp(40px, 5vw, 60px);   /* 60 max: the first sentence fits one line from 740 px up */
   --home-hero-line: 1.08;   /* room for descenders now that the headline is sentence case */
   --home-section-gap: clamp(var(--space-section-lg-min), 10vw, var(--space-section-lg-max));   /* 72 to 128 px */
-  --home-paper: var(--color-bg-canvas);   /* page ground: white with a hint of the purple hue (token since v1.65) */
-  --home-dot: rgba(95, 44, 255, .07);  /* the "pixel" grid behind the hero */
+  --home-paper: #F5F4F1;   /* warm paper ground (v2.1, was color/bg/canvas); candidate for the Design System */
+  --home-grid: rgba(28, 25, 23, .09);        /* graph paper: major lines every 160 px */
+  --home-grid-fine: rgba(28, 25, 23, .045);  /* graph paper: minor lines every 32 px */
   --home-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
   --home-shadow-lift: 0 2px 4px rgba(43, 43, 47, .06), 0 24px 48px -16px rgba(43, 43, 47, .22);
   --home-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -23,7 +24,7 @@
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
   margin: 0;
-  background: var(--home-paper);
+  background: var(--home-paper) url(home/paper-specks.png) 0 0 / 420px 420px repeat;   /* a few faint specks keep the paper alive */
   color: var(--color-fg-default);
   font-family: var(--font-family-sans);
   font-size: var(--font-size-300);
@@ -46,12 +47,17 @@ main:focus { outline: none; }
 /* ---------- Hero ---------- */
 .hero { padding-top: clamp(var(--space-32), 5vw, var(--space-64)); }
 main::before {
-  /* the pixel grid behind the hero: dots fading out toward the cards */
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 560px; z-index: -1; pointer-events: none;
-  background-image: radial-gradient(var(--home-dot) 1.2px, transparent 1.3px);
-  background-size: 16px 16px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
-  mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  /* graph paper behind the hero, fading out toward the work */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 720px; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(90deg, var(--home-grid) 1px, transparent 1px),
+    linear-gradient(var(--home-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--home-grid-fine) 1px, transparent 1px),
+    linear-gradient(var(--home-grid-fine) 1px, transparent 1px);
+  background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
+  background-position: calc(50% - 80px) -1px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent);
 }
 /* H1 = kicker (keywords) + display line; looks exactly as before */
 .hero__h1 { margin: 0; font-size: inherit; font-weight: inherit; line-height: inherit; }
