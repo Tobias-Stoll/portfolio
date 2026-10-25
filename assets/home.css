@@ -8,7 +8,7 @@
 :root {
   --home-max: 1120px;
   --home-gutter: var(--space-24);
-  --home-hero-size: clamp(40px, 5vw, 68px);
+  --home-hero-size: clamp(40px, 5vw, 60px);   /* 60 max: the first sentence fits one line from 740 px up */
   --home-hero-line: 1.08;   /* room for descenders now that the headline is sentence case */
   --home-section-gap: clamp(var(--space-section-lg-min), 10vw, var(--space-section-lg-max));   /* 72 to 128 px */
   --home-route: var(--color-purple-300);
@@ -60,7 +60,7 @@ main::before {
 .hero__h1 { margin: 0; font-size: inherit; font-weight: inherit; line-height: inherit; }
 .hero__h1 > .kicker { display: flex; }
 .hero__title {
-  display: block; margin: var(--space-16) 0 0; max-width: 22ch;
+  display: block; margin: var(--space-16) 0 0;
   font-family: var(--font-family-display); font-weight: var(--font-weight-bold);
   font-size: var(--home-hero-size); line-height: var(--home-hero-line); letter-spacing: -.01em;
   text-wrap: balance;
@@ -73,7 +73,10 @@ main::before {
   display: flex; flex-direction: column; align-items: flex-start;   /* buttons under the text on every viewport */
   gap: var(--space-24); margin-top: var(--space-24);
 }
+.hero__title > span { display: block; }
+.hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
+@media (min-width: 768px) { .hero__lead { max-width: 66.666%; } }   /* two thirds of the container on medium and large */
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); }
 
 /* ---------- Case cards ---------- */
