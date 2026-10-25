@@ -73,14 +73,14 @@ main::before {
   display: flex; flex-direction: column; align-items: flex-start;   /* buttons under the text on every viewport */
   gap: var(--space-24); margin-top: var(--space-24);
 }
-/* "the fix": drawn as an outline, then inked. Sketch to final design, once on load */
-.fix-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
-.fix-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
+/* "people" and "the fix": drawn as an outline, then inked. Sketch to final design, once on load, one word after the other */
+.word-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
+.word-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
   stroke-dasharray: 1; stroke-dashoffset: 1;
-  animation: fix-sketch .8s var(--home-ease) calc(.5s + var(--i) * .1s) forwards, fix-ink .5s ease 1.85s forwards; }
-@keyframes fix-sketch { to { stroke-dashoffset: 0; } }
-@keyframes fix-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .fix-draw path { animation: none; fill-opacity: 1; stroke: none; } }
+  animation: word-sketch .7s var(--home-ease) calc(var(--start) + var(--i) * .08s) forwards, word-ink .45s ease var(--ink) forwards; }
+@keyframes word-sketch { to { stroke-dashoffset: 0; } }
+@keyframes word-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .word-draw path { animation: none; fill-opacity: 1; stroke: none; } }
 .hero__title > span { display: block; }
 .hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
