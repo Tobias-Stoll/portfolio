@@ -1,7 +1,6 @@
 /**
  * Landing page. Built on the Design System tokens (light only, on purpose).
- * Layout: one 1120px column; the first screen holds hero + three case cards,
- * a self-drawing route line runs down the left gutter from "Dresden" to "Berlin".
+ * Layout: one 1120px column; the first screen holds hero + three case cards.
  *
  * New, page-level tokens (candidates for the Design System later):
  */
@@ -11,8 +10,6 @@
   --home-hero-size: clamp(40px, 5vw, 60px);   /* 60 max: the first sentence fits one line from 740 px up */
   --home-hero-line: 1.08;   /* room for descenders now that the headline is sentence case */
   --home-section-gap: clamp(var(--space-section-lg-min), 10vw, var(--space-section-lg-max));   /* 72 to 128 px */
-  --home-route: var(--color-purple-300);
-  --home-route-done: var(--color-action-primary-bg-default);
   --home-paper: var(--color-bg-canvas);   /* page ground: white with a hint of the purple hue (token since v1.65) */
   --home-dot: rgba(95, 44, 255, .07);  /* the "pixel" grid behind the hero */
   --home-shadow: 0 1px 2px rgba(43, 43, 47, .06), 0 8px 24px -8px rgba(43, 43, 47, .14);
@@ -245,17 +242,6 @@ main::before {
 
 /* ---------- Contact + footer ---------- */
 .contact-block { margin-top: var(--home-section-gap); }   /* Contact Block and Site Footer: Design System */
-
-/* ---------- Route line (wide screens only) ---------- */
-.route { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; z-index: 0; overflow: visible; display: none; }
-.route__track { fill: none; stroke: var(--color-border-default); stroke-width: 1.5; stroke-dasharray: 2 6; stroke-linecap: round; }
-.route__line { fill: none; stroke: var(--home-route-done); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.route__dot { fill: var(--home-paper); stroke: var(--home-route); stroke-width: 1.5; transition: fill .3s, stroke .3s; }
-.route__dot.is-passed { fill: var(--home-route-done); stroke: var(--home-route-done); }
-.route__rider { fill: var(--home-route-done); }
-.route__rider-halo { fill: var(--home-route-done); opacity: .18; }
-main, .site-footer { position: relative; z-index: 1; }
-@media (min-width: 1240px) { .route { display: block; } }
 
 /* ---------- How I work: five principles, one core ---------- */
 .credo { list-style: none; margin: 0; padding: 0; border-top: var(--border-width-default) solid var(--color-border-default); }
