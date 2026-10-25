@@ -27,5 +27,10 @@
   // no interaction: show 3 s after the landing sequence ends (the nav is its last step)
   const header = document.querySelector('.site-header');
   let timer = setTimeout(open, 9000);   // safety net if the animation never reports its end
-  header && header.addEventListener('animationend', () => { clearTimeout(timer); timer = setTimeout(open, 3000); }, { once: true });
+  const onEnd = e => {
+    if (e.target !== header || e.animationName !== 'intro-fade') return;   // ignore animations of elements inside the header
+    header.removeEventListener('animationend', onEnd);
+    clearTimeout(timer); timer = setTimeout(open, 3000);
+  };
+  header && header.addEventListener('animationend', onEnd);
 })();
