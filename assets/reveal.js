@@ -10,6 +10,6 @@
     if (!e.isIntersecting) return;
     e.target.classList.add('is-in');
     io.unobserve(e.target);
-  }), { rootMargin: '0px 0px -12% 0px', threshold: 0.04 });
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0 });
   els.forEach(el => { el.setAttribute('data-reveal', ''); io.observe(el); });
 })();
