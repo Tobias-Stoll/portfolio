@@ -68,21 +68,6 @@ main::before {
 .hl { white-space: nowrap; }
 .hl--data { color: var(--color-action-primary-bg-default); }   /* one accent: both highlights in the primary color */
 .hl--pixel { color: var(--color-action-primary-bg-default); }
-.hl__spark {
-  display: inline-block; width: .5em; height: .2em; margin-left: .08em; vertical-align: .62em;
-  overflow: visible;
-}
-.hl__spark polyline { fill: none; stroke: var(--color-action-primary-bg-default); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 80; stroke-dashoffset: 0; animation: spark 1.2s var(--home-ease) .3s both; }
-.hl__spark circle { fill: var(--color-action-primary-bg-default); animation: pop .4s var(--home-ease) 1.3s both; transform-box: fill-box; transform-origin: center; }
-.hl__px {
-  display: inline-block; width: .16em; height: .16em; margin-left: .06em; vertical-align: .62em;
-  background: var(--color-action-primary-bg-default); border-radius: 1px;
-  animation: drop .7s cubic-bezier(.34, 1.56, .64, 1) .9s both;
-}
-@keyframes spark { from { stroke-dashoffset: 80; } }
-@keyframes pop { from { transform: scale(0); } }
-@keyframes drop { from { transform: translateY(-.9em) scale(.4); opacity: 0; } }
 
 .hero__row {
   display: flex; flex-direction: column; align-items: flex-start;   /* buttons under the text on every viewport */
@@ -285,7 +270,6 @@ main, .site-footer { position: relative; z-index: 1; }
 
   .cases { grid-template-columns: minmax(0, 1fr); }
   .cases .case-card:last-child .case-card__link { flex-direction: column; }
-  .hl__spark { display: none; }
   .fun__item--video .fun__link { flex-direction: column; align-items: flex-start; }
   .vid-toggle { top: var(--space-24); right: var(--space-24); bottom: auto; left: auto; }   /* top right, beside the video and clear of the text */
   .fun__media--story { width: 60%; }
