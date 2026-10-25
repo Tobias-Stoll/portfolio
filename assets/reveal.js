@@ -8,6 +8,7 @@
   if (!els.length && !gated.length) return;
   document.querySelectorAll('.cases > .case-card').forEach((el, i) => el.style.setProperty('--reveal-delay', 80 + (i % 3) * 90 + 'ms'));
   document.documentElement.classList.add('reveal-on');
+  window.__revealReady = true;
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('is-in');

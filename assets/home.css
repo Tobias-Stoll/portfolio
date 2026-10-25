@@ -415,7 +415,8 @@ main::before {
 .note__privacy { margin: var(--space-8) 0 0; font-size: var(--font-size-200); line-height: var(--font-line-height-200); color: var(--color-fg-muted); }
 .note__privacy a { color: inherit; }
 
-/* Scroll reveal (assets/reveal.js): sections fade up once as they enter the view */
-.reveal-on [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
-.reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
-@media print { .reveal-on [data-reveal] { opacity: 1; transform: none; } }
+/* Scroll reveal (assets/reveal.js): sections fade up once as they enter the view.
+   Hidden from the first paint via the class set in <head>, so nothing fades out on load */
+.reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card).is-in { opacity: 1; transform: none; }
+@media print { .reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card) { opacity: 1; transform: none; } }
