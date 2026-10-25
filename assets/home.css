@@ -78,9 +78,11 @@ main::before {
 .word-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
   stroke-dasharray: 1; stroke-dashoffset: 1;
   animation: word-sketch .7s var(--home-ease) calc(var(--start) + var(--i) * .08s) forwards,
-             word-ink .8s cubic-bezier(.4, 0, .2, 1) calc(var(--start) + var(--i) * .08s + .45s) forwards; }   /* each letter inks right after its own outline, overlapping */
+             word-ink .3s cubic-bezier(.2, .8, .2, 1) calc(var(--start) + 1.1s) forwards; }   /* all letters ink at once, after the last outline */
+.word-draw { transform-origin: 50% 70%; animation: word-pop .5s cubic-bezier(.34, 1.56, .64, 1) calc(var(--start) + 1.1s) both; }   /* a short pop as the ink lands */
 @keyframes word-sketch { to { stroke-dashoffset: 0; } }
-@keyframes word-ink { 0% { fill-opacity: 0; stroke-opacity: 1; } 60% { stroke-opacity: .6; } 100% { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes word-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes word-pop { 0%, 100% { transform: none; } 45% { transform: scale(1.06); } }
 
 /* Landing order: 1 headline grows in, short pause, 2 the drawing, 3 once it is done:
    kicker, lead, buttons and nav as one block. Selected work follows on the first interaction or 2 s later (assets/reveal.js). */
@@ -91,7 +93,7 @@ main::before {
 }
 @keyframes intro-grow { from { opacity: 0; transform: scale(.94); } }
 @keyframes intro-fade { from { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .word-draw path { animation: none; fill-opacity: 1; stroke: none; } }
+@media (prefers-reduced-motion: reduce) { .word-draw, .word-draw path { animation: none; } .word-draw path { fill-opacity: 1; stroke: none; } }
 .hero__title > span { display: block; }
 .hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
