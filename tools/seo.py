@@ -44,7 +44,7 @@ PAGES = [
   ('invia/', 'Three Moments That Decide a Flight Booking · UX Case Study by Tobias Stoll',
    'UX/UI case study for Invia Flights (fluege.de): three A/B tested booking features that raised conversion by a high single-digit percentage. Includes an interactive playground of the Offer Box.',
    'invia', 'case', True),
-  ('design-to-code/', 'From 60 Legacy Components to One Source of Truth · Design System Case Study by Tobias Stoll',
+  ('design-to-code/', 'Building a Design System as the Single Source of Truth · Design System Case Study by Tobias Stoll',
    'Design system case study: 60 legacy components merged into 30, 440+ design tokens in three tiers and a design to code workflow with Figma, GitHub and AI. By Tobias Stoll, UX/UI designer in Berlin.',
    'design-to-code', 'case', True),
   ('prime-league/', 'An Esports Platform People Can Follow · UX Case Study by Tobias Stoll',
@@ -130,7 +130,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 
 ## Case studies
 - [Three moments that decide a flight booking]({BASE}/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up by a high single-digit percentage, about 1 in 3 customers chose the Flex Ticket.
-- [From 60 legacy components to one source of truth]({BASE}/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
+- [Building a design system as the single source of truth]({BASE}/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
 - [An esports platform people can follow]({BASE}/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. New information architecture around the match; registration drop-off fell by 30 %.
 
 ## More
