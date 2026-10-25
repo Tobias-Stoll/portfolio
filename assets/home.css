@@ -44,6 +44,7 @@ main:focus { outline: none; }
 .wrap { max-width: var(--home-max); margin: 0 auto; padding-inline: var(--home-gutter); position: relative; }
 
 /* Header, Status Badge and Kicker come from the Design System (site-header.css, status.css, kicker.css) */
+.site-header { background-color: rgb(245 244 241 / .86); }   /* header glass in the paper tone instead of the cool canvas */
 /* ---------- Hero ---------- */
 .hero { padding-top: clamp(var(--space-32), 5vw, var(--space-64)); }
 main::before {
