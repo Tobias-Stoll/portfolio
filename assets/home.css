@@ -20,6 +20,9 @@
   color-scheme: light;
 }
 
+/* WCAG AA on the paper ground: muted and subtle text a step darker than the Design System values
+   (DS #6d6e75 / #a3a4ac reached only 4.3:1 on neutral surfaces and 2.3:1 on paper). Candidate for the DS tokens */
+:root { --color-fg-muted: #5E5F66; --color-fg-subtle: #6B6C73; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
