@@ -14,6 +14,9 @@ body {
   font-family: var(--font-family-sans);
 }
 img { max-width: 100%; height: auto; display: block; }
+/* Warm paper ground with faint specks, same as the landing page (case studies and Ride Recap; legal pages stay plain) */
+body.paper { background: #F5F4F1 url(home/paper-specks.png) 0 0 / 420px 420px repeat; }
+body.paper .site-header { background-color: rgb(245 244 241 / .86); }
 a { color: var(--button-ghost-fg); }
 a.btn { text-decoration: none; }
 a:focus-visible, [tabindex]:focus-visible {
