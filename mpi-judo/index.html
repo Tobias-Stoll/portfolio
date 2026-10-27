@@ -34,6 +34,8 @@
     /* MPI Judo: two story frames side by side, phone format */
     .stories { display: grid; grid-template-columns: repeat(2, minmax(0, 280px)); gap: var(--space-16); }
     .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
+    /* Color preview next to a color name */
+    .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
     @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
@@ -59,7 +61,7 @@
   <div class="wrap">
 
     <!-- Hero -->
-    <section class="cs-hero cs-hero--bottom" aria-labelledby="title">
+    <section class="cs-hero" aria-labelledby="title">
       <div>
         <p class="cs-hero__eyebrow text-label">Smaller project · Max Planck Institute · 2026</p>
         <h1 id="title" class="text-display">A social media kit students can post with</h1>
@@ -99,8 +101,8 @@
         </div>
         <div class="cs-body">
           <p class="text-body-m"><b>Started with a moodboard.</b> "Neugier in Bewegung" puts track and lab side by side: motion photos, lab scenes, microscopy, force curves and tape collage.</p>
-          <p class="text-body-m"><b>Kept the Max Planck greens as the base.</b> MPG Green (#006c66) and MPG Green Dark (#005555) come straight from the CI and carry the research side.</p>
-          <p class="text-body-m"><b>Added orange and mint as accents.</b> Performance Orange (#ff5a36) is the warm complement to the cool green. Electric Mint (#64ffda) works as a highlight on dark green. Both stay at about 10 % of a post: hooks, key numbers, CTAs.</p>
+          <p class="text-body-m"><b>Kept the Max Planck greens as the base.</b> MPG Green <span class="swatch" style="--c:#006c66" aria-hidden="true"></span> and MPG Green Dark <span class="swatch" style="--c:#005555" aria-hidden="true"></span> come straight from the CI and carry the research side.</p>
+          <p class="text-body-m"><b>Added orange and mint as accents.</b> Performance Orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> is the warm complement to the cool green. Electric Mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> works as a highlight on dark green. Both stay at about 10 % of a post: hooks, key numbers, CTAs.</p>
           <p class="text-body-m"><b>Extended the palette to 14 tones.</b> Four groups: Primary, Base &amp; Text, Accent &amp; Sport, Data &amp; Function. Light tints like Mint Tint keep text boxes readable, data colors separate curves in charts.</p>
           <p class="text-body-m"><b>Gave research and sport their own background.</b> Off-White for research and longer explanations, dark green for sport and hooks. Alternating them breaks up the feed.</p>
         </div>
@@ -125,7 +127,7 @@
           <h2 id="rules" class="text-heading-l">Wrote the rules into Figma</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m"><b>Kept the MPG house fonts.</b> Gemini first suggested fonts like Montserrat and Inter. I stayed with Merriweather for hooks and quotes and Roboto for data, tags and CTAs, so the kit stays within the CI.</p>
+          <p class="text-body-m"><b>Kept the MPG house fonts.</b> Merriweather carries hooks and quotes, Roboto carries data, tags and CTAs. Both are official MPG fonts, so the kit stays within the CI.</p>
           <p class="text-body-m"><b>Limited each scale to three steps.</b> Spacing 8 / 16 / 24 px, borders 1 / 2 / 4 px, radius 0 / 8 px / pill.</p>
           <p class="text-body-m"><b>Wrote usage rules into the semantic tokens.</b> The description shows up as a tooltip in Figma when someone picks a color, e.g. Mint Tint is only for local highlights.</p>
           <p class="text-body-m"><b>Marked every chart as illustrative.</b> The study has no results yet, so the templates make no clinical claims.</p>
@@ -159,7 +161,7 @@
 
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">[Open: a measured result from the team, e.g. time per post or posts published by students since the kit.]</p>
+        <p class="text-body-l">Waiting for data.</p>
       </div>
     </section>
 
