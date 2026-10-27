@@ -19,6 +19,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 
 ## More
 - [Offer Box playground](https://concept2design.de/playground/): interactive component built in code
+- [A social media kit for a judo study](https://concept2design.de/mpi-judo/): Max Planck Institute, XPLO judo study. Moodboard, 14-color system, type scale and Instagram templates in Figma for student assistants.
 - [Ride Recap tutorial](https://concept2design.de/ride-recap/): Figma Motion for social media
 - Background: trained in hospitality, studied science, former esports commentator and host
 - [Impressum](https://concept2design.de/impressum/) · [Privacy](https://concept2design.de/datenschutz/)

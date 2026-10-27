@@ -129,6 +129,14 @@ main::before {
 
 /* More work: rows with an image that follows the cursor */
 /* More work: Work Row from the Design System (work-row.css); the image that follows the cursor stays here */
+/* Work Row with a page behind it: the name is the link, its hit area covers the whole row; tag in the accent like "Soon" */
+.work-row--link { position: relative; cursor: pointer; }
+.work-row--link .work-row__name { color: inherit; text-decoration: none; }
+.work-row--link .work-row__name::after { content: ""; position: absolute; inset: 0; }
+.work-row--link .work-row__tag { color: var(--button-ghost-fg); }
+.work-row--link:hover .work-row__name { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.work-row--link .work-row__name:focus-visible { outline: none; }
+.work-row--link:has(.work-row__name:focus-visible) { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; border-radius: var(--radius-control); }
 .peek {
   position: fixed; left: 0; top: 0; z-index: 15; width: min(704px, 46vw); height: auto; pointer-events: none;
   border-radius: var(--radius-lg); box-shadow: var(--home-shadow-lift);

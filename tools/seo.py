@@ -50,6 +50,9 @@ PAGES = [
   ('prime-league/', 'An Esports Platform People Can Follow · UX Case Study by Tobias Stoll',
    'UX case study for Prime League: research, card sorting and a new information architecture around the match. Registration drop-off fell by 30 %. By Tobias Stoll, UX designer in Berlin.',
    'prime-league', 'case', True),
+  ('mpi-judo/', 'A Social Media Kit for a Judo Study · Project by Tobias Stoll',
+   'Social media kit for the XPLO judo study at a Max Planck Institute: moodboard, color system, type, spacing and Instagram templates in Figma, so student assistants can post on brand. By Tobias Stoll.',
+   'mpi-judo', 'article', True),
   ('ride-recap/', 'Ride Recap: Figma Motion for Social Media · Tutorial by Tobias Stoll',
    'Tutorial: an animated Instagram story from real ride data, built entirely in Figma with components, a custom shader and Figma Motion. By Tobias Stoll, product designer in Berlin.',
    'ride-recap', 'article', True),
@@ -135,6 +138,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 
 ## More
 - [Offer Box playground]({BASE}/playground/): interactive component built in code
+- [A social media kit for a judo study]({BASE}/mpi-judo/): Max Planck Institute, XPLO judo study. Moodboard, 14-color system, type scale and Instagram templates in Figma for student assistants.
 - [Ride Recap tutorial]({BASE}/ride-recap/): Figma Motion for social media
 - Background: trained in hospitality, studied science, former esports commentator and host
 - [Impressum]({BASE}/impressum/) · [Privacy]({BASE}/datenschutz/)
