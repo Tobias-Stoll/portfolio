@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Social Media Kit for a Judo Study · Project by Tobias Stoll</title>
+  <meta name="description" content="Social media kit for the XPLO judo study at a Max Planck Institute: moodboard, color system, type, spacing and Instagram templates in Figma, so student assistants can post on brand. By Tobias Stoll.">
+  <meta name="robots" content="noindex">   <!-- test page: remove and add to tools/seo.py before going live -->
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="author" content="Tobias Stoll">
+
+  <script>/* reveal: hide sections before first paint; show everything if reveal.js does not start */(function(d){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('reveal-on');setTimeout(function(){if(!window.__revealReady)d.classList.remove('reveal-on')},5000)})(document.documentElement)</script>
+
+  <link rel="stylesheet" href="../assets/fonts/fonts.css?v=2.0.3">
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <!-- @ds:start Design System, pinned to one version (commit aa4d52d) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/dist/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/dist/typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/button.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/chip.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/status.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/info-card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-header.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-footer.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/link-external.css">
+  <!-- @ds:end -->
+
+  <link rel="stylesheet" href="../assets/site.css?v=2.0.3">
+  <link rel="stylesheet" href="../assets/cards.css?v=2.0.3">
+  <style>
+    /* MPI Judo: two story frames side by side, phone format */
+    .stories { display: grid; grid-template-columns: repeat(2, minmax(0, 280px)); gap: var(--space-16); }
+    .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
+    @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  </style>
+</head>
+<body class="paper">
+<a class="skip-link btn btn--primary" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="../">Tobias Stoll</a>
+    <nav class="site-header__nav" aria-label="Sections">
+      <a href="../#work" aria-current="page">Work</a>
+      <a href="../#how">How</a>
+      <a href="../#fun">Fun</a>
+      <a href="../#about">About</a>
+      <a href="../#notes">Notes</a>
+    </nav>
+    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
+  </div>
+  <div class="site-header__progress" aria-hidden="true"><span></span></div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+
+    <!-- Hero -->
+    <section class="cs-hero cs-hero--bottom" aria-labelledby="title">
+      <div>
+        <p class="cs-hero__eyebrow text-label">Smaller project · Max Planck Institute · 2026</p>
+        <h1 id="title" class="text-display">A social media kit students can post with</h1>
+        <p class="cs-hero__lead text-body-l">
+          The XPLO judo study at a Max Planck Institute researches cognitive control in sport. Its Instagram account is run by student assistants.
+          I built them a small Figma kit, so every post looks like Max Planck without anyone having to be a designer.
+        </p>
+      </div>
+      <dl class="info-card info-card--facts facts text-body-s">
+        <div><dt>Role</dt><dd>Brand and visual design, end to end: look and feel, foundations, templates</dd></div>
+        <div><dt>Channel</dt><dd>Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
+        <div><dt>Tools</dt><dd>Figma (variables, components), Gemini as sparring partner</dd></div>
+        <div><dt>Scope</dt><dd>14 colors, 2 fonts, 8 type styles, spacing, border and radius scale, 5 components, post and story templates, moodboard</dd></div>
+      </dl>
+    </section>
+
+    <!-- Problem -->
+    <section class="cs-section" aria-labelledby="problem">
+      <p class="cs-kicker text-label">Problem</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="problem" class="text-heading-l">Students posted without rules for a feed</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">The student assistants change often and have no design background. The Max Planck CI covers print and web, but has no rules for a feed. Posts mixed styles and were heavy on text, and they showed neither the research nor the judo.</p>
+          <p class="text-body-m"><b>Hypothesis.</b> If student assistants get a small, ready-made kit (tokens with usage rules built in, plus a few templates), they can build an on-brand post in under 30 minutes, without deciding colors, type or spacing themselves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Look and color -->
+    <section class="cs-section" aria-labelledby="look">
+      <p class="cs-kicker text-label">The approach</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="look" class="text-heading-l">Started from the Max Planck green</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Started with a moodboard.</b> "Neugier in Bewegung" puts track and lab side by side: motion photos, lab scenes, microscopy, force curves and tape collage.</p>
+          <p class="text-body-m"><b>Kept the Max Planck greens as the base.</b> MPG Green (#006c66) and MPG Green Dark (#005555) come straight from the CI and carry the research side.</p>
+          <p class="text-body-m"><b>Added orange and mint as accents.</b> Performance Orange (#ff5a36) is the warm complement to the cool green. Electric Mint (#64ffda) works as a highlight on dark green. Both stay at about 10 % of a post: hooks, key numbers, CTAs.</p>
+          <p class="text-body-m"><b>Extended the palette to 14 tones.</b> Four groups: Primary, Base &amp; Text, Accent &amp; Sport, Data &amp; Function. Light tints like Mint Tint keep text boxes readable, data colors separate curves in charts.</p>
+          <p class="text-body-m"><b>Gave research and sport their own background.</b> Off-White for research and longer explanations, dark green for sport and hooks. Alternating them breaks up the feed.</p>
+        </div>
+      </div>
+
+      <figure class="figure">
+        <a class="figure__link" href="images/moodboard.webp"><img src="images/moodboard.webp" width="2400" height="2400" loading="lazy" alt="Moodboard 'Neugier in Bewegung': a sprinter on a track, a researcher attaching sensors to an arm in a lab, a running shoe on clay, muscle fibres under a microscope, an illustrative force curve, and example post, story and data sheet in green, orange and mint."></a>
+        <figcaption class="text-body-s"><b>Moodboard "Neugier in Bewegung".</b> Sport and lab on one board, with the first post, story and data sheet in the new colors. All curves are illustrative.</figcaption>
+      </figure>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/colors.webp"><img src="images/colors.webp" width="1994" height="1638" loading="lazy" alt="Color system in four groups: Primary (MPG Green Dark, MPG Green), Base and Text (Deep Slate, Medium Gray, Light Gray, Off-White), Accent and Sport (Performance Orange, Coral Light, Electric Mint, Mint Tint), Data and Function (Data Blue, Tech Violet, Success Green, Alert Red)."></a>
+        <figcaption class="text-body-s"><b>14 tones in 4 groups.</b> The two MPG greens come from the CI, every other tone was chosen around them.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Type and rules -->
+    <section class="cs-section" aria-labelledby="rules">
+      <p class="cs-kicker text-label">Foundations</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="rules" class="text-heading-l">Wrote the rules into Figma</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m"><b>Kept the MPG house fonts.</b> Gemini first suggested fonts like Montserrat and Inter. I stayed with Merriweather for hooks and quotes and Roboto for data, tags and CTAs, so the kit stays within the CI.</p>
+          <p class="text-body-m"><b>Limited each scale to three steps.</b> Spacing 8 / 16 / 24 px, borders 1 / 2 / 4 px, radius 0 / 8 px / pill.</p>
+          <p class="text-body-m"><b>Wrote usage rules into the semantic tokens.</b> The description shows up as a tooltip in Figma when someone picks a color, e.g. Mint Tint is only for local highlights.</p>
+          <p class="text-body-m"><b>Marked every chart as illustrative.</b> The study has no results yet, so the templates make no clinical claims.</p>
+        </div>
+      </div>
+
+      <figure class="figure figure--pair">
+        <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
+        <a class="figure__link" href="images/components.webp"><img src="images/components.webp" width="1669" height="1035" loading="lazy" alt="Components: CTA button in three variants, tags in five variants, card with slot in three tones, handle in two variants, and a collage tape element."></a>
+        <figcaption class="text-body-s"><b>8 type styles and 5 components.</b> Body text starts at 36 px on a 1080 px canvas, because a post is seen small and in passing.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Result -->
+    <section class="cs-section" aria-labelledby="result">
+      <p class="cs-kicker text-label">Result</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="result" class="text-heading-l">Every post now starts from one design guide</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">The team gets a moodboard, the foundations, 5 components and templates for a feed post (4:5) and 2 story layouts (9:16), each with a filled example.</p>
+        </div>
+      </div>
+
+      <figure class="figure stories">
+        <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="1080" height="1920" loading="lazy" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
+        <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="1080" height="1920" loading="lazy" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
+        <figcaption class="text-body-s"><b>Two stories, one topic.</b> A question on the light background, the analysis on the dark one.</figcaption>
+      </figure>
+
+      <div class="cs-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-l">[Open: a measured result from the team, e.g. time per post or posts published by students since the kit.]</p>
+      </div>
+    </section>
+
+    <!-- Takeaways -->
+    <section class="cs-section" aria-labelledby="takeaways">
+      <div class="prose">
+        <p class="cs-kicker text-label">What I took away</p>
+        <h2 id="takeaways" class="text-heading-l">What I learned</h2>
+      </div>
+      <ul class="results results--3 text-body-m" role="list">
+        <li class="info-card"><b class="info-card__title">Fewer tokens, more rules</b><span class="info-card__text">Social media needed fewer tokens than a product. The rules work best inside Figma, at the moment someone picks a color.</span></li>
+        <li class="info-card"><b class="info-card__title">Type scales differently on social</b><span class="info-card__text">On a 1080 px canvas, hooks run at 126 px and body text at 36 px.</span></li>
+        <li class="info-card"><b class="info-card__title">A kit leaves room to create</b><span class="info-card__text">Every post stays recognizable as Max Planck, while the students still choose the topic, the image and the story.</span></li>
+      </ul>
+      <div class="talk">
+        <p class="text-body-l">Have a look at my premier case studies.</p>
+        <a class="btn btn--primary btn--lg" href="../#work">Back to work</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.3</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
+    <p class="built">Designed in Figma, built with Claude, on <a href="https://tobias-stoll.github.io/DesignSystem/" target="_blank" rel="noopener">my own design system<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>.</p>
+  </div>
+</footer>
+<script src="../assets/reveal.js?v=2.0.3" defer></script>
+<script src="../assets/nav.js?v=2.0.3"></script>
+<script src="../assets/lightbox.js?v=2.0.3"></script>
+</body>
+</html>
