@@ -8,10 +8,10 @@
 .cf :focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 4px; }
 
 .cf__main {
-  max-width: var(--home-max); margin: 0 auto; padding: clamp(56px, 8vw, 96px) var(--home-gutter) clamp(40px, 5vw, 64px);
+  max-width: var(--home-max, 1120px); margin: 0 auto; padding: clamp(56px, 8vw, 96px) var(--home-gutter, var(--space-24, 24px)) clamp(40px, 5vw, 64px);
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 419px); gap: 40px 64px; align-items: start;
 }
-.cf__title { margin: 0; font-family: var(--font-family-display); font-weight: 700; font-size: var(--home-hero-size); line-height: 1.15; }   /* same size as the hero headline */
+.cf__title { margin: 0; font-family: var(--font-family-display); font-weight: 700; font-size: var(--home-hero-size, clamp(40px, 5vw, 60px)); line-height: 1.15; }   /* same size as the hero headline */
 .cf__muted { color: var(--cf-muted); }
 
 /* rolling verb: one line high, the words slide up, the slot follows the width of the next word */
@@ -34,7 +34,7 @@
 .cf__mail.is-copied .i-done { display: block; }
 
 .cf__legal {
-  max-width: var(--home-max); margin: 0 auto; padding: 20px var(--home-gutter) 32px; border-top: 1px solid rgb(255 255 255 / .16);
+  max-width: var(--home-max, 1120px); margin: 0 auto; padding: 20px var(--home-gutter, var(--space-24, 24px)) 32px; border-top: 1px solid rgb(255 255 255 / .16);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; font-size: var(--font-size-200); line-height: var(--font-line-height-200); color: var(--cf-muted);
 }
 .cf__legal p { margin: 0; }

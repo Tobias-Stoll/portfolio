@@ -1,3 +1,13 @@
+/* The demos on this page show the real Design System (violet). The site theme is rust (theme.css), so the original ramp
+   and the semantic tokens that point to it are restored inside the demos. Aliases resolve at :root, hence redefined here. */
+:is(.merge, .map, .atom__frame) {
+  --color-purple-50: #f7f5ff; --color-purple-100: #eceaff; --color-purple-200: #d8d6ff; --color-purple-300: #bdbaff; --color-purple-400: #9a95ff;
+  --color-purple-500: #7b70ff; --color-purple-600: #5f2cff; --color-purple-700: #5025d8; --color-purple-800: #3e14aa; --color-purple-900: #2a0378;
+  --color-action-primary-bg-default: var(--color-purple-600); --color-action-primary-bg-hover: var(--color-purple-700); --color-action-primary-bg-pressed: var(--color-purple-800);
+  --color-action-primary-fg: #fff; --color-action-ghost-bg-hover: var(--color-purple-50); --color-action-ghost-bg-pressed: var(--color-purple-100); --color-action-ghost-fg: var(--color-purple-700);
+  --color-border-focus: var(--color-purple-500);
+  --button-primary-bg-default: var(--color-action-primary-bg-default); --button-primary-bg-hover: var(--color-action-primary-bg-hover); --button-primary-fg: var(--color-action-primary-fg);
+}
 /**
  * Design to Code case study: the 60 → 30 merge loop and the token tiers with the theme swap.
  * Everything else on the page uses site.css, like the Invia case study.

@@ -83,33 +83,52 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/status.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/case-card.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/info-card.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-header.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-footer.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/link-external.css">
   <!-- @ds:end -->
+
+  <link rel="stylesheet" href="../assets/theme.css?v=2.0.4">
 
   <link rel="stylesheet" href="../assets/site.css?v=2.0.4">
 
   <link rel="stylesheet" href="../assets/rowlist.css?v=2.0.4">
   <link rel="stylesheet" href="../assets/cards.css?v=2.0.4">
   <link rel="stylesheet" href="../assets/d2c.css?v=2.0.4">
+
+  <link rel="stylesheet" href="../assets/site-nav.css?v=2.0.4">
+
+  <link rel="stylesheet" href="../assets/contact-footer.css?v=2.0.4">
+
+  <link rel="stylesheet" href="../assets/cursor.css?v=2.0.4">
 </head>
 <body class="paper">
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="../">Tobias Stoll</a>
-    <nav class="site-header__nav" aria-label="Sections">
-      <a href="../#work" aria-current="page">Work</a>
-      <a href="../#how">How</a>
-      <a href="../#fun">Fun</a>
-      <a href="../#about">About</a>
-      <a href="../#notes">Notes</a>
-    </nav>
-    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
-  </div>
-  <div class="site-header__progress" aria-hidden="true"><span></span></div>
+<header class="site-nav" id="site-nav" data-state="open" data-current="w">
+  <nav class="site-nav__bar" aria-label="Sections">
+    <button class="site-nav__menu" type="button" aria-expanded="false" aria-controls="site-nav-list" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <ul class="site-nav__list" id="site-nav-list" role="list">
+      <li><a href="../" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
+      <li><a href="../#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
+      <li><a href="../#fun" data-key="f"><kbd aria-hidden="true">F</kbd><span>Fun</span></a></li>
+      <li><a href="../#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
+      <li><a href="../#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
+      <li class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
+    </ul>
+    <div class="site-nav__right">
+      <span class="site-nav__open"><span class="site-nav__dot" aria-hidden="true"></span>Open to work</span>
+      <button class="site-nav__contact" type="button" aria-expanded="false" aria-controls="contact-pop" data-key="c"><kbd aria-hidden="true">C</kbd><span>Contact</span></button>
+    </div>
+    <div class="contact-pop" id="contact-pop" role="group" aria-label="Contact" inert>
+      <div class="contact-pop__head"><span>Contact</span><button class="contact-pop__close" type="button" aria-label="Close contact menu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <button class="contact-pop__row" type="button" data-copy="tobiasstoll@pm.me"><span class="contact-pop__text"><span class="contact-pop__label" aria-live="polite">Email</span><span class="contact-pop__value">tobiasstoll@pm.me</span></span><span class="contact-pop__icon"><span class="sr-only">Copy email address</span><svg class="i-copy" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="i-done" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></button>
+      <a class="contact-pop__row" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener"><span class="contact-pop__text"><span class="contact-pop__label">LinkedIn</span><span class="contact-pop__value">@tobiasstoll-ux</span></span><span class="contact-pop__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg><span class="sr-only">(opens in a new tab)</span></span></a>
+      <a class="contact-pop__row" href="../assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener"><span class="contact-pop__text"><span class="contact-pop__label">CV</span><span class="contact-pop__value">cv-tobias-stoll.pdf</span></span><span class="contact-pop__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg><span class="sr-only">(PDF, opens in a new tab)</span></span></a>
+    </div>
+  </nav>
+  <div class="site-nav__progress" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -624,14 +643,30 @@
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span> · <span class="footer-legal"><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Designed in Figma, built with Claude.</p>
+<footer class="cf" id="contact" aria-labelledby="contact-title">
+  <div class="cf__main">
+    <h2 class="cf__title" id="contact-title">
+      <span class="sr-only">Let’s create something great together.</span>
+      <span aria-hidden="true">Let’s <span class="cf__roll" id="cf-roll"><span class="cf__word is-current">create</span><span class="cf__word">design</span><span class="cf__word">build</span><span class="cf__word">make</span></span> <span class="cf__muted">something great together.</span></span>
+    </h2>
+    <div class="cf__contact">
+      <button class="cf__mail" type="button" data-cursor="Copy email" data-copy="tobiasstoll@pm.me"><span>tobiasstoll@pm.me</span><span class="cf__icon"><svg class="i-copy" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="i-done" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr-only" aria-live="polite" data-status></span></button>
+      <ul class="cf__links" role="list">
+        <li><a href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">Instagram <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="../assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener">Resume <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(PDF, opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="cf__legal">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span></p>
+    <p><a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a> · Designed in Figma, built with Claude.</p>
   </div>
 </footer>
 <script src="../assets/reveal.js?v=2.0.4" defer></script>
-<script src="../assets/nav.js?v=2.0.4"></script>
+<script src="../assets/site-nav.js?v=2.0.4" defer></script>
+<script src="../assets/contact-footer.js?v=2.0.4" defer></script>
+<script src="../assets/cursor.js?v=2.0.4" defer></script>
 <script src="../assets/ft-timeline.js?v=2.0.4"></script>
 <script src="../assets/lightbox.js?v=2.0.4"></script>
 <script src="../assets/d2c.js?v=2.0.4"></script>

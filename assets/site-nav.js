@@ -29,9 +29,18 @@
   };
 
   // scroll-spy: the link of the section that sits under the top of the viewport
-  const targets = links.map(a => a.getAttribute('href')).filter(h => h.length > 1)
+  const targets = links.map(a => a.getAttribute('href')).filter(h => h.startsWith('#') && h.length > 1)
     .map(h => ({ h, el: document.querySelector(h) })).filter(t => t.el);
+  const bar = nav.querySelector('.site-nav__progress');   // case pages: how far down the page you are
   const spy = () => {
+    if (bar) {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.setProperty('--progress', max > 0 ? Math.min(1, Math.max(0, scrollY / max)).toFixed(4) : 0);
+    }
+    if (!targets.length) {   // sub page: the section it belongs to stays marked (data-current="w" = Work)
+      links.forEach(a => a.setAttribute('aria-current', String(a.dataset.key === nav.dataset.current)));
+      return;
+    }
     const y = scrollY + innerHeight * .35;
     let cur = '#top';
     for (const t of targets) if (t.h !== '#top' && t.el.offsetTop <= y) cur = t.h;
@@ -61,6 +70,7 @@
   document.addEventListener('click', (e) => { if (!nav.contains(e.target)) { setOpen(false); setContact(false); } });
 
   const go = (href) => {
+    if (!href.startsWith('#')) { location.href = href; return; }   // sub pages: the links point to the landing page
     const el = href === '#top' ? document.body : document.querySelector(href);
     if (!el) return;
     if (href === '#top') scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });

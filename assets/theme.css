@@ -1,0 +1,17 @@
+/**
+ * Theme: Electric Rust as the primary colour, on every page. Loaded right after the Design System tokens.
+ * Candidate for the Design System itself (rename purple/* to the brand ramp, then sync Figma).
+ */
+/* Primary colour: Electric Rust #FF5A36 replaces the violet ramp (all pages).
+   The semantic tokens alias this ramp, so chips, stages, focus rings and ghost links follow.
+   Contrast (WCAG AA): rust/600 is a fill colour; a light label on it reaches 3.1:1 (below AA for normal text), so it carries no body text.
+   Text and outlines use rust/700 #C93A17 (4.7:1 on paper, 5.1:1 on white). Primary buttons are outlined in ink (site.css, home.css). */
+:root {
+  --color-purple-50: #FFF4F0;  --color-purple-100: #FFE8E0; --color-purple-200: #FFD0C2; --color-purple-300: #FFAF98; --color-purple-400: #FF8B6D;
+  --color-purple-500: #FF7350; --color-purple-600: #FF5A36; --color-purple-700: #C93A17; --color-purple-800: #962B10; --color-purple-900: #5F1A09;
+  --color-action-primary-fg: #FFFFFF;            /* light label on rust fills (pills like "After"): 3.1:1 */
+  --color-action-primary-bg-hover: #E5421F;      /* white 4.1:1 */
+  --color-action-primary-bg-pressed: #C93A17;    /* white 5.1:1 */
+  --color-border-focus: var(--color-purple-700); /* focus ring 4.7:1 on paper */
+  --button-secondary-border: var(--color-purple-700);
+}
