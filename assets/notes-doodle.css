@@ -45,17 +45,17 @@
 @media (max-width: 479px) { .wall .note--plain { grid-column: 1 / -1; } }
 
 /* the submit button: a hand-drawn outline (wobbly, with a little overshoot at the corner) over a rough highlighter swipe that bleeds past the edges */
-.wall .note__actions { --doodle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath vector-effect='non-scaling-stroke' d='M9 3C30 1.8 70 2.2 91 2.4C97 2.6 99 6 98.8 20C98.6 33 97.4 37 91 37.5C70 38.6 28 38.3 9 37.4C3 37 1.2 33 1.3 20C1.4 8 3 3.6 9 3Z'/%3E%3Cpath vector-effect='non-scaling-stroke' d='M7 3.8C4 4.6 2.4 6.6 1.8 12'/%3E%3C/g%3E%3C/svg%3E"); --doodle-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M3 11C5 6 14 7 30 6C55 4.5 82 5.5 96 7C100 8 99 13 99.5 20C100 28 98 33 95 35C80 38 55 36.5 30 37.5C14 38 6 37 3 33C1 28 4 16 3 11Z'/%3E%3C/svg%3E"); --doodle-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3.2h6.2l-.9 5.6 3 3.1v2.2H6.9v-2.2l3-3.1L9 3.2zM12 14.2v6.6'/%3E%3C/svg%3E"); }
+.wall .note__actions { --doodle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath vector-effect='non-scaling-stroke' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' d='M13 2.6C24 1.4 35 3.4 50 2.4C65 1.5 78 3.3 88 2.7C95.5 2.4 99 6.5 98.9 13C98.8 21 99.5 27 98.7 32C97.6 37.3 93.5 38 87 37.7C72 37.1 58 38.7 43 38C29 37.4 19 38.5 11 37.6C4 37 1.1 32.5 1.3 25.5C1.5 18 0.9 12.5 1.8 8C2.7 3.9 6.5 2.9 15.5 2.3'/%3E%3C/svg%3E"); --doodle-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath fill='black' fill-rule='evenodd' d='M4 8L9 5.5L8 8.5L16 4.8L40 4L70 3.6L96 4.4L112 5.2L116 7L113 9L118 11L114.5 14L119 17L115 20.5L118.5 24L114 27L117.5 31L111 34.5L90 36L60 36.8L30 36.2L12 35.4L6 33.5L8.5 31L3 29L7 26L2 23L6.5 19.5L1.5 16L6 13L2.5 10.5Z M18 9.2C40 8.4 70 8.8 100 9.6L100 10.4C70 9.8 40 9.6 18 10.2Z M26 29C50 28.4 80 28.6 108 29.6L108 30.5C80 29.6 50 29.5 26 30Z M60 19.4C75 19 90 19.2 104 19.8L104 20.4C90 19.9 75 19.8 60 20.1Z'/%3E%3C/svg%3E"); --doodle-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3.2h6.2l-.9 5.6 3 3.1v2.2H6.9v-2.2l3-3.1L9 3.2zM12 14.2v6.6'/%3E%3C/svg%3E"); }
 .wall .note__actions .btn {
   --_bg: transparent; --_bg-hover: transparent; --_bg-pressed: transparent; --_fg: var(--wall-ink); --_border: transparent;
   position: relative; isolation: isolate; gap: var(--space-8); border-radius: 0; box-shadow: none;
-  padding-inline: calc(var(--button-large-padding-x) + 4px); font-size: var(--font-size-300); line-height: var(--font-line-height-300);
+  padding: 0 var(--space-16) 0 var(--space-8); min-height: 44px; font-size: var(--font-size-300); line-height: var(--font-line-height-300);
   outline-offset: 5px; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
 }
 .wall .note__actions .btn::before, .wall .note__actions .btn::after { content: ""; position: absolute; pointer-events: none; }
 .wall .note__actions .btn::before {   /* the swipe */
-  inset: 3px -11px 1px -10px; z-index: -2; transform: rotate(-1.2deg);
-  background: color-mix(in srgb, var(--color-purple-600) 52%, transparent);
+  inset: -4px -18px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline all round, most on the right */
+  background: color-mix(in srgb, var(--color-purple-600) 46%, transparent);
   -webkit-mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat; mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat;
   transition: background-color .2s, transform .25s cubic-bezier(.34, 1.56, .64, 1);
 }
@@ -65,15 +65,15 @@
 }
 /* little badge with a pin in it, like the key badges in the nav */
 .wall .note__actions .btn .pin-badge {
-  display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1.5px solid var(--wall-ink); border-radius: 6px 3px 7px 3px / 3px 7px 3px 6px;
+  display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.25px solid var(--wall-ink); border-radius: 6px 5px 6px 4px / 5px 6px 4px 6px;
 }
 .wall .note__actions .btn .pin-badge::before {
-  content: ""; width: 14px; height: 14px; background: var(--wall-ink);
+  content: ""; width: 13px; height: 13px; background: var(--wall-ink);
   -webkit-mask: var(--doodle-pin) center / contain no-repeat; mask: var(--doodle-pin) center / contain no-repeat;
 }
 @media (hover: hover) {
   .wall .note__actions .btn:hover:not(:disabled) { animation: doodle-wiggle .5s ease-in-out; }
-  .wall .note__actions .btn:hover:not(:disabled)::before { background: color-mix(in srgb, var(--color-purple-600) 78%, transparent); transform: rotate(-1.2deg) scale(1.04, 1.08); }
+  .wall .note__actions .btn:hover:not(:disabled)::before { background: color-mix(in srgb, var(--color-purple-600) 66%, transparent); transform: rotate(-.8deg) scale(1.03, 1.06); }
 }
 .wall .note__actions .btn:active:not(:disabled) { transform: scale(.97); }
 .wall .note__actions .btn:disabled { color: var(--button-disabled-fg); background: transparent; }
@@ -82,18 +82,15 @@
 @keyframes doodle-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.8deg); } 60% { transform: rotate(1.2deg); } }
 @media (prefers-reduced-motion: reduce) { .wall .note__actions .btn { animation: none !important; transition: none; } .wall .note__actions .btn::before { transition: none; } }
 
-/* the form note as a page of a ring-bound notepad: squared paper like the hero, with rings along the top edge */
+/* the form note as a page of a notepad: fine squared paper like the hero */
 .wall .note--plain {
-  --grid-line: rgb(28 25 23 / .10);
+  --grid-line: rgb(28 25 23 / .055);
   background-color: var(--color-bg-default, #fff);
   background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line) 1px, transparent 1px);
-  background-size: 16px 16px; background-position: 7px 3px;
-  padding-top: var(--space-24);
+  background-size: 12px 12px; background-position: 5px 3px;
+  padding-top: var(--space-16);
 }
-.wall .note--plain::before {
-  top: -8px; left: var(--space-12); right: var(--space-12); width: auto; height: 18px; margin: 0; transform: none; clip-path: none;
-  background: radial-gradient(circle at 10px 9px, transparent 0 3.4px, var(--wall-ink) 3.8px 5.4px, transparent 5.8px) 0 0 / 20px 18px round no-repeat;   /* round: whole rings only */
-}
+.wall .note--plain::before { display: none; }   /* no tape, no rings */
 
 /* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
 .wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
