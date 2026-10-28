@@ -45,7 +45,7 @@
 @media (max-width: 479px) { .wall .note--plain { grid-column: 1 / -1; } }
 
 /* the submit button: a hand-drawn outline (wobbly, with a little overshoot at the corner) over a rough highlighter swipe that bleeds past the edges */
-.wall .note__actions { --doodle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath vector-effect='non-scaling-stroke' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' d='M13 2.6C24 1.4 35 3.4 50 2.4C65 1.5 78 3.3 88 2.7C95.5 2.4 99 6.5 98.9 13C98.8 21 99.5 27 98.7 32C97.6 37.3 93.5 38 87 37.7C72 37.1 58 38.7 43 38C29 37.4 19 38.5 11 37.6C4 37 1.1 32.5 1.3 25.5C1.5 18 0.9 12.5 1.8 8C2.7 3.9 6.5 2.9 15.5 2.3'/%3E%3C/svg%3E"); --doodle-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath fill='black' fill-rule='evenodd' d='M4 8L9 5.5L8 8.5L16 4.8L40 4L70 3.6L96 4.4L112 5.2L116 7L113 9L118 11L114.5 14L119 17L115 20.5L118.5 24L114 27L117.5 31L111 34.5L90 36L60 36.8L30 36.2L12 35.4L6 33.5L8.5 31L3 29L7 26L2 23L6.5 19.5L1.5 16L6 13L2.5 10.5Z M18 9.2C40 8.4 70 8.8 100 9.6L100 10.4C70 9.8 40 9.6 18 10.2Z M26 29C50 28.4 80 28.6 108 29.6L108 30.5C80 29.6 50 29.5 26 30Z M60 19.4C75 19 90 19.2 104 19.8L104 20.4C90 19.9 75 19.8 60 20.1Z'/%3E%3C/svg%3E"); --doodle-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3.2h6.2l-.9 5.6 3 3.1v2.2H6.9v-2.2l3-3.1L9 3.2zM12 14.2v6.6'/%3E%3C/svg%3E"); }
+.wall .note__actions { --doodle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath vector-effect='non-scaling-stroke' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' d='M15 2.6C26 1.5 38 3.3 52 2.4C66 1.6 76 3.1 84 2.8C94 2.4 99 8 98.9 16C98.8 22 99.3 26 98.6 29C97.4 36 92 38.1 84 37.8C70 37.2 57 38.7 43 38C30 37.4 22 38.5 16 37.8C6 37 1.2 32 1.3 24C1.4 18 1 14 1.9 10.5C3.3 4.5 8 2.9 18 2.2'/%3E%3C/svg%3E"); --doodle-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cg fill='black' fill-opacity='.6'%3E%3Cpath d='M3 6C10 3.5 30 4 60 3.2C85 2.6 104 3.4 114 4.6C117 6 116.5 9 115 11C117 14 116 18 113 21.5C90 22.6 50 22 8 21.4C4 20 2.6 17 4.5 14C2 11 2 8 3 6Z'/%3E%3Cpath d='M7 19C30 18 70 18.4 110 18.8C115 20 118.5 23 117 26C119 29 117.5 33 114 35.6C90 37 50 36.8 12 36.2C7 35.4 5 32.5 7 30C4.5 27 5 22 7 19Z'/%3E%3Cpath d='M1.5 10C20 9 60 8.6 108 9.4C112 11 113 15 111 18C113.5 21 112.5 27 109 30.6C70 31.8 30 31.4 4 30.4C1 27 2.2 22 1 19C2.4 16 .6 13 1.5 10Z'/%3E%3C/g%3E%3C/svg%3E"); --doodle-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3.2h6.2l-.9 5.6 3 3.1v2.2H6.9v-2.2l3-3.1L9 3.2zM12 14.2v6.6'/%3E%3C/svg%3E"); }
 .wall .note__actions .btn {
   --_bg: transparent; --_bg-hover: transparent; --_bg-pressed: transparent; --_fg: var(--wall-ink); --_border: transparent;
   position: relative; isolation: isolate; gap: var(--space-8); border-radius: 0; box-shadow: none;
@@ -54,8 +54,8 @@
 }
 .wall .note__actions .btn::before, .wall .note__actions .btn::after { content: ""; position: absolute; pointer-events: none; }
 .wall .note__actions .btn::before {   /* the swipe */
-  inset: -4px -18px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline all round, most on the right */
-  background: color-mix(in srgb, var(--color-purple-600) 46%, transparent);
+  inset: -5px -18px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline all round, most on the right */
+  background: color-mix(in srgb, var(--color-purple-600) 62%, transparent);   /* the mask adds the brush density */
   -webkit-mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat; mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat;
   transition: background-color .2s, transform .25s cubic-bezier(.34, 1.56, .64, 1);
 }
@@ -73,7 +73,7 @@
 }
 @media (hover: hover) {
   .wall .note__actions .btn:hover:not(:disabled) { animation: doodle-wiggle .5s ease-in-out; }
-  .wall .note__actions .btn:hover:not(:disabled)::before { background: color-mix(in srgb, var(--color-purple-600) 66%, transparent); transform: rotate(-.8deg) scale(1.03, 1.06); }
+  .wall .note__actions .btn:hover:not(:disabled)::before { background: color-mix(in srgb, var(--color-purple-600) 82%, transparent); transform: rotate(-.8deg) scale(1.03, 1.06); }
 }
 .wall .note__actions .btn:active:not(:disabled) { transform: scale(.97); }
 .wall .note__actions .btn:disabled { color: var(--button-disabled-fg); background: transparent; }
