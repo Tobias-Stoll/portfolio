@@ -8,7 +8,8 @@
   --nav-h: 64px;
   --nav-pad: var(--home-gutter, 24px);
   --nav-ease: cubic-bezier(.22, 1, .36, 1);
-  --nav-glass: rgb(245 244 241 / .86);
+  --nav-glass: rgb(245 244 241 / .62);   /* less opaque so the blur reads */
+  --nav-blur: blur(28px) saturate(1.4);
 }
 body.home main { padding-top: var(--nav-h); }
 
@@ -16,7 +17,7 @@ body.home main { padding-top: var(--nav-h); }
 /* background under the bar: paper glass, hairline appears once the page has scrolled */
 .site-nav::before {
   content: ""; position: absolute; inset: 0 0 auto 0; height: var(--nav-h); pointer-events: none;
-  background: var(--nav-glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  background: var(--nav-glass); -webkit-backdrop-filter: var(--nav-blur); backdrop-filter: var(--nav-blur);
   border-bottom: 1px solid transparent; transition: border-color .3s;
 }
 .site-nav.is-scrolled::before { border-bottom-color: rgb(28 25 23 / .12); }
@@ -39,7 +40,7 @@ body.home main { padding-top: var(--nav-h); }
 /* pills: Menu and Contact */
 .site-nav__menu, .site-nav__contact {
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 10px;
-  border: 1.5px solid var(--color-fg-default); border-radius: 999px; background: var(--nav-glass); backdrop-filter: blur(10px);
+  border: 1.5px solid var(--color-fg-default); border-radius: 999px; background: var(--nav-glass); -webkit-backdrop-filter: var(--nav-blur); backdrop-filter: var(--nav-blur);
   font-weight: 600; cursor: pointer; transition: background-color .2s, color .2s;
 }
 .site-nav__menu { display: none; padding-left: 12px; }

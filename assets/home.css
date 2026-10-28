@@ -23,6 +23,20 @@
 /* WCAG AA on the paper ground: muted and subtle text a step darker than the Design System values
    (DS #6d6e75 / #a3a4ac reached only 4.3:1 on neutral surfaces and 2.3:1 on paper). Candidate for the DS tokens */
 :root { --color-fg-muted: #5E5F66; --color-fg-subtle: #6B6C73; }
+
+/* Primary colour: Electric Rust #FF5A36 replaces the violet ramp (landing page only for now).
+   The semantic tokens alias this ramp, so buttons, chips, case-card stages and ghost links follow.
+   Contrast (WCAG AA): rust/600 is a FILL colour. White on it reaches only 3.1:1, so primary buttons carry ink text (6.1:1).
+   Text and outlines use rust/700 #C93A17 (4.7:1 on paper, 5.1:1 on white). Candidate for the Design System: rename purple/* to the brand ramp. */
+:root {
+  --color-purple-50: #FFF4F0;  --color-purple-100: #FFE8E0; --color-purple-200: #FFD0C2; --color-purple-300: #FFAF98; --color-purple-400: #FF8B6D;
+  --color-purple-500: #FF7350; --color-purple-600: #FF5A36; --color-purple-700: #C93A17; --color-purple-800: #962B10; --color-purple-900: #5F1A09;
+  --color-action-primary-fg: #111015;            /* ink on rust: 6.1:1 (white would be 3.1:1) */
+  --color-action-primary-bg-hover: #FF6B47;      /* ink 6.7:1 */
+  --color-action-primary-bg-pressed: #F0482A;    /* ink 5.1:1 */
+  --color-border-focus: var(--color-purple-700); /* focus ring 4.7:1 on paper */
+  --button-secondary-border: var(--color-purple-700);
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
