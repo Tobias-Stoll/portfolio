@@ -1,13 +1,13 @@
 /**
  * Row list (after the "More of My Work" list on the reference site): numbered rows with a title and a line below.
- * Hover (or keyboard focus): the other rows dim to 50 %, a thumbnail springs in on the left and pushes the text,
- * the arrow box turns into a "View case study" pill that wipes open from the right.
+ * Hover (or keyboard focus): the other rows dim to 50 % and the arrow box opens into the primary button
+ * ("View case study"), wiping open from the right. No thumbnail, the text stays put.
  * Used for: More of my work (case pages), Smaller projects and How I work (landing page).
- * Rows without a link (div) only show the thumbnail and keep their tag on the right.
+ * Rows without a link (div) keep their tag on the right and do not react.
  */
 :is(ul, ol).rowlist {   /* :is(ul, ol) beats .cs-section ul on the case pages */
   --rl-ink: var(--color-fg-default); --rl-muted: var(--color-fg-muted); --rl-line: rgb(28 25 23 / .12);
-  --rl-spring: cubic-bezier(.34, 1.3, .64, 1); --rl-out: cubic-bezier(.22, 1, .36, 1);
+  --rl-out: cubic-bezier(.22, 1, .36, 1);
   margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rl-line);
 }
 .rowlist > li { margin: 0; border-bottom: 1px solid var(--rl-line); }
@@ -16,13 +16,7 @@
 a.rowlist__item:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 4px; border-radius: 8px; }
 
 .rowlist__n { flex: none; align-self: flex-start; width: 82px; color: var(--rl-muted); font-size: var(--font-size-600); line-height: 1.2; font-variant-numeric: tabular-nums; }
-.rowlist__thumb {
-  position: absolute; top: 50%; left: 82px; width: 52px; height: 52px; overflow: hidden; border-radius: 8px; background: #fff; box-shadow: 0 0 8px rgb(0 0 0 / .06);
-  opacity: 0; translate: -8px -50%; scale: .75; transform-origin: left center; pointer-events: none;
-  transition: opacity .34s var(--rl-spring), translate .34s var(--rl-spring), scale .34s var(--rl-spring);
-}
-.rowlist__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-.rowlist__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4, 4px); padding-right: 70px; transition: translate .16s var(--rl-spring); }
+.rowlist__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4, 4px); padding-right: var(--space-24); }
 .rowlist__title { font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-600); line-height: 1.2; }
 .rowlist__sub { color: var(--rl-muted); font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
 
@@ -36,17 +30,16 @@ a.rowlist__item:focus-visible { outline: 2px solid var(--color-border-focus); ou
 }
 .rowlist__pill {
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px 0 16px; translate: 10px 0;
-  border: 1.5px solid var(--rl-ink); border-radius: 999px; background: var(--color-bg-default, #fff); font-weight: var(--font-weight-medium);
+  border: 1.5px solid var(--rl-ink); border-radius: 999px; background: transparent; font-weight: var(--font-weight-medium);   /* the primary button */
   transition: translate .18s var(--rl-out);
 }
 .rowlist__pill-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
 
 /* hover and keyboard focus */
 @media (hover: hover) and (min-width: 1024px) {
-  .rowlist:has(.rowlist__item:hover) .rowlist__item:not(:hover) { opacity: .5; }
+  .rowlist:has(a.rowlist__item:hover) .rowlist__item:not(:hover) { opacity: .5; }
+  .rowlist__text { padding-right: 210px; }   /* room for the button, so it never covers the text */
 }
-.rowlist__item:is(:hover, :focus-visible) .rowlist__thumb { opacity: 1; translate: 0 -50%; scale: 1; }
-.rowlist__item:has(.rowlist__thumb):is(:hover, :focus-visible) .rowlist__text { translate: 70px 0; }
 .rowlist__item:is(:hover, :focus-visible) .rowlist__icon { opacity: 0; }
 .rowlist__item:is(:hover, :focus-visible) .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
 .rowlist__item:is(:hover, :focus-visible) .rowlist__pill { translate: 0 0; }
@@ -55,10 +48,9 @@ a.rowlist__item:focus-visible { outline: 2px solid var(--color-border-focus); ou
   .rowlist__n { width: 44px; font-size: var(--font-size-500); }
   .rowlist__title { font-size: var(--font-size-500); }
   .rowlist__text { padding-right: var(--space-16); }
-  .rowlist__thumb, .rowlist__cta { display: none; }
-  .rowlist__item:is(:hover, :focus-visible) .rowlist__text { translate: none; }
+  .rowlist__cta { display: none; }
   .rowlist__item:is(:hover, :focus-visible) .rowlist__icon { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rowlist__item, .rowlist__thumb, .rowlist__text, .rowlist__icon, .rowlist__cta, .rowlist__pill { transition: none; }
+  .rowlist__item, .rowlist__icon, .rowlist__cta, .rowlist__pill { transition: none; }
 }
