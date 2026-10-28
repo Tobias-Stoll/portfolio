@@ -7,6 +7,7 @@
   --color-action-primary-fg: #fff; --color-action-ghost-bg-hover: var(--color-purple-50); --color-action-ghost-bg-pressed: var(--color-purple-100); --color-action-ghost-fg: var(--color-purple-700);
   --color-border-focus: var(--color-purple-500);
   --button-primary-bg-default: var(--color-action-primary-bg-default); --button-primary-bg-hover: var(--color-action-primary-bg-hover); --button-primary-fg: var(--color-action-primary-fg);
+  --button-secondary-fg: var(--color-purple-700); --button-secondary-border: var(--color-purple-600);   /* the Play/Pause control of the demo */
 }
 /**
  * Design to Code case study: the 60 → 30 merge loop and the token tiers with the theme swap.

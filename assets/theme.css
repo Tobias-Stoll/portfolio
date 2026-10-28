@@ -14,4 +14,5 @@
   --color-action-primary-bg-pressed: #C93A17;    /* white 5.1:1 */
   --color-border-focus: var(--color-purple-700); /* focus ring 4.7:1 on paper */
   --button-secondary-border: var(--color-purple-700);
+  --color-accent-display: #F5532F;               /* rust for large display text: 3.1:1 on paper (#FF5A36 reaches 2.8:1) */
 }
