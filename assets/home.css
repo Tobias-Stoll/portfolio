@@ -38,7 +38,6 @@
   --button-secondary-border: var(--color-purple-700);
   --home-rust-display: #F5532F;   /* large display text (hero words, closing line): 3.1:1 on paper, a hair darker than #FF5A36 (2.8:1) */
 }
-.contact-block__line--cta { color: var(--home-rust-display); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
@@ -227,7 +226,7 @@ main::before {
 .facts li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--color-action-primary-bg-default); }
 .about__text { display: grid; gap: var(--space-16); max-width: 62ch; }
 .about__text p { margin: 0; }
-.about__text > p:not(.kicker):not(.about__links) { color: var(--color-fg-muted); font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
+.about__text > p:not(.kicker) { color: var(--color-fg-muted); font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
 /* My path: in the primary color (one accent). The line draws from stop to stop once the list scrolls in,
    and each dot fills as the line reaches it (one pass, about 2 s). Without JS it shows complete. */
 .path { --path-c: var(--color-action-primary-bg-default); --path-step: .5s;
@@ -258,7 +257,6 @@ main::before {
 .path li:last-child b { color: var(--color-purple-700); }   /* text: rust/700 (the dots and line keep the fill colour) */
 .path b { font-weight: var(--font-weight-medium); }
 .path span { color: var(--color-fg-muted); font-size: var(--font-size-200); line-height: var(--font-line-height-200); }
-.about__links { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); margin-top: var(--space-8) !important; }
 
 /* ---------- Notes wall ---------- */
 .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--space-20); align-items: start; }
@@ -274,7 +272,8 @@ main::before {
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 /* ---------- Contact + footer ---------- */
-.contact-block { margin-top: var(--home-section-gap); }   /* Contact Block and Site Footer: Design System */
+/* closing block: assets/contact-footer.css */
+body.home main { padding-bottom: var(--home-section-gap); }
 
 /* ---------- How I work: five principles, one core ---------- */
 .credo { list-style: none; margin: 0; padding: 0; border-top: var(--border-width-default) solid var(--color-border-default); }
@@ -450,6 +449,6 @@ main::before {
 
 /* Scroll reveal (assets/reveal.js): sections fade up once as they enter the view.
    Hidden from the first paint via the class set in <head>, so nothing fades out on load */
-.reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
-.reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card).is-in { opacity: 1; transform: none; }
-@media print { .reveal-on :is(.cs-section, main > .section, main > .contact-block, .hero__work, .cases > .case-card) { opacity: 1; transform: none; } }
+.reveal-on :is(.cs-section, main > .section, main > .hero__work, .cases > .case-card) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal-on :is(.cs-section, main > .section, main > .hero__work, .cases > .case-card).is-in { opacity: 1; transform: none; }
+@media print { .reveal-on :is(.cs-section, main > .section, main > .hero__work, .cases > .case-card) { opacity: 1; transform: none; } }

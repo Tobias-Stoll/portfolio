@@ -174,13 +174,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/work-row.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/note.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-header.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/contact-block.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-footer.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/link-external.css">
   <!-- @ds:end -->
 
   <link rel="stylesheet" href="assets/home.css?v=2.0.4">
   <link rel="stylesheet" href="assets/site-nav.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/contact-footer.css?v=2.0.4">
 </head>
 <body class="home">
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
@@ -416,7 +415,6 @@
           <li><b>Esports</b><span>Commentator &amp; Analyst<br>Stage Host</span></li>
           <li><b>UX/UI Designer</b><span>Research, UX &amp; design systems</span></li>
         </ol>
-        <p class="about__links"><a class="btn btn--secondary btn--lg" href="assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener">Download CV<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (PDF, opens in a new tab)</span></a> <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a></p>
       </div>
     </div>
   </section>
@@ -461,27 +459,33 @@
   </section>
 
   <!-- ============ Contact ============ -->
-  <section class="contact-block wrap" id="contact" aria-labelledby="contact-title">
-    <h2="207" id="contact-title" class="contact-block__title"><span class="contact-block__line contact-block__line--cta">Let's talk.</span></h2>
-    <div class="contact-block__row">
-      <span class="contact-block__mail" id="mail">tobiasstoll@pm.me</span>
-      <button class="btn btn--primary btn--lg" type="button" id="copy-mail">Copy email</button>
-      <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>
-      <a class="btn btn--ghost btn--lg" href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">Instagram<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>
-    </div>
-  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span> · <span class="footer-legal"><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Designed in Figma, built with Claude, on <a href="https://tobias-stoll.github.io/DesignSystem/" target="_blank" rel="noopener">my own design system<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>.</p>
+<footer class="cf" id="contact" aria-labelledby="contact-title">
+  <div class="cf__main">
+    <h2 class="cf__title" id="contact-title">
+      <span class="sr-only">Let’s create something great together.</span>
+      <span aria-hidden="true">Let’s <span class="cf__roll" id="cf-roll"><span class="cf__word is-current">create</span><span class="cf__word">design</span><span class="cf__word">build</span><span class="cf__word">make</span></span> <span class="cf__muted">something great together.</span></span>
+    </h2>
+    <div class="cf__contact">
+      <button class="cf__mail" type="button" data-copy="tobiasstoll@pm.me"><span>tobiasstoll@pm.me</span><span class="cf__icon"><svg class="i-copy" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="i-done" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr-only" aria-live="polite" data-status></span></button>
+      <ul class="cf__links" role="list">
+        <li><a href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">Instagram <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener">Resume <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(PDF, opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="cf__legal">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span></p>
+    <p><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a> · Designed in Figma, built with Claude.</p>
   </div>
 </footer>
 
 <script src="assets/reveal.js?v=2.0.4" defer></script>
 <script src="assets/home.js?v=2.0.4"></script>
 <script src="assets/site-nav.js?v=2.0.4" defer></script>
+<script src="assets/contact-footer.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=2.0.4"></script>
 <script async src="assets/track.js?v=2.0.4"></script>
 </body>

@@ -174,21 +174,6 @@
   });
   loadNotes();
 
-  /* ---------- Copy email ---------- */
-  const copyBtn = $('#copy-mail');
-  const mail = $('#mail');
-  copyBtn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(mail.textContent.trim());
-      copyBtn.textContent = 'Copied';
-    } catch {
-      const sel = getSelection(); const range = document.createRange();
-      range.selectNodeContents(mail); sel.removeAllRanges(); sel.addRange(range);
-      copyBtn.textContent = 'Selected, press ⌘C';
-    }
-    setTimeout(() => { copyBtn.textContent = 'Copy email'; }, 2200);
-  });
-
   /* ---------- My path: draw the line once it scrolls into view ---------- */
   const path = $('.path');
   if (path && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
