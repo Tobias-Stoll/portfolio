@@ -180,22 +180,27 @@
   <!-- @ds:end -->
 
   <link rel="stylesheet" href="assets/home.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/site-nav.css?v=2.0.4">
 </head>
 <body class="home">
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="#top">Tobias Stoll</a>
-    <nav class="site-header__nav" aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#how">How</a>
-      <a href="#fun">Fun</a>
-      <a href="#about">About</a>
-      <a href="#notes">Notes</a>
-    </nav>
-    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
-  </div>
+<header class="site-nav" id="site-nav" data-state="open">
+  <nav class="site-nav__bar" aria-label="Sections">
+    <button class="site-nav__menu" type="button" aria-expanded="false" aria-controls="site-nav-list" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <ul class="site-nav__list" id="site-nav-list" role="list">
+      <li><a href="#top" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
+      <li><a href="#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
+      <li><a href="#fun" data-key="f"><kbd aria-hidden="true">F</kbd><span>Fun</span></a></li>
+      <li><a href="#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
+      <li><a href="#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
+      <li class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
+    </ul>
+    <a class="site-nav__contact" href="#contact" data-key="c"><kbd aria-hidden="true">C</kbd><span>Contact</span></a>
+  </nav>
 </header>
 
 
@@ -474,6 +479,7 @@
 
 <script src="assets/reveal.js?v=2.0.4" defer></script>
 <script src="assets/home.js?v=2.0.4"></script>
+<script src="assets/site-nav.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=2.0.4"></script>
 <script async src="assets/track.js?v=2.0.4"></script>
 </body>

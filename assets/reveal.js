@@ -26,7 +26,7 @@
   if (scrollY > 0 || location.hash) { open(); return; }   // returning visitor or deep link: show at once
   events.forEach(ev => addEventListener(ev, open, { passive: true }));
   // no interaction: show 2 s after the landing sequence ends (the nav is its last step)
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector('.site-nav, .site-header');
   let timer = setTimeout(open, 9000);   // safety net if the animation never reports its end
   // use the animation's finished promise: it also resolves if the intro ended before this script ran
   const intro = header && header.getAnimations ? header.getAnimations().find(a => a.animationName === 'intro-fade') : null;
