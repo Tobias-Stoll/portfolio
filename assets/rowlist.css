@@ -40,16 +40,23 @@ a.rowlist__item:focus-visible { outline: 2px solid var(--color-border-focus); ou
   .rowlist:has(a.rowlist__item:hover) .rowlist__item:not(:hover) { opacity: .5; }
   .rowlist__text { padding-right: 210px; }   /* room for the button, so it never covers the text */
 }
-.rowlist__item:is(:hover, :focus-visible) .rowlist__icon { opacity: 0; }
-.rowlist__item:is(:hover, :focus-visible) .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
-.rowlist__item:is(:hover, :focus-visible) .rowlist__pill { translate: 0 0; }
+/* only devices with a real hover (mouse) and keyboard focus open the button; touch never animates */
+@media (hover: hover) and (min-width: 768px) {
+  .rowlist__item:hover .rowlist__icon { opacity: 0; }
+  .rowlist__item:hover .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
+  .rowlist__item:hover .rowlist__pill { translate: 0 0; }
+}
+@media (min-width: 768px) {
+  .rowlist__item:focus-visible .rowlist__icon { opacity: 0; }
+  .rowlist__item:focus-visible .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
+  .rowlist__item:focus-visible .rowlist__pill { translate: 0 0; }
+}
 
 @media (max-width: 767px) {
   .rowlist__n { width: 44px; font-size: var(--font-size-500); }
   .rowlist__title { font-size: var(--font-size-500); }
   .rowlist__text { padding-right: var(--space-16); }
   .rowlist__cta { display: none; }
-  .rowlist__item:is(:hover, :focus-visible) .rowlist__icon { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rowlist__item, .rowlist__icon, .rowlist__cta, .rowlist__pill { transition: none; }
