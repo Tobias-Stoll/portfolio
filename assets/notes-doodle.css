@@ -13,7 +13,10 @@
   transform: translate(var(--nx, 0px), var(--ny, 0px)) rotate(calc(var(--note-tilt, 0deg) * 1.5 + var(--nr, 0deg)));
   transition: none;
 }
-@media (hover: hover) { .wall .note:not(.note--plain):hover { z-index: 2; } }
+/* hover: keep the tilt (the DS Note straightens and scales on hover; that read static here). Only the spring moves it. */
+@media (hover: hover) {
+  .wall .note:not(.note--plain):hover { z-index: 2; transform: translate(var(--nx, 0px), var(--ny, 0px)) rotate(calc(var(--note-tilt, 0deg) * 1.5 + var(--nr, 0deg))); }
+}
 .wall .note:nth-child(3n+2) { border-radius: 5px 11px 4px 10px / 10px 4px 11px 5px; }
 .wall .note:nth-child(3n) { border-radius: 9px 5px 12px 4px / 4px 12px 5px 9px; }
 
