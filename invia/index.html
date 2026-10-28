@@ -114,27 +114,32 @@
   <div class="wrap">
 
     <!-- Hero -->
-    <section class="cs-hero cs-hero--bottom" aria-labelledby="title">
-      <div>
-        <p class="cs-hero__eyebrow text-label">Case study · Invia Flights · 2025 to 2026</p>
-        <h1 id="title" class="text-display">Three moments that decide a flight booking</h1>
-        <p class="cs-hero__lead text-body-l">
-          Three features for an online travel agency, each answering a customer's doubt at the moment it appears.
-          All A/B tested, all measured against conversion.
-        </p>
-        <ul class="kpis" role="list">
-          <li><b>Conversion ↑</b> high single digits</li>
-          <li><b>~1 in 3</b> chose the Flex Ticket</li>
-          <li><b>3 features</b> · 3 platforms · all A/B tested</li>
-        </ul>
-      </div>
-      <dl class="info-card info-card--facts facts text-body-s">
-        <div><dt>Role</dt><dd>UX/UI Designer in a design team, owner of these three features end to end</dd></div>
-        <div><dt>Product</dt><dd>Invia Flights: fluege.de and other flight booking brands</dd></div>
-        <div><dt>Platforms</dt><dd>Web, iOS, Android</dd></div>
-        <div><dt>Method</dt><dd>UX KPIs, A/B tests, session recordings</dd></div>
+    <section class="cs-hero cs-hero--stack" aria-labelledby="title">
+      <p class="cs-hero__eyebrow text-label">Case study · Invia Flights · 2025 to 2026</p>
+      <h1 id="title" class="text-display">Three moments that decide a flight booking</h1>
+      <p class="cs-hero__lead text-body-l">
+        Three features for an online travel agency, each answering a customer's doubt at the moment it appears.
+        All A/B tested, all measured against conversion.
+      </p>
+      <ul class="kpis" role="list">
+        <li><b>Conversion ↑</b> high single digits <span class="ev-tag">range</span></li>
+        <li><b>~1 in 3</b> chose the Flex Ticket <span class="ev-tag">measured</span></li>
+      </ul>
+      <dl class="facts-plain">
+        <div><dt class="text-label">Role</dt><dd class="text-body-m">UX/UI Designer in a design team, owner of these three features end to end</dd></div>
+        <div><dt class="text-label">Product</dt><dd class="text-body-m">Invia Flights: fluege.de and other flight booking brands</dd></div>
+        <div><dt class="text-label">Platforms</dt><dd class="text-body-m">Web, iOS, Android</dd></div>
+        <div><dt class="text-label">Method</dt><dd class="text-body-m">UX KPIs, A/B tests, session recordings</dd></div>
+        <div><dt class="text-label">Proof</dt><dd class="text-body-m">The Offer Box is still live on <a href="https://www.fluege.de/" target="_blank" rel="noopener">fluege.de</a>. The interactive box below is my rebuild.</dd></div>
       </dl>
     </section>
+
+    <figure class="figure hero-stage">
+      <div class="hero-stage__panel">
+        <a class="figure__link" href="images/offerbox-redesign.png" style="width: min(830px, 100%);"><img src="images/offerbox-redesign.png" alt="Redesigned offer card: 'Unsere Empfehlung' banner, both flights on a compact timeline with baggage icons, normal price and member price as two equal buttons side by side" width="830" height="424"></a>
+      </div>
+      <figcaption class="text-body-s"><b>The Offer Box, live today.</b> Normal price and member price as two equal choices.</figcaption>
+    </figure>
 
     <!-- The three moments -->
     <section class="cs-section" aria-labelledby="context">
@@ -170,12 +175,26 @@
       </ol>
     </section>
 
-    <!-- 1 · Offer Box -->
-    <section class="cs-section" aria-labelledby="offer-box">
-      <p class="cs-kicker text-label">1 · Search results</p>
+    <!-- Mess -->
+    <section class="cs-section" aria-labelledby="mess">
+      <p class="cs-kicker text-label">What made it hard</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="offer-box" class="text-heading-l">The Offer Box: from a push to an honest choice</h2>
+          <h2 id="mess" class="text-heading-l">Every change had to win an A/B test against conversion</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">The member price was a business goal, so anything that made the normal price more visible put member sign-ups at risk. Every layout had to prove itself in an A/B test before it shipped.</p>
+          <p class="text-body-m">The same features ran on web, iOS and Android, built by different teams. A pattern only counted if it worked on all three.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1 · Offer Box -->
+    <section class="cs-section" aria-labelledby="offer-box">
+      <p class="cs-kicker text-label">Decision 1 · Search results · Offer Box</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="offer-box" class="text-heading-l">From a push to an honest choice</h2>
           <p class="quote text-body-l">"Is this the best offer, and is the member price worth it?"</p>
         </div>
         <div class="cs-body">
@@ -316,16 +335,16 @@
 
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">A measurable conversion uplift, despite fewer upsell clicks. A less pushy offer sold more flights, and it is still live today. The test also surfaced ideas for the next round, ready to be tested in their own slots.</p>
+        <p class="text-body-l">A measurable conversion uplift <span class="ev-tag">measured, A/B test</span>, despite fewer upsell clicks. A less pushy offer sold more flights, and it is still live today. The test also surfaced ideas for the next round, ready to be tested in their own slots.</p>
       </div>
     </section>
 
     <!-- 2 · Flex Ticket -->
     <section class="cs-section" aria-labelledby="flex-ticket">
-      <p class="cs-kicker text-label">2 · Booking</p>
+      <p class="cs-kicker text-label">Decision 2 · Booking · Flex Ticket</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="flex-ticket" class="text-heading-l">The Flex Ticket: compare first, then a nudge</h2>
+          <h2 id="flex-ticket" class="text-heading-l">From stacked tickets to a side-by-side comparison</h2>
           <p class="quote text-body-l">"What if my plans change?"</p>
         </div>
         <div class="cs-body">
@@ -399,10 +418,10 @@
 
     <!-- 3 · Price Guarantee -->
     <section class="cs-section" aria-labelledby="price-guarantee">
-      <p class="cs-kicker text-label">3 · Payment</p>
+      <p class="cs-kicker text-label">Decision 3 · Payment · Price Guarantee</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="price-guarantee" class="text-heading-l">The Price Guarantee: book now, even if the price drops later</h2>
+          <h2 id="price-guarantee" class="text-heading-l">From early in the funnel to the payment step</h2>
           <p class="quote text-body-l">"What if the price drops after I book?"</p>
         </div>
         <div class="cs-body">
@@ -455,25 +474,25 @@
       </figure>
       <div class="cs-result ft-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">Over a third of customers kept the Price Guarantee.</p>
-      </div>
-      <div class="principle cs-next">
-        <p class="text-label cs-next__label">What I would change next</p>
-        <p class="text-body-m">Today the box ships pre-selected. I would make it an active choice: a guarantee customers pick themselves builds more trust, and trust is what all three features are about.</p>
+        <p class="text-body-l">Over a third of customers kept the Price Guarantee <span class="ev-tag">measured</span>.</p>
       </div>
     </section>
 
-    <!-- Takeaways -->
+    <!-- Evidence -->
     <section class="cs-section" aria-labelledby="takeaways">
-      <div class="prose">
-        <p class="cs-kicker text-label">What I took away</p>
-        <h2 id="takeaways" class="text-heading-l">Less push, more bookings</h2>
+      <p class="cs-kicker text-label">What I took away</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="takeaways" class="text-heading-l">Agreeing on the metric settled the biggest conflict</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">The Product Owner worried about member sign-ups. Agreeing on bookings as the goal and member clicks as the guardrail settled it before the first sketch. The chip slot, planned in the Offer Box from the start, later let the Flex Ticket show up in search results without a redesign.</p>
+        </div>
       </div>
-      <ul class="results results--3 text-body-m" role="list">
-        <li class="info-card"><b class="info-card__title">Agree on the metric first</b><span class="info-card__text">The PO worried about member sign-ups. Agreeing on bookings as the goal and member clicks as the guardrail settled it before the first sketch.</span></li>
-        <li class="info-card"><b class="info-card__title">Build for the next test</b><span class="info-card__text">The chip slot in the Offer Box let the Flex Ticket show up in search results without a redesign.</span></li>
-        <li class="info-card"><b class="info-card__title">Test your assumptions about placement</b><span class="info-card__text">The best moment for an offer is not always the earliest.</span></li>
-      </ul>
+      <div class="principle cs-next">
+        <p class="text-label cs-next__label">What I would do differently</p>
+        <p class="text-body-m">Today the Price Guarantee ships pre-selected. I would make it an active choice: a guarantee customers pick themselves builds more trust, and trust is what all three features are about.</p>
+      </div>
       <div class="talk">
         <p class="text-body-l">The variants that lost taught me the most. Happy to walk you through them.</p>
         <a class="btn btn--primary btn--lg" href="../#contact">Let's talk</a>
