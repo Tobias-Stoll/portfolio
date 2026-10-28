@@ -54,7 +54,7 @@
 }
 .wall .note__actions .btn::before, .wall .note__actions .btn::after { content: ""; position: absolute; pointer-events: none; }
 .wall .note__actions .btn::before {   /* the swipe */
-  inset: -5px -18px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline all round, most on the right */
+  inset: -5px -8px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline, but stays inside the form's border on the right */
   background: color-mix(in srgb, var(--color-purple-600) 62%, transparent);   /* the mask adds the brush density */
   -webkit-mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat; mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat;
   transition: background-color .2s, transform .25s cubic-bezier(.34, 1.56, .64, 1);
@@ -91,6 +91,11 @@
   padding-top: var(--space-16);
 }
 .wall .note--plain::before { display: none; }   /* no tape, no rings */
+
+/* fields drawn like the notes: 1.5 px ink outline with slightly wobbly corners (DS Input hooks --_border / --_border-width) */
+.wall .note--plain .input { --_border: var(--wall-ink); --_border-width: 1.5px; border-radius: 10px 4px 9px 5px / 5px 9px 4px 10px; }
+.wall .note--plain .input:focus { --_border: var(--input-border-focus); --_border-width: 2px; }
+.wall .note--plain .input[aria-invalid="true"], .wall .form-field--error .input { --_border: var(--input-border-error); }
 
 /* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
 .wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
