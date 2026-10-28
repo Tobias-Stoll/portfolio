@@ -174,28 +174,45 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/work-row.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/note.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-header.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/contact-block.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/site-footer.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tobias-Stoll/DesignSystem@8678e8ebebf947945522f84c17470f872c01d6f4/components/link-external.css">
   <!-- @ds:end -->
 
   <link rel="stylesheet" href="assets/home.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/site-nav.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/contact-footer.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/notes-doodle.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/work.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/rowlist.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/cursor.css?v=2.0.4">
 </head>
 <body class="home">
 <a class="skip-link btn btn--primary" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="#top">Tobias Stoll</a>
-    <nav class="site-header__nav" aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#how">How</a>
-      <a href="#fun">Fun</a>
-      <a href="#about">About</a>
-      <a href="#notes">Notes</a>
-    </nav>
-    <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
-  </div>
+<header class="site-nav" id="site-nav" data-state="open">
+  <nav class="site-nav__bar" aria-label="Sections">
+    <button class="site-nav__menu" type="button" aria-expanded="false" aria-controls="site-nav-list" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <ul class="site-nav__list" id="site-nav-list" role="list">
+      <li><a href="#top" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
+      <li><a href="#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
+      <li><a href="#fun" data-key="f"><kbd aria-hidden="true">F</kbd><span>Fun</span></a></li>
+      <li><a href="#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
+      <li><a href="#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
+      <li class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
+    </ul>
+    <div class="site-nav__right">
+      <span class="site-nav__open"><span class="site-nav__dot" aria-hidden="true"></span>Open to work</span>
+      <button class="site-nav__contact" type="button" aria-expanded="false" aria-controls="contact-pop" data-key="c"><kbd aria-hidden="true">C</kbd><span>Contact</span></button>
+    </div>
+    <div class="contact-pop" id="contact-pop" role="group" aria-label="Contact" inert>
+      <div class="contact-pop__head"><span>Contact</span><button class="contact-pop__close" type="button" aria-label="Close contact menu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <button class="contact-pop__row" type="button" data-copy="tobiasstoll@pm.me"><span class="contact-pop__text"><span class="contact-pop__label" aria-live="polite">Email</span><span class="contact-pop__value">tobiasstoll@pm.me</span></span><span class="contact-pop__icon"><span class="sr-only">Copy email address</span><svg class="i-copy" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="i-done" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></button>
+      <a class="contact-pop__row" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener"><span class="contact-pop__text"><span class="contact-pop__label">LinkedIn</span><span class="contact-pop__value">@tobiasstoll-ux</span></span><span class="contact-pop__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg><span class="sr-only">(opens in a new tab)</span></span></a>
+      <a class="contact-pop__row" href="assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener"><span class="contact-pop__text"><span class="contact-pop__label">CV</span><span class="contact-pop__value">cv-tobias-stoll.pdf</span></span><span class="contact-pop__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg><span class="sr-only">(PDF, opens in a new tab)</span></span></a>
+    </div>
+  </nav>
 </header>
 
 
@@ -210,105 +227,94 @@
     </h1>
     <div class="hero__row">
       <p class="hero__lead">I'm Tobias, six years in UX for B2C and B2B products, with a focus on design systems. Sometimes it's customers who don't trust a price, sometimes a design system that design and code no longer agree on. I build prototypes in code with AI, so ideas get tested before anyone commits to them.</p>
-      <div class="hero__cta">
-        <a class="btn btn--primary btn--lg" href="#contact">Let's talk</a>
-        <a class="btn btn--ghost btn--lg" href="#notes">Leave a note</a>
-      </div>
     </div>
 
-    <div class="section__head hero__work" id="work">
-      <h2 id="work-title" class="section__title">Selected work</h2>
-    </div>
-    <ul class="cases" role="list">
-      <li class="case-card case-card--purple">
-        <a class="case-card__link" href="invia/">
-          <div class="case-card__stage case-card__stage--anim" role="img" aria-label="Offer card before and after: one big button that picked the member price becomes two equal price buttons">
-            <div class="oa">
-              <span class="oa__pill"><span class="oa__before">Before</span><span class="oa__after">After</span></span>
-              <div class="oa__card">
-                <div class="oa__head oa__head--new">Unsere Empfehlung</div>
-                <div class="oa__head oa__head--old"></div>
-                <div class="oa__leg" style="top:52px"><b>21:40</b><i>BER</i><span class="oa__line"></span><b>13:05</b><i>SGN</i></div>
-                <div class="oa__leg" style="top:94px"><b>08:55</b><i>SGN</i><span class="oa__line"></span><b>19:55</b><i>BER</i></div>
-                <div class="oa__rule"></div>
-                <div class="oa__panel"></div>
-                <div class="oa__oldprice"><span>PLUS Preis</span><strong>647 €</strong></div>
-                <div class="oa__normal">
-                  <span class="oa__old"><span>Normalpreis<br><b>708 € p.P.</b></span><u>Wählen ›</u></span>
-                  <span class="oa__new"><span>Normalpreis</span><strong>708 €</strong></span>
-                </div>
-                <div class="oa__cta">
-                  <span class="oa__old">Angebot wählen ›</span>
-                  <span class="oa__new"><span>PLUS Preis</span><strong>647 €</strong></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="case-card__body">
-            <p class="case-card__pillar">KPI-driven product design</p>
-            <h3 class="case-card__title">Three moments that decide a booking</h3>
-            <p class="case-card__meta"><span class="chip chip--success">Conversion ↑ high single digits</span><span class="chip">UX/UI</span></p>
-          </div>
-        </a>
-      </li>
-      <li class="case-card case-card--purple">
-        <a class="case-card__link" href="design-to-code/">
-          <div class="case-card__stage case-card__stage--anim" role="img" aria-label="60 uneven grey tiles merge pairwise into 30 even component tiles">
-            <div class="m3">
-              <div class="m3__card">
-                <div class="m3__hud"><span class="m3__pill"><span class="m3__before">Before</span><span class="m3__after">After</span></span><span class="m3__count"><span class="m3__before"><b>60</b> components</span><span class="m3__after"><b>30</b> core components</span></span></div>
-                <div class="m3__field"><i style="--x0:31.3px;--y0:58.5px;--w0:15.0px;--h0:18.7px;--r0:5px;--b0:#CFCAC1;--t0:3.1deg;--x1:26.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.000s"></i><i style="--x0:63.5px;--y0:64.3px;--w0:21.1px;--h0:11.5px;--r0:4px;--b0:#BDB7AD;--t0:1.4deg;--x1:26.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.025s"></i><i style="--x0:102.9px;--y0:61.0px;--w0:19.2px;--h0:15.6px;--r0:5px;--b0:#DCD8D0;--t0:2.7deg;--x1:86.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.050s"></i><i style="--x0:138.3px;--y0:56.5px;--w0:18.0px;--h0:22.5px;--r0:3px;--b0:#CFCAC1;--t0:-1.9deg;--x1:86.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.075s"></i><i style="--x0:171.6px;--y0:60.3px;--w0:16.0px;--h0:13.5px;--r0:2px;--b0:#BDB7AD;--t0:3.9deg;--x1:146.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.100s"></i><i style="--x0:205.7px;--y0:58.1px;--w0:22.1px;--h0:22.8px;--r0:5px;--b0:#DCD8D0;--t0:-3.5deg;--x1:146.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.125s"></i><i style="--x0:245.8px;--y0:58.8px;--w0:21.3px;--h0:19.4px;--r0:6px;--b0:#E7E3DC;--t0:3.4deg;--x1:206.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.150s"></i><i style="--x0:281.5px;--y0:54.6px;--w0:18.5px;--h0:20.9px;--r0:4px;--b0:#E7E3DC;--t0:-3.5deg;--x1:206.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.175s"></i><i style="--x0:319.1px;--y0:64.3px;--w0:18.8px;--h0:11.9px;--r0:3px;--b0:#E7E3DC;--t0:-2.6deg;--x1:266.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.200s"></i><i style="--x0:350.1px;--y0:60.2px;--w0:18.7px;--h0:19.8px;--r0:5px;--b0:#BDB7AD;--t0:1.8deg;--x1:266.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.225s"></i><i style="--x0:29.2px;--y0:87.7px;--w0:13.2px;--h0:23.2px;--r0:3px;--b0:#BDB7AD;--t0:-1.2deg;--x1:326.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.015s"></i><i style="--x0:61.7px;--y0:87.0px;--w0:19.5px;--h0:18.5px;--r0:5px;--b0:#E7E3DC;--t0:-0.9deg;--x1:326.0px;--y1:57.0px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.040s"></i><i style="--x0:97.4px;--y0:87.6px;--w0:19.7px;--h0:18.0px;--r0:2px;--b0:#E7E3DC;--t0:2.5deg;--x1:26.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.065s"></i><i style="--x0:135.8px;--y0:86.6px;--w0:17.4px;--h0:19.2px;--r0:6px;--b0:#CFCAC1;--t0:-2.2deg;--x1:26.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.090s"></i><i style="--x0:171.1px;--y0:90.2px;--w0:22.3px;--h0:19.1px;--r0:3px;--b0:#BDB7AD;--t0:0.2deg;--x1:86.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.115s"></i><i style="--x0:209.9px;--y0:89.2px;--w0:16.7px;--h0:23.5px;--r0:3px;--b0:#CFCAC1;--t0:-2.3deg;--x1:86.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.140s"></i><i style="--x0:244.7px;--y0:89.7px;--w0:17.6px;--h0:22.9px;--r0:6px;--b0:#BDB7AD;--t0:-4.0deg;--x1:146.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.165s"></i><i style="--x0:281.7px;--y0:91.9px;--w0:15.6px;--h0:11.4px;--r0:5px;--b0:#CFCAC1;--t0:0.3deg;--x1:146.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.190s"></i><i style="--x0:316.7px;--y0:89.4px;--w0:23.9px;--h0:21.6px;--r0:6px;--b0:#BDB7AD;--t0:2.8deg;--x1:206.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.215s"></i><i style="--x0:349.3px;--y0:89.8px;--w0:20.8px;--h0:22.7px;--r0:4px;--b0:#BDB7AD;--t0:-3.3deg;--x1:206.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.240s"></i><i style="--x0:28.7px;--y0:119.6px;--w0:22.5px;--h0:15.1px;--r0:2px;--b0:#DCD8D0;--t0:4.0deg;--x1:266.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.030s"></i><i style="--x0:64.4px;--y0:123.1px;--w0:22.4px;--h0:12.9px;--r0:3px;--b0:#BDB7AD;--t0:-1.7deg;--x1:266.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.055s"></i><i style="--x0:106.2px;--y0:117.1px;--w0:13.5px;--h0:24.0px;--r0:5px;--b0:#BDB7AD;--t0:0.1deg;--x1:326.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.080s"></i><i style="--x0:137.8px;--y0:117.7px;--w0:19.9px;--h0:18.7px;--r0:3px;--b0:#E7E3DC;--t0:-2.7deg;--x1:326.0px;--y1:94.2px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.105s"></i><i style="--x0:172.4px;--y0:118.3px;--w0:23.3px;--h0:20.5px;--r0:5px;--b0:#CFCAC1;--t0:3.0deg;--x1:26.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.130s"></i><i style="--x0:210.8px;--y0:119.4px;--w0:15.5px;--h0:18.8px;--r0:5px;--b0:#CFCAC1;--t0:-3.7deg;--x1:26.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.155s"></i><i style="--x0:242.6px;--y0:117.4px;--w0:21.4px;--h0:20.8px;--r0:5px;--b0:#BDB7AD;--t0:1.2deg;--x1:86.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.180s"></i><i style="--x0:282.7px;--y0:122.8px;--w0:14.7px;--h0:18.7px;--r0:3px;--b0:#CFCAC1;--t0:2.4deg;--x1:86.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.205s"></i><i style="--x0:314.4px;--y0:123.7px;--w0:23.0px;--h0:15.0px;--r0:5px;--b0:#DCD8D0;--t0:-0.1deg;--x1:146.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.230s"></i><i style="--x0:356.0px;--y0:125.6px;--w0:15.0px;--h0:13.5px;--r0:6px;--b0:#DCD8D0;--t0:-2.7deg;--x1:146.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.255s"></i><i style="--x0:28.0px;--y0:153.0px;--w0:16.8px;--h0:12.1px;--r0:4px;--b0:#CFCAC1;--t0:2.8deg;--x1:206.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.045s"></i><i style="--x0:65.0px;--y0:153.6px;--w0:19.2px;--h0:16.0px;--r0:3px;--b0:#E7E3DC;--t0:-3.2deg;--x1:206.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.070s"></i><i style="--x0:100.9px;--y0:149.0px;--w0:17.0px;--h0:22.6px;--r0:5px;--b0:#DCD8D0;--t0:-1.1deg;--x1:266.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.095s"></i><i style="--x0:135.6px;--y0:150.4px;--w0:17.4px;--h0:16.4px;--r0:4px;--b0:#BDB7AD;--t0:3.8deg;--x1:266.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.120s"></i><i style="--x0:174.2px;--y0:155.0px;--w0:19.3px;--h0:14.7px;--r0:4px;--b0:#CFCAC1;--t0:-3.5deg;--x1:326.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.145s"></i><i style="--x0:211.1px;--y0:155.7px;--w0:14.3px;--h0:11.2px;--r0:6px;--b0:#BDB7AD;--t0:-2.1deg;--x1:326.0px;--y1:131.4px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.170s"></i><i style="--x0:245.6px;--y0:152.5px;--w0:20.0px;--h0:11.2px;--r0:5px;--b0:#CFCAC1;--t0:-2.4deg;--x1:26.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.195s"></i><i style="--x0:276.7px;--y0:149.2px;--w0:23.6px;--h0:18.1px;--r0:4px;--b0:#DCD8D0;--t0:3.3deg;--x1:26.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.220s"></i><i style="--x0:316.8px;--y0:151.4px;--w0:15.7px;--h0:17.7px;--r0:5px;--b0:#DCD8D0;--t0:-3.8deg;--x1:86.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.245s"></i><i style="--x0:354.6px;--y0:150.2px;--w0:15.9px;--h0:15.6px;--r0:5px;--b0:#BDB7AD;--t0:3.7deg;--x1:86.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.270s"></i><i style="--x0:30.0px;--y0:185.0px;--w0:21.6px;--h0:15.4px;--r0:4px;--b0:#E7E3DC;--t0:-3.6deg;--x1:146.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.060s"></i><i style="--x0:65.3px;--y0:187.5px;--w0:22.4px;--h0:11.9px;--r0:2px;--b0:#DCD8D0;--t0:-2.6deg;--x1:146.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.085s"></i><i style="--x0:101.4px;--y0:184.3px;--w0:20.0px;--h0:12.2px;--r0:6px;--b0:#DCD8D0;--t0:0.5deg;--x1:206.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.110s"></i><i style="--x0:136.5px;--y0:182.3px;--w0:13.9px;--h0:23.5px;--r0:6px;--b0:#DCD8D0;--t0:-0.1deg;--x1:206.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.135s"></i><i style="--x0:175.6px;--y0:184.4px;--w0:18.5px;--h0:11.8px;--r0:3px;--b0:#BDB7AD;--t0:2.6deg;--x1:266.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.160s"></i><i style="--x0:207.5px;--y0:182.6px;--w0:21.9px;--h0:13.8px;--r0:4px;--b0:#E7E3DC;--t0:-0.3deg;--x1:266.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.185s"></i><i style="--x0:241.5px;--y0:185.4px;--w0:21.1px;--h0:17.9px;--r0:4px;--b0:#CFCAC1;--t0:-1.6deg;--x1:326.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.210s"></i><i style="--x0:284.4px;--y0:180.9px;--w0:14.0px;--h0:17.3px;--r0:4px;--b0:#DCD8D0;--t0:2.2deg;--x1:326.0px;--y1:168.6px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.235s"></i><i style="--x0:315.5px;--y0:181.6px;--w0:17.8px;--h0:15.4px;--r0:5px;--b0:#BDB7AD;--t0:0.9deg;--x1:26.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.260s"></i><i style="--x0:348.2px;--y0:186.6px;--w0:23.8px;--h0:12.2px;--r0:4px;--b0:#E7E3DC;--t0:-1.5deg;--x1:26.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.285s"></i><i style="--x0:25.1px;--y0:215.1px;--w0:23.0px;--h0:16.0px;--r0:5px;--b0:#E7E3DC;--t0:2.6deg;--x1:86.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.075s"></i><i style="--x0:62.3px;--y0:212.1px;--w0:18.3px;--h0:23.0px;--r0:3px;--b0:#E7E3DC;--t0:-0.2deg;--x1:86.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.100s"></i><i style="--x0:101.6px;--y0:213.9px;--w0:16.9px;--h0:17.0px;--r0:3px;--b0:#DCD8D0;--t0:-3.8deg;--x1:146.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.125s"></i><i style="--x0:135.1px;--y0:217.1px;--w0:18.4px;--h0:13.9px;--r0:4px;--b0:#DCD8D0;--t0:1.8deg;--x1:146.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.150s"></i><i style="--x0:174.9px;--y0:217.5px;--w0:13.8px;--h0:13.3px;--r0:4px;--b0:#E7E3DC;--t0:3.0deg;--x1:206.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.175s"></i><i style="--x0:206.0px;--y0:209.9px;--w0:23.0px;--h0:23.7px;--r0:3px;--b0:#CFCAC1;--t0:1.7deg;--x1:206.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.200s"></i><i style="--x0:242.9px;--y0:213.9px;--w0:16.2px;--h0:15.4px;--r0:4px;--b0:#DCD8D0;--t0:0.7deg;--x1:266.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.225s"></i><i style="--x0:280.8px;--y0:214.0px;--w0:16.8px;--h0:13.5px;--r0:3px;--b0:#CFCAC1;--t0:0.1deg;--x1:266.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.250s"></i><i style="--x0:319.0px;--y0:213.3px;--w0:19.8px;--h0:17.8px;--r0:3px;--b0:#BDB7AD;--t0:2.1deg;--x1:326.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:1;animation-delay:0.275s"></i><i style="--x0:352.7px;--y0:215.5px;--w0:19.5px;--h0:11.8px;--r0:3px;--b0:#BDB7AD;--t0:1.5deg;--x1:326.0px;--y1:205.8px;--w1:48.0px;--h1:27.2px;--o1:0;animation-delay:0.300s"></i></div>
-              </div>
-            </div>
-          </div>
-          <div class="case-card__body">
-            <p class="case-card__pillar">Design systems &amp; AI workflow</p>
-            <h3 class="case-card__title">One design system for design and code</h3>
-            <p class="case-card__meta"><span class="chip chip--success">Up to 2× faster handovers</span><span class="chip">Design Systems</span></p>
-          </div>
-        </a>
-      </li>
-      <li class="case-card case-card--purple">
-        <a class="case-card__link" href="prime-league/">
-          <div class="case-card__stage"><img src="assets/home/esports-brackets.webp" alt="Redesigned tournament bracket and league table of the Prime League platform, dark UI" width="1200" height="750" loading="eager"></div>
-          <div class="case-card__body">
-            <p class="case-card__pillar">Research &amp; information architecture</p>
-            <h3 class="case-card__title">An esports platform people can follow</h3>
-            <p class="case-card__meta"><span class="chip chip--success">−30% drop-off</span><span class="chip">Information Architecture</span></p>
-          </div>
-        </a>
-      </li>
-    </ul>
   </section>
+
+  <!-- ============ Selected work: one screen per case (framework after the reference site) ============ -->
+  <section class="work" id="work" aria-labelledby="work-title">
+    <h2 id="work-title" class="sr-only">Selected work</h2>
+    <nav class="work-dots" aria-label="Case studies">
+      <ul class="work-dots__rail" role="list">
+        <li><a href="#case-invia" class="is-active" aria-current="true" aria-label="Invia Flights"></a></li>
+        <li><a href="#case-d2c" aria-label="Design to Code"></a></li>
+        <li><a href="#case-prime" aria-label="Prime League"></a></li>
+      </ul>
+    </nav>
+
+  <article class="case" id="case-invia" aria-labelledby="case-invia-title">
+    <div class="case__inner">
+      <div class="case__text">
+        <h3 class="case__title" id="case-invia-title">Invia Flights</h3>
+        <p class="case__sub">Three moments that decide a flight booking</p>
+        <p class="case__intro">Three features for an online travel agency, each answering a customer's doubt at the moment it appears. All A/B tested, all measured against conversion.</p>
+        <dl class="case__meta">
+          <dt>Years</dt><dd>2025 to 2026</dd>
+          <dt>Role</dt><dd>UX/UI Designer</dd>
+          <dt>Scope</dt><dd>UX/UI, A/B testing, Web, iOS and Android</dd>
+        </dl>
+        <a class="case__cta" data-cursor="View case study" href="invia/">View case study<span class="case__cta-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
+      <div class="case__visual">
+        <figure class="case__tile"><a class="case__frame" href="invia/" tabindex="-1" aria-hidden="true" data-cursor="View case study"><img src="assets/home/invia-platforms.webp" width="1200" height="750" loading="lazy" alt="Booking step Extras for a flight on web, iOS and Android: a travel credit card offer, the smart fare finder and the terms"></a></figure>
+      </div>
+      <ul class="case__chips" role="list"><li>6 min read</li><li>Conversion ↑ high single digits</li></ul>
+    </div>
+  </article>
+
+  <article class="case" id="case-d2c" aria-labelledby="case-d2c-title">
+    <div class="case__inner">
+      <div class="case__text">
+        <h3 class="case__title" id="case-d2c-title">Design to Code</h3>
+        <p class="case__sub">A design system as the single source of truth</p>
+        <p class="case__intro">A design system for a company building safety-critical software had grown for years without tokens, and parts of it lived only in code. In three months I made Figma the single source of truth, with a workflow straight into code, ready for AI-supported development.</p>
+        <dl class="case__meta">
+          <dt>Years</dt><dd>2026</dd>
+          <dt>Role</dt><dd>Freelance UX consultant</dd>
+          <dt>Scope</dt><dd>Design system, Design tokens, AI workflow</dd>
+        </dl>
+        <a class="case__cta" data-cursor="View case study" href="design-to-code/">View case study<span class="case__cta-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
+      <div class="case__visual">
+        <figure class="case__tile"><a class="case__frame" href="design-to-code/" tabindex="-1" aria-hidden="true" data-cursor="View case study"><img src="design-to-code/images/token-bridge.webp" width="1898" height="1274" loading="lazy" alt="Token Bridge plugin windows: the import log with updated semantic and component tokens, and the export to GitHub with no changes since the last export"></a></figure>
+      </div>
+      <ul class="case__chips" role="list"><li>8 min read</li><li>Up to 2× faster handovers</li></ul>
+    </div>
+  </article>
+
+  <article class="case" id="case-prime" aria-labelledby="case-prime-title">
+    <div class="case__inner">
+      <div class="case__text">
+        <h3 class="case__title" id="case-prime-title">Prime League</h3>
+        <p class="case__sub">An esports platform people can follow</p>
+        <p class="case__intro">Prime League ran several leagues on one platform, and its navigation followed the league's data model, not the people using it. As the UX designer on the team, I researched why people got lost and restructured the platform around the one question everyone had: when and where is the next match?</p>
+        <dl class="case__meta">
+          <dt>Years</dt><dd>2023</dd>
+          <dt>Role</dt><dd>UX Designer</dd>
+          <dt>Scope</dt><dd>Research, Information architecture, Wireframes</dd>
+        </dl>
+        <a class="case__cta" data-cursor="View case study" href="prime-league/">View case study<span class="case__cta-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
+      <div class="case__visual">
+        <figure class="case__tile"><a class="case__frame" href="prime-league/" tabindex="-1" aria-hidden="true" data-cursor="View case study"><img src="assets/home/esports-brackets.webp" width="1200" height="750" loading="lazy" alt="Redesigned group table, upcoming matches with countdowns, and playoff bracket from quarterfinal to final, dark UI"></a></figure>
+      </div>
+      <ul class="case__chips" role="list"><li>3 min read</li><li>−30% drop-off</li></ul>
+    </div>
+  </article>
+  </section>
+
 
   <!-- ============ More work ============ -->
   <section class="section wrap" aria-labelledby="more-title">
     <div class="section__head">
       <h2 id="more-title" class="section__title">Smaller projects</h2>
     </div>
-    <ul class="work-rows" role="list">
-      <li class="work-row work-row--link" data-preview="mpi-judo/images/moodboard.webp">
-        <a class="work-row__name" href="mpi-judo/">Social media kit</a>
-        <span class="work-row__what">Branding and Instagram templates for a Max Planck judo study, built for student assistants</span>
-        <span class="work-row__tag">Read case →</span>
-      </li>
-      <li class="work-row" data-preview="assets/home/enterprise-ds.jpg">
-        <span class="work-row__name">Enterprise design system</span>
-        <span class="work-row__what">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span>
-        <span class="work-row__tag">Foundation</span>
-      </li>
-      <li class="work-row" data-preview="assets/home/esports-team.webp">
-        <span class="work-row__name">Team profiles</span>
-        <span class="work-row__what">Performance history across seasons for 1,500+ esports teams</span>
-        <span class="work-row__tag">Shipped</span>
-      </li>
-      <li class="work-row work-row--soon">
-        <span class="work-row__name">More coming soon</span>
-        <span class="work-row__what">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span>
-        <span class="work-row__tag">Soon</span>
-      </li>
+    <ul class="rowlist" role="list">
+      <li><a class="rowlist__item" href="mpi-judo/"><span class="rowlist__n">01</span><span class="rowlist__text"><span class="rowlist__title">Social media kit</span><span class="rowlist__sub">Branding and Instagram templates for a Max Planck judo study, built for student assistants</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">Read case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">02</span><span class="rowlist__text"><span class="rowlist__title">Enterprise design system</span><span class="rowlist__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span></span><span class="rowlist__end"><span class="rowlist__tag">Foundation</span></span></div></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">03</span><span class="rowlist__text"><span class="rowlist__title">Team profiles</span><span class="rowlist__sub">Performance history across seasons for 1,500+ esports teams</span></span><span class="rowlist__end"><span class="rowlist__tag">Shipped</span></span></div></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">04</span><span class="rowlist__text"><span class="rowlist__title">More coming soon</span><span class="rowlist__sub">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span></span><span class="rowlist__end"><span class="rowlist__tag">Soon</span></span></div></li>
     </ul>
-    <img class="peek" alt="" aria-hidden="true">
   </section>
 
   <!-- ============ How I work ============ -->
@@ -317,12 +323,12 @@
       <h2 id="how-title" class="section__title">How I work</h2>
       <p class="section__lead">Each one links to the project where you can see it.</p>
     </div>
-    <ol class="credo" role="list">
-      <li><span class="credo__n">01</span><p class="credo__line">I use AI to go faster and further. The <span class="mark">decisions</span> stay with the team.</p><a class="credo__case" href="design-to-code/">Design to Code</a></li>
-      <li><span class="credo__n">02</span><p class="credo__line">Before I design, we agree on what <span class="mark">success</span> looks like.</p><a class="credo__case" href="invia/#offer-box">Invia · Offer Box</a></li>
-      <li><span class="credo__n">03</span><p class="credo__line">Make the customer's next decision <span class="mark">obvious</span>.</p><a class="credo__case" href="invia/#flex-ticket">Invia · Flex Ticket</a></li>
-      <li><span class="credo__n">04</span><p class="credo__line">Every design decision should be <span class="mark">easy to explain</span>.</p><a class="credo__case" href="prime-league/">Esports platform</a></li>
-      <li><span class="credo__n">05</span><p class="credo__line">Give every outcome <span class="mark">its own moment</span>.</p><a class="credo__case" href="invia/#price-guarantee">Invia · Price Guarantee</a></li>
+    <ol class="rowlist" role="list">
+      <li><a class="rowlist__item" href="design-to-code/"><span class="rowlist__n">01</span><span class="rowlist__text"><span class="rowlist__title">I use AI to go faster and further. The <span class="mark">decisions</span> stay with the team.</span><span class="rowlist__sub">Design to Code</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#offer-box"><span class="rowlist__n">02</span><span class="rowlist__text"><span class="rowlist__title">Before I design, we agree on what <span class="mark">success</span> looks like.</span><span class="rowlist__sub">Invia · Offer Box</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#flex-ticket"><span class="rowlist__n">03</span><span class="rowlist__text"><span class="rowlist__title">Make the customer's next decision <span class="mark">obvious</span>.</span><span class="rowlist__sub">Invia · Flex Ticket</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="prime-league/"><span class="rowlist__n">04</span><span class="rowlist__text"><span class="rowlist__title">Every design decision should be <span class="mark">easy to explain</span>.</span><span class="rowlist__sub">Esports platform</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#price-guarantee"><span class="rowlist__n">05</span><span class="rowlist__text"><span class="rowlist__title">Give every outcome <span class="mark">its own moment</span>.</span><span class="rowlist__sub">Invia · Price Guarantee</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
     </ol>
     <div class="core">
       <div class="core__sym" aria-hidden="true">=</div>
@@ -378,6 +384,46 @@
     </ul>
   </section>
 
+
+  <!-- ============ Notes ============ -->
+  <section class="section wrap" id="notes" aria-labelledby="notes-title">
+    <div class="section__head">
+      <h2 id="notes-title" class="section__title">Leave a note</h2>
+      <p class="section__lead">Say hi, give feedback on a case study, or tell me what you're building. Notes show up here after I've read them.</p>
+    </div>
+
+    <div class="wall" id="wall">
+      <form class="note note--plain" id="note-form" novalidate>
+        <div class="form-field">
+          <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
+          <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
+          <span class="form-field__message" id="note-err" role="alert"></span>
+        </div>
+        <div class="form-field">
+          <div class="form-field__header">
+            <label class="form-field__label" for="note-name">Name</label>
+            <span class="form-field__description">Optional</span>
+          </div>
+          <input class="input" id="note-name" name="name" maxlength="40" autocomplete="name">
+        </div>
+        <!-- honeypot: humans never see this field -->
+        <input class="hp" type="text" name="website" id="note-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="note__actions">
+          <span class="note__count" id="note-count">0 / 280</span>
+          <button class="btn btn--primary btn--lg" type="submit"><span class="pin-badge" aria-hidden="true"></span>Pin it</button>
+        </div>
+        <p class="note__status" id="note-status" role="status"></p>
+        <p class="note__privacy">Your note and name are stored and shown here once I approve them. <a href="datenschutz/">Privacy</a></p>
+      </form>
+
+      <article class="note note--accent">
+        <p class="note__text">Hi! I read every note. Feedback on a case study is especially welcome, the honest kind.</p>
+        <p class="note__by">Tobias</p>
+      </article>
+      <!-- approved notes are inserted here -->
+    </div>
+  </section>
+
   <!-- ============ About ============ -->
   <section class="section wrap" id="about" aria-labelledby="about-title">
     <div class="about">
@@ -409,71 +455,41 @@
           <li><b>Esports</b><span>Commentator &amp; Analyst<br>Stage Host</span></li>
           <li><b>UX/UI Designer</b><span>Research, UX &amp; design systems</span></li>
         </ol>
-        <p class="about__links"><a class="btn btn--secondary btn--lg" href="assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener">Download CV<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (PDF, opens in a new tab)</span></a> <a class="btn btn--ghost" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ Notes ============ -->
-  <section class="section wrap" id="notes" aria-labelledby="notes-title">
-    <div class="section__head">
-      <h2 id="notes-title" class="section__title">Leave a note</h2>
-      <p class="section__lead">Say hi, give feedback on a case study, or tell me what you're building. Notes show up here after I've read them.</p>
-    </div>
-
-    <div class="wall" id="wall">
-      <form class="note note--plain" id="note-form" novalidate>
-        <div class="form-field">
-          <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
-          <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
-          <span class="form-field__message" id="note-err" role="alert"></span>
-        </div>
-        <div class="form-field">
-          <div class="form-field__header">
-            <label class="form-field__label" for="note-name">Name</label>
-            <span class="form-field__description">Optional</span>
-          </div>
-          <input class="input" id="note-name" name="name" maxlength="40" autocomplete="name">
-        </div>
-        <!-- honeypot: humans never see this field -->
-        <input class="hp" type="text" name="website" id="note-website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="note__actions">
-          <span class="note__count" id="note-count">0 / 280</span>
-          <button class="btn btn--primary btn--lg" type="submit">Pin it</button>
-        </div>
-        <p class="note__status" id="note-status" role="status"></p>
-        <p class="note__privacy">Your note and name are stored and shown here once I approve them. <a href="datenschutz/">Privacy</a></p>
-      </form>
-
-      <article class="note note--accent">
-        <p class="note__text">Hi! I read every note. Feedback on a case study is especially welcome, the honest kind.</p>
-        <p class="note__by">Tobias</p>
-      </article>
-      <!-- approved notes are inserted here -->
-    </div>
-  </section>
-
   <!-- ============ Contact ============ -->
-  <section class="contact-block wrap" id="contact" aria-labelledby="contact-title">
-    <h2="207" id="contact-title" class="contact-block__title"><span class="contact-block__line contact-block__line--cta">Let's talk.</span></h2>
-    <div class="contact-block__row">
-      <span class="contact-block__mail" id="mail">tobiasstoll@pm.me</span>
-      <button class="btn btn--primary btn--lg" type="button" id="copy-mail">Copy email</button>
-      <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>
-      <a class="btn btn--ghost btn--lg" href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">Instagram<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>
-    </div>
-  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span> · <span class="footer-legal"><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a></span></p>
-    <p class="built">Designed in Figma, built with Claude, on <a href="https://tobias-stoll.github.io/DesignSystem/" target="_blank" rel="noopener">my own design system<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>.</p>
+<footer class="cf" id="contact" aria-labelledby="contact-title">
+  <div class="cf__main">
+    <h2 class="cf__title" id="contact-title">
+      <span class="sr-only">Let’s create something great together.</span>
+      <span aria-hidden="true">Let’s <span class="cf__roll" id="cf-roll"><span class="cf__word is-current">create</span><span class="cf__word">design</span><span class="cf__word">build</span><span class="cf__word">make</span></span> <span class="cf__muted">something great together.</span></span>
+    </h2>
+    <div class="cf__contact">
+      <button class="cf__mail" type="button" data-cursor="Copy email" data-copy="tobiasstoll@pm.me"><span>tobiasstoll@pm.me</span><span class="cf__icon"><svg class="i-copy" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="i-done" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr-only" aria-live="polite" data-status></span></button>
+      <ul class="cf__links" role="list">
+        <li><a href="https://www.linkedin.com/in/tobiasstoll-ux/" target="_blank" rel="noopener">LinkedIn <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">Instagram <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(opens in a new tab)</span></a></li>
+        <li><a href="assets/cv/cv-tobias-stoll.pdf" type="application/pdf" target="_blank" rel="noopener">Resume <span class="cf__icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 5-6 5M20 9H9a5 5 0 0 0-5 5v6"/></svg></span><span class="sr-only">(PDF, opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="cf__legal">
+    <p>© 2026 Tobias Stoll · Product Designer (UX/UI), Berlin · <span class="site-version">v2.0.4</span></p>
+    <p><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a> · Designed in Figma, built with Claude.</p>
   </div>
 </footer>
 
 <script src="assets/reveal.js?v=2.0.4" defer></script>
 <script src="assets/home.js?v=2.0.4"></script>
+<script src="assets/site-nav.js?v=2.0.4" defer></script>
+<script src="assets/contact-footer.js?v=2.0.4" defer></script>
+<script src="assets/notes-wall.js?v=2.0.4" defer></script>
+<script src="assets/work.js?v=2.0.4" defer></script>
+<script src="assets/cursor.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=2.0.4"></script>
 <script async src="assets/track.js?v=2.0.4"></script>
 </body>

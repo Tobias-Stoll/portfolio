@@ -1,0 +1,106 @@
+/**
+ * Notes wall: small doodle notes (page-level override of the Design System Note, candidate to move into it).
+ * Small: 14 px text, tight padding, 128 px columns (7 per row on desktop). Doodle look: ink outline, slightly wobbly corners,
+ * a thin offset shadow, a piece of tape instead of the pin, one tiny doodle next to the author. Fonts and colours stay on DS tokens.
+ */
+.wall { --wall-ink: var(--color-fg-default); grid-template-columns: repeat(auto-fill, minmax(min(100%, 128px), 1fr)); gap: var(--space-12); }
+
+.wall .note {
+  min-height: 0; gap: var(--space-4, 4px); padding: var(--space-12) var(--space-8) var(--space-8);
+  border: 1.5px solid var(--wall-ink); border-radius: 12px 4px 10px 5px / 5px 10px 4px 12px;
+  box-shadow: 1px 2px 0 rgb(17 16 21 / .45);   /* thin, not a block shadow */
+  /* --nx, --ny, --nr are driven by assets/notes-wall.js: the mouse pushes a note and it springs back, back and forth */
+  transform: translate(var(--nx, 0px), var(--ny, 0px)) rotate(calc(var(--note-tilt, 0deg) * 1.5 + var(--nr, 0deg)));
+  transition: none;
+}
+/* hover: keep the tilt (the DS Note straightens and scales on hover; that read static here). Only the spring moves it. */
+@media (hover: hover) {
+  .wall .note:not(.note--plain):hover { z-index: 2; transform: translate(var(--nx, 0px), var(--ny, 0px)) rotate(calc(var(--note-tilt, 0deg) * 1.5 + var(--nr, 0deg))); }
+}
+.wall .note:nth-child(3n+2) { border-radius: 5px 11px 4px 10px / 10px 4px 11px 5px; }
+.wall .note:nth-child(3n) { border-radius: 9px 5px 12px 4px / 4px 12px 5px 9px; }
+
+/* tape instead of the pin */
+.wall .note::before {
+  top: -6px; width: 28px; height: 11px; margin-left: -14px; border-radius: 0; box-shadow: none; transform: rotate(-3deg);
+  background: color-mix(in srgb, var(--_pin) 55%, transparent);
+  clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%, 5% 50%);
+}
+.wall .note:nth-child(even)::before { transform: rotate(4deg); }
+
+.wall .note__text { margin: var(--space-4, 4px) 0 0; font-size: var(--font-size-200); line-height: var(--font-line-height-200); }
+.wall .note__by { display: flex; align-items: center; gap: var(--space-4, 4px); font-size: var(--font-size-200); }
+
+/* one doodle per note, drawn with a mask so it takes the rust token */
+.wall .note__by::after {
+  content: ""; margin-left: auto; flex: none; width: 14px; height: 14px; background: var(--color-purple-600);
+  -webkit-mask: var(--doodle) center / contain no-repeat; mask: var(--doodle) center / contain no-repeat;
+  --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z'/%3E%3C/svg%3E");
+}
+.wall .note:nth-child(4n+3) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z'/%3E%3C/svg%3E"); }
+.wall .note:nth-child(4n+4) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 14c2-6 4-6 6 0s4 6 6 0 4-6 6 0'/%3E%3C/svg%3E"); }
+.wall .note:nth-child(4n+5) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v16M5 7l14 10M19 7L5 17'/%3E%3C/svg%3E"); }
+
+/* the form note stays usable: two columns wide, tighter */
+.wall .note--plain { grid-column: span 2; padding: var(--space-16) var(--space-12) var(--space-12); gap: var(--space-8); }
+.wall .note__textarea { min-height: 80px; }
+
+@media (max-width: 479px) { .wall .note--plain { grid-column: 1 / -1; } }
+
+/* the submit button: a hand-drawn outline (wobbly, with a little overshoot at the corner) over a rough highlighter swipe that bleeds past the edges */
+.wall .note__actions { --doodle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath vector-effect='non-scaling-stroke' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' d='M15 2.6C26 1.5 38 3.3 52 2.4C66 1.6 76 3.1 84 2.8C94 2.4 99 8 98.9 16C98.8 22 99.3 26 98.6 29C97.4 36 92 38.1 84 37.8C70 37.2 57 38.7 43 38C30 37.4 22 38.5 16 37.8C6 37 1.2 32 1.3 24C1.4 18 1 14 1.9 10.5C3.3 4.5 8 2.9 18 2.2'/%3E%3C/svg%3E"); --doodle-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cg fill='black' fill-opacity='.6'%3E%3Cpath d='M3 6C10 3.5 30 4 60 3.2C85 2.6 104 3.4 114 4.6C117 6 116.5 9 115 11C117 14 116 18 113 21.5C90 22.6 50 22 8 21.4C4 20 2.6 17 4.5 14C2 11 2 8 3 6Z'/%3E%3Cpath d='M7 19C30 18 70 18.4 110 18.8C115 20 118.5 23 117 26C119 29 117.5 33 114 35.6C90 37 50 36.8 12 36.2C7 35.4 5 32.5 7 30C4.5 27 5 22 7 19Z'/%3E%3Cpath d='M1.5 10C20 9 60 8.6 108 9.4C112 11 113 15 111 18C113.5 21 112.5 27 109 30.6C70 31.8 30 31.4 4 30.4C1 27 2.2 22 1 19C2.4 16 .6 13 1.5 10Z'/%3E%3C/g%3E%3C/svg%3E"); --doodle-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3.2h6.2l-.9 5.6 3 3.1v2.2H6.9v-2.2l3-3.1L9 3.2zM12 14.2v6.6'/%3E%3C/svg%3E"); }
+.wall .note__actions .btn {
+  --_bg: transparent; --_bg-hover: transparent; --_bg-pressed: transparent; --_fg: var(--wall-ink); --_border: transparent;
+  position: relative; isolation: isolate; gap: var(--space-8); border-radius: 0; box-shadow: none;
+  padding: 0 var(--space-16) 0 var(--space-8); min-height: 44px; font-size: var(--font-size-300); line-height: var(--font-line-height-300);
+  outline-offset: 5px; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
+}
+.wall .note__actions .btn::before, .wall .note__actions .btn::after { content: ""; position: absolute; pointer-events: none; }
+.wall .note__actions .btn::before {   /* the swipe */
+  inset: -5px -8px -3px -12px; z-index: -2; transform: rotate(-.8deg);   /* bleeds past the outline, but stays inside the form's border on the right */
+  background: color-mix(in srgb, var(--color-purple-600) 62%, transparent);   /* the mask adds the brush density */
+  -webkit-mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat; mask: var(--doodle-marker) 0 0 / 100% 100% no-repeat;
+  transition: background-color .2s, transform .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+.wall .note__actions .btn::after {   /* the pen outline */
+  inset: 0; z-index: -1; background: var(--wall-ink);
+  -webkit-mask: var(--doodle-outline) 0 0 / 100% 100% no-repeat; mask: var(--doodle-outline) 0 0 / 100% 100% no-repeat;
+}
+/* little badge with a pin in it, like the key badges in the nav */
+.wall .note__actions .btn .pin-badge {
+  display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.25px solid var(--wall-ink); border-radius: 6px 5px 6px 4px / 5px 6px 4px 6px;
+}
+.wall .note__actions .btn .pin-badge::before {
+  content: ""; width: 13px; height: 13px; background: var(--wall-ink);
+  -webkit-mask: var(--doodle-pin) center / contain no-repeat; mask: var(--doodle-pin) center / contain no-repeat;
+}
+@media (hover: hover) {
+  .wall .note__actions .btn:hover:not(:disabled) { animation: doodle-wiggle .5s ease-in-out; }
+  .wall .note__actions .btn:hover:not(:disabled)::before { background: color-mix(in srgb, var(--color-purple-600) 82%, transparent); transform: rotate(-.8deg) scale(1.03, 1.06); }
+}
+.wall .note__actions .btn:active:not(:disabled) { transform: scale(.97); }
+.wall .note__actions .btn:disabled { color: var(--button-disabled-fg); background: transparent; }
+.wall .note__actions .btn:disabled::before { background: color-mix(in srgb, var(--color-purple-600) 18%, transparent); }
+.wall .note__actions .btn:disabled::after, .wall .note__actions .btn:disabled .pin-badge::before { background: var(--button-disabled-fg); }
+@keyframes doodle-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.8deg); } 60% { transform: rotate(1.2deg); } }
+@media (prefers-reduced-motion: reduce) { .wall .note__actions .btn { animation: none !important; transition: none; } .wall .note__actions .btn::before { transition: none; } }
+
+/* the form note as a page of a notepad: fine squared paper like the hero */
+.wall .note--plain {
+  --grid-line: rgb(28 25 23 / .055);
+  background-color: var(--color-bg-default, #fff);
+  background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 12px 12px; background-position: 5px 3px;
+  padding-top: var(--space-16);
+}
+.wall .note--plain::before { display: none; }   /* no tape, no rings */
+
+/* fields drawn like the notes: 1.5 px ink outline with slightly wobbly corners (DS Input hooks --_border / --_border-width) */
+.wall .note--plain .input { --_border: var(--wall-ink); --_border-width: 1.5px; border-radius: 10px 4px 9px 5px / 5px 9px 4px 10px; }
+.wall .note--plain .input:focus { --_border: var(--input-border-focus); --_border-width: 2px; }
+.wall .note--plain .input[aria-invalid="true"], .wall .form-field--error .input { --_border: var(--input-border-error); }
+
+/* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
+.wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
+.wall.is-masonry > .note { grid-row: auto; align-self: start; }
+.wall .note--plain { grid-row: auto; }

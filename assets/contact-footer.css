@@ -1,0 +1,48 @@
+/**
+ * Closing block (prototype, modelled on the reference site's footer): black ground, a headline whose verb rolls
+ * (create, design, build, make), the email with a copy icon (no button), LinkedIn, Instagram and Resume,
+ * and the footer info (legal, version) underneath. Replaces the Design System Contact Block and Site Footer on the landing page.
+ */
+.cf { --cf-ease: cubic-bezier(.22, 1, .36, 1); --cf-muted: #9D9D9D; background: #000; color: #F5F5F6; }
+.cf a, .cf button { color: inherit; font: inherit; }
+.cf :focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 4px; }
+
+.cf__main {
+  max-width: var(--home-max); margin: 0 auto; padding: clamp(56px, 8vw, 96px) var(--home-gutter) clamp(40px, 5vw, 64px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 419px); gap: 40px 64px; align-items: start;
+}
+.cf__title { margin: 0; font-family: var(--font-family-display); font-weight: 700; font-size: var(--home-hero-size); line-height: 1.15; }   /* same size as the hero headline */
+.cf__muted { color: var(--cf-muted); }
+
+/* rolling verb: one line high, the words slide up, the slot follows the width of the next word */
+.cf__roll { color: var(--color-purple-600); position: relative;   /* rust on black: 6.8:1 */
+  display: inline-block; height: 1.15em; overflow: hidden; vertical-align: bottom; white-space: nowrap; }
+.cf__roll.is-ready { transition: width .45s var(--cf-ease); }
+.cf__roll.is-ready .cf__word { position: absolute; left: 0; top: 0; transform: translateY(105%); transition: transform .45s var(--cf-ease); }
+.cf__roll.is-ready .cf__word.is-current { transform: none; }
+.cf__roll.is-ready .cf__word.is-leaving { transform: translateY(-105%); }
+.cf__roll:not(.is-ready) .cf__word:not(.is-current) { display: none; }   /* without JS the first word stays */
+
+.cf__contact { display: flex; flex-direction: column; gap: 28px; padding-top: 12px; }
+.cf__mail, .cf__links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--font-size-300); line-height: var(--font-line-height-300); font-weight: var(--font-weight-medium); text-decoration: none; }
+.cf__mail { width: fit-content; padding: 0; border: 0; background: none; cursor: pointer; }
+.cf__links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 28px; margin: 0; padding: 0; list-style: none; }
+.cf__links a:hover, .cf__mail:hover > span:first-child { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.cf__icon { display: inline-flex; }
+.cf__mail .i-done { display: none; }
+.cf__mail.is-copied .i-copy { display: none; }
+.cf__mail.is-copied .i-done { display: block; }
+
+.cf__legal {
+  max-width: var(--home-max); margin: 0 auto; padding: 20px var(--home-gutter) 32px; border-top: 1px solid rgb(255 255 255 / .16);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; font-size: var(--font-size-200); line-height: var(--font-line-height-200); color: var(--cf-muted);
+}
+.cf__legal p { margin: 0; }
+.cf__legal a { color: #D6D6D6; text-underline-offset: 3px; }
+.cf__legal a:hover { color: #fff; }
+
+@media (max-width: 767px) {
+  .cf__main { grid-template-columns: minmax(0, 1fr); }
+  .cf__links { justify-content: flex-start; gap: 0 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .cf__roll.is-ready, .cf__roll.is-ready .cf__word { transition: none; } }

@@ -739,3 +739,14 @@ html.has-lightbox { overflow: hidden; }
 /* Decision blocks inside a section */
 .decision { margin-top: var(--space-48); }
 .decision h3 { margin: 0; }
+
+/* Primary button: outlined pill like the Contact button in the nav, fills black on hover (decision Tobias 28.10.).
+   Uses the DS Button hooks; the doodle button in the notes form keeps its own look. */
+.btn--primary {
+  --_bg: transparent; --_bg-hover: var(--color-fg-default); --_bg-pressed: var(--color-fg-default);
+  --_fg: var(--color-fg-default); --_border: var(--color-fg-default);
+  border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--_border); transition: background-color .2s, color .2s;
+}
+.btn--primary:hover:not(:disabled), .btn--primary:active:not(:disabled) { --_fg: var(--color-bg-default, #fff); }
+.btn--primary:disabled { --_border: var(--button-disabled-fg); }
+.skip-link.btn--primary { --_bg: var(--color-bg-default, #fff); }

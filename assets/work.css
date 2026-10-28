@@ -1,0 +1,76 @@
+/**
+ * Selected work: one screen per case, framework after the reference site.
+ * Left: title, subtitle, intro, Years / Role / Scope, "View case study", chips at the bottom.
+ * Right: visuals in tiles (for now one per case; the grid takes up to three: one wide on top, two below).
+ * Top right: dots, one per case, the active one is a long pill. On desktop each case clicks into place while the cases fill the screen.
+ * Mobile: everything stacked, no dots, no snapping.
+ */
+.work { position: relative; --work-ink: var(--color-fg-default); --work-ease: cubic-bezier(.22, 1, .36, 1); }
+
+/* ---------- dots (sticky, top right) ---------- */
+.work-dots { position: sticky; top: 0; height: 0; z-index: 5; }
+.work-dots__rail {
+  position: absolute; top: clamp(112px, 14.45svh, 148px); right: max(var(--home-gutter), calc((100vw - var(--home-max)) / 2 - 40px));
+  display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 0; padding: 0; list-style: none;
+  opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s;   /* shown by work.js while a case fills the screen */
+}
+.work.dots-on .work-dots__rail { opacity: 1; visibility: visible; transition-delay: 0s; }
+.work-dots a { position: relative; display: block; width: 10px; height: 10px; border-radius: 999px; background: rgb(28 25 23 / .16); transition: height .3s var(--work-ease), background-color .24s; }
+.work-dots a::before { content: ""; position: absolute; inset: -7px -12px; }   /* hit area at least 24 px */
+.work-dots a:hover { background: rgb(28 25 23 / .32); }
+.work-dots a.is-active { height: 30px; background: rgb(28 25 23 / .45); }
+.work-dots a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
+@media (max-width: 1199px) { .work-dots { display: none; } }
+
+/* ---------- one case ---------- */
+.case__inner {
+  position: relative; max-width: var(--home-max); margin: 0 auto; padding: var(--space-48, 48px) var(--home-gutter);
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "visual" "chips"; gap: var(--space-32);
+}
+.case + .case .case__inner { border-top: 1px solid rgb(28 25 23 / .12); }
+
+.case__text { grid-area: text; display: flex; flex-direction: column; align-items: flex-start; }
+.case__title { margin: 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-700); line-height: 1.15; }
+.case__sub { margin: var(--space-4, 4px) 0 0; color: var(--color-fg-muted); font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
+.case__intro { margin: var(--space-20, 20px) 0 0; max-width: 46ch; font-size: var(--font-size-300); line-height: 1.625; }
+.case__meta { margin: var(--space-40, 40px) 0 0; display: grid; grid-template-columns: 85px minmax(0, 1fr); row-gap: var(--space-16); font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
+.case__meta dt { color: var(--color-fg-muted); }
+.case__meta dd { margin: 0; }
+
+.case__cta {
+  margin-top: var(--space-40, 40px); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px 0 16px;
+  border: 1.5px solid var(--work-ink); border-radius: 999px; color: var(--work-ink); font-weight: var(--font-weight-medium); text-decoration: none;
+}
+.case__cta-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
+/* the button stays as it is on hover (no fill); the custom cursor shows the action */
+.case__cta:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
+
+.case__chips { grid-area: chips; display: flex; flex-wrap: wrap; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }
+.case__chips li { padding: 6px 14px; border-radius: 999px; background: rgb(28 25 23 / .06); font-size: var(--font-size-200); line-height: var(--font-line-height-200); }
+
+/* ---------- visuals ---------- */
+.case__visual { grid-area: visual; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(0, 1fr); gap: var(--space-32); aspect-ratio: 4 / 3; }
+.case__tile { position: relative; margin: 0; overflow: hidden; border-radius: 16px; background: rgb(28 25 23 / .055); }
+.case__tile:first-child { grid-column: 1 / -1; }             /* the first visual is the wide one */
+.case__tile:only-child { grid-row: span 2; }                  /* alone it fills the whole area */
+.case__frame {                                                /* a glass "device" sitting in the tile, cut off at the bottom; --fx / --fy: the mouse push (assets/work.js) */
+  transform: translate(var(--fx, 0px), var(--fy, 0px));
+  position: absolute; left: 7%; right: 7%; top: 9%; bottom: 0; display: block; padding: 8px 8px 0;   /* also a link to the case study (mouse; the button is the accessible link) */
+  background: rgb(255 255 255 / .5); border: 1px solid #fff; border-bottom: 0; border-radius: 13px 13px 0 0; box-shadow: 0 0 20px rgb(0 0 0 / .08);
+}
+.case__frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; border-radius: 9px 9px 0 0; background: #fff; }
+
+/* ---------- desktop: one screen per case ---------- */
+@media (min-width: 1024px) {
+  html.snap-work { scroll-snap-type: y mandatory; }   /* set by work.js only while the cases fill the screen */
+  .hero, .work + .section { scroll-snap-align: start; }   /* the way in and the way out, so the snap never traps */
+  .case { min-height: 100svh; scroll-snap-align: start; scroll-margin-top: -72px; }   /* jumps and snaps land on the case top; the top padding keeps the title clear of the nav */
+  .case__inner {
+    min-height: 100svh; padding: clamp(112px, 14.45svh, 148px) var(--home-gutter) clamp(40px, 8svh, 74px);
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr); grid-template-rows: 1fr auto; grid-template-areas: "text visual" "chips visual";
+    column-gap: var(--space-64, 64px); row-gap: var(--space-24);
+  }
+  .case + .case .case__inner { border-top: 0; }
+  .case__visual { aspect-ratio: auto; }
+}
+@media (min-width: 1200px) { .case__inner { padding-right: calc(var(--home-gutter) + 32px); } }   /* room for the dots */

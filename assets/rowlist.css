@@ -1,0 +1,63 @@
+/**
+ * Row list (after the "More of My Work" list on the reference site): numbered rows with a title and a line below.
+ * Hover (or keyboard focus): the other rows dim to 50 % and the arrow box opens into the primary button
+ * ("View case study"), wiping open from the right. No thumbnail, the text stays put.
+ * Used for: More of my work (case pages), Smaller projects and How I work (landing page).
+ * Rows without a link (div) keep their tag on the right and do not react.
+ */
+:is(ul, ol).rowlist {   /* :is(ul, ol) beats .cs-section ul on the case pages */
+  --rl-ink: var(--color-fg-default); --rl-muted: var(--color-fg-muted); --rl-line: rgb(28 25 23 / .12);
+  --rl-out: cubic-bezier(.22, 1, .36, 1);
+  margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rl-line);
+}
+.rowlist > li { margin: 0; border-bottom: 1px solid var(--rl-line); }
+.rowlist > li::marker { content: none; }
+.rowlist__item { position: relative; display: flex; align-items: center; padding: var(--space-24) 0; color: var(--rl-ink); text-decoration: none; transition: opacity .24s; }
+a.rowlist__item:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 4px; border-radius: 8px; }
+
+.rowlist__n { flex: none; align-self: flex-start; width: 82px; color: var(--rl-muted); font-size: var(--font-size-600); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.rowlist__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4, 4px); padding-right: var(--space-24); }
+.rowlist__title { font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-600); line-height: 1.2; }
+.rowlist__sub { color: var(--rl-muted); font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
+
+.rowlist__end { position: relative; flex: none; display: flex; align-items: center; justify-content: flex-end; min-width: 44px; min-height: 44px; }
+.rowlist__icon { display: inline-grid; place-items: center; width: 26px; height: 26px; border: 1.5px solid currentColor; border-radius: 6px; transition: opacity .14s; }
+.rowlist__tag { color: var(--rl-muted); font-size: var(--font-size-200); line-height: var(--font-line-height-200); white-space: nowrap; }
+.rowlist__cta {
+  position: absolute; top: 50%; right: 0; translate: 0 -50%; opacity: 0; pointer-events: none; white-space: nowrap;
+  clip-path: inset(-24px -24px -24px calc(100% - 38px) round 44px);
+  transition: clip-path .18s var(--rl-out), opacity .18s var(--rl-out);
+}
+.rowlist__pill {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px 0 16px; translate: 10px 0;
+  border: 1.5px solid var(--rl-ink); border-radius: 999px; background: transparent; font-weight: var(--font-weight-medium);   /* the primary button */
+  transition: translate .18s var(--rl-out);
+}
+.rowlist__pill-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
+
+/* hover and keyboard focus */
+@media (hover: hover) and (min-width: 1024px) {
+  .rowlist:has(a.rowlist__item:hover) .rowlist__item:not(:hover) { opacity: .5; }
+  .rowlist__text { padding-right: 210px; }   /* room for the button, so it never covers the text */
+}
+/* only devices with a real hover (mouse) and keyboard focus open the button; touch never animates */
+@media (hover: hover) and (min-width: 768px) {
+  .rowlist__item:hover .rowlist__icon { opacity: 0; }
+  .rowlist__item:hover .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
+  .rowlist__item:hover .rowlist__pill { translate: 0 0; }
+}
+@media (min-width: 768px) {
+  .rowlist__item:focus-visible .rowlist__icon { opacity: 0; }
+  .rowlist__item:focus-visible .rowlist__cta { opacity: 1; clip-path: inset(-24px round 44px); }
+  .rowlist__item:focus-visible .rowlist__pill { translate: 0 0; }
+}
+
+@media (max-width: 767px) {
+  .rowlist__n { width: 44px; font-size: var(--font-size-500); }
+  .rowlist__title { font-size: var(--font-size-500); }
+  .rowlist__text { padding-right: var(--space-16); }
+  .rowlist__cta { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rowlist__item, .rowlist__icon, .rowlist__cta, .rowlist__pill { transition: none; }
+}

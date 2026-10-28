@@ -1,0 +1,29 @@
+/**
+ * Custom cursor (after the reference site): a ring that follows the mouse, grows over anything you can click,
+ * and shows a small label for named actions (data-cursor="View case study"). Mouse only; touch keeps the system.
+ * Text fields keep the normal text cursor. On the black closing block the ring turns white.
+ */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+html.has-cursor :is(input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]) { cursor: text !important; }
+
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 9999; width: 28px; height: 28px; margin: -14px 0 0 -14px;
+  border: 1.5px solid var(--color-fg-default, #2b2b2f); border-radius: 50%; pointer-events: none; opacity: 0;
+  transition: width .2s ease-out, height .2s ease-out, margin .2s ease-out, opacity .2s, border-color .2s, background-color .2s, box-shadow .2s;
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-hover { width: 38px; height: 38px; margin: -19px 0 0 -19px; background: rgb(255 255 255 / .25); box-shadow: 0 2px 12px rgb(0 0 0 / .12); }
+.cursor.is-down { background: rgb(28 25 23 / .12); }
+.cursor.is-text { opacity: 0; }
+.cursor.is-dark { border-color: #fff; }
+.cursor.is-dark.is-hover { background: rgb(255 255 255 / .12); }
+
+.cursor__label {
+  position: fixed; left: 0; top: 0; z-index: 9999; padding: 4px 8px; border-radius: 5px; pointer-events: none; white-space: nowrap;
+  background: rgb(17 16 21 / .85); color: #fff; font-family: var(--font-family-sans); font-size: var(--font-size-200, 14px); font-weight: var(--font-weight-medium, 500); line-height: 18px;
+  opacity: 0; clip-path: inset(0 100% 0 0 round 5px);   /* builds from left to right */
+  transition: opacity .12s, clip-path .28s cubic-bezier(.22, 1, .36, 1);
+}
+.cursor__label.is-on { opacity: 1; clip-path: inset(0 0 0 0 round 5px); }
+.cursor__label.is-dark { background: #fff; color: #111015; }
+@media (prefers-reduced-motion: reduce) { .cursor { transition: opacity .2s, border-color .2s; } .cursor__label { clip-path: none; transition: opacity .15s; } }

@@ -25,23 +25,7 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Header: border on scroll, active section ---------- */
-  const header = $('.site-header');
-  const onScrollHeader = () => header.classList.toggle('is-scrolled', scrollY > 8);
-  addEventListener('scroll', onScrollHeader, { passive: true });
-  onScrollHeader();
-
-  const navLinks = $$('.site-header__nav a');
-  const sections = navLinks.map(a => document.getElementById(a.hash.slice(1))).filter(Boolean);
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        navLinks.forEach(a => a.classList.toggle('is-active', a.hash === '#' + e.target.id));
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(s => io.observe(s));
-  }
+  /* Header: fold, shortcuts and active section live in assets/site-nav.js */
 
   /* ---------- More work: image follows the cursor ---------- */
   const peek = $('.peek');
@@ -189,21 +173,6 @@
     }
   });
   loadNotes();
-
-  /* ---------- Copy email ---------- */
-  const copyBtn = $('#copy-mail');
-  const mail = $('#mail');
-  copyBtn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(mail.textContent.trim());
-      copyBtn.textContent = 'Copied';
-    } catch {
-      const sel = getSelection(); const range = document.createRange();
-      range.selectNodeContents(mail); sel.removeAllRanges(); sel.addRange(range);
-      copyBtn.textContent = 'Selected, press ⌘C';
-    }
-    setTimeout(() => { copyBtn.textContent = 'Copy email'; }, 2200);
-  });
 
   /* ---------- My path: draw the line once it scrolls into view ---------- */
   const path = $('.path');
