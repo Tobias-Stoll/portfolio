@@ -26,14 +26,14 @@
 
 /* Primary colour: Electric Rust #FF5A36 replaces the violet ramp (landing page only for now).
    The semantic tokens alias this ramp, so buttons, chips, case-card stages and ghost links follow.
-   Contrast (WCAG AA): rust/600 is a FILL colour. White on it reaches only 3.1:1, so primary buttons carry ink text (6.1:1).
+   Contrast (WCAG AA): rust/600 is a fill colour. Primary buttons carry a light label as decided (28.10.), which is 3.1:1 and below AA for normal text.
    Text and outlines use rust/700 #C93A17 (4.7:1 on paper, 5.1:1 on white). Candidate for the Design System: rename purple/* to the brand ramp. */
 :root {
   --color-purple-50: #FFF4F0;  --color-purple-100: #FFE8E0; --color-purple-200: #FFD0C2; --color-purple-300: #FFAF98; --color-purple-400: #FF8B6D;
   --color-purple-500: #FF7350; --color-purple-600: #FF5A36; --color-purple-700: #C93A17; --color-purple-800: #962B10; --color-purple-900: #5F1A09;
-  --color-action-primary-fg: #111015;            /* ink on rust: 6.1:1 (white would be 3.1:1) */
-  --color-action-primary-bg-hover: #FF6B47;      /* ink 6.7:1 */
-  --color-action-primary-bg-pressed: #F0482A;    /* ink 5.1:1 */
+  --color-action-primary-fg: #FFFFFF;            /* light label as decided; white on #FF5A36 is 3.1:1 (AA for normal text needs 4.5:1) */
+  --color-action-primary-bg-hover: #E5421F;      /* white 4.1:1 */
+  --color-action-primary-bg-pressed: #C93A17;    /* white 5.1:1 */
   --color-border-focus: var(--color-purple-700); /* focus ring 4.7:1 on paper */
   --button-secondary-border: var(--color-purple-700);
   --home-rust-display: #F5532F;   /* large display text (hero words, closing line): 3.1:1 on paper, a hair darker than #FF5A36 (2.8:1) */
@@ -93,7 +93,7 @@ main::before {
 .hl--pixel { color: var(--home-rust-display); }
 
 .hero__row {
-  display: flex; flex-direction: column; align-items: flex-start;   /* buttons under the text on every viewport */
+  display: flex; flex-direction: column; align-items: flex-start;   /* lead only, the hero buttons are gone (Contact and Notes live in the nav) */
   gap: var(--space-24); margin-top: var(--space-24);
 }
 /* "people" and "the fix": drawn as an outline, then inked. Sketch to final design, once on load, one word after the other */
@@ -112,7 +112,7 @@ main::before {
 @media (prefers-reduced-motion: no-preference) {
   .hero__title > span { transform-origin: 0 60%; animation: intro-grow 1.4s cubic-bezier(.2, .7, .2, 1) both; }
   .hero__title > span + span { animation-delay: .15s; }
-  .hero__h1 > .kicker, .hero__lead, .hero__cta, .site-header, .site-nav { animation: intro-fade 1.1s cubic-bezier(.2, .7, .2, 1) 2.1s both; }   /* one block, nav included */
+  .hero__h1 > .kicker, .hero__lead, .site-header, .site-nav { animation: intro-fade 1.1s cubic-bezier(.2, .7, .2, 1) 2.1s both; }   /* one block, nav included */
 }
 @keyframes intro-grow { from { opacity: 0; transform: scale(.94); } }
 @keyframes intro-fade { from { opacity: 0; } }
@@ -121,7 +121,6 @@ main::before {
 .hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
 @media (min-width: 768px) { .hero__lead { max-width: 66.666%; } }   /* two thirds of the container on medium and large */
-.hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-gap-sm); }
 
 /* ---------- Case cards ---------- */
 .cases {
