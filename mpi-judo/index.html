@@ -94,6 +94,8 @@
     .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
     /* Color preview next to a color name */
     .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
+    /* Result still open: neutral label instead of success green */
+    .cs-result--open .cs-result__label { color: var(--color-fg-muted); }
     @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
@@ -124,17 +126,25 @@
         <p class="cs-hero__eyebrow text-label">Smaller project · Max Planck Institute · 2026</p>
         <h1 id="title" class="text-display">A social media kit students can post with</h1>
         <p class="cs-hero__lead text-body-l">
-          The XPLO judo study at a Max Planck Institute researches cognitive control in sport. Its Instagram account is run by student assistants.
-          I built them a small Figma kit, so every post looks like Max Planck without anyone having to be a designer.
+          The XPLO judo study's Instagram is run by student assistants. They change often and have no design background.
+          I built a kit designed so an on-brand post takes under 30 minutes.
         </p>
       </div>
       <dl class="info-card info-card--facts facts text-body-s">
-        <div><dt>Role</dt><dd>Brand and visual design, end to end: look and feel, foundations, templates</dd></div>
+        <div><dt>Client</dt><dd>Max Planck Institute, XPLO judo study</dd></div>
+        <div><dt>Role</dt><dd>Brand and visual design, end to end</dd></div>
+        <div><dt>Time</dt><dd>8 hours</dd></div>
         <div><dt>Channel</dt><dd>Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
         <div><dt>Tools</dt><dd>Figma (variables, components), Gemini as sparring partner</dd></div>
-        <div><dt>Scope</dt><dd>14 colors, 2 fonts, 8 type styles, spacing, border and radius scale, 5 components, post and story templates, moodboard</dd></div>
+        <div><dt>Output</dt><dd>A Figma design guide with templates for feed posts and stories</dd></div>
       </dl>
     </section>
+
+    <figure class="figure stories">
+      <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
+      <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
+      <figcaption class="text-body-s"><b>Stories "Frage des Tages" and "Analyse".</b> Charts are marked as illustrative, because the study has no results yet.</figcaption>
+    </figure>
 
     <!-- Problem -->
     <section class="cs-section" aria-labelledby="problem">
@@ -144,58 +154,52 @@
           <h2 id="problem" class="text-heading-l">Students posted without rules for a feed</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">The student assistants change often and have no design background. The Max Planck CI covers print and web, but has no rules for a feed. Posts mixed styles and were heavy on text, and they showed neither the research nor the judo.</p>
-          <p class="text-body-m"><b>Hypothesis.</b> If student assistants get a small, ready-made kit (tokens with usage rules built in, plus a few templates), they can build an on-brand post in under 30 minutes, without deciding colors, type or spacing themselves.</p>
+          <p class="text-body-m">The Max Planck CI covers print and web, but has no rules for a feed. Posts mixed styles, were heavy on text and showed neither the research nor the judo.</p>
+          <p class="text-body-m"><b>Constraint.</b> Every decision had to fit into 30 minutes per post.</p>
         </div>
       </div>
     </section>
 
-    <!-- Look and color -->
-    <section class="cs-section" aria-labelledby="look">
-      <p class="cs-kicker text-label">The approach</p>
+    <!-- Decision -->
+    <section class="cs-section" aria-labelledby="decision">
+      <p class="cs-kicker text-label">The decision</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="look" class="text-heading-l">Started from the Max Planck green</h2>
+          <h2 id="decision" class="text-heading-l">From Montserrat and Inter to the Max Planck fonts</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m"><b>Started with a moodboard.</b> "Neugier in Bewegung" puts track and lab side by side: motion photos, lab scenes, microscopy, force curves and tape collage.</p>
-          <p class="text-body-m"><b>Kept the Max Planck greens as the base.</b> MPG Green <span class="swatch" style="--c:#006c66" aria-hidden="true"></span> and MPG Green Dark <span class="swatch" style="--c:#005555" aria-hidden="true"></span> come straight from the CI and carry the research side.</p>
-          <p class="text-body-m"><b>Added orange and mint as accents.</b> Performance Orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> is the warm complement to the cool green. Electric Mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> works as a highlight on dark green. Both stay at about 10 % of a post: hooks, key numbers, CTAs.</p>
-          <p class="text-body-m"><b>Extended the palette to 14 tones.</b> Four groups: Primary, Base &amp; Text, Accent &amp; Sport, Data &amp; Function. Light tints like Mint Tint keep text boxes readable, data colors separate curves in charts.</p>
-          <p class="text-body-m"><b>Gave research and sport their own background.</b> Off-White for research and longer explanations, dark green for sport and hooks. Alternating them breaks up the feed.</p>
+          <p class="text-body-m">Gemini suggested Montserrat and Inter. I kept Merriweather for hooks and Roboto for data, because the kit had to stay inside the Max Planck CI.</p>
+        </div>
+      </div>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
+        <figcaption class="text-body-s"><b>Type scale.</b> Hooks at 126 px and body text at 36 px on a 1080 px canvas, because posts are seen small on a phone.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Kit -->
+    <section class="cs-section" aria-labelledby="kit">
+      <p class="cs-kicker text-label">The kit</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="kit" class="text-heading-l">Wrote the rules into Figma</h2>
         </div>
       </div>
 
       <figure class="figure">
         <a class="figure__link" href="images/moodboard.webp"><img src="images/moodboard.webp" width="1800" height="1800" loading="lazy" alt="Moodboard 'Neugier in Bewegung': a sprinter on a track, a researcher attaching sensors to an arm in a lab, a running shoe on clay, muscle fibres under a microscope, an illustrative force curve, and example post, story and data sheet in green, orange and mint."></a>
-        <figcaption class="text-body-s"><b>Moodboard "Neugier in Bewegung".</b> Sport and lab on one board, with the first post, story and data sheet in the new colors. All curves are illustrative.</figcaption>
+        <figcaption class="text-body-s"><b>Moodboard "Neugier in Bewegung".</b> Track and lab side by side.</figcaption>
       </figure>
 
       <figure class="figure figure--narrow">
         <a class="figure__link" href="images/colors.webp"><img src="images/colors.webp" width="1600" height="1314" loading="lazy" alt="Color system in four groups: Primary (MPG Green Dark, MPG Green), Base and Text (Deep Slate, Medium Gray, Light Gray, Off-White), Accent and Sport (Performance Orange, Coral Light, Electric Mint, Mint Tint), Data and Function (Data Blue, Tech Violet, Success Green, Alert Red)."></a>
-        <figcaption class="text-body-s"><b>14 tones in 4 groups.</b> The two MPG greens come from the CI, every other tone was chosen around them.</figcaption>
+        <figcaption class="text-body-s"><b>Color system.</b> The Max Planck greens <span class="swatch" style="--c:#006c66" aria-hidden="true"></span><span class="swatch" style="--c:#005555" aria-hidden="true"></span> as the base, orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> and mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> as accents at about 10 % of a post.</figcaption>
       </figure>
-    </section>
 
-    <!-- Type and rules -->
-    <section class="cs-section" aria-labelledby="rules">
-      <p class="cs-kicker text-label">Foundations</p>
-      <div class="cs-grid">
-        <div class="cs-head">
-          <h2 id="rules" class="text-heading-l">Wrote the rules into Figma</h2>
-        </div>
-        <div class="cs-body">
-          <p class="text-body-m"><b>Kept the MPG house fonts.</b> Merriweather carries hooks and quotes, Roboto carries data, tags and CTAs. Both are official MPG fonts, so the kit stays within the CI.</p>
-          <p class="text-body-m"><b>Limited each scale to three steps.</b> Spacing 8 / 16 / 24 px, borders 1 / 2 / 4 px, radius 0 / 8 px / pill.</p>
-          <p class="text-body-m"><b>Wrote usage rules into the semantic tokens.</b> The description shows up as a tooltip in Figma when someone picks a color, e.g. Mint Tint is only for local highlights.</p>
-          <p class="text-body-m"><b>Marked every chart as illustrative.</b> The study has no results yet, so the templates make no clinical claims.</p>
-        </div>
-      </div>
-
-      <figure class="figure figure--pair">
-        <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
+      <figure class="figure figure--narrow">
         <a class="figure__link" href="images/components.webp"><img src="images/components.webp" width="1669" height="1064" loading="lazy" alt="Components: CTA button in three variants, tags in five variants, card with slot in three tones, handle in two variants, and a collage tape element."></a>
-        <figcaption class="text-body-s"><b>8 type styles and 5 components.</b> Body text starts at 36 px on a 1080 px canvas, because a post is seen small and in passing.</figcaption>
+        <figcaption class="text-body-s"><b>Components.</b> Usage rules sit in the token descriptions and show up as tooltips in Figma.</figcaption>
       </figure>
     </section>
 
@@ -204,36 +208,26 @@
       <p class="cs-kicker text-label">Result</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="result" class="text-heading-l">Every post now starts from one design guide</h2>
+          <h2 id="result" class="text-heading-l">Handed over, not tested yet</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">The team gets a moodboard, the foundations, 5 components and templates for a feed post (4:5) and 2 story layouts (9:16), each with a filled example.</p>
+          <p class="text-body-m">The kit is handed over to the team (qualitative). No post has been built with it yet, so the 30-minute target is still untested.</p>
         </div>
       </div>
 
-      <figure class="figure stories">
-        <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" loading="lazy" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
-        <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" loading="lazy" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
-        <figcaption class="text-body-s"><b>Two stories, one topic.</b> A question on the light background, the analysis on the dark one.</figcaption>
-      </figure>
-
-      <div class="cs-result">
-        <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">Waiting for data.</p>
+      <div class="cs-result cs-result--open">
+        <p class="cs-result__label text-label">Next step</p>
+        <p class="text-body-l">Time the first posts built with the kit.</p>
       </div>
     </section>
 
-    <!-- Takeaways -->
+    <!-- Learning -->
     <section class="cs-section" aria-labelledby="takeaways">
       <div class="prose">
         <p class="cs-kicker text-label">What I took away</p>
         <h2 id="takeaways" class="text-heading-l">What I learned</h2>
+        <p class="text-body-m">The kit has fewer tokens than a product UI. Most of the work went into usage rules, placed where someone picks a color.</p>
       </div>
-      <ul class="results results--3 text-body-m" role="list">
-        <li class="info-card"><b class="info-card__title">Fewer tokens, more rules</b><span class="info-card__text">Social media needed fewer tokens than a product. The rules work best inside Figma, at the moment someone picks a color.</span></li>
-        <li class="info-card"><b class="info-card__title">Type scales differently on social</b><span class="info-card__text">On a 1080 px canvas, hooks run at 126 px and body text at 36 px.</span></li>
-        <li class="info-card"><b class="info-card__title">A kit leaves room to create</b><span class="info-card__text">Every post stays recognizable as Max Planck, while the students still choose the topic, the image and the story.</span></li>
-      </ul>
       <div class="talk">
         <p class="text-body-l">Have a look at my premier case studies.</p>
         <a class="btn btn--primary btn--lg" href="../#work">Back to work</a>
