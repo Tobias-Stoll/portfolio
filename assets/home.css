@@ -451,6 +451,6 @@ body.home main { padding-bottom: var(--home-section-gap); }
 
 /* Scroll reveal (assets/reveal.js): sections fade up once as they enter the view.
    Hidden from the first paint via the class set in <head>, so nothing fades out on load */
-.reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
-.reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card).is-in { opacity: 1; transform: none; }
-@media print { .reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card) { opacity: 1; transform: none; } }
+.reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__inner) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__inner).is-in { opacity: 1; transform: none; }
+@media print { .reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__inner) { opacity: 1; transform: none; } }
