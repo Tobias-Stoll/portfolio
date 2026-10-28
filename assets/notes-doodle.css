@@ -60,3 +60,8 @@
 .wall .note__actions .btn:hover:not(:disabled)::before { transform: rotate(-1.6deg) scale(1.05, 1.1); background: color-mix(in srgb, var(--color-purple-600) 80%, transparent); }
 .wall .note__actions .btn:disabled::before { background: color-mix(in srgb, var(--color-purple-600) 25%, transparent); }
 @media (prefers-reduced-motion: reduce) { .wall .note, .wall .note__actions .btn::before { transition: none; } }
+
+/* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
+.wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
+.wall.is-masonry > .note { grid-row: auto; align-self: start; }
+.wall .note--plain { grid-row: auto; }
