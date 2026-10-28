@@ -194,8 +194,8 @@
       <li><a href="#top" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
       <li><a href="#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
       <li><a href="#fun" data-key="f"><kbd aria-hidden="true">F</kbd><span>Fun</span></a></li>
-      <li><a href="#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
       <li><a href="#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
+      <li><a href="#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
       <li class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
     </ul>
     <button class="site-nav__contact" type="button" aria-expanded="false" aria-controls="contact-pop" data-key="c"><kbd aria-hidden="true">C</kbd><span>Contact</span></button>
@@ -384,40 +384,6 @@
     </ul>
   </section>
 
-  <!-- ============ About ============ -->
-  <section class="section wrap" id="about" aria-labelledby="about-title">
-    <div class="about">
-      <div class="about__photo">
-        <div class="polaroid" id="polaroid" data-shot="bike">
-          <button type="button" class="polaroid__img" id="polaroid-flip" aria-label="Switch photo">
-            <img class="polaroid__shot polaroid__shot--bike" src="assets/home/about-bike.jpg" alt="Tobias on his gravel bike on a gravel path by a lake, helmet and sunglasses on" width="500" height="625" loading="lazy">
-            <img class="polaroid__shot polaroid__shot--stage" src="assets/home/about-stage.jpg" alt="Tobias on stage as an esports commentator, wearing a headset" width="500" height="625" loading="lazy">
-          </button>
-          <p class="polaroid__cap" aria-live="polite"><span class="polaroid__cap--bike">Berlin, usually on a bike</span><span class="polaroid__cap--stage">On stage, headset on</span></p>
-        </div>
-        <div class="shot-toggle" role="group" aria-label="Photo">
-          <button type="button" data-shot="bike" aria-pressed="true">On the bike</button>
-          <button type="button" data-shot="stage" aria-pressed="false">On stage</button>
-        </div>
-        <ul class="facts" role="list" aria-label="Fun facts">
-          <li>Former esports caster &amp; moderator</li>
-          <li>Passionate about gravel cycling</li>
-          <li>Trained in hospitality</li>
-        </ul>
-      </div>
-      <div class="about__text">
-        <h2 id="about-title" class="section__title">Not the usual route into design</h2>
-        <p>In restaurants I learned to notice an unhappy guest before they say anything. Science got me used to checking assumptions with data. And live commentary means explaining a chaotic game in plain words, in real time.</p>
-        <p>Today, with six years in UX, I work as a UX/UI and product designer in Berlin, freelance and open to selected roles. I design products across B2B SaaS, travel and gaming, and I build the systems that keep them consistent.</p>
-        <ol class="path" aria-label="My path">
-          <li><b>Hospitality</b><span>Restaurant &amp; Convention Management</span></li>
-          <li><b>Science</b><span>Data-driven work</span></li>
-          <li><b>Esports</b><span>Commentator &amp; Analyst<br>Stage Host</span></li>
-          <li><b>UX/UI Designer</b><span>Research, UX &amp; design systems</span></li>
-        </ol>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ Notes ============ -->
   <section class="section wrap" id="notes" aria-labelledby="notes-title">
@@ -455,6 +421,41 @@
         <p class="note__by">Tobias</p>
       </article>
       <!-- approved notes are inserted here -->
+    </div>
+  </section>
+
+  <!-- ============ About ============ -->
+  <section class="section wrap" id="about" aria-labelledby="about-title">
+    <div class="about">
+      <div class="about__photo">
+        <div class="polaroid" id="polaroid" data-shot="bike">
+          <button type="button" class="polaroid__img" id="polaroid-flip" aria-label="Switch photo">
+            <img class="polaroid__shot polaroid__shot--bike" src="assets/home/about-bike.jpg" alt="Tobias on his gravel bike on a gravel path by a lake, helmet and sunglasses on" width="500" height="625" loading="lazy">
+            <img class="polaroid__shot polaroid__shot--stage" src="assets/home/about-stage.jpg" alt="Tobias on stage as an esports commentator, wearing a headset" width="500" height="625" loading="lazy">
+          </button>
+          <p class="polaroid__cap" aria-live="polite"><span class="polaroid__cap--bike">Berlin, usually on a bike</span><span class="polaroid__cap--stage">On stage, headset on</span></p>
+        </div>
+        <div class="shot-toggle" role="group" aria-label="Photo">
+          <button type="button" data-shot="bike" aria-pressed="true">On the bike</button>
+          <button type="button" data-shot="stage" aria-pressed="false">On stage</button>
+        </div>
+        <ul class="facts" role="list" aria-label="Fun facts">
+          <li>Former esports caster &amp; moderator</li>
+          <li>Passionate about gravel cycling</li>
+          <li>Trained in hospitality</li>
+        </ul>
+      </div>
+      <div class="about__text">
+        <h2 id="about-title" class="section__title">Not the usual route into design</h2>
+        <p>In restaurants I learned to notice an unhappy guest before they say anything. Science got me used to checking assumptions with data. And live commentary means explaining a chaotic game in plain words, in real time.</p>
+        <p>Today, with six years in UX, I work as a UX/UI and product designer in Berlin, freelance and open to selected roles. I design products across B2B SaaS, travel and gaming, and I build the systems that keep them consistent.</p>
+        <ol class="path" aria-label="My path">
+          <li><b>Hospitality</b><span>Restaurant &amp; Convention Management</span></li>
+          <li><b>Science</b><span>Data-driven work</span></li>
+          <li><b>Esports</b><span>Commentator &amp; Analyst<br>Stage Host</span></li>
+          <li><b>UX/UI Designer</b><span>Research, UX &amp; design systems</span></li>
+        </ol>
+      </div>
     </div>
   </section>
 
