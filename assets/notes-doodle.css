@@ -1,0 +1,42 @@
+/**
+ * Notes wall: small doodle notes (page-level override of the Design System Note, candidate to move into it).
+ * About half the size: 14 px text, tight padding, 150 px columns. Doodle look: ink outline, slightly wobbly corners,
+ * hard offset shadow, a piece of tape instead of the pin, one tiny doodle next to the author. Fonts and colours stay on DS tokens.
+ */
+.wall { --wall-ink: var(--color-fg-default); grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: var(--space-16); }
+
+.wall .note {
+  min-height: 0; gap: var(--space-8); padding: var(--space-16) var(--space-12) var(--space-12);
+  border: 2px solid var(--wall-ink); border-radius: 14px 5px 12px 6px / 6px 12px 5px 14px;
+  box-shadow: 3px 3px 0 var(--wall-ink);
+  transform: rotate(calc(var(--note-tilt, 0deg) * 1.5));
+}
+.wall .note:nth-child(3n+2) { border-radius: 6px 13px 5px 12px / 12px 5px 13px 6px; }
+.wall .note:nth-child(3n) { border-radius: 10px 6px 14px 5px / 5px 14px 6px 10px; }
+
+/* tape instead of the pin */
+.wall .note::before {
+  top: -8px; width: 36px; height: 14px; margin-left: -18px; border-radius: 0; box-shadow: none; transform: rotate(-3deg);
+  background: color-mix(in srgb, var(--_pin) 55%, transparent);
+  clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%, 5% 50%);
+}
+.wall .note:nth-child(even)::before { transform: rotate(4deg); }
+
+.wall .note__text { margin: var(--space-4, 4px) 0 0; font-size: var(--font-size-200); line-height: var(--font-line-height-200); }
+.wall .note__by { display: flex; align-items: center; gap: var(--space-8); font-size: var(--font-size-200); }
+
+/* one doodle per note, drawn with a mask so it takes the rust token */
+.wall .note__by::after {
+  content: ""; margin-left: auto; flex: none; width: 18px; height: 18px; background: var(--color-purple-600);
+  -webkit-mask: var(--doodle) center / contain no-repeat; mask: var(--doodle) center / contain no-repeat;
+  --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z'/%3E%3C/svg%3E");
+}
+.wall .note:nth-child(4n+3) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z'/%3E%3C/svg%3E"); }
+.wall .note:nth-child(4n+4) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 14c2-6 4-6 6 0s4 6 6 0 4-6 6 0'/%3E%3C/svg%3E"); }
+.wall .note:nth-child(4n+5) .note__by::after { --doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v16M5 7l14 10M19 7L5 17'/%3E%3C/svg%3E"); }
+
+/* the form note stays usable: two columns wide, tighter */
+.wall .note--plain { grid-column: span 2; padding-top: var(--space-16); gap: var(--space-8); }
+.wall .note__textarea { min-height: 80px; }
+
+@media (max-width: 479px) { .wall .note--plain { grid-column: 1 / -1; } }
