@@ -184,6 +184,7 @@
   <link rel="stylesheet" href="assets/notes-doodle.css?v=2.0.4">
   <link rel="stylesheet" href="assets/work.css?v=2.0.4">
   <link rel="stylesheet" href="assets/rowlist.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/bento.css?v=2.0.4">
   <link rel="stylesheet" href="assets/cursor.css?v=2.0.4">
 </head>
 <body class="home">
@@ -310,12 +311,38 @@
     <div class="section__head">
       <h2 id="more-title" class="section__title">Smaller projects</h2>
     </div>
-    <ul class="rowlist" role="list">
-      <li><a class="rowlist__item" href="mpi-judo/"><span class="rowlist__n">01</span><span class="rowlist__text"><span class="rowlist__title">Social media kit</span><span class="rowlist__sub">Branding and Instagram templates for a Max Planck judo study, built for student assistants</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">Read case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
-      <li><div class="rowlist__item"><span class="rowlist__n">02</span><span class="rowlist__text"><span class="rowlist__title">Enterprise design system</span><span class="rowlist__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span></span><span class="rowlist__end"><span class="rowlist__tag">Foundation</span></span></div></li>
-      <li><div class="rowlist__item"><span class="rowlist__n">03</span><span class="rowlist__text"><span class="rowlist__title">Team profiles</span><span class="rowlist__sub">Performance history across seasons for 1,500+ esports teams</span></span><span class="rowlist__end"><span class="rowlist__tag">Shipped</span></span></div></li>
-      <li><div class="rowlist__item"><span class="rowlist__n">04</span><span class="rowlist__text"><span class="rowlist__title">More coming soon</span><span class="rowlist__sub">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span></span><span class="rowlist__end"><span class="rowlist__tag">Soon</span></span></div></li>
-    </ul>
+    <div class="bento">
+      <a class="bento__tile bento__tile--wide" href="mpi-judo/" data-cursor="View case study">
+        <div class="bento__text">
+          <p class="bento__meta">Max Planck Institute · 2026</p>
+          <h3 class="bento__title">Social media kit</h3>
+          <p class="bento__sub">Branding and Instagram templates for a Max Planck judo study, built so student assistants can post on brand.</p>
+          <span class="bento__cta">View case study<span class="bento__cta-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+        </div>
+        <div class="bento__stage" aria-hidden="true">
+          <div class="bento__frame"><img src="mpi-judo/images/story-question.webp" alt="" loading="lazy"></div>
+          <div class="bento__frame"><img src="mpi-judo/images/story-analysis.webp" alt="" loading="lazy"></div>
+        </div>
+      </a>
+      <article class="bento__tile">
+        <div class="bento__text">
+          <p class="bento__meta">Design system</p>
+          <h3 class="bento__title">Enterprise design system</h3>
+          <p class="bento__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type.</p>
+          <span class="bento__chip">Foundation</span>
+        </div>
+        <div class="bento__stage"><div class="bento__frame"><img src="assets/home/enterprise-ds.jpg" width="900" height="600" loading="lazy" alt="Token overview: colour, spacing, type scale, radius and shadow tokens, and component examples"></div></div>
+      </article>
+      <article class="bento__tile">
+        <div class="bento__text">
+          <p class="bento__meta">Esports platform</p>
+          <h3 class="bento__title">Team profiles</h3>
+          <p class="bento__sub">Performance history across seasons for 1,500+ esports teams.</p>
+          <span class="bento__chip">Shipped</span>
+        </div>
+        <div class="bento__stage"><div class="bento__frame"><img src="assets/home/esports-team.webp" width="1200" height="750" loading="lazy" alt="Team profile of BIG: members, biggest rivals with head-to-head records, signature champions and related news, dark UI"></div></div>
+      </article>
+    </div>
   </section>
 
   <!-- ============ How I work ============ -->

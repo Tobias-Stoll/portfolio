@@ -30,7 +30,7 @@
   /* Mouse push on the visuals, same spring as the notes (stiffness 250, damping 13), max 18 px like the reference tiles.
      The whole case is a link on top, so the tile under the mouse is found by position. Mouse only, off with reduced motion. */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const tiles = [...work.querySelectorAll('.case__tile')].map((t) => ({ t, f: t.querySelector('.case__frame') })).filter((x) => x.f);
+  const tiles = [...document.querySelectorAll('.case__tile, .bento__tile')].map((t) => ({ t, f: t.querySelector('.case__frame, .bento__stage') })).filter((x) => x.f);   // Selected work and the Smaller projects bento
   const K = 250, C = 13, GAIN = 7, MAX = 18, VMAX = 460;
   const state = new Map();
   let loop = 0, last = 0;
@@ -46,7 +46,7 @@
     });
     loop = state.size ? requestAnimationFrame(tick) : 0;
   }
-  work.addEventListener('pointermove', (e) => {
+  document.addEventListener('pointermove', (e) => {
     if (e.pointerType !== 'mouse') return;
     const hit = tiles.find(({ t }) => { const r = t.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; });
     if (!hit) return;
