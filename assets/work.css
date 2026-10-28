@@ -42,7 +42,6 @@
   border: 1.5px solid var(--work-ink); border-radius: 999px; color: var(--work-ink); font-weight: var(--font-weight-medium); text-decoration: none;
 }
 .case__cta-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
-.case__cta::after { content: ""; position: absolute; inset: 0; z-index: 1; }   /* the whole case is the link */
 /* the button stays as it is on hover (no fill); the custom cursor shows the action */
 .case__cta:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
 
@@ -56,7 +55,7 @@
 .case__tile:only-child { grid-row: span 2; }                  /* alone it fills the whole area */
 .case__frame {                                                /* a glass "device" sitting in the tile, cut off at the bottom; --fx / --fy: the mouse push (assets/work.js) */
   transform: translate(var(--fx, 0px), var(--fy, 0px));
-  position: absolute; left: 7%; right: 7%; top: 9%; bottom: 0; padding: 8px 8px 0;
+  position: absolute; left: 7%; right: 7%; top: 9%; bottom: 0; display: block; padding: 8px 8px 0;   /* also a link to the case study (mouse; the button is the accessible link) */
   background: rgb(255 255 255 / .5); border: 1px solid #fff; border-bottom: 0; border-radius: 13px 13px 0 0; box-shadow: 0 0 20px rgb(0 0 0 / .08);
 }
 .case__frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; border-radius: 9px 9px 0 0; background: #fff; }

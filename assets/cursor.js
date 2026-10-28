@@ -15,7 +15,7 @@
     const k = reduce ? 1 : .35;
     cx += (x - cx) * k; cy += (y - cy) * k;
     ring.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-    label.style.transform = `translate3d(${cx + 18}px, ${cy + 20}px, 0)`;
+    label.style.transform = `translate3d(${cx + 15}px, ${cy + 17}px, 0)`;
     raf = (Math.abs(x - cx) > .1 || Math.abs(y - cy) > .1) ? requestAnimationFrame(frame) : 0;
   }
   function update(t) {
