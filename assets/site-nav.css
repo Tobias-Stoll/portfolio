@@ -1,7 +1,7 @@
 /**
  * Site Nav (prototype on the landing page, candidate to replace the Design System Site Header).
  * Top of the page: Home, Work, Fun, About, Notes with keyboard-shortcut badges, Contact on the right.
- * After 300 px of scroll (and on narrow screens) the links fold into a "Menu" button top left; Contact stays top right.
+ * The bar stays open while scrolling (glass background, hairline once scrolled). Only on narrow screens the links fold into a "Menu" button top left; Contact stays top right.
  * State lives in data-state="open | folded" (assets/site-nav.js); .is-open = dropdown shown.
  */
 :root {
@@ -13,6 +13,13 @@
 body.home main { padding-top: var(--nav-h); }
 
 .site-nav { position: fixed; inset: 0 0 auto 0; z-index: 20; pointer-events: none; }
+/* background under the bar: paper glass, hairline appears once the page has scrolled */
+.site-nav::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: var(--nav-h); pointer-events: none;
+  background: var(--nav-glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent; transition: border-color .3s;
+}
+.site-nav.is-scrolled::before { border-bottom-color: rgb(28 25 23 / .12); }
 .site-nav__bar { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); padding-inline: var(--nav-pad); position: relative; }
 .site-nav a, .site-nav button { pointer-events: auto; font: inherit; color: var(--color-fg-default); text-decoration: none; }
 
@@ -36,11 +43,10 @@ body.home main { padding-top: var(--nav-h); }
   font-weight: 600; cursor: pointer; transition: background-color .2s, color .2s;
 }
 .site-nav__menu { display: none; padding-left: 12px; }
-.site-nav__menu:hover, .site-nav__contact:hover { background: var(--color-fg-default); color: var(--home-paper); }
-.site-nav a.site-nav__contact:hover, .site-nav button.site-nav__menu:hover { color: var(--home-paper); }
+.site-nav .site-nav__menu:hover, .site-nav .site-nav__contact:hover, .site-nav .site-nav__contact[aria-expanded="true"] { background: var(--color-fg-default); color: var(--home-paper); }
 @media (max-width: 767px) { .site-nav__contact { padding-inline: 16px; } }
 
-/* folded: scrolled past 300 px or narrow screen. The list becomes a dropdown under the Menu button */
+/* folded: narrow screens only. The list becomes a dropdown under the Menu button */
 .site-nav[data-state="folded"] .site-nav__menu { display: inline-flex; }
 .site-nav[data-state="folded"] .site-nav__list {
   position: absolute; left: var(--nav-pad); top: calc(var(--nav-h) - 6px); flex-direction: column; align-items: stretch; gap: 0; min-width: 232px;
@@ -55,3 +61,25 @@ body.home main { padding-top: var(--nav-h); }
 
 @media (max-width: 767px) { :root { --nav-h: 60px; } }
 @media (prefers-reduced-motion: reduce) { .site-nav__list { transition: none !important; } }
+
+/* Contact menu: link-outs instead of scrolling to the footer */
+.contact-pop {
+  position: absolute; right: var(--nav-pad); top: calc(var(--nav-h) - 6px); width: min(380px, calc(100vw - 2 * var(--nav-pad)));
+  padding: 8px; background: var(--color-bg-default, #fff); border: 1px solid var(--color-border-default, #d9d8d4); border-radius: 20px; box-shadow: var(--home-shadow-lift);
+  pointer-events: auto; opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .42s var(--nav-ease), transform .42s var(--nav-ease), visibility 0s .42s;
+}
+.contact-pop.is-open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.contact-pop__head { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 6px 12px; color: var(--color-fg-muted); font-size: 14px; }
+.site-nav .contact-pop__close { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; border-radius: 12px; color: var(--color-fg-muted); cursor: pointer; }
+.site-nav .contact-pop__close:hover { background: rgb(28 25 23 / .06); color: var(--color-fg-default); }
+.site-nav .contact-pop__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 64px; padding: 10px 12px; border: 0; border-radius: 12px; background: none; text-align: left; cursor: pointer; }
+.site-nav .contact-pop__row:hover { background: rgb(28 25 23 / .06); }
+.contact-pop__text { display: grid; gap: 2px; min-width: 0; }
+.contact-pop__label { font-size: 14px; line-height: 20px; color: var(--color-fg-muted); }
+.contact-pop__value { font-size: 18px; line-height: 26px; font-weight: 500; overflow-wrap: anywhere; }
+.contact-pop__icon { flex: none; display: grid; place-items: center; color: var(--color-fg-default); }
+.contact-pop .i-done { display: none; }
+.contact-pop__row.is-copied .i-copy { display: none; }
+.contact-pop__row.is-copied .i-done { display: block; }
+@media (prefers-reduced-motion: reduce) { .contact-pop { transition: none; } }
