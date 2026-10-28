@@ -8,7 +8,7 @@
   --nav-h: 64px;
   --nav-pad: var(--home-gutter, 24px);
   --nav-ease: cubic-bezier(.22, 1, .36, 1);
-  --nav-glass: rgb(245 244 241 / .62);   /* less opaque so the blur reads */
+  --nav-glass: rgb(245 244 241 / .72);
   --nav-blur: blur(28px) saturate(1.4);
 }
 body.home main { padding-top: var(--nav-h); }
