@@ -9,13 +9,11 @@
   min-height: 0; gap: var(--space-4, 4px); padding: var(--space-12) var(--space-8) var(--space-8);
   border: 1.5px solid var(--wall-ink); border-radius: 12px 4px 10px 5px / 5px 10px 4px 12px;
   box-shadow: 1px 2px 0 rgb(17 16 21 / .45);   /* thin, not a block shadow */
-  transform: rotate(calc(var(--note-tilt, 0deg) * 1.5));
-  transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+  /* --nx, --ny, --nr are driven by assets/notes-wall.js: the mouse pushes a note and it springs back, back and forth */
+  transform: translate(var(--nx, 0px), var(--ny, 0px)) rotate(calc(var(--note-tilt, 0deg) * 1.5 + var(--nr, 0deg)));
+  transition: none;
 }
-/* hover like the reference bento tiles: only the touched note grows to 106 %, no straightening */
-@media (hover: hover) {
-  .wall .note:not(.note--plain):hover { transform: rotate(calc(var(--note-tilt, 0deg) * 1.5)) scale(1.06); z-index: 2; }
-}
+@media (hover: hover) { .wall .note:not(.note--plain):hover { z-index: 2; } }
 .wall .note:nth-child(3n+2) { border-radius: 5px 11px 4px 10px / 10px 4px 11px 5px; }
 .wall .note:nth-child(3n) { border-radius: 9px 5px 12px 4px / 4px 12px 5px 9px; }
 
@@ -59,7 +57,7 @@
 }
 .wall .note__actions .btn:hover:not(:disabled)::before { transform: rotate(-1.6deg) scale(1.05, 1.1); background: color-mix(in srgb, var(--color-purple-600) 80%, transparent); }
 .wall .note__actions .btn:disabled::before { background: color-mix(in srgb, var(--color-purple-600) 25%, transparent); }
-@media (prefers-reduced-motion: reduce) { .wall .note, .wall .note__actions .btn::before { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .wall .note__actions .btn::before { transition: none; } }
 
 /* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
 .wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
