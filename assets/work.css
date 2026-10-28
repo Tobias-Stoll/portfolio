@@ -2,7 +2,7 @@
  * Selected work: one screen per case, framework after the reference site.
  * Left: title, subtitle, intro, Years / Role / Scope, "View case study", chips at the bottom.
  * Right: visuals in tiles (for now one per case; the grid takes up to three: one wide on top, two below).
- * Top right: dots, one per case, the active one is a long pill. Desktop snaps gently to each case (proximity).
+ * Top right: dots, one per case, the active one is a long pill. On desktop each case clicks into place while the cases fill the screen.
  * Mobile: everything stacked, no dots, no snapping.
  */
 .work { position: relative; --work-ink: var(--color-fg-default); --work-ease: cubic-bezier(.22, 1, .36, 1); }
@@ -22,7 +22,7 @@
 
 /* ---------- one case ---------- */
 .case__inner {
-  max-width: var(--home-max); margin: 0 auto; padding: var(--space-48, 48px) var(--home-gutter);
+  position: relative; max-width: var(--home-max); margin: 0 auto; padding: var(--space-48, 48px) var(--home-gutter);
   display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "visual" "chips"; gap: var(--space-32);
 }
 .case + .case .case__inner { border-top: 1px solid rgb(28 25 23 / .12); }
@@ -41,7 +41,8 @@
   transition: background-color .2s, color .2s;
 }
 .case__cta-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
-.case__cta:hover { background: var(--work-ink); color: var(--home-paper); }
+.case__cta::after { content: ""; position: absolute; inset: 0; z-index: 1; }   /* the whole case is the link */
+.case__inner:hover .case__cta, .case__cta:hover { background: var(--work-ink); color: var(--home-paper); }
 .case__cta:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
 
 .case__chips { grid-area: chips; display: flex; flex-wrap: wrap; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }
@@ -52,7 +53,8 @@
 .case__tile { position: relative; margin: 0; overflow: hidden; border-radius: 16px; background: rgb(28 25 23 / .055); }
 .case__tile:first-child { grid-column: 1 / -1; }             /* the first visual is the wide one */
 .case__tile:only-child { grid-row: span 2; }                  /* alone it fills the whole area */
-.case__frame {                                                /* a glass "device" sitting in the tile, cut off at the bottom */
+.case__frame {                                                /* a glass "device" sitting in the tile, cut off at the bottom; --fx / --fy: the mouse push (assets/work.js) */
+  transform: translate(var(--fx, 0px), var(--fy, 0px));
   position: absolute; left: 7%; right: 7%; top: 9%; bottom: 0; padding: 8px 8px 0;
   background: rgb(255 255 255 / .5); border: 1px solid #fff; border-bottom: 0; border-radius: 13px 13px 0 0; box-shadow: 0 0 20px rgb(0 0 0 / .08);
 }
@@ -60,7 +62,8 @@
 
 /* ---------- desktop: one screen per case ---------- */
 @media (min-width: 1024px) {
-  html { scroll-snap-type: y proximity; }
+  html.snap-work { scroll-snap-type: y mandatory; }   /* set by work.js only while the cases fill the screen */
+  .hero, .work + .section { scroll-snap-align: start; }   /* the way in and the way out, so the snap never traps */
   .case { min-height: 100svh; scroll-snap-align: start; scroll-margin-top: -72px; }   /* jumps and snaps land on the case top; the top padding keeps the title clear of the nav */
   .case__inner {
     min-height: 100svh; padding: clamp(112px, 14.45svh, 148px) var(--home-gutter) clamp(40px, 8svh, 74px);
