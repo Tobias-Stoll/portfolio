@@ -321,3 +321,6 @@
   .split { grid-template-columns: minmax(0, 1fr); gap: var(--space-24); }
   .split__text > .cs-result { margin-top: var(--space-24); }
 }
+
+/* Merge loop on the hero stage */
+.hero-stage__panel > .merge__stage { width: min(720px, 100%); }
