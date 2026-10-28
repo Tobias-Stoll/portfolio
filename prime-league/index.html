@@ -114,29 +114,34 @@
   <div class="wrap">
 
     <!-- Hero -->
-    <section class="cs-hero cs-hero--bottom" aria-labelledby="title">
-      <div>
-        <p class="cs-hero__eyebrow text-label">Case study · Prime League · 2023</p>
-        <h1 id="title" class="text-display">An esports platform people can follow</h1>
-        <p class="cs-hero__lead text-body-l">
-          Prime League ran several leagues on one platform, and its navigation followed the league's data model, not the people using it.
-          As the UX designer on the team, I researched why people got lost and restructured the platform around the one question everyone had: when and where is the next match?
-        </p>
-        <ul class="kpis" role="list">
-          <li><b>−30 %</b> registration drop-off</li>
-          <li><b>+10 %</b> active users</li>
-          <li><b>50,000+</b> users per season</li>
-        </ul>
-      </div>
-      <dl class="info-card info-card--facts facts text-body-s">
-        <div><dt>Role</dt><dd>UX Designer: research, analysis, ideation and wireframes. The UI came from the team's UI designer.</dd></div>
-        <div><dt>Team</dt><dd>1 UI designer, 1 product manager, 3 developers</dd></div>
-        <div><dt>Product</dt><dd>Prime League, 99Damage League and DreamHack Leipzig on one platform, 8 competitions</dd></div>
-        <div><dt>Method</dt><dd>Hotjar, Maze, moderated usability tests, card sorting with 25 people</dd></div>
+    <section class="cs-hero cs-hero--stack" aria-labelledby="title">
+      <p class="cs-hero__eyebrow text-label">Case study · Prime League · 2023</p>
+      <h1 id="title" class="text-display">An esports platform people can follow</h1>
+      <p class="cs-hero__lead text-body-l">
+        Prime League ran several leagues on one platform, and every path started with the league's data model.
+        As the UX designer on the team, I researched why people got lost and restructured the platform around the one question everyone had: when and where is the next match?
+      </p>
+      <ul class="kpis" role="list">
+        <li><b>−30 %</b> registration drop-off <span class="ev-tag">measured</span></li>
+        <li><b>+10 %</b> active users <span class="ev-tag">measured</span></li>
+        <li><b>50,000+</b> users per season</li>
+      </ul>
+      <dl class="facts-plain">
+        <div><dt class="text-label">Role</dt><dd class="text-body-m">UX Designer: research, analysis, ideation and wireframes. The UI came from the team's UI designer.</dd></div>
+        <div><dt class="text-label">Team</dt><dd class="text-body-m">1 UI designer, 1 product manager, 3 developers</dd></div>
+        <div><dt class="text-label">Product</dt><dd class="text-body-m">Prime League, 99Damage League and DreamHack Leipzig on one platform, 8 competitions</dd></div>
+        <div><dt class="text-label">Method</dt><dd class="text-body-m">Hotjar, Maze, moderated usability tests, card sorting with 25 people</dd></div>
       </dl>
     </section>
 
-    <!-- Context -->
+    <figure class="figure hero-stage">
+      <div class="hero-stage__panel">
+        <a class="figure__link" href="../assets/home/esports-brackets.webp"><img src="../assets/home/esports-brackets.webp" width="1200" height="750" alt="Redesigned group table, upcoming matches with countdowns, and playoff bracket from quarterfinal to final, dark UI."></a>
+      </div>
+      <figcaption class="text-body-s"><b>Standings, schedule and bracket on one screen.</b> The live product, built on the new structure, with the UI by the team's UI designer. The dates show the current season.</figcaption>
+    </figure>
+
+    <!-- Stakes -->
     <section class="cs-section" aria-labelledby="context">
       <p class="cs-kicker text-label">Context</p>
       <div class="cs-grid">
@@ -171,16 +176,17 @@
       </div>
     </section>
 
-    <!-- Insight -->
-    <section class="cs-section" aria-labelledby="insight">
-      <p class="cs-kicker text-label">Research</p>
+    <!-- Mess -->
+    <section class="cs-section" aria-labelledby="mess">
+      <p class="cs-kicker text-label">What made it hard</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="insight" class="text-heading-l">People grouped everything around the match</h2>
+          <h2 id="mess" class="text-heading-l">Every change had to work for all eight competitions</h2>
         </div>
         <div class="cs-body">
+          <p class="text-body-m">One navigation served Prime League, 99Damage League and DreamHack Leipzig at once. I was the newest designer on the team and the UI came from the team's UI designer, so my lever was the structure and the research behind it.</p>
           <p class="text-body-m"><b>What we saw.</b> Hotjar recordings showed people scrolling past the main navigation. In moderated tests they knew roughly where to look, but could not predict what they would find there.</p>
-          <p class="text-body-m"><b>What confirmed it.</b> In a card sort with 25 players, teams and spectators, people grouped content by what they wanted to do around a match, not by the league structure.</p>
+          <p class="text-body-m"><b>What confirmed it.</b> In a card sort with 25 players, teams and spectators, people grouped content by what they wanted to do around a match.</p>
         </div>
       </div>
       <div class="cs-result">
@@ -189,17 +195,24 @@
       </div>
     </section>
 
-    <!-- Solution -->
-    <section class="cs-section" aria-labelledby="solution">
-      <p class="cs-kicker text-label">The solution</p>
+    <!-- Decisions -->
+    <section class="cs-section" aria-labelledby="decisions">
+      <p class="cs-kicker text-label">The decisions</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="solution" class="text-heading-l">Putting the next match on the start page</h2>
-          <p class="quote text-body-l">"When and where is my next match?"</p>
+          <h2 id="decisions" class="text-heading-l">Rebuilt the structure around the match</h2>
         </div>
         <div class="cs-body">
           <p class="text-body-m"><b>Hypothesis.</b> If the navigation starts from the match instead of the league, more people finish registration and come back.</p>
-          <p class="text-body-m"><b>Approach.</b> I restructured the information architecture of all 8 competitions around three entry points: compete, prepare, watch. The league became a filter instead of the front door. Your next match, your team and the live tournament are now one step from the start page.</p>
+        </div>
+      </div>
+
+      <div class="cs-grid decision">
+        <div class="cs-head">
+          <h3 class="text-heading-m">From league-first to match-first navigation</h3>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">I restructured the information architecture of all 8 competitions around three entry points: compete, prepare, watch. Your next match, your team and the live tournament are now one step from the start page.</p>
         </div>
       </div>
 
@@ -230,28 +243,37 @@
         <figcaption class="text-body-s"><b>The match moves to the top.</b> A simplified view of the navigation before and after the redesign.</figcaption>
       </figure>
 
-      <figure class="figure">
-        <a class="figure__link" href="../assets/home/esports-brackets.webp"><img src="../assets/home/esports-brackets.webp" width="1200" height="750" loading="lazy" alt="Redesigned group table, upcoming matches with countdowns, and playoff bracket from quarterfinal to final, dark UI."></a>
-        <figcaption class="text-body-s"><b>Standings, schedule and bracket on one screen.</b> The live product, built on the new structure, with the UI by the team's UI designer. The dates show the current season.</figcaption>
-      </figure>
+      <div class="cs-grid decision">
+        <div class="cs-head">
+          <h3 class="text-heading-m">From one generic user to three entry points</h3>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">One generic user would have fit none of the three groups. So players, teams and spectators each got their own way in, built around their own question.</p>
+        </div>
+      </div>
 
-      <div class="cs-result">
-        <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">After the relaunch, registration drop-off fell by 30 % (Google Analytics) and active users grew by 10 %. We attribute most of it to taking part in the league getting easier.</p>
+      <div class="cs-grid decision">
+        <div class="cs-head">
+          <h3 class="text-heading-m">From the league as the front door to the league as a filter</h3>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">League, season and division stayed, but as filters on the match, team and tournament pages. People who think in leagues can still narrow things down, everyone else starts from the match.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Takeaways -->
-    <section class="cs-section" aria-labelledby="takeaways">
-      <div class="prose">
-        <p class="cs-kicker text-label">What I took away</p>
-        <h2 id="takeaways" class="text-heading-l">What I still use from this project</h2>
+    <!-- Evidence -->
+    <section class="cs-section" aria-labelledby="result">
+      <p class="cs-kicker text-label">Result</p>
+      <div class="cs-grid">
+        <div class="cs-head">
+          <h2 id="result" class="text-heading-l">Fewer people dropped out of registration</h2>
+        </div>
+        <div class="cs-body">
+          <p class="text-body-m">After the relaunch, registration drop-off fell by 30 % and active users grew by 10 % (measured, Google Analytics). We attribute most of it to taking part in the league getting easier.</p>
+          <p class="text-body-m"><b>What I learned.</b> The Hotjar recordings showed the problem before any interview did.</p>
+        </div>
       </div>
-      <ul class="results results--3 text-body-m" role="list">
-        <li class="info-card"><b class="info-card__title">Watch before you ask</b><span class="info-card__text">The Hotjar recordings showed the problem before any interview did.</span></li>
-        <li class="info-card"><b class="info-card__title">One generic user would have fit none of the three groups</b><span class="info-card__text">So each group got its own entry point: compete, prepare, watch.</span></li>
-        <li class="info-card"><b class="info-card__title">The data model is not the menu</b><span class="info-card__text">How content is stored rarely matches how it is looked for.</span></li>
-      </ul>
       <div class="principle cs-next">
         <p class="text-label cs-next__label">What I would do differently</p>
         <p class="text-body-m">Agree on targets before the work starts. We tracked the right numbers in Google Analytics, but shared targets up front would have helped me argue for decisions, especially as the newest designer on the team.</p>

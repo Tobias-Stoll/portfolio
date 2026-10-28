@@ -94,18 +94,9 @@
     .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
     /* Color preview next to a color name */
     .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
-    /* Hero: one column with a plain facts row, then a large stage for the stories */
-    .cs-hero--stack { display: block; padding-bottom: var(--space-48); }
-    .cs-hero--stack .cs-hero__lead { max-width: 64ch; }
-    .facts-plain { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-32) var(--space-32); margin: var(--space-40) 0 0; padding-top: var(--space-32); border-top: 1px solid var(--color-border-default); }
-    .facts-plain > div { display: grid; gap: var(--space-4); align-content: start; }
-    @media (max-width: 720px) { .facts-plain { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    .facts-plain dt { color: var(--color-fg-muted); font-family: var(--font-family-mono); font-weight: var(--font-weight-medium); }
-    .facts-plain dd { margin: 0; }
-    .hero-stage { margin-top: 0; }
-    .hero-stage__panel { display: flex; justify-content: center; gap: var(--space-24); padding: var(--space-48) var(--space-24); border-radius: var(--radius-container); background: rgba(28, 25, 23, .05); }
-    .hero-stage__panel .figure__link { width: min(260px, 42%); }
-    .hero-stage__panel img { width: 100%; height: auto; }
+    /* Hero stage: two stories side by side */
+    .hero-stage--stories .hero-stage__panel { padding: var(--space-48) var(--space-24); }
+    .hero-stage--stories .figure__link { width: min(260px, 42%); }
     /* Result still open: neutral label instead of success green */
     .cs-result--open .cs-result__label { color: var(--color-fg-muted); }
     @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -148,7 +139,7 @@
       </dl>
     </section>
 
-    <figure class="figure hero-stage">
+    <figure class="figure hero-stage hero-stage--stories">
       <div class="hero-stage__panel">
         <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
         <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
