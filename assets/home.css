@@ -282,7 +282,7 @@ body.home main { padding-bottom: var(--home-section-gap); }
 .credo li { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: baseline; gap: var(--space-8) var(--space-24); padding: 22px var(--space-8); border-bottom: var(--border-width-default) solid var(--color-border-default); }
 .credo__n { font-family: var(--home-mono); font-size: var(--font-size-200); letter-spacing: .02em; color: var(--color-fg-subtle); }
 .credo__line { margin: 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: clamp(var(--font-size-500), 2.4vw, var(--font-size-600)); line-height: 1.33; text-wrap: balance; }   /* Heading M: below the section title, level with the case card titles */
-.credo .mark { color: var(--color-action-ghost-fg); }   /* the recurring word stays a quiet motif: color only, no highlight box */
+.credo .mark, .rowlist .mark { color: var(--color-action-ghost-fg); }   /* the recurring word stays a quiet motif: color only, no highlight box */
 .credo__case { font-family: var(--home-mono); font-size: var(--font-size-200); line-height: var(--font-line-height-200); letter-spacing: .02em; color: var(--button-ghost-fg); text-decoration: none; white-space: nowrap; border-bottom: var(--border-width-default) solid currentColor; padding-bottom: 1px; }
 .credo__case:hover { color: var(--color-purple-800); }
 .core { margin-top: var(--space-16); display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--space-8) var(--space-24); padding: var(--space-24) var(--space-8) 28px; border-radius: var(--radius-card); background: var(--color-action-ghost-bg-hover); color: var(--color-fg-default); }   /* soft tint: grouped with the list, not louder than the work */
