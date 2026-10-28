@@ -12,7 +12,9 @@
 .work-dots__rail {
   position: absolute; top: clamp(112px, 14.45svh, 148px); right: max(var(--home-gutter), calc((100vw - var(--home-max)) / 2 - 40px));
   display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 0; padding: 0; list-style: none;
+  opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s;   /* shown by work.js while a case fills the screen */
 }
+.work.dots-on .work-dots__rail { opacity: 1; visibility: visible; transition-delay: 0s; }
 .work-dots a { position: relative; display: block; width: 10px; height: 10px; border-radius: 999px; background: rgb(28 25 23 / .16); transition: height .3s var(--work-ease), background-color .24s; }
 .work-dots a::before { content: ""; position: absolute; inset: -7px -12px; }   /* hit area at least 24 px */
 .work-dots a:hover { background: rgb(28 25 23 / .32); }
@@ -38,11 +40,10 @@
 .case__cta {
   margin-top: var(--space-40, 40px); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px 0 16px;
   border: 1.5px solid var(--work-ink); border-radius: 999px; color: var(--work-ink); font-weight: var(--font-weight-medium); text-decoration: none;
-  transition: background-color .2s, color .2s;
 }
 .case__cta-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
 .case__cta::after { content: ""; position: absolute; inset: 0; z-index: 1; }   /* the whole case is the link */
-.case__inner:hover .case__cta, .case__cta:hover { background: var(--work-ink); color: var(--home-paper); }
+/* the button stays as it is on hover (no fill); the custom cursor shows the action */
 .case__cta:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
 
 .case__chips { grid-area: chips; display: flex; flex-wrap: wrap; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }

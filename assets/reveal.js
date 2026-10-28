@@ -3,10 +3,11 @@
    Runs only with JS, IntersectionObserver and no reduced-motion preference; otherwise everything is visible. */
 (() => {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const gated = [...document.querySelectorAll('.hero__work, .cases > .case-card, .work .case__inner')];
-  const els = [...document.querySelectorAll('.cs-section, main > .section, main > .contact-block')];
+  const gated = [...document.querySelectorAll('.hero__work, .cases > .case-card, .work .case:first-of-type :is(.case__text, .case__visual, .case__chips)')];
+  const els = [...document.querySelectorAll('.cs-section, main > .section, main > .contact-block, .work .case:not(:first-of-type) :is(.case__text, .case__visual, .case__chips)')];
   if (!els.length && !gated.length) return;
   document.querySelectorAll('.cases > .case-card').forEach((el, i) => el.style.setProperty('--reveal-delay', 80 + (i % 3) * 90 + 'ms'));
+  document.querySelectorAll('.work .case').forEach((c) => c.querySelectorAll(':scope .case__text, :scope .case__visual, :scope .case__chips').forEach((el, i) => el.style.setProperty('--reveal-delay', 80 + i * 90 + 'ms')));   // text, visual, chips one after the other
   document.documentElement.classList.add('reveal-on');
   window.__revealReady = true;
   const io = new IntersectionObserver(entries => entries.forEach(e => {

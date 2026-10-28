@@ -11,7 +11,8 @@
   const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) set(e.target.id); }), { rootMargin: '-50% 0px -50% 0px' });
   cases.forEach((c) => io.observe(c));
 
-  /* Snap: mandatory only while the work section covers the middle of the screen (desktop). Before and after, free scrolling. */
+  /* Snap: mandatory only while the work section covers the middle of the screen (desktop). Before and after, free scrolling.
+     Dots: visible only while a case fills the screen. */
   const work = document.getElementById('work');
   const wide = matchMedia('(min-width: 1024px)');
   let snapOn = false, raf = 0;
@@ -20,6 +21,8 @@
     const r = work.getBoundingClientRect(), mid = innerHeight / 2;
     const want = wide.matches && r.top <= mid && r.bottom >= mid;
     if (want !== snapOn) { snapOn = want; document.documentElement.classList.toggle('snap-work', want); }
+    // dots: only while a case fills the screen; they fade out before the next section (Smaller projects) comes in
+    work.classList.toggle('dots-on', r.top <= innerHeight * .2 && r.bottom >= innerHeight * .8);
   };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(check); }, { passive: true });
   addEventListener('resize', check); wide.addEventListener('change', check); check();
