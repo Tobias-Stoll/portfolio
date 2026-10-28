@@ -92,7 +92,7 @@
 }
 .wall .note--plain::before {
   top: -8px; left: var(--space-12); right: var(--space-12); width: auto; height: 18px; margin: 0; transform: none; clip-path: none;
-  background: radial-gradient(circle at 10px 9px, transparent 0 3.4px, var(--wall-ink) 3.8px 5.4px, transparent 5.8px) 0 0 / 20px 18px repeat-x;
+  background: radial-gradient(circle at 10px 9px, transparent 0 3.4px, var(--wall-ink) 3.8px 5.4px, transparent 5.8px) 0 0 / 20px 18px round no-repeat;   /* round: whole rings only */
 }
 
 /* masonry (class added by assets/notes-wall.js): rows are 4 px, each note spans as many as it needs */
