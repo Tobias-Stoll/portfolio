@@ -94,6 +94,10 @@
     .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
     /* Color preview next to a color name */
     .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
+    /* Hero: stories next to the headline; facts as one row below */
+    .stories--hero { margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts--row > div { align-content: start; }
+    .facts--row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-24); margin: 0 0 var(--space-32); }
     /* Result still open: neutral label instead of success green */
     .cs-result--open .cs-result__label { color: var(--color-fg-muted); }
     @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -130,21 +134,20 @@
           I built a kit designed so an on-brand post takes under 30 minutes.
         </p>
       </div>
-      <dl class="info-card info-card--facts facts text-body-s">
-        <div><dt>Client</dt><dd>Max Planck Institute, XPLO judo study</dd></div>
-        <div><dt>Role</dt><dd>Brand and visual design, end to end</dd></div>
-        <div><dt>Time</dt><dd>8 hours</dd></div>
-        <div><dt>Channel</dt><dd>Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
-        <div><dt>Tools</dt><dd>Figma (variables, components), Gemini as sparring partner</dd></div>
-        <div><dt>Output</dt><dd>A Figma design guide with templates for feed posts and stories</dd></div>
-      </dl>
+      <figure class="figure stories stories--hero">
+        <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
+        <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
+        <figcaption class="text-body-s"><b>Two stories from the kit.</b> Charts are marked as illustrative, because the study has no results yet.</figcaption>
+      </figure>
     </section>
 
-    <figure class="figure stories">
-      <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
-      <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
-      <figcaption class="text-body-s"><b>Stories "Frage des Tages" and "Analyse".</b> Charts are marked as illustrative, because the study has no results yet.</figcaption>
-    </figure>
+    <dl class="info-card info-card--facts facts facts--row text-body-s">
+      <div><dt>Client</dt><dd>Max Planck Institute, XPLO judo study</dd></div>
+      <div><dt>Role</dt><dd>Brand and visual design, end to end</dd></div>
+      <div><dt>Channel</dt><dd>Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
+      <div><dt>Tools</dt><dd>Figma (variables, components and layouts), Gemini</dd></div>
+      <div><dt>Output</dt><dd>A Figma design guide with templates for feed posts and stories</dd></div>
+    </dl>
 
     <!-- Problem -->
     <section class="cs-section" aria-labelledby="problem">
@@ -165,16 +168,17 @@
       <p class="cs-kicker text-label">The decision</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="decision" class="text-heading-l">From Montserrat and Inter to the Max Planck fonts</h2>
+          <h2 id="decision" class="text-heading-l">From a look of its own to the Max Planck CI as the base</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">Gemini suggested Montserrat and Inter. I kept Merriweather for hooks and Roboto for data, because the kit had to stay inside the Max Planck CI.</p>
+          <p class="text-body-m">The brief didn't ask for a link to Max Planck. But the study belongs to the Max Planck Society, so I wanted the channel to show it.</p>
+          <p class="text-body-m">First we defined what the channel should express: science and sport, agile, informative. The moodboard turned that into a look. Then I built the color system around the CI green and added orange and mint as accents for the sport side.</p>
         </div>
       </div>
 
-      <figure class="figure figure--narrow">
-        <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
-        <figcaption class="text-body-s"><b>Type scale.</b> Hooks at 126 px and body text at 36 px on a 1080 px canvas, because posts are seen small on a phone.</figcaption>
+      <figure class="figure">
+        <a class="figure__link" href="images/moodboard.webp"><img src="images/moodboard.webp" width="1800" height="1800" loading="lazy" alt="Moodboard 'Neugier in Bewegung': a sprinter on a track, a researcher attaching sensors to an arm in a lab, a running shoe on clay, muscle fibres under a microscope, an illustrative force curve, and example post, story and data sheet in green, orange and mint."></a>
+        <figcaption class="text-body-s"><b>Moodboard "Neugier in Bewegung".</b> Track and lab side by side.</figcaption>
       </figure>
     </section>
 
@@ -187,14 +191,14 @@
         </div>
       </div>
 
-      <figure class="figure">
-        <a class="figure__link" href="images/moodboard.webp"><img src="images/moodboard.webp" width="1800" height="1800" loading="lazy" alt="Moodboard 'Neugier in Bewegung': a sprinter on a track, a researcher attaching sensors to an arm in a lab, a running shoe on clay, muscle fibres under a microscope, an illustrative force curve, and example post, story and data sheet in green, orange and mint."></a>
-        <figcaption class="text-body-s"><b>Moodboard "Neugier in Bewegung".</b> Track and lab side by side.</figcaption>
-      </figure>
-
       <figure class="figure figure--narrow">
         <a class="figure__link" href="images/colors.webp"><img src="images/colors.webp" width="1600" height="1314" loading="lazy" alt="Color system in four groups: Primary (MPG Green Dark, MPG Green), Base and Text (Deep Slate, Medium Gray, Light Gray, Off-White), Accent and Sport (Performance Orange, Coral Light, Electric Mint, Mint Tint), Data and Function (Data Blue, Tech Violet, Success Green, Alert Red)."></a>
         <figcaption class="text-body-s"><b>Color system.</b> The Max Planck greens <span class="swatch" style="--c:#006c66" aria-hidden="true"></span><span class="swatch" style="--c:#005555" aria-hidden="true"></span> as the base, orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> and mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> as accents at about 10 % of a post.</figcaption>
+      </figure>
+
+      <figure class="figure figure--narrow">
+        <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
+        <figcaption class="text-body-s"><b>Type scale.</b> Merriweather and Roboto, both Max Planck house fonts. Hooks at 126 px and body text at 36 px on a 1080 px canvas, because posts are seen small on a phone.</figcaption>
       </figure>
 
       <figure class="figure figure--narrow">
