@@ -94,10 +94,18 @@
     .stories figcaption { grid-column: 1 / -1; margin-top: 0; }
     /* Color preview next to a color name */
     .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
-    /* Hero: stories next to the headline; facts as one row below */
-    .stories--hero { margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .facts--row > div { align-content: start; }
-    .facts--row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-24); margin: 0 0 var(--space-32); }
+    /* Hero: one column with a plain facts row, then a large stage for the stories */
+    .cs-hero--stack { display: block; padding-bottom: var(--space-32); }
+    .cs-hero--stack .cs-hero__lead { max-width: 64ch; }
+    .facts-plain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-24) var(--space-32); margin: var(--space-40) 0 0; }
+    .facts-plain > div { display: grid; gap: var(--space-4); align-content: start; }
+    @media (max-width: 720px) { .facts-plain { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .facts-plain dt { color: var(--color-fg-muted); }
+    .facts-plain dd { margin: 0; }
+    .hero-stage { margin-top: 0; }
+    .hero-stage__panel { display: flex; justify-content: center; gap: var(--space-24); padding: var(--space-48) var(--space-24); border-radius: var(--radius-container); background: rgba(28, 25, 23, .05); }
+    .hero-stage__panel .figure__link { width: min(260px, 42%); }
+    .hero-stage__panel img { width: 100%; height: auto; }
     /* Result still open: neutral label instead of success green */
     .cs-result--open .cs-result__label { color: var(--color-fg-muted); }
     @media (max-width: 560px) { .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -124,30 +132,29 @@
 <main id="main" tabindex="-1">
   <div class="wrap">
 
-    <!-- Hero -->
-    <section class="cs-hero" aria-labelledby="title">
-      <div>
-        <p class="cs-hero__eyebrow text-label">Smaller project · Max Planck Institute · 2026</p>
-        <h1 id="title" class="text-display">A social media kit students can post with</h1>
-        <p class="cs-hero__lead text-body-l">
-          The XPLO judo study's Instagram is run by student assistants. They change often and have no design background.
-          I built a kit designed so an on-brand post takes under 30 minutes.
-        </p>
-      </div>
-      <figure class="figure stories stories--hero">
-        <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
-        <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
-        <figcaption class="text-body-s"><b>Two stories from the kit.</b> Charts are marked as illustrative, because the study has no results yet.</figcaption>
-      </figure>
+    <!-- Hero: one column, title, lead, plain facts row, then one large visual -->
+    <section class="cs-hero cs-hero--stack" aria-labelledby="title">
+      <p class="cs-hero__eyebrow text-label">Smaller project · Max Planck Institute · 2026</p>
+      <h1 id="title" class="text-display">A social media kit students can post with</h1>
+      <p class="cs-hero__lead text-body-l">
+        The XPLO judo study's Instagram is run by student assistants. They change often and have no design background.
+        I built a kit designed so an on-brand post takes under 30 minutes.
+      </p>
+      <dl class="facts-plain">
+        <div><dt class="text-label">Client</dt><dd class="text-body-m">Max Planck Institute, XPLO judo study</dd></div>
+        <div><dt class="text-label">Role</dt><dd class="text-body-m">Brand and visual design, end to end</dd></div>
+        <div><dt class="text-label">Channel</dt><dd class="text-body-m">Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
+        <div><dt class="text-label">Tools</dt><dd class="text-body-m">Figma (variables, components and layouts), Gemini</dd></div>
+      </dl>
     </section>
 
-    <dl class="info-card info-card--facts facts facts--row text-body-s">
-      <div><dt>Client</dt><dd>Max Planck Institute, XPLO judo study</dd></div>
-      <div><dt>Role</dt><dd>Brand and visual design, end to end</dd></div>
-      <div><dt>Channel</dt><dd>Instagram <a href="https://www.instagram.com/mpi.judo/" target="_blank" rel="noopener">@mpi.judo</a></dd></div>
-      <div><dt>Tools</dt><dd>Figma (variables, components and layouts), Gemini</dd></div>
-      <div><dt>Output</dt><dd>A Figma design guide with templates for feed posts and stories</dd></div>
-    </dl>
+    <figure class="figure hero-stage">
+      <div class="hero-stage__panel">
+        <a class="figure__link" href="images/story-question.webp"><img src="images/story-question.webp" width="720" height="1280" alt="Story 'Frage des Tages: David gegen Goliath' with the question 'Ist Körpergröße wichtiger als Körpergewicht?' over an illustration of a father and daughter in judo gis."></a>
+        <a class="figure__link" href="images/story-analysis.webp"><img src="images/story-analysis.webp" width="720" height="1280" alt="Story '02 / Analyse: David gegen Goliath' about biomechanical analysis in judo, over an illustration of two judoka in a throw, with an orange 'Mehr erfahren' button."></a>
+      </div>
+      <figcaption class="text-body-s"><b>Two stories from the kit.</b> Charts are marked as illustrative, because the study has no results yet.</figcaption>
+    </figure>
 
     <!-- Problem -->
     <section class="cs-section" aria-labelledby="problem">
