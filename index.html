@@ -182,6 +182,7 @@
   <link rel="stylesheet" href="assets/contact-footer.css?v=2.0.4">
   <link rel="stylesheet" href="assets/notes-doodle.css?v=2.0.4">
   <link rel="stylesheet" href="assets/work.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/rowlist.css?v=2.0.4">
   <link rel="stylesheet" href="assets/cursor.css?v=2.0.4">
 </head>
 <body class="home">
@@ -308,29 +309,12 @@
     <div class="section__head">
       <h2 id="more-title" class="section__title">Smaller projects</h2>
     </div>
-    <ul class="work-rows" role="list">
-      <li class="work-row work-row--link" data-preview="mpi-judo/images/moodboard.webp">
-        <a class="work-row__name" href="mpi-judo/">Social media kit</a>
-        <span class="work-row__what">Branding and Instagram templates for a Max Planck judo study, built for student assistants</span>
-        <span class="work-row__tag">Read case →</span>
-      </li>
-      <li class="work-row" data-preview="assets/home/enterprise-ds.jpg">
-        <span class="work-row__name">Enterprise design system</span>
-        <span class="work-row__what">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span>
-        <span class="work-row__tag">Foundation</span>
-      </li>
-      <li class="work-row" data-preview="assets/home/esports-team.webp">
-        <span class="work-row__name">Team profiles</span>
-        <span class="work-row__what">Performance history across seasons for 1,500+ esports teams</span>
-        <span class="work-row__tag">Shipped</span>
-      </li>
-      <li class="work-row work-row--soon">
-        <span class="work-row__name">More coming soon</span>
-        <span class="work-row__what">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span>
-        <span class="work-row__tag">Soon</span>
-      </li>
+    <ul class="rowlist" role="list">
+      <li><a class="rowlist__item" href="mpi-judo/"><span class="rowlist__n">01</span><span class="rowlist__thumb" aria-hidden="true"><img src="mpi-judo/images/moodboard.webp" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Social media kit</span><span class="rowlist__sub">Branding and Instagram templates for a Max Planck judo study, built for student assistants</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">Read case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">02</span><span class="rowlist__thumb" aria-hidden="true"><img src="assets/home/enterprise-ds.jpg" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Enterprise design system</span><span class="rowlist__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type</span></span><span class="rowlist__end"><span class="rowlist__tag">Foundation</span></span></div></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">03</span><span class="rowlist__thumb" aria-hidden="true"><img src="assets/home/esports-team.webp" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Team profiles</span><span class="rowlist__sub">Performance history across seasons for 1,500+ esports teams</span></span><span class="rowlist__end"><span class="rowlist__tag">Shipped</span></span></div></li>
+      <li><div class="rowlist__item"><span class="rowlist__n">04</span><span class="rowlist__text"><span class="rowlist__title">More coming soon</span><span class="rowlist__sub">New projects are on the way. Check back, or leave a note if you want a heads-up :)</span></span><span class="rowlist__end"><span class="rowlist__tag">Soon</span></span></div></li>
     </ul>
-    <img class="peek" alt="" aria-hidden="true">
   </section>
 
   <!-- ============ How I work ============ -->
@@ -339,12 +323,12 @@
       <h2 id="how-title" class="section__title">How I work</h2>
       <p class="section__lead">Each one links to the project where you can see it.</p>
     </div>
-    <ol class="credo" role="list">
-      <li><span class="credo__n">01</span><p class="credo__line">I use AI to go faster and further. The <span class="mark">decisions</span> stay with the team.</p><a class="credo__case" href="design-to-code/">Design to Code</a></li>
-      <li><span class="credo__n">02</span><p class="credo__line">Before I design, we agree on what <span class="mark">success</span> looks like.</p><a class="credo__case" href="invia/#offer-box">Invia · Offer Box</a></li>
-      <li><span class="credo__n">03</span><p class="credo__line">Make the customer's next decision <span class="mark">obvious</span>.</p><a class="credo__case" href="invia/#flex-ticket">Invia · Flex Ticket</a></li>
-      <li><span class="credo__n">04</span><p class="credo__line">Every design decision should be <span class="mark">easy to explain</span>.</p><a class="credo__case" href="prime-league/">Esports platform</a></li>
-      <li><span class="credo__n">05</span><p class="credo__line">Give every outcome <span class="mark">its own moment</span>.</p><a class="credo__case" href="invia/#price-guarantee">Invia · Price Guarantee</a></li>
+    <ol class="rowlist" role="list">
+      <li><a class="rowlist__item" href="design-to-code/"><span class="rowlist__n">01</span><span class="rowlist__thumb" aria-hidden="true"><img src="design-to-code/images/token-bridge.webp" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">I use AI to go faster and further. The <span class="mark">decisions</span> stay with the team.</span><span class="rowlist__sub">Design to Code</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#offer-box"><span class="rowlist__n">02</span><span class="rowlist__thumb" aria-hidden="true"><img src="invia/images/offerbox-redesign.png" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Before I design, we agree on what <span class="mark">success</span> looks like.</span><span class="rowlist__sub">Invia · Offer Box</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#flex-ticket"><span class="rowlist__n">03</span><span class="rowlist__thumb" aria-hidden="true"><img src="invia/images/flex-horizontal.png" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Make the customer's next decision <span class="mark">obvious</span>.</span><span class="rowlist__sub">Invia · Flex Ticket</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="prime-league/"><span class="rowlist__n">04</span><span class="rowlist__thumb" aria-hidden="true"><img src="assets/home/esports-brackets.webp" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Every design decision should be <span class="mark">easy to explain</span>.</span><span class="rowlist__sub">Esports platform</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
+      <li><a class="rowlist__item" href="invia/#price-guarantee"><span class="rowlist__n">05</span><span class="rowlist__thumb" aria-hidden="true"><img src="invia/images/pg-modal.webp" alt="" loading="lazy"></span><span class="rowlist__text"><span class="rowlist__title">Give every outcome <span class="mark">its own moment</span>.</span><span class="rowlist__sub">Invia · Price Guarantee</span></span><span class="rowlist__end"><span class="rowlist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><span class="rowlist__cta" aria-hidden="true"><span class="rowlist__pill">See it in the case<span class="rowlist__pill-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span></span></span></a></li>
     </ol>
     <div class="core">
       <div class="core__sym" aria-hidden="true">=</div>

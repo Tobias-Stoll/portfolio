@@ -454,3 +454,14 @@ body.home main { padding-bottom: var(--home-section-gap); }
 .reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__text, .work .case__visual, .work .case__chips) { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform 1.2s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
 .reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__text, .work .case__visual, .work .case__chips).is-in { opacity: 1; transform: none; }
 @media print { .reveal-on :is(.cs-section, main > .section, .hero__work, .cases > .case-card, .work .case__text, .work .case__visual, .work .case__chips) { opacity: 1; transform: none; } }
+
+/* Primary button: outlined pill like the Contact button in the nav, fills black on hover (decision Tobias 28.10.).
+   Uses the DS Button hooks; the doodle button in the notes form keeps its own look. */
+.btn--primary {
+  --_bg: transparent; --_bg-hover: var(--color-fg-default); --_bg-pressed: var(--color-fg-default);
+  --_fg: var(--color-fg-default); --_border: var(--color-fg-default);
+  border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--_border); transition: background-color .2s, color .2s;
+}
+.btn--primary:hover:not(:disabled), .btn--primary:active:not(:disabled) { --_fg: var(--color-bg-default, #fff); }
+.btn--primary:disabled { --_border: var(--button-disabled-fg); }
+.skip-link.btn--primary { --_bg: var(--color-bg-default, #fff); }
