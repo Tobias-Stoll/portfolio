@@ -1,7 +1,7 @@
 /**
  * Project card rail: paddles, video on hover, and the project dialog.
  * A card button with data-project="<template id>" opens #pm with that template's content.
- * The card image grows into the first dialog visual (View Transitions API), else the dialog fades in.
+ * The card morphs into the dialog (stand-in box + travelling image, Web Animations), else the dialog fades in.
  */
 (() => {
   const rails = [...document.querySelectorAll('.prail')];
@@ -39,7 +39,6 @@
   const dlg = document.getElementById('pm');
   if (!dlg || typeof dlg.showModal !== 'function') return;
   const body = dlg.querySelector('.pm__body');
-  const morph = (fn) => (!reduced && document.startViewTransition ? document.startViewTransition(fn).finished : Promise.resolve(fn()));
   let opener = null;
 
   // own scrollbar inside the box: track + pill, like the case dots; the pill can be dragged
@@ -67,40 +66,88 @@
     thumb.addEventListener('pointermove', move); thumb.addEventListener('pointerup', up); thumb.addEventListener('pointercancel', up);
   });
 
-  function open(card) {
-    const tpl = document.getElementById(card.dataset.project);
-    if (!tpl) return;
-    opener = card;
-    const from = card.querySelector('.pcard__frame img');
-    body.replaceChildren(tpl.content.cloneNode(true));
-    body.querySelector('.pm__title')?.setAttribute('id', 'pm-title');
-    const to = body.querySelector('.pm__fig--hero img');
-    const vt = !reduced && document.startViewTransition && from && to;
-    dlg.classList.toggle('is-morph', !!vt);
-    if (vt) from.style.viewTransitionName = 'pm-hero';
-    morph(() => {
-      if (from) from.style.viewTransitionName = '';
-      if (to) to.style.viewTransitionName = 'pm-hero';
-      document.documentElement.classList.add('pm-lock');
-      dlg.showModal();
-      dlg.append(...document.querySelectorAll('body > .cursor, body > .cursor__label'));   // the custom cursor would sit under the top layer
-      document.querySelector('.cursor__label')?.classList.remove('is-on');
-      body.scrollTop = 0; bar();
-      body.focus({ preventScroll: true });   // arrow keys and space scroll the content; Tab reaches the close button
-    }).finally(() => { if (to) to.style.viewTransitionName = ''; });
+  /* Card to dialog morph (container transform, like the App Store cards):
+     a stand-in box grows from the card to the dialog while the card image glides to the first visual,
+     the card's text fades out early, the dialog's text fades in once the box has landed. Closing runs it backwards. */
+  const DUR = 560, EASE = 'cubic-bezier(.32, .72, 0, 1)';
+  let busy = false;
+  const rect = (el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
+  const box = (r) => ({ left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
+  const rel = (r, o) => ({ x: r.x - o.x, y: r.y - o.y, w: r.w, h: r.h });
+
+  function stage(card) {   // the stand-in: card background, a copy of the card (text) and a copy of the image
+    const cs = getComputedStyle(card);
+    const m = document.createElement('div'); m.className = 'pm-morph'; m.setAttribute('aria-hidden', 'true');
+    const face = card.cloneNode(true); face.className += ' pm-morph__face'; face.removeAttribute('data-project'); face.tabIndex = -1;
+    face.querySelectorAll('.pcard__frame img').forEach((i) => { i.style.visibility = 'hidden'; });
+    const img = document.createElement('img'); img.className = 'pm-morph__img';
+    const src = card.querySelector('.pcard__frame img'); img.src = src.currentSrc || src.src; img.alt = '';
+    m.append(face, img);
+    return { m, face, img, bg: cs.backgroundColor, cardR: rect(card), srcR: rect(src) };
   }
 
-  function close() {
-    if (!dlg.open) return;
-    const from = body.querySelector('.pm__fig--hero img');
-    const to = opener && opener.querySelector('.pcard__frame img');
-    const vt = !reduced && document.startViewTransition && from && to && body.scrollTop < 200;
-    if (vt) from.style.viewTransitionName = 'pm-hero';
-    morph(() => {
-      if (from) from.style.viewTransitionName = '';
-      if (vt) to.style.viewTransitionName = 'pm-hero';
-      dlg.close();
-    }).finally(() => { if (to) to.style.viewTransitionName = ''; });
+  function run(st, fromBox, toBox, fromImg, toImg, fromBg, toBg, fromRad, toRad, faceIn) {
+    const o = { duration: DUR, easing: EASE, fill: 'both' };
+    const a1 = st.m.animate([{ ...box(fromBox), backgroundColor: fromBg, borderRadius: fromRad }, { ...box(toBox), backgroundColor: toBg, borderRadius: toRad }], o);
+    st.img.animate([{ ...box(fromImg), borderRadius: faceIn ? '12px' : '7px 7px 0 0' }, { ...box(toImg), borderRadius: faceIn ? '7px 7px 0 0' : '12px' }], o);
+    st.face.animate(faceIn ? [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .55 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .3 }, { opacity: 0 }], { duration: DUR, easing: 'linear', fill: 'both' });
+    return a1.finished;
+  }
+
+  function fill(card) {
+    body.replaceChildren(document.getElementById(card.dataset.project).content.cloneNode(true));
+    body.querySelector('.pm__title')?.setAttribute('id', 'pm-title');
+  }
+  function show() {
+    document.documentElement.classList.add('pm-lock');
+    dlg.showModal();
+    dlg.append(...document.querySelectorAll('body > .cursor, body > .cursor__label'));   // the custom cursor would sit under the top layer
+    document.querySelector('.cursor__label')?.classList.remove('is-on');
+    body.scrollTop = 0; bar();
+    body.focus({ preventScroll: true });   // arrow keys and space scroll the content; Tab reaches the close button
+  }
+
+  async function open(card) {
+    if (busy || !document.getElementById(card.dataset.project)) return;
+    opener = card; fill(card);
+    const hero = body.querySelector('.pm__fig--hero img');
+    if (reduced || !hero || !card.querySelector('.pcard__frame img') || !dlg.animate) { dlg.classList.add('is-fade'); show(); return; }
+    busy = true;
+    const st = stage(card);
+    dlg.classList.remove('is-fade'); dlg.classList.add('is-morphing');
+    show();
+    dlg.append(st.m);
+    const dR = rect(dlg), hR = rect(hero);
+    card.style.visibility = 'hidden';
+    requestAnimationFrame(() => dlg.classList.add('is-dim'));
+    st.face.style.width = st.cardR.w + 'px'; st.face.style.height = st.cardR.h + 'px';
+    await run(st, st.cardR, dR, rel(st.srcR, st.cardR), rel(hR, dR), st.bg, getComputedStyle(dlg).backgroundColor, '18px', getComputedStyle(dlg).borderRadius, false);
+    dlg.classList.remove('is-morphing'); dlg.classList.add('is-enter');
+    st.m.remove();
+    setTimeout(() => dlg.classList.remove('is-enter'), 420);
+    busy = false;
+  }
+
+  async function close() {
+    if (!dlg.open || busy) return;
+    const card = opener, hero = body.querySelector('.pm__fig--hero img');
+    if (reduced || !card || !hero || !dlg.animate || dlg.classList.contains('is-fade')) { dlg.classList.remove('is-dim'); dlg.close(); return; }
+    busy = true;
+    card.style.visibility = '';
+    const st = stage(card);
+    card.style.visibility = 'hidden';
+    const dR = rect(dlg), hR = rect(hero);
+    st.face.style.width = st.cardR.w + 'px'; st.face.style.height = st.cardR.h + 'px';
+    dlg.append(st.m);
+    dlg.classList.add('is-leaving');   // the dialog's own content fades out fast
+    await new Promise((r) => setTimeout(r, 120));
+    dlg.classList.add('is-morphing'); dlg.classList.remove('is-dim', 'is-leaving');
+    await run(st, dR, st.cardR, rel(hR, dR), rel(st.srcR, st.cardR), getComputedStyle(dlg).backgroundColor, st.bg, getComputedStyle(dlg).borderRadius, '18px', true);
+    card.style.visibility = '';
+    dlg.close();
+    dlg.classList.remove('is-morphing');
+    st.m.remove();
+    busy = false;
   }
 
   document.querySelectorAll('.prail button.pcard[data-project]').forEach((c) => c.addEventListener('click', () => open(c)));

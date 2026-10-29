@@ -78,9 +78,21 @@
   background: #fff; color: var(--color-fg-default); box-shadow: 0 24px 80px rgb(0 0 0 / .25); overflow: hidden;
 }
 .pm[open] { display: flex; flex-direction: column; }
-.pm::backdrop { background: rgb(20 18 16 / .55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-.pm[open] { animation: pm-in .35s var(--home-ease, ease); }
-.pm.is-morph[open] { animation: none; }   /* the view transition does the work */
+.pm::backdrop { background: rgb(20 18 16 / .55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity .45s ease; }
+.pm.is-dim::backdrop, .pm.is-fade::backdrop { opacity: 1; }
+.pm.is-fade[open] { animation: pm-in .35s var(--home-ease, ease); }
+
+/* the morph: while it runs the dialog is only a frame for the stand-in box (.pm-morph) */
+.pm.is-morphing { background: transparent; box-shadow: none; overflow: visible; }
+.pm.is-morphing > :not(.pm-morph) { visibility: hidden; }
+.pm-morph { position: fixed; z-index: 3; overflow: hidden; pointer-events: none; box-shadow: 0 24px 80px rgb(0 0 0 / .25); }
+.pm-morph__face { position: absolute; left: 0; top: 0; margin: 0; transform: none !important; box-shadow: none; background: transparent; }
+.pm-morph__img { position: absolute; display: block; max-width: none; object-fit: cover; object-position: top left; }
+/* landing: the hero stays put, everything else fades in; leaving: the reverse, quickly */
+.pm.is-enter :is(.pm__eyebrow, .pm__title, .pm__lead, .pm__fig:not(.pm__fig--hero), .pm__fig--hero figcaption, .pm__close, .pm__bar) { animation: pm-fade .38s ease both; }
+.pm.is-enter :is(.pm__title) { animation-delay: .04s; } .pm.is-enter .pm__lead { animation-delay: .08s; } .pm.is-enter .pm__fig:not(.pm__fig--hero) { animation-delay: .12s; }
+.pm.is-leaving :is(.pm__eyebrow, .pm__title, .pm__lead, .pm__fig:not(.pm__fig--hero), .pm__fig--hero figcaption, .pm__close, .pm__bar) { opacity: 0; transition: opacity .12s; }
+@keyframes pm-fade { from { opacity: 0; transform: translateY(10px); } }
 @keyframes pm-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
 .pm__close {   /* our button: ink outline, black fill on hover (like Contact and the primary button) */
   position: absolute; top: 16px; right: 28px; z-index: 2; display: grid; place-items: center;
@@ -111,8 +123,6 @@
 .pm__fig figcaption { padding: 10px 14px; background: #fff; color: var(--color-fg-muted); font-size: var(--font-size-200); }
 html.pm-lock { overflow: hidden; }
 
-::view-transition-group(pm-hero) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
-::view-transition-old(root), ::view-transition-new(root) { animation-duration: .3s; }
 
 @media (max-width: 767px) {
   .prail-section { --pcard-w: min(82vw, 340px); --pcard-h: 424px; }
@@ -130,5 +140,6 @@ html.pm-lock { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pcard, .pcard__stage, .pm[open] { transition: none; animation: none; }
+  .pm::backdrop { transition: none; }
   :is(a, button).pcard:hover, :is(a, button).pcard:hover .pcard__stage { transform: none; }
 }
