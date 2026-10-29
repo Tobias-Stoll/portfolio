@@ -4,24 +4,28 @@
  * The card image grows into the first dialog visual (View Transitions API), else the dialog fades in.
  */
 (() => {
-  const rail = document.querySelector('.prail');
-  if (!rail) return;
+  const rails = [...document.querySelectorAll('.prail')];
+  if (!rails.length) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // paddles: one card per click, disabled at the ends
-  const paddles = [...document.querySelectorAll('.prail__paddle')];
-  const step = () => { const li = rail.querySelector('li'); return li ? li.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 20) : 400; };
-  paddles.forEach((b) => b.addEventListener('click', () => rail.scrollBy({ left: step() * Number(b.dataset.dir), behavior: reduced ? 'auto' : 'smooth' })));
-  const sync = () => {
-    const max = rail.scrollWidth - rail.clientWidth - 2;
-    paddles.forEach((b) => { b.disabled = Number(b.dataset.dir) < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max; });
-  };
-  rail.addEventListener('scroll', sync, { passive: true });
-  addEventListener('resize', sync);
-  sync();
-
+  // paddles per rail: one card per click, disabled at the ends, hidden when everything fits
+  rails.forEach((rail) => {
+    const group = rail.closest('.prail-group');
+    const box = group && group.querySelector('.prail__paddles');
+    const paddles = box ? [...box.querySelectorAll('.prail__paddle')] : [];
+    const step = () => { const li = rail.querySelector('li'); return li ? li.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 20) : 400; };
+    paddles.forEach((b) => b.addEventListener('click', () => rail.scrollBy({ left: step() * Number(b.dataset.dir), behavior: reduced ? 'auto' : 'smooth' })));
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth - 2;
+      if (box) box.hidden = max <= 0;
+      paddles.forEach((b) => { b.disabled = Number(b.dataset.dir) < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max; });
+    };
+    rail.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
+  });
   // the Ride Recap story plays while you point at its card (user-started, so no extra pause control needed)
-  rail.querySelectorAll('.pcard video').forEach((v) => {
+  document.querySelectorAll('.prail .pcard video').forEach((v) => {
     const card = v.closest('.pcard');
     const play = () => { if (!reduced) { v.preload = 'auto'; v.play().catch(() => {}); } };
     const stop = () => v.pause();
@@ -73,7 +77,7 @@
     }).finally(() => { if (to) to.style.viewTransitionName = ''; });
   }
 
-  rail.querySelectorAll('button.pcard[data-project]').forEach((c) => c.addEventListener('click', () => open(c)));
+  document.querySelectorAll('.prail button.pcard[data-project]').forEach((c) => c.addEventListener('click', () => open(c)));
   dlg.querySelector('.pm__close').addEventListener('click', close);
   dlg.addEventListener('cancel', (e) => { e.preventDefault(); close(); });   // Esc
   dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });   // click on the backdrop

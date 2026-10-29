@@ -9,6 +9,9 @@
 .prail__head { max-width: var(--home-max); margin-bottom: var(--space-8); display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-24); }
 .prail__heading { max-width: 28ch; margin: 0; }
 .prail__heading-muted { color: var(--color-fg-muted); }
+.prail-group--next { margin-top: var(--space-16); }
+.prail-group--next .prail__heading { font-size: clamp(26px, 3.2vw, 36px); }
+.prail__paddles[hidden] { display: none; }
 .prail__paddles { display: flex; gap: var(--space-12); flex: none; }
 .prail__paddle {
   display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
@@ -36,7 +39,6 @@
 }
 .pcard--dark { background: #0b0b0c; color: #f5f5f4; --pcard-eyebrow: #FF7A5C; --pcard-muted: #b7b4ae; }
 .pcard--rust { background: var(--color-accent-display, #F5532F); color: #1c1917; --pcard-eyebrow: #1c1917; --pcard-muted: #2e1a14; }
-.pcard--next { background: transparent; box-shadow: none; border: 1.5px dashed rgb(28 25 23 / .25); cursor: default; }
 :is(a, button).pcard:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 4px; }
 @media (hover: hover) {
   :is(a, button).pcard:hover { transform: scale(1.015); box-shadow: 0 8px 28px rgb(0 0 0 / .12); }

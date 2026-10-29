@@ -309,14 +309,15 @@
   <!-- ============ Smaller projects and things I build to learn: one scrollable card rail ============ -->
   <!-- A card with a write-up is a link. A card without one is a button that opens the project in a dialog (assets/prail.js). -->
   <section class="section prail-section" id="fun" aria-labelledby="fun-title">
+    <div class="prail-group" role="group" aria-labelledby="fun-title">
     <div class="wrap section__head prail__head">
-      <h2 id="fun-title" class="section__title prail__heading">Smaller projects. <span class="prail__heading-muted">And things I build to learn.</span></h2>
+      <h2 id="fun-title" class="section__title prail__heading">Smaller projects.</h2>
       <div class="prail__paddles">
-        <button class="prail__paddle" type="button" data-dir="-1" aria-label="Previous projects" aria-controls="prail-track"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button class="prail__paddle" type="button" data-dir="1" aria-label="Next projects" aria-controls="prail-track"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        <button class="prail__paddle" type="button" data-dir="-1" aria-label="Previous projects" aria-controls="prail-work"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="prail__paddle" type="button" data-dir="1" aria-label="Next projects" aria-controls="prail-work"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
     </div>
-    <ul class="prail" id="prail-track" role="list">
+    <ul class="prail" id="prail-work" role="list">
       <li>
         <a class="pcard" href="mpi-judo/" data-cursor="View case study">
           <span class="pcard__text">
@@ -328,19 +329,6 @@
           <span class="pcard__stage pcard__stage--pair" aria-hidden="true">
             <span class="pcard__frame"><img src="mpi-judo/images/story-question.webp" alt="" loading="lazy"></span>
             <span class="pcard__frame"><img src="mpi-judo/images/story-analysis.webp" alt="" loading="lazy"></span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="pcard pcard--dark" href="ride-recap/" data-cursor="Read the tutorial">
-          <span class="pcard__text">
-            <span class="pcard__eyebrow">Tutorial · Figma Motion</span>
-            <span class="pcard__title">Ride Recap</span>
-            <span class="pcard__tag">Build it yourself</span>
-            <span class="pcard__sub">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</span>
-          </span>
-          <span class="pcard__stage pcard__stage--story" aria-hidden="true">
-            <span class="pcard__frame"><video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none"></video></span>
           </span>
         </a>
       </li>
@@ -366,6 +354,30 @@
           <span class="pcard__stage"><span class="pcard__frame"><img src="assets/home/esports-team.webp" width="1200" height="750" loading="lazy" alt=""></span></span>
         </button>
       </li>
+    </ul>
+    </div>
+    <div class="prail-group prail-group--next" role="group" aria-labelledby="learn-title">
+    <div class="wrap section__head prail__head">
+      <h3 id="learn-title" class="section__title prail__heading prail__heading-muted">And things I build to learn.</h3>
+      <div class="prail__paddles">
+        <button class="prail__paddle" type="button" data-dir="-1" aria-label="Previous builds" aria-controls="prail-learn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="prail__paddle" type="button" data-dir="1" aria-label="Next builds" aria-controls="prail-learn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <ul class="prail" id="prail-learn" role="list">
+      <li>
+        <a class="pcard pcard--dark" href="ride-recap/" data-cursor="Read the tutorial">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Tutorial · Figma Motion</span>
+            <span class="pcard__title">Ride Recap</span>
+            <span class="pcard__tag">Build it yourself</span>
+            <span class="pcard__sub">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</span>
+          </span>
+          <span class="pcard__stage pcard__stage--story" aria-hidden="true">
+            <span class="pcard__frame"><video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none"></video></span>
+          </span>
+        </a>
+      </li>
       <li>
         <a class="pcard pcard--rust" href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener" data-cursor="Open Instagram">
           <span class="pcard__text">
@@ -377,17 +389,8 @@
           <span class="sr-only"> (opens in a new tab)</span>
         </a>
       </li>
-      <li>
-        <div class="pcard pcard--next">
-          <span class="pcard__text">
-            <span class="pcard__eyebrow">Next up</span>
-            <span class="pcard__title">Ride Recap carousel</span>
-            <span class="pcard__tag">In the works</span>
-            <span class="pcard__sub">A feed version of the story, with routes read straight from GPX files.</span>
-          </span>
-        </div>
-      </li>
     </ul>
+    </div>
 
     <!-- dialog content per project: 1 to 4 visuals, the first one is the card image and grows into the dialog -->
     <template id="pm-ds">
