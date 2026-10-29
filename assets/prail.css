@@ -95,6 +95,7 @@
 .pm__fig { margin: 0; border-radius: 12px; overflow: hidden; background: #0b0b0c; }
 .pm__fig--hero, .pm__fig:only-child, .pm__fig:nth-child(4):last-child { grid-column: 1 / -1; }
 .pm__fig img { display: block; width: 100%; height: auto; }
+.pm__fig:not(.pm__fig--hero):not(:only-child):not(:nth-child(4):last-child) img { aspect-ratio: 3 / 4; object-fit: cover; object-position: top center; }   /* a pair side by side gets the same height */
 .pm__fig figcaption { padding: 10px 14px; background: #fff; color: var(--color-fg-muted); font-size: var(--font-size-200); }
 html.pm-lock { overflow: hidden; }
 
