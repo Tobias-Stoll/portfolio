@@ -73,23 +73,35 @@
 .pcard__stat-small { color: var(--pcard-muted); font-size: var(--font-size-200); }
 
 /* ---------- project dialog ---------- */
-.pm {
+.pm {   /* the box clips, .pm__body scrolls; the scrollbar is our own (.pm__bar), in the style of the case dots */
   width: min(960px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; border: 0; border-radius: 24px;
-  background: #fff; color: var(--color-fg-default); box-shadow: 0 24px 80px rgb(0 0 0 / .25); overflow: auto; overscroll-behavior: contain;
+  background: #fff; color: var(--color-fg-default); box-shadow: 0 24px 80px rgb(0 0 0 / .25); overflow: hidden;
 }
+.pm[open] { display: flex; flex-direction: column; }
 .pm::backdrop { background: rgb(20 18 16 / .55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .pm[open] { animation: pm-in .35s var(--home-ease, ease); }
 .pm.is-morph[open] { animation: none; }   /* the view transition does the work */
 @keyframes pm-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
-.pm__close {
-  position: sticky; top: 16px; float: right; margin: 16px 16px 0 0; z-index: 2; display: grid; place-items: center;
-  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: rgb(28 25 23 / .08); color: inherit;
+.pm__close {   /* our button: ink outline, black fill on hover (like Contact and the primary button) */
+  position: absolute; top: 16px; right: 28px; z-index: 2; display: grid; place-items: center;
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; cursor: pointer;
+  background: #fff; color: var(--color-fg-default); box-shadow: inset 0 0 0 1.5px var(--color-fg-default);
+  transition: background-color .2s, color .2s;
 }
-.pm__close:hover { background: rgb(28 25 23 / .14); }
+.pm__close:hover, .pm__close:active { background: var(--color-fg-default); color: var(--color-bg-default, #fff); }
 .pm__close:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
-.pm__body { padding: 40px 48px 48px; }
+.pm__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 40px 48px 48px; scrollbar-width: none; outline: none; }
+.pm__body::-webkit-scrollbar { display: none; }
+.pm__bar { position: absolute; top: 76px; bottom: 24px; right: 12px; width: 6px; border-radius: 999px; background: rgb(28 25 23 / .1); opacity: 0; transition: opacity .25s; }
+.pm.has-scroll .pm__bar { opacity: 1; }
+.pm__thumb {
+  position: absolute; left: 0; right: 0; top: 0; min-height: 30px; border-radius: 999px; background: rgb(28 25 23 / .45);
+  height: var(--thumb-h, 30px); transform: translateY(var(--thumb-y, 0px)); cursor: grab; touch-action: none;
+}
+.pm__thumb::before { content: ""; position: absolute; inset: 0 -9px; }   /* a wider grab area */
+.pm__thumb:hover, .pm__bar.is-drag .pm__thumb { background: rgb(28 25 23 / .65); }
 .pm__eyebrow { margin: 0; color: var(--color-purple-700, #C93A17); font-size: var(--font-size-200); font-weight: var(--font-weight-medium); letter-spacing: .06em; text-transform: uppercase; }
-.pm__title { margin: 6px 0 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: clamp(30px, 4vw, 40px); line-height: 1.1; }
+.pm__title { margin: 6px 0 0; padding-right: 56px; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: clamp(30px, 4vw, 40px); line-height: 1.1; }
 .pm__lead { margin: 12px 0 0; max-width: 60ch; color: var(--color-fg-muted); font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
 .pm__gallery { margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .pm__fig { margin: 0; border-radius: 12px; overflow: hidden; background: #0b0b0c; }

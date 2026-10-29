@@ -42,6 +42,31 @@
   const morph = (fn) => (!reduced && document.startViewTransition ? document.startViewTransition(fn).finished : Promise.resolve(fn()));
   let opener = null;
 
+  // own scrollbar inside the box: track + pill, like the case dots; the pill can be dragged
+  const track = dlg.querySelector('.pm__bar'), thumb = dlg.querySelector('.pm__thumb');
+  function bar() {
+    const max = body.scrollHeight - body.clientHeight;
+    dlg.classList.toggle('has-scroll', max > 1);
+    if (max <= 1) return;
+    const th = track.clientHeight, h = Math.max(30, th * body.clientHeight / body.scrollHeight);
+    thumb.style.setProperty('--thumb-h', h + 'px');
+    thumb.style.setProperty('--thumb-y', ((th - h) * body.scrollTop / max) + 'px');
+  }
+  body.addEventListener('scroll', bar, { passive: true });
+  addEventListener('resize', () => { if (dlg.open) bar(); });
+  new ResizeObserver(() => { if (dlg.open) bar(); }).observe(body);
+  body.addEventListener('load', bar, true);   // images arriving change the height
+  thumb.addEventListener('pointerdown', (e) => {
+    e.preventDefault(); thumb.setPointerCapture(e.pointerId); track.classList.add('is-drag');
+    const y0 = e.clientY, s0 = body.scrollTop;
+    const move = (ev) => {
+      const th = track.clientHeight - thumb.offsetHeight, max = body.scrollHeight - body.clientHeight;
+      body.scrollTop = s0 + (ev.clientY - y0) * (th > 0 ? max / th : 0);
+    };
+    const up = () => { track.classList.remove('is-drag'); thumb.removeEventListener('pointermove', move); thumb.removeEventListener('pointerup', up); thumb.removeEventListener('pointercancel', up); };
+    thumb.addEventListener('pointermove', move); thumb.addEventListener('pointerup', up); thumb.addEventListener('pointercancel', up);
+  });
+
   function open(card) {
     const tpl = document.getElementById(card.dataset.project);
     if (!tpl) return;
@@ -60,7 +85,8 @@
       dlg.showModal();
       dlg.append(...document.querySelectorAll('body > .cursor, body > .cursor__label'));   // the custom cursor would sit under the top layer
       document.querySelector('.cursor__label')?.classList.remove('is-on');
-      dlg.scrollTop = 0;
+      body.scrollTop = 0; bar();
+      body.focus({ preventScroll: true });   // arrow keys and space scroll the content; Tab reaches the close button
     }).finally(() => { if (to) to.style.viewTransitionName = ''; });
   }
 
@@ -68,7 +94,7 @@
     if (!dlg.open) return;
     const from = body.querySelector('.pm__fig--hero img');
     const to = opener && opener.querySelector('.pcard__frame img');
-    const vt = !reduced && document.startViewTransition && from && to && dlg.scrollTop < 200;
+    const vt = !reduced && document.startViewTransition && from && to && body.scrollTop < 200;
     if (vt) from.style.viewTransitionName = 'pm-hero';
     morph(() => {
       if (from) from.style.viewTransitionName = '';
