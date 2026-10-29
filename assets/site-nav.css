@@ -1,6 +1,6 @@
 /**
  * Site Nav (prototype on the landing page, candidate to replace the Design System Site Header).
- * Top of the page: Home, Work, Fun, About, Notes with keyboard-shortcut badges, Contact on the right.
+ * Top of the page: Home, Work, Notes, About with keyboard-shortcut badges, Contact on the right.
  * The bar stays open while scrolling (glass background, hairline once scrolled). Only on narrow screens the links fold into a "Menu" button top left; Contact stays top right.
  * State lives in data-state="open | folded" (assets/site-nav.js); .is-open = dropdown shown.
  */
