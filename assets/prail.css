@@ -7,10 +7,9 @@
 .prail-section { --pcard-w: 380px; --pcard-h: 520px; --prail-start: max(var(--home-gutter), calc((100vw - var(--home-max)) / 2 + var(--home-gutter))); }
 
 .prail__head { max-width: var(--home-max); margin-bottom: var(--space-8); display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-24); }
-.prail__heading { max-width: 28ch; margin: 0; }
+.prail__heading { max-width: 36ch; margin: 0; }
 .prail__heading-muted { color: var(--color-fg-muted); }
-.prail-group--next { margin-top: var(--space-16); }
-.prail-group--next .prail__heading { font-size: clamp(26px, 3.2vw, 36px); }
+.prail-group--next { margin-top: var(--space-48); }   /* Apple-like air between the two rails */
 .prail__paddles[hidden] { display: none; }
 .prail__paddles { display: flex; gap: var(--space-12); flex: none; }
 .prail__paddle {
