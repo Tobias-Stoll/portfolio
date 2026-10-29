@@ -71,6 +71,13 @@
     column-gap: var(--space-64, 64px); row-gap: var(--space-24);
   }
   .case + .case .case__inner { border-top: 0; }
-  .case__visual { aspect-ratio: auto; }
+  /* the visual area is capped (like the reference): about square, never taller than 782 px or than the screen allows.
+     On tall screens the case keeps its full-screen slot and the extra room stays empty below, instead of stretching the tiles. */
+  .case__inner { align-content: start; grid-template-rows: auto auto; }
+  .case__chips { align-self: end; }   /* chips close with the bottom of the visual */
+  .case__visual {
+    align-self: start; aspect-ratio: 1 / 1;
+    max-height: min(782px, calc(100svh - clamp(112px, 14.45svh, 148px) - clamp(40px, 8svh, 74px)));
+  }
 }
 @media (min-width: 1200px) { .case__inner { padding-right: calc(var(--home-gutter) + 32px); } }   /* room for the dots */
