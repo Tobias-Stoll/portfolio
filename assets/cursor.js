@@ -23,7 +23,7 @@
     const text = t.closest(TEXT);
     const hit = !text && t.closest(INTERACTIVE);
     const named = hit && hit.closest('[data-cursor]');
-    const dark = !!t.closest('.cf');
+    const dark = !!t.closest('.cf, .pcard--dark');
     ring.classList.toggle('is-hover', !!hit);
     ring.classList.toggle('is-text', !!text);
     ring.classList.toggle('is-dark', dark);

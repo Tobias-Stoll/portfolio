@@ -184,7 +184,7 @@
   <link rel="stylesheet" href="assets/notes-doodle.css?v=2.0.4">
   <link rel="stylesheet" href="assets/work.css?v=2.0.4">
   <link rel="stylesheet" href="assets/rowlist.css?v=2.0.4">
-  <link rel="stylesheet" href="assets/bento.css?v=2.0.4">
+  <link rel="stylesheet" href="assets/prail.css?v=2.0.4">
   <link rel="stylesheet" href="assets/cursor.css?v=2.0.4">
 </head>
 <body class="home">
@@ -306,43 +306,110 @@
   </section>
 
 
-  <!-- ============ More work ============ -->
-  <section class="section wrap" aria-labelledby="more-title">
-    <div class="section__head">
-      <h2 id="more-title" class="section__title">Smaller projects</h2>
+  <!-- ============ Smaller projects and things I build to learn: one scrollable card rail ============ -->
+  <!-- A card with a write-up is a link. A card without one is a button that opens the project in a dialog (assets/prail.js). -->
+  <section class="section prail-section" id="fun" aria-labelledby="fun-title">
+    <div class="wrap section__head prail__head">
+      <h2 id="fun-title" class="section__title prail__heading">Smaller projects. <span class="prail__heading-muted">And things I build to learn.</span></h2>
+      <div class="prail__paddles">
+        <button class="prail__paddle" type="button" data-dir="-1" aria-label="Previous projects" aria-controls="prail-track"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="prail__paddle" type="button" data-dir="1" aria-label="Next projects" aria-controls="prail-track"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
     </div>
-    <div class="bento">
-      <a class="bento__tile bento__tile--wide" href="mpi-judo/" data-cursor="View case study">
-        <div class="bento__text">
-          <p class="bento__meta">Max Planck Institute · 2026</p>
-          <h3 class="bento__title">Social media kit</h3>
-          <p class="bento__sub">Branding and Instagram templates for a Max Planck judo study, built so student assistants can post on brand.</p>
-          <span class="bento__cta">View case study<span class="bento__cta-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+    <ul class="prail" id="prail-track" role="list">
+      <li>
+        <a class="pcard" href="mpi-judo/" data-cursor="View case study">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Case study</span>
+            <span class="pcard__title">Social media kit</span>
+            <span class="pcard__tag">Max Planck Institute · 2026</span>
+            <span class="pcard__sub">Branding and Instagram templates for a judo study, built so student assistants can post on brand.</span>
+          </span>
+          <span class="pcard__stage pcard__stage--pair" aria-hidden="true">
+            <span class="pcard__frame"><img src="mpi-judo/images/story-question.webp" alt="" loading="lazy"></span>
+            <span class="pcard__frame"><img src="mpi-judo/images/story-analysis.webp" alt="" loading="lazy"></span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="pcard pcard--dark" href="ride-recap/" data-cursor="Read the tutorial">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Tutorial · Figma Motion</span>
+            <span class="pcard__title">Ride Recap</span>
+            <span class="pcard__tag">Build it yourself</span>
+            <span class="pcard__sub">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</span>
+          </span>
+          <span class="pcard__stage pcard__stage--story" aria-hidden="true">
+            <span class="pcard__frame"><video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none"></video></span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <button class="pcard pcard--dark" type="button" data-project="pm-ds" data-cursor="View project" aria-haspopup="dialog">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Design system</span>
+            <span class="pcard__title">Enterprise design system</span>
+            <span class="pcard__tag">Foundation</span>
+            <span class="pcard__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type.</span>
+          </span>
+          <span class="pcard__stage"><span class="pcard__frame"><img src="assets/home/enterprise-ds.jpg" width="900" height="600" loading="lazy" alt=""></span></span>
+        </button>
+      </li>
+      <li>
+        <button class="pcard pcard--dark" type="button" data-project="pm-team" data-cursor="View project" aria-haspopup="dialog">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Esports platform</span>
+            <span class="pcard__title">Team profiles</span>
+            <span class="pcard__tag">Shipped</span>
+            <span class="pcard__sub">Performance history across seasons for 1,500+ esports teams.</span>
+          </span>
+          <span class="pcard__stage"><span class="pcard__frame"><img src="assets/home/esports-team.webp" width="1200" height="750" loading="lazy" alt=""></span></span>
+        </button>
+      </li>
+      <li>
+        <a class="pcard pcard--rust" href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener" data-cursor="Open Instagram">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Growth experiment</span>
+            <span class="pcard__title">@ridewithtobi</span>
+            <span class="pcard__sub">I try out hooks and story formats on my cycling channel, then check what keeps people watching.</span>
+          </span>
+          <span class="pcard__stat"><span class="pcard__stat-n">4M+</span><span>views in 6 months</span><span class="pcard__stat-small">5,000+ followers so far</span></span>
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </li>
+      <li>
+        <div class="pcard pcard--next">
+          <span class="pcard__text">
+            <span class="pcard__eyebrow">Next up</span>
+            <span class="pcard__title">Ride Recap carousel</span>
+            <span class="pcard__tag">In the works</span>
+            <span class="pcard__sub">A feed version of the story, with routes read straight from GPX files.</span>
+          </span>
         </div>
-        <div class="bento__stage" aria-hidden="true">
-          <div class="bento__frame"><img src="mpi-judo/images/story-question.webp" alt="" loading="lazy"></div>
-          <div class="bento__frame"><img src="mpi-judo/images/story-analysis.webp" alt="" loading="lazy"></div>
-        </div>
-      </a>
-      <article class="bento__tile">
-        <div class="bento__text">
-          <p class="bento__meta">Design system</p>
-          <h3 class="bento__title">Enterprise design system</h3>
-          <p class="bento__sub">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type.</p>
-          <span class="bento__chip">Foundation</span>
-        </div>
-        <div class="bento__stage"><div class="bento__frame"><img src="assets/home/enterprise-ds.jpg" width="900" height="600" loading="lazy" alt="Token overview: colour, spacing, type scale, radius and shadow tokens, and component examples"></div></div>
-      </article>
-      <article class="bento__tile">
-        <div class="bento__text">
-          <p class="bento__meta">Esports platform</p>
-          <h3 class="bento__title">Team profiles</h3>
-          <p class="bento__sub">Performance history across seasons for 1,500+ esports teams.</p>
-          <span class="bento__chip">Shipped</span>
-        </div>
-        <div class="bento__stage"><div class="bento__frame"><img src="assets/home/esports-team.webp" width="1200" height="750" loading="lazy" alt="Team profile of BIG: members, biggest rivals with head-to-head records, signature champions and related news, dark UI"></div></div>
-      </article>
-    </div>
+      </li>
+    </ul>
+
+    <!-- dialog content per project: 1 to 4 visuals, the first one is the card image and grows into the dialog -->
+    <template id="pm-ds">
+      <p class="pm__eyebrow">Design system · Foundation</p>
+      <h3 class="pm__title">Enterprise design system</h3>
+      <p class="pm__lead">Icon system, move from Adobe XD to Figma, rebuilt components, tokens and type.</p>
+      <div class="pm__gallery">
+        <figure class="pm__fig pm__fig--hero"><img src="assets/home/enterprise-ds.jpg" width="900" height="600" alt="Token overview: colour, spacing, type scale, radius and shadow tokens, and component examples"></figure>
+      </div>
+    </template>
+    <template id="pm-team">
+      <p class="pm__eyebrow">Esports platform · Shipped</p>
+      <h3 class="pm__title">Team profiles</h3>
+      <p class="pm__lead">Performance history across seasons for 1,500+ esports teams.</p>
+      <div class="pm__gallery">
+        <figure class="pm__fig pm__fig--hero"><img src="assets/home/esports-team.webp" width="1200" height="750" alt="Team profile of BIG: members, biggest rivals with head-to-head records, signature champions and related news, dark UI"></figure>
+      </div>
+    </template>
+    <dialog class="pm" id="pm" aria-labelledby="pm-title">
+      <button class="pm__close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="pm__body"></div>
+    </dialog>
   </section>
 
   <!-- ============ How I work ============ -->
@@ -368,49 +435,6 @@
     </div>
   </section>
 
-  <!-- ============ Fun ============ -->
-  <section class="section wrap" id="fun" aria-labelledby="fun-title">
-    <div class="section__head">
-      <h2 id="fun-title" class="section__title">Things I build to learn</h2>
-      <p class="section__lead">When a new tool comes out, I try it on something I actually need. Some come with a tutorial, so you can build them too.</p>
-    </div>
-    <ul class="fun" role="list">
-      <li class="fun__item fun__item--video">
-        <a class="fun__link" href="ride-recap/">
-          <div class="fun__media fun__media--story">
-            <video src="ride-recap/images/ride-recap.mp4" poster="assets/home/ride-recap-poster.jpg" muted loop playsinline preload="none" aria-label="Animated ride recap story: 207.3 km from Dresden to Berlin"></video>
-          </div>
-          <div class="fun__body">
-            <p class="case-card__pillar">Tutorial · Figma Motion</p>
-            <h3 class="fun__title">Ride Recap</h3>
-            <p class="fun__text">An animated Instagram story from real ride data. Components, a custom shader and Figma Motion, all in one file.</p>
-            <span class="fun__go">Read the tutorial <span aria-hidden="true">→</span></span>
-          </div>
-        </a>
-        <button class="vid-toggle" type="button" id="vid-toggle" aria-pressed="false" hidden><span aria-hidden="true">❚❚</span> Pause video</button>
-      </li>
-      <li class="fun__item fun__item--stat">
-        <a class="fun__link" href="https://www.instagram.com/ridewithtobi/" target="_blank" rel="noopener">
-          <div class="fun__body">
-            <p class="case-card__pillar">Growth experiment</p>
-            <h3 class="fun__title">@ridewithtobi</h3>
-            <p class="fun__big"><span>4M+</span> views in 6 months</p>
-            <p class="fun__text">I try out hooks and story formats on my cycling channel, then check what keeps people watching. 5,000+ followers so far.</p>
-            <span class="fun__go">Follow along<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
-          </div>
-          <span class="link-external__hint"> (opens in a new tab)</span>
-        </a>
-      </li>
-      <li class="fun__item fun__item--next">
-        <div class="fun__body">
-          <p class="case-card__pillar">Next up</p>
-          <h3 class="fun__title">Ride Recap carousel</h3>
-          <p class="fun__text">A feed version of the story, with routes read straight from GPX files.</p>
-          <span class="chip">In the works</span>
-        </div>
-      </li>
-    </ul>
-  </section>
 
 
   <!-- ============ Notes ============ -->
@@ -517,6 +541,7 @@
 <script src="assets/contact-footer.js?v=2.0.4" defer></script>
 <script src="assets/notes-wall.js?v=2.0.4" defer></script>
 <script src="assets/work.js?v=2.0.4" defer></script>
+<script src="assets/prail.js?v=2.0.4" defer></script>
 <script src="assets/cursor.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="assets/count.js?v=2.0.4"></script>
 <script async src="assets/track.js?v=2.0.4"></script>

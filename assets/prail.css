@@ -1,0 +1,120 @@
+/**
+ * Smaller projects and things I build to learn, as one horizontally scrolling card rail
+ * (after the Apple store "Just announced" cards). Text on top, visual at the bottom, cut off by the card.
+ * Cards with a write-up are links; cards without one are buttons that open the project dialog (.pm, assets/prail.js).
+ * The rail starts on the page grid and bleeds out to the right edge of the window.
+ */
+.prail-section { --pcard-w: 380px; --pcard-h: 520px; --prail-start: max(var(--home-gutter), calc((100vw - var(--home-max)) / 2 + var(--home-gutter))); }
+
+.prail__head { max-width: var(--home-max); margin-bottom: var(--space-8); display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-24); }
+.prail__heading { max-width: 28ch; margin: 0; }
+.prail__heading-muted { color: var(--color-fg-muted); }
+.prail__paddles { display: flex; gap: var(--space-12); flex: none; }
+.prail__paddle {
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgb(28 25 23 / .08); color: var(--color-fg-default); transition: background-color .2s, opacity .2s;
+}
+.prail__paddle:hover:not(:disabled) { background: rgb(28 25 23 / .14); }
+.prail__paddle:disabled { opacity: .35; cursor: default; }
+.prail__paddle:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
+
+.prail {
+  list-style: none; margin: 0; display: flex; gap: var(--space-20);
+  padding: 8px var(--prail-start) 32px; scroll-padding-inline: var(--prail-start);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.prail::-webkit-scrollbar { display: none; }
+.prail > li { flex: none; scroll-snap-align: start; }
+
+/* the card */
+.pcard {
+  position: relative; display: flex; flex-direction: column; width: var(--pcard-w); height: var(--pcard-h); overflow: hidden;
+  margin: 0; padding: 0; border: 0; border-radius: 18px; text-align: left; font: inherit; text-decoration: none; cursor: pointer;
+  background: #fff; color: var(--color-fg-default); box-shadow: 0 2px 12px rgb(0 0 0 / .06);
+  transition: transform .35s var(--home-ease, ease), box-shadow .35s var(--home-ease, ease);
+  --pcard-eyebrow: var(--color-purple-700, #C93A17); --pcard-muted: var(--color-fg-muted);
+}
+.pcard--dark { background: #0b0b0c; color: #f5f5f4; --pcard-eyebrow: #FF7A5C; --pcard-muted: #b7b4ae; }
+.pcard--rust { background: var(--color-accent-display, #F5532F); color: #1c1917; --pcard-eyebrow: #1c1917; --pcard-muted: #2e1a14; }
+.pcard--next { background: transparent; box-shadow: none; border: 1.5px dashed rgb(28 25 23 / .25); cursor: default; }
+:is(a, button).pcard:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 4px; }
+@media (hover: hover) {
+  :is(a, button).pcard:hover { transform: scale(1.015); box-shadow: 0 8px 28px rgb(0 0 0 / .12); }
+}
+
+.pcard__text { display: flex; flex-direction: column; gap: var(--space-4); padding: 28px 28px 0; }
+.pcard__eyebrow { color: var(--pcard-eyebrow); font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-weight: var(--font-weight-medium); letter-spacing: .06em; text-transform: uppercase; }
+.pcard__title { margin-top: 2px; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: var(--font-size-700); line-height: 1.15; }
+.pcard__tag { margin-top: var(--space-4); font-weight: var(--font-weight-medium); font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
+.pcard__sub { color: var(--pcard-muted); font-size: var(--font-size-200); line-height: var(--font-line-height-200); max-width: 36ch; }
+
+/* the visual: a glass frame that runs off the bottom of the card */
+.pcard__stage { position: relative; flex: 1 1 auto; display: flex; justify-content: center; align-items: flex-start; gap: var(--space-16); margin-top: var(--space-24); padding: 0 24px; }
+.pcard__frame {
+  display: block; flex: 1 1 auto; padding: 6px 6px 0; border-radius: 12px 12px 0 0; border: 1px solid #fff; border-bottom: 0;
+  background: rgb(255 255 255 / .5); box-shadow: 0 0 20px rgb(0 0 0 / .08);
+}
+.pcard--dark .pcard__frame { border-color: rgb(255 255 255 / .18); background: rgb(255 255 255 / .06); box-shadow: none; }
+.pcard__frame :is(img, video) { display: block; width: 100%; height: auto; border-radius: 7px 7px 0 0; background: #111; }
+.pcard__stage--pair .pcard__frame { flex: 0 0 calc(50% - 8px); }
+.pcard__stage--pair .pcard__frame + .pcard__frame { margin-top: 28px; }
+.pcard__stage--pair img, .pcard__stage--story video { aspect-ratio: 9 / 16; object-fit: cover; }
+.pcard__stage--story .pcard__frame { flex: 0 0 58%; }
+/* a single landscape screen: wider than the card, so it runs off the right and the bottom edge */
+.pcard__stage:not(.pcard__stage--pair):not(.pcard__stage--story) { justify-content: flex-start; padding-right: 0; padding-left: 28px; }
+.pcard__stage:not(.pcard__stage--pair):not(.pcard__stage--story) .pcard__frame { flex: 0 0 165%; }
+:is(a, button).pcard .pcard__stage { transition: transform .5s var(--home-ease, ease); }
+@media (hover: hover) { :is(a, button).pcard:hover .pcard__stage { transform: translateY(-8px); } }
+
+/* the stat card */
+.pcard__stat { margin-top: auto; display: flex; flex-direction: column; padding: 0 28px 28px; font-size: var(--font-size-300); line-height: var(--font-line-height-300); }
+.pcard__stat-n { font-family: var(--font-family-display); font-weight: 700; font-size: 104px; line-height: 1; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.pcard__stat-small { color: var(--pcard-muted); font-size: var(--font-size-200); }
+
+/* ---------- project dialog ---------- */
+.pm {
+  width: min(960px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; border: 0; border-radius: 24px;
+  background: #fff; color: var(--color-fg-default); box-shadow: 0 24px 80px rgb(0 0 0 / .25); overflow: auto; overscroll-behavior: contain;
+}
+.pm::backdrop { background: rgb(20 18 16 / .55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.pm[open] { animation: pm-in .35s var(--home-ease, ease); }
+.pm.is-morph[open] { animation: none; }   /* the view transition does the work */
+@keyframes pm-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+.pm__close {
+  position: sticky; top: 16px; float: right; margin: 16px 16px 0 0; z-index: 2; display: grid; place-items: center;
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: rgb(28 25 23 / .08); color: inherit;
+}
+.pm__close:hover { background: rgb(28 25 23 / .14); }
+.pm__close:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 3px; }
+.pm__body { padding: 40px 48px 48px; }
+.pm__eyebrow { margin: 0; color: var(--color-purple-700, #C93A17); font-size: var(--font-size-200); font-weight: var(--font-weight-medium); letter-spacing: .06em; text-transform: uppercase; }
+.pm__title { margin: 6px 0 0; font-family: var(--font-family-display); font-weight: var(--font-weight-medium); font-size: clamp(30px, 4vw, 40px); line-height: 1.1; }
+.pm__lead { margin: 12px 0 0; max-width: 60ch; color: var(--color-fg-muted); font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
+.pm__gallery { margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.pm__fig { margin: 0; border-radius: 12px; overflow: hidden; background: #0b0b0c; }
+.pm__fig--hero, .pm__fig:only-child, .pm__fig:nth-child(4):last-child { grid-column: 1 / -1; }
+.pm__fig img { display: block; width: 100%; height: auto; }
+.pm__fig figcaption { padding: 10px 14px; background: #fff; color: var(--color-fg-muted); font-size: var(--font-size-200); }
+html.pm-lock { overflow: hidden; }
+
+::view-transition-group(pm-hero) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .3s; }
+
+@media (max-width: 767px) {
+  .prail-section { --pcard-w: min(82vw, 340px); --pcard-h: 424px; }
+  .prail__paddles { display: none; }   /* swipe on touch */
+  .prail { gap: var(--space-12); }
+  .pcard__text { padding: 24px 22px 0; }
+  .pcard__stat { padding: 0 22px 22px; }
+  .pcard__stat-n { font-size: 84px; }
+  .pcard__stage { margin-top: var(--space-16); }
+  .pcard__stage--pair { padding: 0 12px; gap: 12px; }
+  .pcard__stage--pair .pcard__frame { flex-basis: calc(50% - 6px); }
+  .pm { width: 100vw; max-width: none; max-height: calc(100dvh - 24px); margin: auto 0 0; border-radius: 20px 20px 0 0; }
+  .pm__body { padding: 24px 20px 32px; }
+  .pm__gallery { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pcard, .pcard__stage, .pm[open] { transition: none; animation: none; }
+  :is(a, button).pcard:hover, :is(a, button).pcard:hover .pcard__stage { transform: none; }
+}
