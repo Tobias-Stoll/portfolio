@@ -103,6 +103,7 @@
     /* Color preview next to a color name */
     .swatch { display: inline-block; width: 0.9em; height: 0.9em; margin: 0 0.1em 0 0.15em; vertical-align: -0.1em; border-radius: var(--radius-sm, 3px); background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
     /* Hero stage: two stories side by side */
+    .figure--kit { align-items: start; }
     .hero-stage--stories .hero-stage__panel { padding: var(--space-48) var(--space-24); }
     .hero-stage--stories .figure__link { width: min(260px, 42%); }
     /* Result still open: neutral label instead of success green */
@@ -209,24 +210,16 @@
         </div>
       </div>
 
-      <figure class="figure figure--narrow">
+      <figure class="figure figure--pair figure--kit">
         <a class="figure__link" href="images/colors.webp"><img src="images/colors.webp" width="1600" height="1314" loading="lazy" alt="Color system in four groups: Primary (MPG Green Dark, MPG Green), Base and Text (Deep Slate, Medium Gray, Light Gray, Off-White), Accent and Sport (Performance Orange, Coral Light, Electric Mint, Mint Tint), Data and Function (Data Blue, Tech Violet, Success Green, Alert Red)."></a>
-        <figcaption class="text-body-s"><b>Color system.</b> The Max Planck greens <span class="swatch" style="--c:#006c66" aria-hidden="true"></span><span class="swatch" style="--c:#005555" aria-hidden="true"></span> as the base. Orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> and mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> carry the sport side at about 10 % of a post, data blue <span class="swatch" style="--c:#1d7a8c" aria-hidden="true"></span> and violet <span class="swatch" style="--c:#5a4b8c" aria-hidden="true"></span> the science side.</figcaption>
-      </figure>
-
-      <figure class="figure figure--narrow">
         <a class="figure__link" href="images/variables.webp"><img src="images/variables.webp" width="1528" height="1292" loading="lazy" alt="Figma variables of the XPLO Design Guide: collections Primitives (68) and Semantic (37). The action group shows primary, secondary, badge and accent, each with bg and text pointing to primitives such as color/core/MPG_Green, color/base/Light Gray, color/sport/Electric Mint and color/sport/Performance Orange."></a>
-        <figcaption class="text-body-s"><b>Variables.</b> 68 primitives and 37 semantic tokens. Every semantic token points to a primitive, for example action/primary/bg to the MPG green.</figcaption>
+        <figcaption class="text-body-s"><b>Color system.</b> The Max Planck greens <span class="swatch" style="--c:#006c66" aria-hidden="true"></span><span class="swatch" style="--c:#005555" aria-hidden="true"></span> as the base. Orange <span class="swatch" style="--c:#ff5a36" aria-hidden="true"></span> and mint <span class="swatch" style="--c:#64ffda" aria-hidden="true"></span> carry the sport side at about 10 % of a post, data blue <span class="swatch" style="--c:#1d7a8c" aria-hidden="true"></span> and violet <span class="swatch" style="--c:#5a4b8c" aria-hidden="true"></span> the science side. <b>Variables.</b> 68 primitives and 37 semantic tokens. Every semantic token points to a primitive, for example action/primary/bg to the MPG green.</figcaption>
       </figure>
 
-      <figure class="figure figure--narrow">
+      <figure class="figure figure--pair figure--kit">
         <a class="figure__link" href="images/type.webp"><img src="images/type.webp" width="1262" height="1327" loading="lazy" alt="Type scale: Hook and Display in Merriweather Bold 126 px, Headline 86 px, Key insights 76 px; Subheadline, Eyebrow and CTA in Roboto Medium 48 to 56 px; Body and Caption in Roboto Regular 36 px."></a>
-        <figcaption class="text-body-s"><b>Type scale.</b> Merriweather and Roboto, both Max Planck house fonts. Hooks at 126 px and body text at 36 px on a 1080 px canvas, because posts are seen small on a phone.</figcaption>
-      </figure>
-
-      <figure class="figure figure--narrow">
         <a class="figure__link" href="images/components.webp"><img src="images/components.webp" width="1669" height="1064" loading="lazy" alt="Components: CTA button in three variants, tags in five variants, card with slot in three tones, handle in two variants, and a collage tape element."></a>
-        <figcaption class="text-body-s"><b>Components.</b> Usage rules sit in the token descriptions and show up as tooltips in Figma.</figcaption>
+        <figcaption class="text-body-s"><b>Type scale.</b> Merriweather and Roboto, both Max Planck house fonts. Hooks at 126 px and body text at 36 px on a 1080 px canvas, because posts are seen small on a phone. <b>Components.</b> Usage rules sit in the token descriptions and show up as tooltips in Figma.</figcaption>
       </figure>
     </section>
 
@@ -238,7 +231,7 @@
           <h2 id="result" class="text-heading-l">Handed over, not tested yet</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">The kit is handed over to the team (qualitative). No post has been built with it yet, so the 30-minute target is still untested.</p>
+          <p class="text-body-m">The kit is handed over to the team <span class="ev-tag">qualitative</span>. No post has been built with it yet, so the 30-minute target is still untested.</p>
         </div>
       </div>
 
