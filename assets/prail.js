@@ -85,7 +85,7 @@
 
     const m = document.createElement('div'); m.className = 'pm-morph'; m.setAttribute('aria-hidden', 'true');
     const face = card.cloneNode(true); face.className += ' pm-morph__face'; face.removeAttribute('data-project');
-    face.style.width = cardR.w + 'px'; face.style.height = cardR.h + 'px';
+    face.style.width = cardR.w + 'px'; face.style.height = cardR.h + 'px'; face.style.visibility = back ? 'visible' : 'hidden';   // closing: the card fades back in; opening stays as approved (white box, content grows in)
     const content = document.createElement('div'); content.className = 'pm-morph__content';
     content.style.width = dR.w + 'px'; content.style.height = (body.scrollHeight) + 'px';
     const copy = body.cloneNode(true); copy.removeAttribute('tabindex'); copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
@@ -99,12 +99,14 @@
     const o = { duration: T.dur, easing: T.ease, fill: 'both' }, lin = { duration: T.dur, easing: 'linear', fill: 'both' };
     const A = back ? dR : cardR, B = back ? cardR : dR;
     const run = m.animate([{ ...box(A), borderRadius: back ? dRad : '18px' }, { ...box(B), borderRadius: back ? '18px' : dRad }], o);
-    m.animate(back ? [{ backgroundColor: dBg }, { backgroundColor: dBg, offset: .8 }, { backgroundColor: cBg }] : [{ backgroundColor: cBg }, { backgroundColor: dBg, offset: .2 }, { backgroundColor: dBg }], lin);
+    // closing: the cross-fade runs on the same eased progress as the shrink, so card and dialog melt into each other while it moves
+    const sync = { duration: T.dur, easing: T.ease, fill: 'both' };
+    m.animate(back ? [{ backgroundColor: dBg }, { backgroundColor: dBg, offset: .2 }, { backgroundColor: cBg, offset: .7 }, { backgroundColor: cBg }] : [{ backgroundColor: cBg }, { backgroundColor: dBg, offset: .2 }, { backgroundColor: dBg }], back ? sync : lin);
     const small = `scale(${k})`, big = `scale(${1 / k})`;
     content.animate([{ transform: back ? 'scale(1)' : small }, { transform: back ? small : 'scale(1)' }], o);
     face.animate([{ transform: back ? big : 'scale(1)' }, { transform: back ? 'scale(1)' : big }], o);
-    content.animate(back ? [{ opacity: 1 }, { opacity: 1, offset: .75 }, { opacity: 0 }] : [{ opacity: 0 }, { opacity: 1, offset: .25 }, { opacity: 1 }], lin);
-    face.animate(back ? [{ opacity: 0 }, { opacity: 0, offset: .75 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .25 }, { opacity: 0 }], lin);
+    content.animate(back ? [{ opacity: 1 }, { opacity: 1, offset: .15 }, { opacity: 0, offset: .65 }, { opacity: 0 }] : [{ opacity: 0 }, { opacity: 1, offset: .25 }, { opacity: 1 }], back ? sync : lin);
+    face.animate(back ? [{ opacity: 0 }, { opacity: 0, offset: .15 }, { opacity: 1, offset: .65 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .25 }, { opacity: 0 }], back ? sync : lin);
     return run.finished.then(() => { m.remove(); dlg.classList.remove('is-morphing'); card.style.visibility = back ? '' : 'hidden'; });
   }
 
