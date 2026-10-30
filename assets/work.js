@@ -41,34 +41,14 @@
   const check = () => {
     raf = 0;
     const r = work.getBoundingClientRect(), mid = innerHeight / 2;
-    const want = wide.matches && r.top <= mid && r.bottom >= mid;
+    // also on in the hero: hero and case 1 are snap points, so the first scroll glides to case 1 with the same native snap as between the cases
+    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight));
     if (want !== snapOn) { snapOn = want; document.documentElement.classList.toggle('snap-work', want); }
     // dots: only while a case fills the screen; they fade out before the next section (Smaller projects) comes in
     work.classList.toggle('dots-on', r.top <= innerHeight * .2 && r.bottom >= innerHeight * .8);
   };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(check); }, { passive: true });
   addEventListener('resize', check); wide.addEventListener('change', check); check();
-
-  /* Hero to case 1: the first wheel/trackpad move down from the hero glides straight to case 1, and the first move up
-     from case 1 back to the top (desktop, like the snap between the cases). Inertia is swallowed while it glides. */
-  const hero = document.querySelector('.hero');
-  const first = cases[0];
-  let glide = 0;
-  addEventListener('wheel', (e) => {
-    if (!wide.matches || !hero || !first || Math.abs(e.deltaY) < Math.abs(e.deltaX) || e.ctrlKey) return;
-    if (document.querySelector('dialog[open]')) return;
-    if (performance.now() < glide) { e.preventDefault(); return; }
-    const y = scrollY, top1 = first.getBoundingClientRect().top + y;
-    const down = e.deltaY > 0 && y < top1 - 4;                     // somewhere in the hero, heading down
-    const up = e.deltaY < 0 && y > 0 && Math.abs(y - top1) < 6;   // resting on case 1, heading up
-    if (!down && !up) return;
-    e.preventDefault();
-    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.documentElement.classList.add('nav-jump');
-    scrollTo({ top: down ? top1 : 0, behavior: smooth ? 'smooth' : 'auto' });
-    glide = performance.now() + (smooth ? 900 : 100);
-    setTimeout(() => document.documentElement.classList.remove('nav-jump'), smooth ? 950 : 120);
-  }, { passive: false });
 
   /* Mouse push on the visuals, same spring as the notes (stiffness 250, damping 13), max 18 px like the reference tiles.
      The whole case is a link on top, so the tile under the mouse is found by position. Mouse only, off with reduced motion. */
