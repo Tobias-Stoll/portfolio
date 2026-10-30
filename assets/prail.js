@@ -24,6 +24,28 @@
     addEventListener('resize', sync);
     sync();
   });
+  /* Keyboard: each rail is one tab stop (roving tabindex). Inside it: arrow left/right move between cards,
+     Home/End jump to the first/last card; the rail scrolls the focused card into view. Tab leaves the rail. */
+  rails.forEach((rail) => {
+    const cards = [...rail.querySelectorAll(':scope > li > :is(a, button).pcard')];
+    if (!cards.length) return;
+    const setCur = (c) => cards.forEach((x) => { x.tabIndex = x === c ? 0 : -1; });
+    setCur(cards[0]);
+    cards.forEach((c) => c.addEventListener('focus', () => {
+      setCur(c);
+      c.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+    }));
+    rail.addEventListener('keydown', (e) => {
+      const i = cards.indexOf(document.activeElement);
+      if (i < 0 || e.altKey || e.ctrlKey || e.metaKey) return;
+      const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: cards.length - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      cards[Math.max(0, Math.min(cards.length - 1, to))].focus({ preventScroll: true });
+    });
+    rail.setAttribute('aria-describedby', 'prail-hint');
+  });
+
   // the Ride Recap story plays while you point at its card (user-started, so no extra pause control needed)
   document.querySelectorAll('.prail .pcard video').forEach((v) => {
     const card = v.closest('.pcard');
