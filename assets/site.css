@@ -772,3 +772,4 @@ html.has-lightbox { overflow: hidden; }
 /* Narrow portrait screenshot (e.g. a sidebar) */
 .figure--sidebar .figure__link { max-width: 260px; }
 .figure--settings .figure__link { max-width: 600px; }
+.overview__body p + p, .overview__body p + .impact-grid { margin-top: var(--space-12); }
