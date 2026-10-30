@@ -62,3 +62,15 @@
   } else { visible = true; run(); }
   sync();
 })();
+
+/* CMS marquee: Pause/Play button (hover and focus pause it too) */
+(function () {
+  var m = document.querySelector('[data-marquee]');
+  var b = document.querySelector('[data-marquee-toggle]');
+  if (!m || !b) return;
+  b.addEventListener('click', function () {
+    var paused = m.classList.toggle('is-paused');
+    b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    b.querySelector('span').textContent = paused ? 'Play' : 'Pause';
+  });
+})();
