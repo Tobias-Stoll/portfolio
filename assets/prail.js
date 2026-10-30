@@ -8,6 +8,12 @@
   if (!rails.length) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // input modality: the browser treats the programmatic focus moves of the dialog (content on open, card on close)
+  // as keyboard focus and draws the ring even after a mouse click. Rings on cards and dialog only after keyboard use.
+  const root = document.documentElement;
+  addEventListener('keydown', (e) => { if (!e.metaKey && !e.ctrlKey && !e.altKey) root.classList.add('using-kbd'); }, true);
+  addEventListener('pointerdown', () => root.classList.remove('using-kbd'), true);
+
   // paddles per rail: one card per click, disabled at the ends, hidden when everything fits
   rails.forEach((rail) => {
     const group = rail.closest('.prail-group');

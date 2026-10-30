@@ -140,3 +140,6 @@ html.pm-lock { overflow: hidden; }
   .pm::backdrop { transition: none; }
   :is(a, button).pcard:hover, :is(a, button).pcard:hover .pcard__stage { transform: none; }
 }
+
+/* after a mouse click no focus ring on the cards and in the dialog (assets/prail.js sets .using-kbd on keyboard use) */
+html:not(.using-kbd) :is(.pcard, .pm__body, .pm__close, .prail__paddle):focus-visible { outline: none; }
