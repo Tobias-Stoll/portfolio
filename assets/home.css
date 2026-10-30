@@ -96,11 +96,8 @@ main::before {
 .clock__colon { display: inline-block; width: .32em; text-align: center; }
 @media (prefers-reduced-motion: no-preference) { .clock__colon { animation: clock-blink 1s steps(1, end) infinite; } }
 @keyframes clock-blink { 50% { opacity: .15; } }
-/* desktop: location and time move down into the bottom right corner of the first screen */
-@media (min-width: 900px) {
-  .hero { position: relative; }
-  .hero__meta { position: absolute; right: var(--home-gutter); bottom: clamp(var(--space-24), 4svh, var(--space-48)); flex-wrap: nowrap; }
-}
+/* location and time sit under the lead, on its left edge */
+@media (min-width: 900px) { .hero__meta { margin-top: var(--space-8); font-size: var(--font-size-400); line-height: var(--font-line-height-400); } .hero__meta svg { width: 22px; height: 22px; } }
 /* "people" and "the fix": drawn as an outline, then inked. Sketch to final design, once on load, one word after the other */
 .word-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
 .word-draw path { fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1.5px; vector-effect: non-scaling-stroke;
