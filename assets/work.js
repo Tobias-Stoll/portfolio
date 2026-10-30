@@ -33,33 +33,38 @@
     });
   }
 
-  /* Snap: mandatory only while the work section covers the middle of the screen (desktop). Before and after, free scrolling.
-     Dots: visible only while a case fills the screen. */
+  /* Snap (desktop): one zone from the hero through the cases down to the top of "Smaller projects".
+     Inside it the snap is mandatory (hero, each case, Smaller projects are the stops; "How I work" is the exit stop).
+     The zone is decided only once a scroll has come to rest, never during one: a trackpad swipe keeps its snap to the end,
+     and nothing switches off halfway through (that let swipes overshoot and the way back up fail).
+     Dots: visible only while a case fills the screen (live). */
   const work = document.getElementById('work');
   const wide = matchMedia('(min-width: 1024px)');
-  let snapOn = false, raf = 0;
-  const check = () => {
+  const root = document.documentElement, after = work.nextElementSibling;
+  let snapOn = false, raf = 0, rest = 0;
+  const inZone = () => {
+    if (!wide.matches) return false;
+    if (!after) return work.getBoundingClientRect().bottom >= innerHeight / 2;
+    const stop = (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) + (parseFloat(getComputedStyle(after).scrollMarginTop) || 0);
+    return after.getBoundingClientRect().top >= stop - 4;   // at or above the "Smaller projects" stop
+  };
+  const settle = () => {
+    clearTimeout(rest);
+    const want = inZone();
+    if (want !== snapOn) { snapOn = want; root.classList.toggle('snap-work', want); }
+  };
+  const showDots = () => {
     raf = 0;
-    const r = work.getBoundingClientRect(), mid = innerHeight / 2;
-    // also on in the hero: hero and case 1 are snap points, so the first scroll glides to case 1 with the same native snap as between the cases
-    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight));
-    if (!nearAfter()) root.classList.remove('snap-back');
-    if (want !== snapOn) { snapOn = want; document.documentElement.classList.toggle('snap-work', want); }
-    // dots: only while a case fills the screen; they fade out before the next section (Smaller projects) comes in
+    const r = work.getBoundingClientRect();
     work.classList.toggle('dots-on', r.top <= innerHeight * .2 && r.bottom >= innerHeight * .8);
   };
-  /* Snap back from Smaller projects to case 3: only when heading up from near its top (wheel, trackpad or keys).
-     Heading down the page scrolls freely, so the section never traps. */
-  const root = document.documentElement, after = work.nextElementSibling;
-  function nearAfter() { if (!after) return false; const at = after.getBoundingClientRect().top; return at <= innerHeight && at > -innerHeight * .4; }   // from "Smaller projects" at the top until case 3 takes over
-  const intent = (up) => { if (!wide.matches) return; root.classList.toggle('snap-back', up && nearAfter()); };
-  addEventListener('wheel', (e) => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) intent(e.deltaY < 0); }, { passive: true, capture: true });
-  addEventListener('keydown', (e) => {
-    if (['ArrowUp', 'PageUp', 'Home'].includes(e.key) || (e.key === ' ' && e.shiftKey)) intent(true);
-    else if (['ArrowDown', 'PageDown', 'End', ' '].includes(e.key)) intent(false);
-  }, true);
-  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(check); }, { passive: true });
-  addEventListener('resize', check); wide.addEventListener('change', check); check();
+  addEventListener('scroll', () => {
+    if (!raf) raf = requestAnimationFrame(showDots);
+    clearTimeout(rest); rest = setTimeout(settle, 160);   // at rest (also covers browsers without the scrollend event)
+  }, { passive: true });
+  if ('onscrollend' in window) addEventListener('scrollend', settle);
+  addEventListener('resize', () => { showDots(); settle(); }); wide.addEventListener('change', settle);
+  showDots(); settle();
 
   /* Mouse push on the visuals, same spring as the notes (stiffness 250, damping 13), max 18 px like the reference tiles.
      The whole case is a link on top, so the tile under the mouse is found by position. Mouse only, off with reduced motion. */
