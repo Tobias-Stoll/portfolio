@@ -11,6 +11,28 @@
   const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) set(e.target.id); }), { rootMargin: '-50% 0px -50% 0px' });
   cases.forEach((c) => io.observe(c));
 
+  /* Keyboard: Selected work is one tab stop like the card rails (roving tabindex on the "View case study" buttons).
+     Arrow down/right: next case, arrow up/left: previous, Home/End: first/last. The case scrolls into view. */
+  const ctas = cases.map((c) => c.querySelector('.case__cta')).filter(Boolean);
+  if (ctas.length) {
+    const setCur = (a) => ctas.forEach((x) => { x.tabIndex = x === a ? 0 : -1; });
+    setCur(ctas[0]);
+    ctas.forEach((a) => a.addEventListener('focus', () => setCur(a)));
+    document.getElementById('work').addEventListener('keydown', (e) => {
+      const i = ctas.indexOf(document.activeElement);
+      if (i < 0 || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      const to = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: ctas.length - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      const t = ctas[Math.max(0, Math.min(ctas.length - 1, to))];
+      const root = document.documentElement;
+      root.classList.add('nav-jump');   // no snap fight while it scrolls (see work.css)
+      t.closest('.case').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      t.focus({ preventScroll: true });
+      clearTimeout(setCur.t); setCur.t = setTimeout(() => root.classList.remove('nav-jump'), 900);
+    });
+  }
+
   /* Snap: mandatory only while the work section covers the middle of the screen (desktop). Before and after, free scrolling.
      Dots: visible only while a case fills the screen. */
   const work = document.getElementById('work');
