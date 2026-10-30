@@ -69,7 +69,8 @@
   /* Card to dialog morph (container transform, like the App Store cards):
      a stand-in box grows from the card to the dialog while the card image glides to the first visual,
      the card's text fades out early, the dialog's text fades in once the box has landed. Closing runs it backwards. */
-  const DUR = 560, EASE = 'cubic-bezier(.32, .72, 0, 1)';
+  // opening is drawn out a little (soft, spring-like ease), closing is quicker
+  const OPEN = { dur: 900, ease: 'cubic-bezier(.25, .9, .3, 1)' }, SHUT = { dur: 560, ease: 'cubic-bezier(.32, .72, 0, 1)' };
   let busy = false;
   const rect = (el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
   const box = (r) => ({ left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
@@ -86,11 +87,15 @@
     return { m, face, img, bg: cs.backgroundColor, cardR: rect(card), srcR: rect(src) };
   }
 
-  function run(st, fromBox, toBox, fromImg, toImg, fromBg, toBg, fromRad, toRad, faceIn) {
-    const o = { duration: DUR, easing: EASE, fill: 'both' };
-    const a1 = st.m.animate([{ ...box(fromBox), backgroundColor: fromBg, borderRadius: fromRad }, { ...box(toBox), backgroundColor: toBg, borderRadius: toRad }], o);
-    st.img.animate([{ ...box(fromImg), borderRadius: faceIn ? '12px' : '7px 7px 0 0' }, { ...box(toImg), borderRadius: faceIn ? '7px 7px 0 0' : '12px' }], o);
-    st.face.animate(faceIn ? [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .55 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .3 }, { opacity: 0 }], { duration: DUR, easing: 'linear', fill: 'both' });
+  function run(st, fromBox, toBox, fromImg, toImg, fromBg, toBg, fromRad, toRad, back) {
+    const t = back ? SHUT : OPEN, o = { duration: t.dur, easing: t.ease, fill: 'both' };
+    const a1 = st.m.animate([{ ...box(fromBox), borderRadius: fromRad }, { ...box(toBox), borderRadius: toRad }], o);
+    // colour: straight into the light dialog tone at the start (opening), back to the card tone only at the end (closing)
+    st.m.animate(back
+      ? [{ backgroundColor: fromBg }, { backgroundColor: fromBg, offset: .55 }, { backgroundColor: toBg }]
+      : [{ backgroundColor: fromBg }, { backgroundColor: toBg, offset: .22 }, { backgroundColor: toBg }], { duration: t.dur, easing: 'ease-out', fill: 'both' });
+    st.img.animate([{ ...box(fromImg), borderRadius: back ? '12px' : '7px 7px 0 0' }, { ...box(toImg), borderRadius: back ? '7px 7px 0 0' : '12px' }], o);
+    st.face.animate(back ? [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .6 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .16 }, { opacity: 0 }], { duration: t.dur, easing: 'linear', fill: 'both' });
     return a1.finished;
   }
 
@@ -114,17 +119,19 @@
     if (reduced || !hero || !card.querySelector('.pcard__frame img') || !dlg.animate) { dlg.classList.add('is-fade'); show(); return; }
     busy = true;
     const st = stage(card);
-    dlg.classList.remove('is-fade'); dlg.classList.add('is-morphing');
+    dlg.classList.remove('is-fade');
+    const dBg = getComputedStyle(dlg).backgroundColor;   // read before is-morphing makes the dialog transparent
+    dlg.classList.add('is-morphing');
     show();
     dlg.append(st.m);
     const dR = rect(dlg), hR = rect(hero);
     card.style.visibility = 'hidden';
     requestAnimationFrame(() => dlg.classList.add('is-dim'));
     st.face.style.width = st.cardR.w + 'px'; st.face.style.height = st.cardR.h + 'px';
-    await run(st, st.cardR, dR, rel(st.srcR, st.cardR), rel(hR, dR), st.bg, getComputedStyle(dlg).backgroundColor, '18px', getComputedStyle(dlg).borderRadius, false);
+    await run(st, st.cardR, dR, rel(st.srcR, st.cardR), rel(hR, dR), st.bg, dBg, '18px', getComputedStyle(dlg).borderRadius, false);
     dlg.classList.remove('is-morphing'); dlg.classList.add('is-enter');
     st.m.remove();
-    setTimeout(() => dlg.classList.remove('is-enter'), 420);
+    setTimeout(() => dlg.classList.remove('is-enter'), 1400);
     busy = false;
   }
 
