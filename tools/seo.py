@@ -48,7 +48,7 @@ PAGES = [
    'Design system case study: 60 legacy components merged into 30, 440+ design tokens in three tiers and a design to code workflow with Figma, GitHub and AI. By Tobias Stoll, UX/UI designer in Berlin.',
    'design-to-code', 'case', True),
   ('prime-league/', 'An Esports Platform People Can Follow · UX Case Study by Tobias Stoll',
-   'UX case study for Prime League: research, card sorting and a new information architecture around the match. Registration drop-off fell by 30 %. By Tobias Stoll, UX designer in Berlin.',
+   'UX case study for Prime League: research, a new information architecture around the match, a global sidebar, Discord notifications and a help center. 30 % more teams finished the season. By Tobias Stoll, UX designer in Berlin.',
    'prime-league', 'case', True),
   ('mpi-judo/', 'A Social Media Kit for a Judo Study · Project by Tobias Stoll',
    'Social media kit for the XPLO judo study at a Max Planck Institute: moodboard, color system, type, spacing and Instagram templates in Figma, so student assistants can post on brand. By Tobias Stoll.',
@@ -134,7 +134,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 ## Case studies
 - [Three moments that decide a flight booking]({BASE}/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up by a high single-digit percentage, about 1 in 3 customers chose the Flex Ticket.
 - [Building a design system as the single source of truth]({BASE}/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
-- [An esports platform people can follow]({BASE}/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. New information architecture around the match; registration drop-off fell by 30 %.
+- [An esports platform people can follow]({BASE}/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. Research-led information architecture around the match, a global sidebar, Discord notifications and a help center; 30 % more teams and players finished the season.
 
 ## More
 - [Offer Box playground]({BASE}/playground/): interactive component built in code
