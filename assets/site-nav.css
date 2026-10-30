@@ -47,21 +47,37 @@
 .site-nav .site-nav__menu:hover, .site-nav .site-nav__contact:hover, .site-nav .site-nav__contact[aria-expanded="true"] { background: var(--color-fg-default); color: var(--home-paper, #F5F4F1); }
 @media (max-width: 767px) { .site-nav__contact { padding-inline: 16px; } }
 
-/* folded: narrow screens only. The list becomes a dropdown under the Menu button */
-.site-nav[data-state="folded"] .site-nav__menu { display: inline-flex; }
+/* folded: narrow screens only. Menu opens a full-screen glass layer (after the reference): the page blurs away,
+   the links come in one after the other, large and centred, with their shortcut badges. The bar (Menu, Contact) stays on top. */
+.site-nav[data-state="folded"] .site-nav__menu { display: inline-flex; position: relative; z-index: 2; }
+.site-nav[data-state="folded"] .site-nav__right { position: relative; z-index: 2; }
 .site-nav[data-state="folded"] .site-nav__list {
-  position: absolute; left: var(--nav-pad); top: calc(var(--nav-h) - 6px); flex-direction: column; align-items: stretch; gap: 0; min-width: 232px;
-  padding: 8px; background: var(--color-bg-default, #fff); border: 1px solid var(--color-border-default, #d9d8d4); border-radius: 16px; box-shadow: var(--home-shadow-lift, 0 2px 4px rgba(43,43,47,.06), 0 24px 48px -16px rgba(43,43,47,.22));
-  opacity: 0; visibility: hidden; transform: translateY(-6px);
-  transition: opacity .42s var(--nav-ease), transform .42s var(--nav-ease), visibility 0s .42s;
+  position: fixed; inset: 0; z-index: 1; display: grid; place-content: center; justify-items: start; gap: 28px;   /* one column, centred, links aligned left like the reference */
+  padding: calc(var(--nav-h) + 24px) var(--nav-pad) 40px;
+  background: rgb(245 244 241 / .55); -webkit-backdrop-filter: blur(24px) saturate(1.4); backdrop-filter: blur(24px) saturate(1.4);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .4s var(--nav-ease), visibility 0s .4s;
 }
-.site-nav[data-state="folded"] .site-nav__list a { padding: 0 12px; border-radius: 10px; }
-.site-nav[data-state="folded"] .site-nav__list a:hover { opacity: 1; background: rgb(28 25 23 / .06); }
-.site-nav[data-state="folded"] .site-nav__status { display: block; margin-top: 6px; padding: 10px 12px 6px; border-top: 1px solid var(--color-border-default, #d9d8d4); }
-.site-nav[data-state="folded"].is-open .site-nav__list { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.site-nav[data-state="folded"].is-open .site-nav__list { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .4s var(--nav-ease), visibility 0s; }
+.site-nav[data-state="folded"] .site-nav__list > li { opacity: 0; transform: translateY(14px); filter: blur(6px); transition: opacity .3s ease, transform .3s ease, filter .3s ease; }
+.site-nav[data-state="folded"].is-open .site-nav__list > li {
+  opacity: 1; transform: none; filter: none;
+  transition: opacity .55s var(--nav-ease), transform .55s var(--nav-ease), filter .55s var(--nav-ease); transition-delay: calc(.12s + var(--i, 0) * .07s);
+}
+.site-nav[data-state="folded"] .site-nav__list a { gap: 16px; min-height: 52px; padding: 0 8px; border-radius: 12px; font-size: 28px; }
+.site-nav[data-state="folded"] .site-nav__list a:hover { opacity: .6; }
+.site-nav[data-state="folded"] .site-nav__list kbd { display: inline-grid; width: 30px; height: 30px; border-radius: 7px; font-size: var(--font-size-300); }
+.site-nav[data-state="folded"] .site-nav__status { display: block; margin-top: 16px; color: var(--color-fg-muted); font-size: var(--font-size-300); }
+
+/* the Menu icon turns into a cross */
+.site-nav__menu .burger path { transition: transform .4s var(--nav-ease), opacity .2s; transform-origin: 12px 12px; }
+.site-nav.is-open .site-nav__menu .burger .b1 { transform: translateY(5px) rotate(45deg); }
+.site-nav.is-open .site-nav__menu .burger .b2 { opacity: 0; }
+.site-nav.is-open .site-nav__menu .burger .b3 { transform: translateY(-5px) rotate(-45deg); }
+html.nav-menu-open { overflow: hidden; }
 
 @media (max-width: 767px) { :root { --nav-h: 60px; } }
-@media (prefers-reduced-motion: reduce) { .site-nav__list { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .site-nav__list, .site-nav__list > li, .site-nav__menu .burger path { transition: none !important; } }
 
 /* Contact menu: link-outs instead of scrolling to the footer */
 .contact-pop {

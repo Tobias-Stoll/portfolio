@@ -85,7 +85,9 @@
     const tick = () => {
       const now = new Date(); const parts = fmt.formatToParts(now);
       const v = (t) => parts.find((p) => p.type === t)?.value || '';
-      heroTime.textContent = `${v('hour')}:${v('minute')} ${v('timeZoneName')}`;
+      heroTime.querySelector('.clock__h').textContent = v('hour');
+      heroTime.querySelector('.clock__m').textContent = v('minute');
+      heroTime.querySelector('.clock__tz').textContent = v('timeZoneName');
       heroTime.dateTime = now.toISOString();
     };
     tick(); setInterval(tick, 30000);

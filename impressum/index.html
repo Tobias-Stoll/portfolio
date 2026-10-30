@@ -40,15 +40,15 @@
 <header class="site-nav" id="site-nav" data-state="open">
   <nav class="site-nav__bar" aria-label="Sections">
     <button class="site-nav__menu" type="button" aria-expanded="false" aria-controls="site-nav-list" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <span>Menu</span>
+      <svg class="burger" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path class="b1" d="M4 7h16"/><path class="b2" d="M4 12h16"/><path class="b3" d="M4 17h16"/></svg>
+      <span class="site-nav__menu-label">Menu</span>
     </button>
     <ul class="site-nav__list" id="site-nav-list" role="list">
-      <li><a href="../" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
-      <li><a href="../#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
-      <li><a href="../#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
-      <li><a href="../#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
-      <li class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
+      <li style="--i:0"><a href="../" data-key="h"><kbd aria-hidden="true">H</kbd><span>Home</span></a></li>
+      <li style="--i:1"><a href="../#work" data-key="w"><kbd aria-hidden="true">W</kbd><span>Work</span></a></li>
+      <li style="--i:2"><a href="../#notes" data-key="n"><kbd aria-hidden="true">N</kbd><span>Notes</span></a></li>
+      <li style="--i:3"><a href="../#about" data-key="a"><kbd aria-hidden="true">A</kbd><span>About</span></a></li>
+      <li style="--i:4" class="site-nav__status"><span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span></li>
     </ul>
     <div class="site-nav__right">
       <span class="site-nav__open"><span class="site-nav__dot" aria-hidden="true"></span>Open to work</span>

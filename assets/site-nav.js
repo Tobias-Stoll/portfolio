@@ -1,5 +1,5 @@
 /* Site Nav: stays open while scrolling; folds into a Menu button only on narrow screens. Keyboard shortcuts, scroll-spy.
-   Shortcuts: H home, W work, F fun, A about, N notes, C opens the contact menu (email copy, LinkedIn, CV). Esc closes. Ignored while typing or with Ctrl/Cmd/Alt. */
+   Shortcuts: H home, W work, N notes, A about, C opens the contact menu (email copy, LinkedIn, CV). Esc closes. Ignored while typing or with Ctrl/Cmd/Alt. */
 (() => {
   const nav = document.getElementById('site-nav');
   if (!nav) return;
@@ -10,10 +10,18 @@
   const cBtn = nav.querySelector('.site-nav__contact');
   const pop = document.getElementById('contact-pop');
 
+  const main = document.querySelector('main'), foot = document.querySelector('footer');
+  const label = btn.querySelector('.site-nav__menu-label');
   const setOpen = (open) => {
+    const was = nav.classList.contains('is-open');
     nav.classList.toggle('is-open', open);
     btn.setAttribute('aria-expanded', String(open));
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (label) label.textContent = open ? 'Close' : 'Menu';
+    // full-screen menu: the page behind is locked and out of reach, focus goes to the first link
+    document.documentElement.classList.toggle('nav-menu-open', open);
+    [main, foot].forEach((el) => { if (el) el.inert = open; });
+    if (open && !was) setTimeout(() => links[0] && links[0].focus({ preventScroll: true }), 60);
   };
   const setContact = (open, focus) => {
     pop.classList.toggle('is-open', open);
@@ -66,7 +74,7 @@
     row.classList.add('is-copied'); label.textContent = 'Copied to clipboard';
     clearTimeout(row._t); row._t = setTimeout(() => { row.classList.remove('is-copied'); label.textContent = 'Email'; }, 2200);
   });
-  nav.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+  nav.addEventListener('click', (e) => { if (e.target.closest('a') || e.target.matches('.site-nav__list, .site-nav__list > li')) setOpen(false); });   // a link or the empty glass closes the menu
   document.addEventListener('click', (e) => { if (!nav.contains(e.target)) { setOpen(false); setContact(false); } });
 
   const go = (href) => {
