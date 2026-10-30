@@ -44,7 +44,8 @@
   font-weight: var(--font-weight-medium); cursor: pointer; transition: background-color .2s, color .2s;
 }
 .site-nav__menu { display: none; padding-left: 12px; }
-.site-nav .site-nav__menu:hover, .site-nav .site-nav__contact:hover, .site-nav .site-nav__contact[aria-expanded="true"] { background: var(--color-fg-default); color: var(--home-paper, #F5F4F1); }
+@media (hover: hover) { .site-nav .site-nav__menu:hover, .site-nav .site-nav__contact:hover { background: var(--color-fg-default); color: var(--home-paper, #F5F4F1); } }   /* touch: no sticky hover after a tap */
+.site-nav .site-nav__contact[aria-expanded="true"] { background: var(--color-fg-default); color: var(--home-paper, #F5F4F1); }
 @media (max-width: 767px) { .site-nav__contact { padding-inline: 16px; } }
 
 /* folded: narrow screens only. Menu opens a full-screen glass layer (after the reference): the page blurs away,
