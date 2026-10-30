@@ -42,14 +42,22 @@
     raf = 0;
     const r = work.getBoundingClientRect(), mid = innerHeight / 2;
     // also on in the hero: hero and case 1 are snap points, so the first scroll glides to case 1 with the same native snap as between the cases
-    // also on near the top of the section after the cases (Smaller projects): from there the first scroll up snaps back to case 3.
-    // It is longer than the screen, so inside it the page still scrolls freely; further down the snap switches off again.
-    const after = work.nextElementSibling, at = after ? after.getBoundingClientRect().top : -1e9;
-    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight) || (at <= mid && at > -innerHeight * .4));
+    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight));
+    if (!nearAfter()) root.classList.remove('snap-back');
     if (want !== snapOn) { snapOn = want; document.documentElement.classList.toggle('snap-work', want); }
     // dots: only while a case fills the screen; they fade out before the next section (Smaller projects) comes in
     work.classList.toggle('dots-on', r.top <= innerHeight * .2 && r.bottom >= innerHeight * .8);
   };
+  /* Snap back from Smaller projects to case 3: only when heading up from near its top (wheel, trackpad or keys).
+     Heading down the page scrolls freely, so the section never traps. */
+  const root = document.documentElement, after = work.nextElementSibling;
+  function nearAfter() { if (!after) return false; const at = after.getBoundingClientRect().top; return at <= innerHeight && at > -innerHeight * .4; }   // from "Smaller projects" at the top until case 3 takes over
+  const intent = (up) => { if (!wide.matches) return; root.classList.toggle('snap-back', up && nearAfter()); };
+  addEventListener('wheel', (e) => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) intent(e.deltaY < 0); }, { passive: true, capture: true });
+  addEventListener('keydown', (e) => {
+    if (['ArrowUp', 'PageUp', 'Home'].includes(e.key) || (e.key === ' ' && e.shiftKey)) intent(true);
+    else if (['ArrowDown', 'PageDown', 'End', ' '].includes(e.key)) intent(false);
+  }, true);
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(check); }, { passive: true });
   addEventListener('resize', check); wide.addEventListener('change', check); check();
 
