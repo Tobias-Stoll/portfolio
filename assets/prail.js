@@ -37,9 +37,21 @@
     if (!cards.length) return;
     const setCur = (c) => cards.forEach((x) => { x.tabIndex = x === c ? 0 : -1; });
     setCur(cards[0]);
-    cards.forEach((c) => c.addEventListener('focus', () => {
+    const group = rail.closest('.prail-group');
+    cards.forEach((c) => c.addEventListener('focus', (e) => {
       setCur(c);
-      c.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+      const entering = !rail.contains(e.relatedTarget);   // Tab into the row (not arrows inside it)
+      const b = reduced ? 'auto' : 'smooth';
+      // vertical: the whole row with its heading comes into view, with the same top space as the case studies
+      const cr = c.getBoundingClientRect(), head = group && group.querySelector('.prail__heading');
+      if (group && root.classList.contains('using-kbd') && (entering || cr.bottom > innerHeight || cr.top < 0 || (head && head.getBoundingClientRect().top < 0))) requestAnimationFrame(() => {   // after the browser's own focus scroll; the Selected work snap stays out of the way meanwhile
+        root.classList.add('nav-jump'); group.scrollIntoView({ behavior: b, block: 'start' });
+        clearTimeout(group._t); group._t = setTimeout(() => root.classList.remove('nav-jump'), 900);
+      });
+      // horizontal: only the rail moves
+      const rr = rail.getBoundingClientRect(), pad = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
+      if (cr.left < rr.left + pad) rail.scrollBy({ left: cr.left - rr.left - pad, behavior: b });
+      else if (cr.right > rr.right - 16) rail.scrollBy({ left: cr.right - rr.right + 16, behavior: b });
     }));
     rail.addEventListener('keydown', (e) => {
       const i = cards.indexOf(document.activeElement);

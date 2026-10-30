@@ -42,7 +42,10 @@
     raf = 0;
     const r = work.getBoundingClientRect(), mid = innerHeight / 2;
     // also on in the hero: hero and case 1 are snap points, so the first scroll glides to case 1 with the same native snap as between the cases
-    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight));
+    // also on near the top of the section after the cases (Smaller projects): from there the first scroll up snaps back to case 3.
+    // It is longer than the screen, so inside it the page still scrolls freely; further down the snap switches off again.
+    const after = work.nextElementSibling, at = after ? after.getBoundingClientRect().top : -1e9;
+    const want = wide.matches && ((r.top <= mid && r.bottom >= mid) || (r.top > 0 && scrollY < innerHeight) || (at <= mid && at > -innerHeight * .4));
     if (want !== snapOn) { snapOn = want; document.documentElement.classList.toggle('snap-work', want); }
     // dots: only while a case fills the screen; they fade out before the next section (Smaller projects) comes in
     work.classList.toggle('dots-on', r.top <= innerHeight * .2 && r.bottom >= innerHeight * .8);
