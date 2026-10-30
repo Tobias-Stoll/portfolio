@@ -791,3 +791,11 @@ html.has-lightbox { overflow: hidden; }
 .feature__text { position: sticky; top: 112px; }
 .feature__visual--crop img { aspect-ratio: 900 / 740; object-fit: cover; object-position: top; }
 @media (max-width: 860px) { .feature__text { position: static; } }
+
+/* Research at a glance: source left, finding right */
+.research-list { margin: var(--space-16) 0 !important; }
+.research-list > div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-16); padding: var(--space-12) 0; border-top: 1px solid var(--color-border-default); }
+.research-list > div:last-child { border-bottom: 1px solid var(--color-border-default); }
+.research-list dt { font-family: var(--font-family-mono); font-weight: var(--font-weight-medium); color: var(--color-fg-muted); font-size: 14px; line-height: 20px; }
+.research-list dd { margin: 0; }
+@media (max-width: 560px) { .research-list > div { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); } }
