@@ -78,6 +78,19 @@
     }
   });
 
+  /* ---------- Hero: local time in Berlin (bottom right) ---------- */
+  const heroTime = $('#hero-time');
+  if (heroTime) {
+    const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+    const tick = () => {
+      const now = new Date(); const parts = fmt.formatToParts(now);
+      const v = (t) => parts.find((p) => p.type === t)?.value || '';
+      heroTime.textContent = `${v('hour')}:${v('minute')} ${v('timeZoneName')}`;
+      heroTime.dateTime = now.toISOString();
+    };
+    tick(); setInterval(tick, 30000);
+  }
+
   /* ---------- Notes wall ---------- */
   const wall = $('#wall');
   const form = $('#note-form');

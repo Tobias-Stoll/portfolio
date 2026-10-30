@@ -54,10 +54,14 @@ main:focus { outline: none; }
 /* Header, Status Badge and Kicker come from the Design System (site-header.css, status.css, kicker.css) */
 .site-header { background-color: rgb(245 244 241 / .86); }   /* header glass in the paper tone instead of the cool canvas */
 /* ---------- Hero ---------- */
-.hero { padding-top: clamp(var(--space-32), 5vw, var(--space-64)); }
+/* the hero fills the first screen; kicker, statement and lead sit at the bottom, the room above grows and shrinks with the window */
+.hero {
+  min-height: calc(100svh - var(--nav-h, 64px)); display: flex; flex-direction: column; justify-content: flex-end;
+  padding-top: clamp(var(--space-32), 5vw, var(--space-64)); padding-bottom: clamp(var(--space-32), 7svh, 72px);
+}
 main::before {
   /* graph paper behind the hero, fading out toward the work */
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 720px; z-index: -1; pointer-events: none;
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: max(720px, 100svh); z-index: -1; pointer-events: none;
   background-image:
     linear-gradient(90deg, var(--home-grid) 1px, transparent 1px),
     linear-gradient(var(--home-grid) 1px, transparent 1px),
@@ -82,8 +86,14 @@ main::before {
 .hl--pixel { color: var(--home-rust-display); }
 
 .hero__row {
-  display: flex; flex-direction: column; align-items: flex-start;   /* lead only, the hero buttons are gone (Contact and Notes live in the nav) */
+  display: flex; flex-direction: column; align-items: flex-start;   /* lead left, location / time / year bottom right */
   gap: var(--space-24); margin-top: var(--space-24);
+}
+.hero__meta { display: flex; flex-wrap: wrap; gap: var(--space-8) var(--space-24); margin: 0; padding: 0; list-style: none; color: var(--color-fg-muted); font-size: var(--font-size-200); line-height: var(--font-line-height-200); font-variant-numeric: tabular-nums; }
+.hero__meta li { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+@media (min-width: 900px) {
+  .hero__row { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  .hero__meta { flex-wrap: nowrap; flex: none; }
 }
 /* "people" and "the fix": drawn as an outline, then inked. Sketch to final design, once on load, one word after the other */
 .word-draw { display: inline-block; height: .7em; overflow: visible; vertical-align: baseline; }
@@ -101,7 +111,7 @@ main::before {
 @media (prefers-reduced-motion: no-preference) {
   .hero__title > span { transform-origin: 0 60%; animation: intro-grow 1.4s cubic-bezier(.2, .7, .2, 1) both; }
   .hero__title > span + span { animation-delay: .15s; }
-  .hero__h1 > .kicker, .hero__lead, .site-header { animation: intro-fade 1.1s cubic-bezier(.2, .7, .2, 1) 2.1s both; }   /* one block, nav included */
+  .hero__h1 > .kicker, .hero__lead, .hero__meta, .site-header { animation: intro-fade 1.1s cubic-bezier(.2, .7, .2, 1) 2.1s both; }   /* one block, nav included */
   /* the nav is not part of the intro: it is there from the first frame */
 }
 @keyframes intro-grow { from { opacity: 0; transform: scale(.94); } }
@@ -110,7 +120,7 @@ main::before {
 .hero__title > span { display: block; }
 .hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
-@media (min-width: 768px) { .hero__lead { max-width: 66.666%; } }   /* two thirds of the container on medium and large */
+@media (min-width: 768px) { .hero__lead { max-width: 60ch; } }   /* two thirds of the container on medium and large */
 
 /* ---------- Case cards ---------- */
 .cases {
