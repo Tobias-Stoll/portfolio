@@ -152,9 +152,38 @@
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <a class="figure__link" href="../assets/home/esports-brackets.webp"><img src="../assets/home/esports-brackets.webp" width="1200" height="750" alt="Redesigned group table, upcoming matches with countdowns, and playoff bracket from quarterfinal to final, dark UI."></a>
+        <div class="plh" data-plh role="img" aria-label="Animated recreation of the redesigned platform: a global sidebar with account, teams and check-in, the next match with a countdown and check-in button, the group standings, a live match ticker, and notifications arriving from Discord.">
+          <div class="plh__bar" aria-hidden="true">
+            <span class="plh__logo">PRIME LEAGUE</span>
+            <span class="plh__tabs"><span class="is-on">Mitspielen</span><span>Vorbereiten</span><span>Zuschauen</span></span>
+            <span class="plh__bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="plh__badge">0</span></span>
+          </div>
+          <div class="plh__body" aria-hidden="true">
+            <div class="plh__side">
+              <div><p class="plh__h">Mein Account</p><div class="plh__me"><span class="plh__avatar"></span><span><b>Spieler#1337</b><small>Gold II</small></span></div></div>
+              <div><p class="plh__h">Meine Teams</p><ul class="plh__list"><li><span class="plh__dot"></span>Kraken Kiel</li><li><span class="plh__dot"></span>Kraken Academy</li></ul><span class="plh__btn">Meine Teams</span></div>
+              <div><p class="plh__h">Support-Tickets</p><ul class="plh__list"><li>[closed] Regelwerk</li></ul><span class="plh__btn">Hilfe-Center</span></div>
+            </div>
+            <div class="plh__main">
+              <div class="plh__next">
+                <p class="plh__h">Dein nächstes Match</p>
+                <div class="plh__vs"><span>Kraken Kiel</span><i>vs</i><span>Berlin Owls</span></div>
+                <div class="plh__row"><span class="plh__count">00:15:00</span><span class="plh__check">Check-in</span></div>
+                <p class="plh__players"><b>4/5</b> Spieler eingecheckt</p>
+                <div class="plh__bar-p"><span></span></div>
+              </div>
+              <div class="plh__table">
+                <p class="plh__h">Gruppe 3 · Division 2</p>
+                <ol class="plh__stand"><li><span>1</span><span>Nordlicht</span><b>12</b></li><li><span>2</span><span>Falken</span><b>9</b></li><li><span>3</span><span>Kraken Kiel</span><b>8</b></li><li><span>4</span><span>Berlin Owls</span><b>6</b></li></ol>
+              </div>
+            </div>
+            <div class="plh__ticker"><p class="plh__h">Spiele</p><div class="plh__tick-wrap"><ul class="plh__tick"><li><span>Kraken</span><em class="is-live">LIVE</em><span>Owls</span></li><li><span>Nordlicht</span><em class="is-live">LIVE</em><span>Eins</span></li><li><span>Falken</span><em class="">12m</em><span>Wölfe</span></li><li><span>Raben</span><em class="">38m</em><span>Titans</span></li><li><span>Kraken</span><em class="">1h 5m</em><span>Nordlicht</span></li><li><span>Owls</span><em class="">2h</em><span>Falken</span></li><li><span>Eins</span><em class="">3h</em><span>Raben</span></li><li><span>Kraken</span><em class="is-live">LIVE</em><span>Owls</span></li><li><span>Nordlicht</span><em class="is-live">LIVE</em><span>Eins</span></li><li><span>Falken</span><em class="">12m</em><span>Wölfe</span></li><li><span>Raben</span><em class="">38m</em><span>Titans</span></li><li><span>Kraken</span><em class="">1h 5m</em><span>Nordlicht</span></li><li><span>Owls</span><em class="">2h</em><span>Falken</span></li><li><span>Eins</span><em class="">3h</em><span>Raben</span></li></ul></div></div>
+          </div>
+          <div class="plh__toast" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#5865F2"/><path fill="#fff" d="M17.2 7.6a12 12 0 0 0-3-.9l-.4.8a11 11 0 0 0-3.6 0l-.4-.8a12 12 0 0 0-3 .9C4.9 10.4 4.4 13.1 4.6 15.8a12 12 0 0 0 3.7 1.8l.8-1.2-1.2-.6.3-.2a8.6 8.6 0 0 0 7.6 0l.3.2-1.2.6.8 1.2a12 12 0 0 0 3.7-1.8c.3-3.1-.5-5.8-2.2-8.2ZM9.6 14.2c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5Zm4.8 0c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5Z"/></svg><span><b></b><small></small></span></div>
+        </div>
       </div>
-      <figcaption class="text-body-s"><b>Standings, schedule and bracket on one screen.</b> The live product, built on the new structure, with the UI by the team's UI designer.</figcaption>
+      <figcaption class="text-body-s"><b>Match first, with the sidebar and Discord notifications.</b> An animated recreation in code with fictional teams, based on the shipped product.</figcaption>
+      <div class="plh-ctrl"><button class="btn btn--secondary" type="button" data-plh-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 
     <!-- Overview: Challenge, Impact, Collaboration -->
@@ -162,20 +191,20 @@
       <div class="overview__row">
         <h2 class="overview__label text-heading-m">Challenge</h2>
         <div class="overview__body text-body-m">
-          <p>Players couldn't find their next match, and the platform answered none of the questions people came with. Registration lost people on the way, and support answered tickets about things players should have found on their own.</p>
-          <span class="todo">Auftrag am Anfang und was auf dem Spiel stand (z. B. Registrierungen, Sponsoren)</span>
+          <p>Our mission was to make the league accessible to every gamer. But players couldn't find their next match, and the platform answered none of the questions people came with. The league lost teams and players at the start of the season and over its course, and support answered tickets about things players should have found on their own.</p>
+          <p>The league lives on active players. Sponsors pay for them, and that pays for the league.</p>
         </div>
       </div>
       <div class="overview__row">
         <h2 class="overview__label text-heading-m">Impact</h2>
         <div class="overview__body">
           <ul class="impact-grid" role="list">
-            <li><b>−30 %</b><span class="text-body-s">Registration drop-off, Prime League <span class="ev-tag">measured</span></span></li>
-            <li><b>−30 %</b><span class="text-body-s">Support tickets, ESL Meisterschaft <span class="ev-tag">measured</span></span></li>
-            <li><b>50,000+</b><span class="text-body-s">Users per season</span></li>
+            <li><b>+30 %</b><span class="text-body-s">Teams and players who finished the season</span></li>
+            <li><b>−15 %</b><span class="text-body-s">Support tickets on ESL Meisterschaft, 90 % fewer basic questions about schedule and rules <span class="ev-tag">measured</span></span></li>
+            <li><b>64,000</b><span class="text-body-s">Users per season, +9 % compared to 2022</span></li>
             <li><b>4</b><span class="text-body-s">Platforms on one CMS</span></li>
           </ul>
-          <span class="todo">Zeitraum und Vergleich für die −30 % Drop-off; +10 % aktive Nutzer nur mit Quelle</span>
+          <span class="todo">Quelle und Zeitraum für +30 % Retention und 64,000 Nutzer, dann Tag "measured"</span>
         </div>
       </div>
       <div class="overview__row">
@@ -191,12 +220,12 @@
       <p class="cs-kicker text-label">What was failing</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="failing" class="text-heading-l">Players got lost on the way to their match</h2>
+          <h2 id="failing" class="text-heading-l">The league lost teams and players during the season</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">Every path started with the league, then the season, then the division, and the match came last. Hotjar recordings showed people scrolling past the main navigation. In moderated tests they knew roughly where to look, but could not predict what they would find there.</p>
-          <p class="text-body-m">Registration lost people before they reached the end, and players opened support tickets for small things they couldn't find.</p>
-          <span class="todo">Drop-off-Wert vor dem Redesign, alte Screens oder Zitate aus den Tests</span>
+          <p class="text-body-m">Teams and players dropped out at the start of the season and over its course. Every path started with the league, then the season, then the division, and the match came last.</p>
+          <p class="text-body-m">Hotjar recordings showed people scrolling past the main navigation. In moderated tests they knew roughly where to look, but could not predict what they would find there. Players opened support tickets for small things they couldn't find.</p>
+          <span class="todo">Retention vorher (wie viele Teams beendeten die Saison?), alte Screens oder Zitate aus den Tests</span>
         </div>
       </div>
     </section>
@@ -244,7 +273,7 @@
           <h2 id="ia" class="text-heading-l">Rebuilt the structure around the match</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m"><b>Hypothesis.</b> If the navigation starts from the match instead of the league, more people finish registration and come back.</p>
+          <p class="text-body-m"><b>Hypothesis.</b> If the navigation starts from the match instead of the league, more teams and players stay through the season.</p>
         </div>
       </div>
 
@@ -282,6 +311,11 @@
           </div>
         </div>
         <figcaption class="text-body-s"><b>The match moves to the top.</b> A simplified view of the navigation before and after the redesign.</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/home/esports-brackets.webp"><img src="../assets/home/esports-brackets.webp" width="1200" height="750" loading="lazy" alt="Redesigned group table, upcoming matches with countdowns, and playoff bracket from quarterfinal to final, dark UI."></a>
+        <figcaption class="text-body-s"><b>Standings, schedule and bracket on one screen.</b> The live product, built on the new structure, with the UI by the team's UI designer.</figcaption>
       </figure>
 
       <div class="cs-grid decision">
@@ -351,7 +385,7 @@
         <div class="cs-body">
           <p class="text-body-m">Players kept asking where their next match was and what they needed to know to start, often through support tickets. On my own initiative, I wrote a UX concept, gathered every known FAQ in one place and added new content from support tickets and player feedback.</p>
           <p class="text-body-m"><b>Hypothesis.</b> One place for all answers lowers the support load.</p>
-          <p class="text-body-m"><b>Result.</b> 30 % fewer support tickets <span class="ev-tag">measured</span>, counted in the ticket system over three seasons against the seasons before. The help center stayed exclusive to ESL Meisterschaft, ready to carry over to the other platforms.</p>
+          <p class="text-body-m"><b>Result.</b> 15 % fewer support tickets <span class="ev-tag">measured</span>, counted in the ticket system over three seasons against the seasons before. Basic questions about schedule and rules dropped by 90 %. The help center stayed exclusive to ESL Meisterschaft, ready to carry over to the other platforms.</p>
         </div>
       </div>
       <figure class="figure figure--narrow">
@@ -385,10 +419,10 @@
       <p class="cs-kicker text-label">Result</p>
       <div class="cs-grid">
         <div class="cs-head">
-          <h2 id="result" class="text-heading-l">Registration and support both got lighter</h2>
+          <h2 id="result" class="text-heading-l">More teams finished the season</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">After the relaunch, registration drop-off fell by 30 % (measured, Google Analytics). We attribute most of it to taking part in the league getting easier. On ESL Meisterschaft, the help center cut support tickets by 30 %.</p>
+          <p class="text-body-m">After the relaunch, 30 % more teams and players finished the season, and users per season grew to 64,000, 9 % more than in 2022. We attribute most of it to taking part in the league getting easier. On ESL Meisterschaft, the help center cut support tickets by 15 %.</p>
           <p class="text-body-m"><b>What I learned.</b> The Hotjar recordings showed the problem before any interview did.</p>
         </div>
       </div>
@@ -440,6 +474,7 @@
 <script src="../assets/contact-footer.js?v=2.0.4" defer></script>
 <script src="../assets/cursor.js?v=2.0.4" defer></script>
 <script src="../assets/lightbox.js?v=2.0.4"></script>
+<script src="../assets/pl-hero.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=2.0.4"></script>
 <script async src="../assets/track.js?v=2.0.4"></script>
 </body>
