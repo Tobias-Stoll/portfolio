@@ -11,12 +11,12 @@
   max-width: var(--home-max, 1120px); margin: 0 auto; padding: clamp(56px, 8vw, 96px) var(--home-gutter, var(--space-24, 24px)) clamp(40px, 5vw, 64px);
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 419px); gap: 40px 64px; align-items: start;
 }
-.cf__title { margin: 0; font-family: var(--font-family-display); font-weight: 700; font-size: var(--home-hero-size, clamp(40px, 5vw, 60px)); line-height: 1.15; }   /* same size as the hero headline */
+.cf__title { margin: 0; font-family: var(--font-family-display); font-weight: 700; font-size: var(--home-hero-size, clamp(40px, 5vw, 60px)); line-height: 1.25; }   /* room between the g of "something" and the line below */   /* same size as the hero headline */
 .cf__muted { color: var(--cf-muted); }
 
 /* rolling verb: one line high, the words slide up, the slot follows the width of the next word */
 .cf__roll { color: var(--color-purple-600); position: relative;   /* rust on black: 6.8:1 */
-  display: inline-block; height: 1.15em; overflow: hidden; vertical-align: bottom; white-space: nowrap; }
+  display: inline-block; height: 1.25em; overflow: hidden; vertical-align: bottom; white-space: nowrap; }
 .cf__roll.is-ready { transition: width .45s var(--cf-ease); }
 .cf__roll.is-ready .cf__word { position: absolute; left: 0; top: 0; transform: translateY(105%); transition: transform .45s var(--cf-ease); }
 .cf__roll.is-ready .cf__word.is-current { transform: none; }
