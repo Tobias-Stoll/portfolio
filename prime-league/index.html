@@ -152,7 +152,7 @@
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <div class="plh" data-plh role="img" aria-label="Animated recreation of the redesigned platform: a global sidebar with account, teams and check-in, the next match with a countdown and check-in button, the group standings, a live match ticker, and notifications arriving from Discord.">
+        <div class="plh" data-plh role="img" aria-label="Animated sketch of the concept in the style of the shipped product, with fictional teams. A global sidebar with account, division and standing, upcoming matches and teams. Three tabs: play shows the match page with a short check-in, prepare shows the opponent's signature champions, watch shows the live stream with chat. Notifications arrive from Discord.">
           <div class="plh__bar" aria-hidden="true">
             <span class="plh__logo">PRIME LEAGUE</span>
             <span class="plh__tabs"><span class="is-on">Mitspielen</span><span>Vorbereiten</span><span>Zuschauen</span></span>
@@ -160,29 +160,51 @@
           </div>
           <div class="plh__body" aria-hidden="true">
             <div class="plh__side">
-              <div><p class="plh__h">Mein Account</p><div class="plh__me"><span class="plh__avatar"></span><span><b>Spieler#1337</b><small>Gold II</small></span></div></div>
-              <div><p class="plh__h">Meine Teams</p><ul class="plh__list"><li><span class="plh__dot"></span>Kraken Kiel</li><li><span class="plh__dot"></span>Kraken Academy</li></ul><span class="plh__btn">Meine Teams</span></div>
-              <div><p class="plh__h">Support-Tickets</p><ul class="plh__list"><li>[closed] Regelwerk</li></ul><span class="plh__btn">Hilfe-Center</span></div>
+              <div><p class="plh__h">Mein Account</p><div class="plh__me"><span class="plh__avatar"></span><span><b>Spieler#1337</b><small>Kraken Kiel</small></span></div></div>
+              <div><p class="plh__h">Meine Division</p><ul class="plh__list"><li><span>Division 2 · Gruppe 3</span></li><li><span>Platz 3 von 8</span><small>8 Punkte</small></li></ul><span class="plh__btn">Zur Tabelle</span></div>
+              <div><p class="plh__h">Kommende Matches</p><ul class="plh__list"><li class="is-next"><span>vs. OWL</span><small>Heute 20:00</small></li><li><span>vs. NOR</span><small>Do 19:00</small></li><li><span>vs. FAL</span><small>So 18:00</small></li></ul></div>
+              <div><p class="plh__h">Meine Teams</p><ul class="plh__list"><li><span>Kraken Kiel</span></li></ul></div>
             </div>
-            <div class="plh__main">
-              <div class="plh__next">
-                <p class="plh__h">Dein nächstes Match</p>
-                <div class="plh__vs"><span>Kraken Kiel</span><i>vs</i><span>Berlin Owls</span></div>
-                <div class="plh__row"><span class="plh__count">00:15:00</span><span class="plh__check">Check-in</span></div>
-                <p class="plh__players"><b>4/5</b> Spieler eingecheckt</p>
-                <div class="plh__bar-p"><span></span></div>
+            <div class="plh__stage">
+              <div class="plh__scene is-on">
+                <p class="plh__crumb">Spiele › L2 Win '26 › <span>KRA vs. OWL</span></p>
+                <h4 class="plh__title">L2 WIN '26: KRA VS. OWL</h4>
+                <div class="plh__match">
+                  <div class="plh__minfo"><span>07.11.2026 20:00</span><span>Gruppenphase · Spieltag 4</span></div>
+                  <div class="plh__mrow">
+                    <div class="plh__team"><span class="plh__crest" style="--c:#1f7a8c">K</span><span><b>KRA</b><small>Deutschland</small></span></div>
+                    <div class="plh__score"><b>– : –</b><small>best of three</small></div>
+                    <div class="plh__team plh__team--r"><span><b>OWL</b><small>Deutschland</small></span><span class="plh__crest" style="--c:#a23b3b">O</span></div>
+                  </div>
+                  <div class="plh__lines"><i style="--c:#1f7a8c"></i><i style="--c:#a23b3b"></i></div>
+                </div>
+                <div class="plh__checkin">
+                  <span class="plh__count">00:15:00</span>
+                  <span><span class="plh__players"><b>4/5</b> Spieler eingecheckt</span><span class="plh__bar-p"><span></span></span></span>
+                  <span class="plh__check">Check-in</span>
+                </div>
               </div>
-              <div class="plh__table">
-                <p class="plh__h">Gruppe 3 · Division 2</p>
-                <ol class="plh__stand"><li><span>1</span><span>Nordlicht</span><b>12</b></li><li><span>2</span><span>Falken</span><b>9</b></li><li><span>3</span><span>Kraken Kiel</span><b>8</b></li><li><span>4</span><span>Berlin Owls</span><b>6</b></li></ol>
+              <div class="plh__scene">
+                <p class="plh__crumb">Vorbereiten › <span>OWL</span></p>
+                <h4 class="plh__title">SIGNATUR-CHAMPIONS</h4>
+                <ul class="plh__champs"><li><span class="plh__cicon" style="--c:#2e6f7e">N</span><span><b>Nautilus</b><small>137 Spiele gesamt</small></span><span class="plh__stat"><small>Pick rate: <em>137 / 969</em> (14 %)</small><span class="plh__meter"><span style="--w:14%"></span></span></span><span class="plh__stat"><small>Bilanz: <em>91 / 46</em> (66 %)</small><span class="plh__meter"><span style="--w:66%"></span></span></span></li><li><span class="plh__cicon" style="--c:#b8862b">L</span><span><b>Leona</b><small>116 Spiele gesamt</small></span><span class="plh__stat"><small>Pick rate: <em>116 / 969</em> (12 %)</small><span class="plh__meter"><span style="--w:12%"></span></span></span><span class="plh__stat"><small>Bilanz: <em>77 / 39</em> (66 %)</small><span class="plh__meter"><span style="--w:66%"></span></span></span></li><li><span class="plh__cicon" style="--c:#3e8e6b">K</span><span><b>Karma</b><small>20 Spiele letztes Jahr</small></span><span class="plh__stat"><small>Pick rate: <em>20 / 115</em> (17 %)</small><span class="plh__meter"><span style="--w:17%"></span></span></span><span class="plh__stat"><small>Bilanz: <em>9 / 11</em> (45 %)</small><span class="plh__meter"><span style="--w:45%"></span></span></span></li><li><span class="plh__cicon" style="--c:#8a6fb5">Y</span><span><b>Yuumi</b><small>6 Spiele</small></span><span class="plh__stat"><small>Pick rate: <em>6 / 115</em> (5 %)</small><span class="plh__meter"><span style="--w:5%"></span></span></span><span class="plh__stat"><small>Bilanz: <em>5 / 1</em> (83 %)</small><span class="plh__meter"><span style="--w:83%"></span></span></span></li></ul>
+              </div>
+              <div class="plh__scene" style="padding:0">
+                <div class="plh__watch">
+                  <div class="plh__video">
+                    <span class="plh__live"><em>LIVE</em><span>12.384 Zuschauer</span></span>
+                    <span class="plh__play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+                    <span class="plh__hud">KRA <span>1 : 0</span> OWL <small>Spiel 2 · best of three</small></span>
+                  </div>
+                  <div class="plh__chat"><p>Stream-Chat</p><div class="plh__msgs"><ul><li><b style="--c:#ff7f50">kiel_fan</b>LETS GO KRAKEN</li><li><b style="--c:#5bc0eb">owl_mama</b>was für ein Engage</li><li><b style="--c:#19c45a">modbot</b>Spiel 2 läuft, Bo3</li><li><b style="--c:#bf94ff">zuschauer42</b>Nautilus Hook incoming</li><li><b style="--c:#f4d35e">nordlicht</b>GG wp</li><li><b style="--c:#ff7f50">kraken_ultra</b>2:0 heute?</li><li><b style="--c:#ff7f50">kiel_fan</b>LETS GO KRAKEN</li><li><b style="--c:#5bc0eb">owl_mama</b>was für ein Engage</li><li><b style="--c:#19c45a">modbot</b>Spiel 2 läuft, Bo3</li><li><b style="--c:#bf94ff">zuschauer42</b>Nautilus Hook incoming</li><li><b style="--c:#f4d35e">nordlicht</b>GG wp</li><li><b style="--c:#ff7f50">kraken_ultra</b>2:0 heute?</li></ul></div></div>
+                </div>
               </div>
             </div>
-            <div class="plh__ticker"><p class="plh__h">Spiele</p><div class="plh__tick-wrap"><ul class="plh__tick"><li><span>Kraken</span><em class="is-live">LIVE</em><span>Owls</span></li><li><span>Nordlicht</span><em class="is-live">LIVE</em><span>Eins</span></li><li><span>Falken</span><em class="">12m</em><span>Wölfe</span></li><li><span>Raben</span><em class="">38m</em><span>Titans</span></li><li><span>Kraken</span><em class="">1h 5m</em><span>Nordlicht</span></li><li><span>Owls</span><em class="">2h</em><span>Falken</span></li><li><span>Eins</span><em class="">3h</em><span>Raben</span></li><li><span>Kraken</span><em class="is-live">LIVE</em><span>Owls</span></li><li><span>Nordlicht</span><em class="is-live">LIVE</em><span>Eins</span></li><li><span>Falken</span><em class="">12m</em><span>Wölfe</span></li><li><span>Raben</span><em class="">38m</em><span>Titans</span></li><li><span>Kraken</span><em class="">1h 5m</em><span>Nordlicht</span></li><li><span>Owls</span><em class="">2h</em><span>Falken</span></li><li><span>Eins</span><em class="">3h</em><span>Raben</span></li></ul></div></div>
           </div>
           <div class="plh__toast" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#5865F2"/><path fill="#fff" d="M17.2 7.6a12 12 0 0 0-3-.9l-.4.8a11 11 0 0 0-3.6 0l-.4-.8a12 12 0 0 0-3 .9C4.9 10.4 4.4 13.1 4.6 15.8a12 12 0 0 0 3.7 1.8l.8-1.2-1.2-.6.3-.2a8.6 8.6 0 0 0 7.6 0l.3.2-1.2.6.8 1.2a12 12 0 0 0 3.7-1.8c.3-3.1-.5-5.8-2.2-8.2ZM9.6 14.2c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5Zm4.8 0c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5Z"/></svg><span><b></b><small></small></span></div>
         </div>
       </div>
-      <figcaption class="text-body-s"><b>Match first, with the sidebar and Discord notifications.</b> An animated recreation in code with fictional teams, based on the shipped product.</figcaption>
+      <figcaption class="text-body-s"><b>Play, prepare, watch.</b> A simplified sketch of the concept in the style of the shipped product, with fictional teams.</figcaption>
       <div class="plh-ctrl"><button class="btn btn--secondary" type="button" data-plh-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 
