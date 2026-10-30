@@ -122,8 +122,7 @@ main::before {
 @keyframes intro-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .word-draw, .word-draw path { animation: none; } .word-draw path { fill-opacity: 1; stroke: none; } }
 .hero__title > span { display: block; }
-.hero__title > span + span { margin-top: .22em; }   /* small pause between problem and fix */
-.hero__title > .hero__cont { margin-top: 0; }   /* "I'm Tobias Stoll" and "and I find out ..." read as one sentence */
+/* three lines, one even rhythm (no extra gap before "Then I design": with the name line on top it read as a jump) */
 .hero__lead { margin: 0; max-width: 52ch; font-size: var(--font-size-400); line-height: var(--font-line-height-400); color: var(--color-fg-muted); }
 @media (min-width: 768px) { .hero__lead { max-width: 60ch; } }   /* two thirds of the container on medium and large */
 
