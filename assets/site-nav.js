@@ -73,10 +73,23 @@
     if (!href.startsWith('#')) { location.href = href; return; }   // sub pages: the links point to the landing page
     const el = href === '#top' ? document.body : document.querySelector(href);
     if (!el) return;
+    // a jump must not be caught by the Selected work snap (it would pull the page to the nearest snap point)
+    const root = document.documentElement;
+    root.classList.add('nav-jump');
+    clearTimeout(go.t);
+    const done = () => { clearTimeout(go.t); go.t = setTimeout(() => root.classList.remove('nav-jump'), 120); };
+    if ('onscrollend' in window) addEventListener('scrollend', done, { once: true });
+    go.t = setTimeout(() => root.classList.remove('nav-jump'), 1800);   // fallback
     if (href === '#top') scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
     else el.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
     history.replaceState(null, '', href === '#top' ? location.pathname : href);
   };
+  // clicks take the same path as the shortcuts (no native anchor jump, which the snap would catch)
+  links.forEach((a) => a.addEventListener('click', (e) => {
+    const href = a.getAttribute('href');
+    if (!href.startsWith('#') || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+    e.preventDefault(); go(href);
+  }));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (pop.classList.contains('is-open')) { setContact(false); cBtn.focus(); return; }

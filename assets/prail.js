@@ -133,6 +133,7 @@
     busy = true;
     requestAnimationFrame(() => dlg.classList.add('is-dim'));
     await morph(card, false);
+    body.focus({ preventScroll: true });   // again: during the morph the content is hidden and cannot take focus
     busy = false;
   }
 

@@ -62,7 +62,8 @@
 
 /* ---------- desktop: one screen per case ---------- */
 @media (min-width: 1024px) {
-  html.snap-work { scroll-snap-type: y mandatory; }   /* set by work.js only while the cases fill the screen */
+  html.snap-work { scroll-snap-type: y mandatory; }
+  html.nav-jump { scroll-snap-type: none !important; }   /* nav jumps go exactly where they point (assets/site-nav.js) */   /* set by work.js only while the cases fill the screen */
   .hero, .work + .section { scroll-snap-align: start; }   /* the way in and the way out, so the snap never traps */
   .case { min-height: 100svh; scroll-snap-align: start; scroll-margin-top: -72px; }   /* jumps and snaps land on the case top; the top padding keeps the title clear of the nav */
   .case__inner {
