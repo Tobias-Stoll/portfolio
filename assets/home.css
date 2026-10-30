@@ -57,7 +57,7 @@ main:focus { outline: none; }
 /* the hero fills the first screen; kicker, statement and lead sit at the bottom, the room above grows and shrinks with the window */
 .hero {
   min-height: calc(100svh - var(--nav-h, 64px)); display: flex; flex-direction: column; justify-content: flex-end;
-  padding-top: clamp(var(--space-32), 5vw, var(--space-64)); padding-bottom: clamp(var(--space-32), 7svh, 72px);
+  padding-top: clamp(var(--space-32), 5vw, var(--space-64)); padding-bottom: clamp(var(--space-32), 17svh, 190px);   /* a bit above the bottom: the statement sits slightly below the middle */
 }
 main::before {
   /* graph paper behind the hero, fading out toward the work */
