@@ -453,25 +453,32 @@
 
     <div class="wall" id="wall">
       <form class="note note--plain" id="note-form" novalidate>
-        <div class="form-field">
-          <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
-          <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
-          <span class="form-field__message" id="note-err" role="alert"></span>
+        <!-- closed until "Write a note" opens it (assets/home.js), so Tab never drops you into a text field -->
+        <div class="note__intro" id="note-intro" hidden>
+          <p class="note__prompt">Feedback on a case, a quick hello, or what you are building?</p>
+          <div class="note__actions note__actions--open"><button class="btn btn--primary btn--lg" type="button" id="note-open" aria-expanded="false" aria-controls="note-fields"><span class="pin-badge" aria-hidden="true"></span>Write a note</button></div>
         </div>
-        <div class="form-field">
-          <div class="form-field__header">
-            <label class="form-field__label" for="note-name">Name</label>
-            <span class="form-field__description">Optional</span>
+        <div class="note__fields" id="note-fields">
+          <div class="form-field">
+            <div class="form-field__header"><label class="form-field__label" for="note-msg">Your note</label></div>
+            <textarea class="input note__textarea" id="note-msg" name="message" rows="4" maxlength="280" required aria-describedby="note-count note-err"></textarea>
+            <span class="form-field__message" id="note-err" role="alert"></span>
           </div>
-          <input class="input" id="note-name" name="name" maxlength="40" autocomplete="name">
+          <div class="form-field">
+            <div class="form-field__header">
+              <label class="form-field__label" for="note-name">Name</label>
+              <span class="form-field__description">Optional</span>
+            </div>
+            <input class="input" id="note-name" name="name" maxlength="40" autocomplete="name">
+          </div>
+          <!-- honeypot: humans never see this field -->
+          <input class="hp" type="text" name="website" id="note-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="note__actions">
+            <span class="note__count" id="note-count">0 / 280</span>
+            <button class="btn btn--primary btn--lg" type="submit"><span class="pin-badge" aria-hidden="true"></span>Pin it</button>
+          </div>
+          <p class="note__status" id="note-status" role="status"></p>
         </div>
-        <!-- honeypot: humans never see this field -->
-        <input class="hp" type="text" name="website" id="note-website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="note__actions">
-          <span class="note__count" id="note-count">0 / 280</span>
-          <button class="btn btn--primary btn--lg" type="submit"><span class="pin-badge" aria-hidden="true"></span>Pin it</button>
-        </div>
-        <p class="note__status" id="note-status" role="status"></p>
         <p class="note__privacy">Your note and name are stored and shown here once I approve them. <a href="datenschutz/">Privacy</a></p>
       </form>
 

@@ -104,3 +104,10 @@
 .wall.is-masonry { grid-auto-rows: 4px; row-gap: 0; }
 .wall.is-masonry > .note { grid-row: auto; align-self: start; }
 .wall .note--plain { grid-row: auto; }
+
+/* closed state of the form: a prompt and the doodle button ("Write a note"), the fields open on demand */
+.wall .note__intro { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-16); min-height: 160px; cursor: pointer; }
+.wall .note__intro[hidden], .wall .note__fields[hidden] { display: none; }
+.wall .note__prompt { margin: 0; font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
+.wall .note__actions--open { margin-top: auto; }
+.wall .note__fields { display: contents; }

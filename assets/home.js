@@ -87,6 +87,19 @@
   const err = $('#note-err');
   const status = $('#note-status');
   const live = Boolean(NOTES.url && NOTES.anonKey);
+
+  // the form starts closed: a "Write a note" button first, the fields open on demand (keyboard users are not dropped into a text field)
+  const intro = $('#note-intro'), fields = $('#note-fields'), opener = $('#note-open');
+  if (intro && fields && opener) {
+    intro.hidden = false; fields.hidden = true;
+    const openForm = () => {
+      if (!fields.hidden) return;
+      fields.hidden = false; intro.hidden = true; opener.setAttribute('aria-expanded', 'true');
+      msg.focus();
+    };
+    opener.addEventListener('click', openForm);
+    intro.addEventListener('click', (e) => { if (!e.target.closest('button')) openForm(); });   // the whole page of the pad works for the mouse
+  }
   const papers = [
     ['--color-amber-100', '--color-red-500'],
     ['--color-cyan-100', '--color-cyan-600'],
