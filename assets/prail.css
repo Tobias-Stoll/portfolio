@@ -86,10 +86,9 @@
 .pm.is-morphing { background: transparent; box-shadow: none; overflow: visible; }
 .pm.is-morphing > :not(.pm-morph) { visibility: hidden; }
 .pm-morph { position: fixed; z-index: 3; overflow: hidden; pointer-events: none; box-shadow: 0 24px 80px rgb(0 0 0 / .25); }
-.pm-morph__face { position: absolute; left: 0; top: 0; margin: 0; transform: none !important; box-shadow: none; background: transparent; }
-.pm-morph__content { position: absolute; left: 0; }
+.pm-morph__face { position: absolute; left: 0; top: 0; margin: 0; transform-origin: 0 0; box-shadow: none; background: transparent; }
+.pm-morph__content { position: absolute; left: 0; top: 0; transform-origin: 0 0; overflow: hidden; }
 .pm-morph__content > .pm__body { overflow: visible; height: auto; }
-.pm-morph__img { position: absolute; z-index: 1; display: block; max-width: none; object-fit: cover; object-position: top left; }
 @keyframes pm-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
 .pm__close {   /* our button: ink outline, black fill on hover (like Contact and the primary button) */
   position: absolute; top: 16px; right: 28px; z-index: 2; display: grid; place-items: center;
