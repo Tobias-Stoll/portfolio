@@ -46,7 +46,9 @@
     if (!wide.matches) return false;
     if (!after) return work.getBoundingClientRect().bottom >= innerHeight / 2;
     const stop = (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) + (parseFloat(getComputedStyle(after).scrollMarginTop) || 0);
-    return after.getBoundingClientRect().top >= stop - 4;   // at or above the "Smaller projects" stop
+    // scrolling back up from Smaller projects: the snap only takes over once case 3 fills a good part of the screen again
+    // (the section starts in the lower 60 % of the window). Right at the Smaller projects stop the page stays free.
+    return after.getBoundingClientRect().top >= Math.max(stop - 4, innerHeight * .4);
   };
   const settle = () => {
     clearTimeout(rest);
