@@ -70,15 +70,14 @@
 .site-nav[data-state="folded"] .site-nav__list kbd { display: inline-grid; width: 30px; height: 30px; border-radius: 7px; font-size: var(--font-size-300); }
 .site-nav[data-state="folded"] .site-nav__status { display: block; margin-top: 16px; color: var(--color-fg-muted); font-size: var(--font-size-300); }
 
-/* the Menu icon turns into a cross */
-.site-nav__menu .burger path { transition: transform .4s var(--nav-ease), opacity .2s; transform-origin: 12px 12px; }
-.site-nav.is-open .site-nav__menu .burger .b1 { transform: translateY(5px) rotate(45deg); }
-.site-nav.is-open .site-nav__menu .burger .b2 { opacity: 0; }
-.site-nav.is-open .site-nav__menu .burger .b3 { transform: translateY(-5px) rotate(-45deg); }
+/* the Menu icon: hamburger in a small box (like the kbd badges) that spins once on open and back on close, like the reference */
+.site-nav__menu .burger { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 5px; }
+.site-nav__menu .burger svg { display: block; transition: transform .7s cubic-bezier(.34, 1.25, .5, 1); }
+.site-nav.is-open .site-nav__menu .burger svg { transform: rotate(360deg); }
 html.nav-menu-open { overflow: hidden; }
 
 @media (max-width: 767px) { :root { --nav-h: 60px; } }
-@media (prefers-reduced-motion: reduce) { .site-nav__list, .site-nav__list > li, .site-nav__menu .burger path { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .site-nav__list, .site-nav__list > li, .site-nav__menu .burger svg { transition: none !important; } }
 
 /* Contact menu: link-outs instead of scrolling to the footer */
 .contact-pop {
