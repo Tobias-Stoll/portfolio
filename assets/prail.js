@@ -66,37 +66,62 @@
     thumb.addEventListener('pointermove', move); thumb.addEventListener('pointerup', up); thumb.addEventListener('pointercancel', up);
   });
 
-  /* Card to dialog morph (container transform, like the App Store cards):
-     a stand-in box grows from the card to the dialog while the card image glides to the first visual,
-     the card's text fades out early, the dialog's text fades in once the box has landed. Closing runs it backwards. */
-  // opening is drawn out a little (soft, spring-like ease), closing is quicker
-  const OPEN = { dur: 900, ease: 'cubic-bezier(.25, .9, .3, 1)' }, SHUT = { dur: 560, ease: 'cubic-bezier(.32, .72, 0, 1)' };
+  /* Card to dialog morph (container transform, like the App Store cards).
+     A stand-in box grows from the card to the dialog. Inside it: the card face (fades out), a copy of the dialog
+     content anchored top left (text and visuals fade in while the box grows, no slide), and the card image,
+     which glides to the first visual. Closing is the same timeline mirrored. */
+  const T = { dur: 820, ease: 'cubic-bezier(.25, .9, .3, 1)' };
   let busy = false;
   const rect = (el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
   const box = (r) => ({ left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
   const rel = (r, o) => ({ x: r.x - o.x, y: r.y - o.y, w: r.w, h: r.h });
+  // opacity keyframes for "fade in between a and b" on the opening timeline; mirrored when closing
+  const fade = (a, b, back) => back
+    ? [{ opacity: 1, offset: 0 }, { opacity: 1, offset: 1 - b }, { opacity: 0, offset: 1 - a }, { opacity: 0, offset: 1 }]
+    : [{ opacity: 0, offset: 0 }, { opacity: 0, offset: a }, { opacity: 1, offset: b }, { opacity: 1, offset: 1 }];
 
-  function stage(card) {   // the stand-in: card background, a copy of the card (text) and a copy of the image
-    const cs = getComputedStyle(card);
+  function morph(card, back) {
+    const hero = body.querySelector('.pm__fig--hero img');
+    const src = card.querySelector('.pcard__frame img');
+    const wasHidden = card.style.visibility; card.style.visibility = '';
+    const cardR = rect(card), srcR = rect(src);
+    card.style.visibility = 'hidden';
+    const dR = rect(dlg), hR = rect(hero);
+    const dBg = getComputedStyle(dlg).backgroundColor, dRad = getComputedStyle(dlg).borderRadius;
+    const cBg = getComputedStyle(card).backgroundColor;
+
     const m = document.createElement('div'); m.className = 'pm-morph'; m.setAttribute('aria-hidden', 'true');
-    const face = card.cloneNode(true); face.className += ' pm-morph__face'; face.removeAttribute('data-project'); face.tabIndex = -1;
+    const face = card.cloneNode(true); face.className += ' pm-morph__face'; face.removeAttribute('data-project');
+    face.style.width = cardR.w + 'px'; face.style.height = cardR.h + 'px';
     face.querySelectorAll('.pcard__frame img').forEach((i) => { i.style.visibility = 'hidden'; });
-    const img = document.createElement('img'); img.className = 'pm-morph__img';
-    const src = card.querySelector('.pcard__frame img'); img.src = src.currentSrc || src.src; img.alt = '';
-    m.append(face, img);
-    return { m, face, img, bg: cs.backgroundColor, cardR: rect(card), srcR: rect(src) };
-  }
+    const content = document.createElement('div'); content.className = 'pm-morph__content';
+    content.style.width = dR.w + 'px'; content.style.top = -body.scrollTop + 'px';
+    const copy = body.cloneNode(true); copy.removeAttribute('tabindex'); copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+    copy.querySelector('.pm__fig--hero img').style.visibility = 'hidden';
+    const xBtn = dlg.querySelector('.pm__close').cloneNode(true); xBtn.tabIndex = -1;
+    content.append(copy, xBtn);
+    const img = document.createElement('img'); img.className = 'pm-morph__img'; img.src = src.currentSrc || src.src; img.alt = '';
+    m.append(face, content, img);
+    dlg.append(m);
+    dlg.classList.add('is-morphing');
 
-  function run(st, fromBox, toBox, fromImg, toImg, fromBg, toBg, fromRad, toRad, back) {
-    const t = back ? SHUT : OPEN, o = { duration: t.dur, easing: t.ease, fill: 'both' };
-    const a1 = st.m.animate([{ ...box(fromBox), borderRadius: fromRad }, { ...box(toBox), borderRadius: toRad }], o);
-    // colour: straight into the light dialog tone at the start (opening), back to the card tone only at the end (closing)
-    st.m.animate(back
-      ? [{ backgroundColor: fromBg }, { backgroundColor: fromBg, offset: .55 }, { backgroundColor: toBg }]
-      : [{ backgroundColor: fromBg }, { backgroundColor: toBg, offset: .22 }, { backgroundColor: toBg }], { duration: t.dur, easing: 'ease-out', fill: 'both' });
-    st.img.animate([{ ...box(fromImg), borderRadius: back ? '12px' : '7px 7px 0 0' }, { ...box(toImg), borderRadius: back ? '7px 7px 0 0' : '12px' }], o);
-    st.face.animate(back ? [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .6 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .16 }, { opacity: 0 }], { duration: t.dur, easing: 'linear', fill: 'both' });
-    return a1.finished;
+    const o = { duration: T.dur, easing: T.ease, fill: 'both' }, lin = { duration: T.dur, easing: 'linear', fill: 'both' };
+    const A = back ? dR : cardR, B = back ? cardR : dR;
+    const iA = back ? rel(hR, dR) : rel(srcR, cardR), iB = back ? rel(srcR, cardR) : rel(hR, dR);
+    const run = m.animate([{ ...box(A), borderRadius: back ? dRad : '18px' }, { ...box(B), borderRadius: back ? '18px' : dRad }], o);
+    m.animate(back ? [{ backgroundColor: dBg }, { backgroundColor: dBg, offset: .8 }, { backgroundColor: cBg }] : [{ backgroundColor: cBg }, { backgroundColor: dBg, offset: .2 }, { backgroundColor: dBg }], lin);
+    img.animate([{ ...box(iA), borderRadius: back ? '12px' : '7px 7px 0 0' }, { ...box(iB), borderRadius: back ? '7px 7px 0 0' : '12px' }], o);
+    face.animate(back ? [{ opacity: 0 }, { opacity: 0, offset: .78 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0, offset: .22 }, { opacity: 0 }], lin);
+    // dialog content: text first, then caption and close, then the other visuals one after another
+    const parts = [
+      [copy.querySelectorAll('.pm__eyebrow, .pm__title'), .12, .5],
+      [copy.querySelectorAll('.pm__lead'), .18, .58],
+      [copy.querySelectorAll('.pm__fig--hero figcaption'), .3, .7],
+      [[xBtn], .3, .7],
+      ...[...copy.querySelectorAll('.pm__fig:not(.pm__fig--hero)')].map((f, i) => [[f], .34 + i * .1, Math.min(1, .78 + i * .1)]),
+    ];
+    parts.forEach(([els, a, b]) => els.forEach((el) => el.animate(fade(a, b, back), lin)));
+    return run.finished.then(() => { m.remove(); dlg.classList.remove('is-morphing'); card.style.visibility = back ? '' : 'hidden'; });
   }
 
   function fill(card) {
@@ -111,49 +136,29 @@
     body.scrollTop = 0; bar();
     body.focus({ preventScroll: true });   // arrow keys and space scroll the content; Tab reaches the close button
   }
+  const canMorph = (card) => !reduced && dlg.animate && card && card.querySelector('.pcard__frame img') && body.querySelector('.pm__fig--hero img');
 
   async function open(card) {
     if (busy || !document.getElementById(card.dataset.project)) return;
     opener = card; fill(card);
-    const hero = body.querySelector('.pm__fig--hero img');
-    if (reduced || !hero || !card.querySelector('.pcard__frame img') || !dlg.animate) { dlg.classList.add('is-fade'); show(); return; }
-    busy = true;
-    const st = stage(card);
-    dlg.classList.remove('is-fade');
-    const dBg = getComputedStyle(dlg).backgroundColor;   // read before is-morphing makes the dialog transparent
-    dlg.classList.add('is-morphing');
+    dlg.classList.toggle('is-fade', !canMorph(card));
     show();
-    dlg.append(st.m);
-    const dR = rect(dlg), hR = rect(hero);
-    card.style.visibility = 'hidden';
+    if (dlg.classList.contains('is-fade')) return;
+    busy = true;
     requestAnimationFrame(() => dlg.classList.add('is-dim'));
-    st.face.style.width = st.cardR.w + 'px'; st.face.style.height = st.cardR.h + 'px';
-    await run(st, st.cardR, dR, rel(st.srcR, st.cardR), rel(hR, dR), st.bg, dBg, '18px', getComputedStyle(dlg).borderRadius, false);
-    dlg.classList.remove('is-morphing'); dlg.classList.add('is-enter');
-    st.m.remove();
-    setTimeout(() => dlg.classList.remove('is-enter'), 1400);
+    await morph(card, false);
     busy = false;
   }
 
   async function close() {
     if (!dlg.open || busy) return;
-    const card = opener, hero = body.querySelector('.pm__fig--hero img');
-    if (reduced || !card || !hero || !dlg.animate || dlg.classList.contains('is-fade')) { dlg.classList.remove('is-dim'); dlg.close(); return; }
+    const card = opener;
+    if (dlg.classList.contains('is-fade') || !canMorph(card)) { dlg.close(); return; }
     busy = true;
-    card.style.visibility = '';
-    const st = stage(card);
-    card.style.visibility = 'hidden';
-    const dR = rect(dlg), hR = rect(hero);
-    st.face.style.width = st.cardR.w + 'px'; st.face.style.height = st.cardR.h + 'px';
-    dlg.append(st.m);
-    dlg.classList.add('is-leaving');   // the dialog's own content fades out fast
-    await new Promise((r) => setTimeout(r, 120));
-    dlg.classList.add('is-morphing'); dlg.classList.remove('is-dim', 'is-leaving');
-    await run(st, dR, st.cardR, rel(hR, dR), rel(st.srcR, st.cardR), getComputedStyle(dlg).backgroundColor, st.bg, getComputedStyle(dlg).borderRadius, '18px', true);
+    dlg.classList.remove('is-dim');
+    await morph(card, true);
     card.style.visibility = '';
     dlg.close();
-    dlg.classList.remove('is-morphing');
-    st.m.remove();
     busy = false;
   }
 
