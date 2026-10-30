@@ -188,3 +188,5 @@
 .plh__lines { padding-bottom: .7em; }
 .plh__checkin { margin-top: .8em; padding: .6em 1.1em; }
 @media (max-width: 720px) { .plh__side5 { grid-template-columns: 1fr; } .plh__roster { gap: 1em; } .plh__pl small { display: none; } }
+.plh__side { gap: .8em; }
+.plh__side .plh__list li { padding: .35em 0; }
