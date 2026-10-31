@@ -141,25 +141,68 @@
         Three features for an online travel agency, each answering a customer's doubt at the moment it appears.
         All A/B tested, all measured against conversion.
       </p>
-      <ul class="kpis" role="list">
-        <li><b>Conversion ↑</b> high single digits <span class="ev-tag">range</span></li>
-        <li><b>~1 in 3</b> chose the Flex Ticket <span class="ev-tag">measured</span></li>
-      </ul>
       <dl class="facts-plain">
-        <div><dt class="text-label">Role</dt><dd class="text-body-m">UX/UI Designer in a design team, owner of these three features end to end</dd></div>
+        <div><dt class="text-label">Role</dt><dd class="text-body-m">UX/UI Designer, owner of these three features end to end</dd></div>
         <div><dt class="text-label">Product</dt><dd class="text-body-m">Invia Flights: fluege.de and other flight booking brands</dd></div>
         <div><dt class="text-label">Platforms</dt><dd class="text-body-m">Web, iOS, Android</dd></div>
         <div><dt class="text-label">Method</dt><dd class="text-body-m">UX KPIs, A/B tests, session recordings</dd></div>
-        <div><dt class="text-label">Proof</dt><dd class="text-body-m">The Offer Box is still live on <a href="https://www.fluege.de/" target="_blank" rel="noopener">fluege.de</a>. The interactive box below is my rebuild.</dd></div>
+        <div><dt class="text-label">Proof</dt><dd class="text-body-m">Live in the booking funnel on <a href="https://www.fluege.de/" target="_blank" rel="noopener">fluege.de<svg class="link-external__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="link-external__hint"> (opens in a new tab)</span></a>: search for a flight and the Offer Box shows in the results.</dd></div>
       </dl>
     </section>
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <a class="figure__link" href="images/offerbox-redesign.png" style="width: min(830px, 100%);"><img src="images/offerbox-redesign.png" alt="Redesigned offer card: 'Unsere Empfehlung' banner, both flights on a compact timeline with baggage icons, normal price and member price as two equal buttons side by side" width="830" height="424"></a>
+        <div class="ivh" data-ivh role="img" aria-label="Animated sketch of the booking funnel start: a flight search from Berlin to Ho Chi Minh City fills in, the search button is pressed, results load, and the redesigned Offer Box appears with normal price and member price as two equal choices.">
+          <div class="ivh__top" aria-hidden="true"><span class="ivh__logo">fluege<span>.de</span></span><span class="ivh__nav"><span>Flüge</span><span>Hotels</span><span>Mietwagen</span></span></div>
+          <div class="ivh__stage" aria-hidden="true">
+            <div class="ivh__search">
+              <span class="ivh__field"><small>Von</small><b></b></span>
+              <span class="ivh__field"><small>Nach</small><b></b></span>
+              <span class="ivh__field"><small>Hinflug</small><b></b></span>
+              <span class="ivh__field"><small>Rückflug</small><b></b></span>
+              <span class="ivh__go">Flüge suchen</span>
+            </div>
+            <p class="ivh__hero-text">Wohin soll es gehen?</p>
+            <div class="ivh__progress"><span></span></div>
+            <div class="ivh__results">
+              <div class="ivh__meta"><span>248 Flüge gefunden</span><span class="ivh__chips"><span>Günstigste</span><span>Schnellste</span><span>Empfehlung</span></span></div>
+              <div class="ivh__skel ivh__skel--a"></div>
+              <div class="ivh__offer"><img src="images/offerbox-redesign.png" width="830" height="424" alt=""></div>
+              <div class="ivh__skel"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <figcaption class="text-body-s"><b>The Offer Box, live today.</b> Normal price and member price as two equal choices.</figcaption>
+      <figcaption class="text-body-s"><b>From search to the Offer Box.</b> A simplified modern sketch of the booking funnel start in the style of the shipped product. The Offer Box is the live design.</figcaption>
+      <div class="plh-ctrl"><button class="btn btn--secondary" type="button" data-ivh-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
+
+    <!-- Overview: Challenge, Impact, Collaboration -->
+    <section class="overview" aria-label="Overview">
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Challenge</h2>
+        <div class="overview__body text-body-m">
+          <p>Customers compare the same flight on every portal, so trust decides where they book. The old offer card pushed them toward the member price, and Trustpilot reviews and funnel drop-offs showed they felt it. Three doubts cost us bookings at three points of the funnel: in the search results, during booking and at payment.</p>
+        </div>
+      </div>
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Impact</h2>
+        <div class="overview__body">
+          <ul class="impact-grid" role="list">
+            <li><b>Conversion ↑</b><span class="text-body-s">High single-digit uplift <span class="ev-tag">range</span></span></li>
+            <li><b>~1 in 3</b><span class="text-body-s">Customers chose the Flex Ticket <span class="ev-tag">measured</span></span></li>
+            <li><b>1 in 3+</b><span class="text-body-s">Customers kept the Price Guarantee <span class="ev-tag">measured</span></span></li>
+            <li><b>3</b><span class="text-body-s">Platforms: web, iOS, Android</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Collaboration</h2>
+        <div class="overview__body text-body-m">
+          <p>I owned the three features end to end, from UX KPIs to the final UI. Before designing, I agreed with the product owner on bookings as the success metric and member clicks as the guardrail. For the apps, I aligned design system decisions with the mobile development team.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- The three moments -->
     <section class="cs-section" aria-labelledby="context">
@@ -559,6 +602,7 @@
 <script src="../assets/cursor.js?v=2.0.4" defer></script>
 <script src="../assets/ft-timeline.js?v=2.0.4"></script>
 <script src="../assets/lightbox.js?v=2.0.4"></script>
+<script src="../assets/inv-hero.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=2.0.4"></script>
 <script async src="../assets/track.js?v=2.0.4"></script>
 </body>
