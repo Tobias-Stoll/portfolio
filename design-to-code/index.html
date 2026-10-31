@@ -141,11 +141,6 @@
         A design system for a company building safety-critical software had grown for years without tokens, and parts of it lived only in code.
         In three months I made Figma the single source of truth, with a workflow straight into code, ready for AI-supported development.
       </p>
-      <ul class="kpis" role="list">
-        <li><b>60 → 30</b> core components</li>
-        <li><b>440+ tokens</b> in three tiers</li>
-        <li><b>40 to 50 %</b> less handover time <span class="ev-tag">team estimate</span></li>
-      </ul>
       <dl class="facts-plain">
         <div><dt class="text-label">Role</dt><dd class="text-body-m">Freelance UX consultant, set up the foundation of the design system with the team</dd></div>
         <div><dt class="text-label">Team</dt><dd class="text-body-m">3 developers, a UI designer (brand), a UX lead (requirements)</dd></div>
@@ -169,6 +164,33 @@
       </div>
       <figcaption class="text-body-s"><b>60 components became 30.</b> Many special components merged into one flexible component for several use cases.</figcaption>
     </figure>
+
+    <!-- Overview: Challenge, Impact, Collaboration -->
+    <section class="overview" aria-label="Overview">
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Challenge</h2>
+        <div class="overview__body text-body-m">
+          <p>A design system for safety-critical software had grown for years without tokens. Parts of it lived only in code, Figma was out of date, and every handover meant translating between two sources. At the same time, the company was moving toward AI-supported development, and AI needs a clean base to work from.</p>
+        </div>
+      </div>
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Impact</h2>
+        <div class="overview__body">
+          <ul class="impact-grid" role="list">
+            <li><b>60 → 30</b><span class="text-body-s">Core components, all maintained in Figma</span></li>
+            <li><b>440+</b><span class="text-body-s">Tokens in three tiers, the raw values locked</span></li>
+            <li><b>40–50 %</b><span class="text-body-s">Less handover time <span class="ev-tag">team estimate</span></span></li>
+            <li><b>1</b><span class="text-body-s">Source for design, development, marketing and AI</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="overview__row">
+        <h2 class="overview__label text-heading-m">Collaboration</h2>
+        <div class="overview__body text-body-m">
+          <p>I set up the foundation of the design system with the team: three developers, a UI designer for the brand and a UX lead for the requirements. I was the single point of contact between brand, UX lead and development, so every question got a single answer.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Stakes -->
     <section class="cs-section" aria-labelledby="context">
@@ -215,7 +237,6 @@
         <div class="cs-body">
           <p class="text-body-m"><b>Accessibility vs. brand.</b> Marketing uses the system too, so WCAG AA was a target. That meant adjusting brand colors. I made the case with concrete examples, and the brand side agreed.</p>
           <p class="text-body-m"><b>Developers and habits.</b> Moving the source from code to Figma changed routines. Most developers were positively surprised and now call it a productivity gain.</p>
-          <p class="text-body-m"><b>One contact.</b> I was the single point of contact between brand, UX lead and development, so every question got a single answer.</p>
         </div>
       </div>
     </section>
@@ -579,21 +600,11 @@
     <section class="cs-section" aria-labelledby="results">
       <div class="prose">
         <p class="cs-kicker text-label">Results</p>
-        <h2 id="results" class="text-heading-l">What changed for the team</h2>
-        <div class="stat">
-          <span class="stat__value text-display">40 to 50 %</span>
-          <span class="stat__label text-body-m">less handover time <span class="ev-tag">team estimate</span></span>
-        </div>
+        <h2 id="results" class="text-heading-l">Live since 2026, and hired again</h2>
       </div>
       <div class="prose">
         <p class="text-body-m muted">The system went live in 2026. It is a technical foundation, so end users do not see it directly yet. The gains so far show in how design and development work together.</p>
       </div>
-      <ul class="results text-body-s" role="list">
-        <li class="info-card"><b class="info-card__title">30 core components</b><span class="info-card__text">All maintained in Figma, nothing left only in code.</span></li>
-        <li class="info-card"><b class="info-card__title">440+ tokens in three tiers</b><span class="info-card__text">Aligned with the brand and WCAG AA, the raw values locked.</span></li>
-        <li class="info-card"><b class="info-card__title">One source across teams</b><span class="info-card__text">Design, development, marketing and AI work from the same system.</span></li>
-        <li class="info-card"><b class="info-card__title">Developers start from a repository</b><span class="info-card__text">Tokens and base code are ready, no handoff file.</span></li>
-      </ul>
       <div class="principle cs-next">
         <p class="text-label cs-next__label">The follow-up</p>
         <p class="text-body-m">The client hired me again. For security reasons, not everyone should need an external design tool, so I defined, tested and built an internal Storybook with Claude: tokens, components, guidelines and copy-ready code, usable without Figma or GitHub. It updates itself from the repository.</p>
