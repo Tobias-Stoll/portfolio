@@ -145,24 +145,49 @@
         <div><dt class="text-label">Role</dt><dd class="text-body-m">Freelance UX consultant, set up the foundation of the design system with the team</dd></div>
         <div><dt class="text-label">Team</dt><dd class="text-body-m">3 developers, a UI designer (brand), a UX lead (requirements)</dd></div>
         <div><dt class="text-label">Duration</dt><dd class="text-body-m">3 months, plus a follow-up</dd></div>
-        <div><dt class="text-label">Tools</dt><dd class="text-body-m">Figma, Figma MCP, Claude, GitHub, my own Figma plugin</dd></div>
+        <div><dt class="text-label">Tools</dt><dd class="text-body-m">Figma, Figma MCP, Claude, GitHub, my own Figma plugin, a custom-made Storybook</dd></div>
         <div><dt class="text-label">Proof</dt><dd class="text-body-m"><a href="https://tobias-stoll.github.io/DesignSystem/" target="_blank" rel="noopener">Live demo of the rebuild</a>, the client work is under NDA</dd></div>
       </dl>
     </section>
 
-    <figure class="figure hero-stage merge" data-merge>
+    <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-          <div class="merge__stage">
-            <div class="merge__hud">
-              <span class="merge__pill">Before</span>
-              <span class="merge__count" aria-hidden="true">60</span>
-              <span class="merge__label text-body-s" aria-hidden="true">components</span>
-              <button class="btn btn--secondary merge__btn" type="button">Pause</button>
+        <div class="dch" data-dch role="img" aria-label="Animated sketch of the workflow: in Figma the reference token brand/600 changes from violet to teal and the button follows. The Token Bridge plugin exports the change as one commit to GitHub, the GitHub Action builds the tokens, and the button in the internal Storybook updates from the repository.">
+          <div class="dch__win dch__fig" aria-hidden="true">
+            <div class="dch__head"><i style="--c:#a259ff"></i>Figma · Variables</div>
+            <div class="dch__body">
+              <span class="dch__label">Reference</span>
+              <span class="dch__var is-target"><span class="dch__sw"></span><span>brand/600</span><span class="dch__hex">#5F2CFF</span></span>
+              <span class="dch__label">System</span>
+              <span class="dch__var"><span class="dch__sw"></span><span>color/action/primary/bg</span><span class="dch__hex">→ brand/600</span></span>
+              <span class="dch__btn">Button</span>
+              <span class="dch__plug">Token Bridge · Export</span>
             </div>
-            <div class="merge__field" role="img" aria-label="Animation: 60 uneven grey tiles merge pairwise into 30 even tiles, one for each standardized core component."></div>
           </div>
+          <div class="dch__arrow" aria-hidden="true"><span class="dch__dot"></span></div>
+          <div class="dch__win" aria-hidden="true">
+            <div class="dch__head"><i style="--c:#24292f"></i>GitHub</div>
+            <div class="dch__body">
+              <div class="dch__commit">
+                <span class="dch__msg">Export tokens from Figma</span>
+                <div class="dch__diff"><div class="del"></div><div class="add"></div></div>
+              </div>
+              <span class="dch__check"><b>✓</b>Build tokens.css</span>
+            </div>
+          </div>
+          <div class="dch__arrow" aria-hidden="true"><span class="dch__dot"></span></div>
+          <div class="dch__win dch__sb" aria-hidden="true">
+            <div class="dch__head"><i style="--c:#ff4785"></i>Storybook · Button</div>
+            <div class="dch__body">
+              <div class="dch__stage"><span class="dch__btn">Button</span></div>
+              <span class="dch__code">var(--button-primary-bg-default)</span>
+              <span class="dch__upd">Updated from the repository</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <figcaption class="text-body-s"><b>60 components became 30.</b> Many special components merged into one flexible component for several use cases.</figcaption>
+      <figcaption class="text-body-s"><b>One token, every surface.</b> Change a value in Figma, and GitHub and the Storybook follow. A simplified sketch of the workflow, shown with my rebuild.</figcaption>
+      <div class="dch-ctrl"><button class="btn btn--secondary" type="button" data-dch-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 
     <!-- Overview: Challenge, Impact, Collaboration -->
@@ -177,7 +202,7 @@
         <h2 class="overview__label text-heading-m">Impact</h2>
         <div class="overview__body">
           <ul class="impact-grid" role="list">
-            <li><b>60 → 30</b><span class="text-body-s">Core components, all maintained in Figma</span></li>
+            <li><b>60<svg class="impact-up impact-down" viewBox="4.5 4.5 15 15" aria-label="down to" role="img"><path d="M6 6L18 18M18 8v10H8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>30</b><span class="text-body-s">Core components, all maintained in Figma</span></li>
             <li><b>440+</b><span class="text-body-s">Tokens in three tiers, the raw values locked</span></li>
             <li><b>40–50 %</b><span class="text-body-s">Less handover time <span class="ev-tag">team estimate</span></span></li>
             <li><b>1</b><span class="text-body-s">Source for design, development, marketing and AI</span></li>
@@ -222,7 +247,8 @@
             </li>
           </ol>
           <p class="text-body-m">At the same time, the company was moving toward AI-supported development. Without a clean base, AI has nothing reliable to work from.</p>
-          <p class="text-body-m"><b>Hypothesis.</b> If design and code read from the same tokens, handovers get shorter and the two truths stop drifting apart.</p>
+          <p class="text-body-m"><b>Hypothesis.</b> One source of truth raises efficiency, improves coordination and simplifies QA, and it meets the criteria for an AI workflow, because Claude needs a fixed set of rules to work at quality.</p>
+          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet. So far, handover time is the one measurable number.</p>
         </div>
       </div>
     </section>
@@ -417,6 +443,21 @@
           <p class="text-body-m"><b>Approach.</b> The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Duplicates went, variants were cut, and many special components merged into one flexible component for several use cases. Where a real need was missing, a new component was built.</p>
         </div>
       </div>
+      <figure class="figure hero-stage merge" data-merge>
+      <div class="hero-stage__panel">
+          <div class="merge__stage">
+            <div class="merge__hud">
+              <span class="merge__pill">Before</span>
+              <span class="merge__count" aria-hidden="true">60</span>
+              <span class="merge__label text-body-s" aria-hidden="true">components</span>
+              <button class="btn btn--secondary merge__btn" type="button">Pause</button>
+            </div>
+            <div class="merge__field" role="img" aria-label="Animation: 60 uneven grey tiles merge pairwise into 30 even tiles, one for each standardized core component."></div>
+          </div>
+      </div>
+      <figcaption class="text-body-s"><b>60 components became 30.</b> Many special components merged into one flexible component for several use cases.</figcaption>
+    </figure>
+
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
         <p class="text-body-l">30 standardized core components, all maintained in Figma. Nothing lives only in code anymore.</p>
@@ -680,6 +721,7 @@
 <script src="../assets/ft-timeline.js?v=2.0.4"></script>
 <script src="../assets/lightbox.js?v=2.0.4"></script>
 <script src="../assets/d2c.js?v=2.0.4"></script>
+<script src="../assets/d2c-hero.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=2.0.4"></script>
 <script async src="../assets/track.js?v=2.0.4"></script>
 </body>
