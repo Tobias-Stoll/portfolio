@@ -152,14 +152,15 @@
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <div class="dch" data-dch role="img" aria-label="Animated sketch of the workflow: in Figma three tokens change one after another, the brand color from violet to teal, the button padding from 8 by 16 to 12 by 24 pixels and the radius from 6 pixels to fully round. The Figma button follows each step. The Token Bridge plugin exports all three changes as one commit to GitHub, the GitHub Action builds the tokens, and the button in the internal Storybook updates color, padding and radius from the repository.">
+        <div class="dch" data-dch role="img" aria-label="Animated sketch of the workflow with real tokens from the design system: in Figma the semantic tokens are re-aliased one after another, color/action/primary/bg/default from purple/600 to cyan/600, space/inset/sm from space/8 to space/12, space/inset/md from space/16 to space/24 and radius/control from radius/md to radius/full. The Figma button follows each step. The Token Bridge plugin exports the changes to tokens/semantic.json as one commit, the GitHub Action builds, and Storybook shows the resolved component tokens: --button-primary-bg-default #007B99, --button-padding-y 12px, --button-padding-x 24px, --button-radius 9999px.">
           <div class="dch__win dch__fig" aria-hidden="true">
             <div class="dch__head"><i style="--c:#a259ff"></i>Figma · Variables</div>
             <div class="dch__body">
-              <span class="dch__label">Tokens</span>
-              <span class="dch__var" data-row="bg"><span class="dch__sw"></span><span>brand/600</span><span class="dch__hex" data-val="bg">#5F2CFF</span></span>
-              <span class="dch__var" data-row="pad"><span class="dch__ic"><svg viewBox="0 0 16 16"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-dasharray="2 1.5"/><rect x="4.5" y="6" width="7" height="4" rx="1" fill="currentColor"/></svg></span><span>button/padding</span><span class="dch__hex" data-val="pad">8 · 16</span></span>
-              <span class="dch__var" data-row="r"><span class="dch__ic"><svg viewBox="0 0 16 16"><path d="M2.5 13.5V8a5.5 5.5 0 0 1 5.5-5.5h5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>button/radius</span><span class="dch__hex" data-val="r">6</span></span>
+              <span class="dch__label">Semantic tokens</span>
+              <span class="dch__var" data-row="bg"><span class="dch__sw"></span><span>color/action/primary/bg/default</span><span class="dch__hex" data-val="bg">purple/600</span></span>
+              <span class="dch__var" data-row="pad"><span class="dch__ic"><svg viewBox="0 0 16 16"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-dasharray="2 1.5"/><rect x="4.5" y="6" width="7" height="4" rx="1" fill="currentColor"/></svg></span><span>space/inset/sm</span><span class="dch__hex" data-val="py">space/8</span></span>
+              <span class="dch__var" data-row="pad"><span class="dch__ic"><svg viewBox="0 0 16 16"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-dasharray="2 1.5"/><rect x="4.5" y="6" width="7" height="4" rx="1" fill="currentColor"/></svg></span><span>space/inset/md</span><span class="dch__hex" data-val="px">space/16</span></span>
+              <span class="dch__var" data-row="r"><span class="dch__ic"><svg viewBox="0 0 16 16"><path d="M2.5 13.5V8a5.5 5.5 0 0 1 5.5-5.5h5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>radius/control</span><span class="dch__hex" data-val="r">radius/md</span></span>
               <span class="dch__btn">Button</span>
               <span class="dch__plug">Token Bridge · Export</span>
             </div>
@@ -170,6 +171,7 @@
             <div class="dch__body">
               <div class="dch__commit">
                 <span class="dch__msg">Export tokens from Figma</span>
+                <span class="dch__file">tokens/semantic.json</span>
                 <div class="dch__diff" data-diff></div>
               </div>
               <span class="dch__check"><b>✓</b>Build tokens.css</span>
@@ -180,13 +182,14 @@
             <div class="dch__head"><i style="--c:#ff4785"></i>Storybook · Button</div>
             <div class="dch__body">
               <div class="dch__stage"><span class="dch__btn">Button</span></div>
-              <dl class="dch__props"><dt>bg</dt><dd data-sb="bg">brand-600</dd><dt>padding</dt><dd data-sb="pad">8px 16px</dd><dt>radius</dt><dd data-sb="r">6px</dd></dl>
+              <span class="dch__label">Component tokens</span>
+              <dl class="dch__props"><dt>--button-primary-bg-default</dt><dd data-sb="bg">#5F2CFF</dd><dt>--button-padding-y</dt><dd data-sb="py">8px</dd><dt>--button-padding-x</dt><dd data-sb="px">16px</dd><dt>--button-radius</dt><dd data-sb="r">8px</dd></dl>
               <span class="dch__upd">Updated from the repository</span>
             </div>
           </div>
         </div>
       </div>
-      <figcaption class="text-body-s"><b>One source, every surface.</b> Change color, padding and radius in Figma, and GitHub and the Storybook follow. A simplified sketch of the workflow, shown with my rebuild.</figcaption>
+      <figcaption class="text-body-s"><b>One source, every surface.</b> Re-alias the semantic tokens in Figma, and the component tokens in code follow. Token names from the real system. A simplified sketch of the workflow, shown with my rebuild.</figcaption>
       <div class="dch-ctrl"><button class="btn btn--secondary" type="button" data-dch-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 

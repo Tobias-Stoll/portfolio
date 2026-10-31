@@ -339,7 +339,7 @@
 /* ---------- Design to Code hero: one token change travels from Figma to GitHub to Storybook (31.10.) ----------
    Simplified sketch of the workflow. Plays while in view, Pause button, still frame for reduced motion. */
 .dch { --dch-brand: #5f2cff; --dch-brand-soft: #eceaff; --dch-ok: #1f9d55; --dch-line: #e3e3e8; --dch-wire: #b9bac2; --dch-muted: #6d6e75; --dch-ink: #1d1d22;
-  position: relative; width: min(980px, 100%); aspect-ratio: 16 / 9; display: grid; grid-template-columns: 1.15fr .25fr 1fr .25fr 1fr; align-items: center;
+  position: relative; width: min(980px, 100%); aspect-ratio: 16 / 9; display: grid; grid-template-columns: 1.2fr .18fr 1.05fr .18fr 1.05fr; align-items: center;
   font-family: var(--font-family-body, Roboto, system-ui, sans-serif); font-size: clamp(8px, 1.05vw, 12.5px); line-height: 1.35; color: var(--dch-ink); text-align: left; }
 .dch * { box-sizing: border-box; }
 .dch { --f-bg: #5f2cff; --f-py: .57em; --f-px: 1.14em; --f-r: .43em; --s-bg: #5f2cff; --s-py: .57em; --s-px: 1.14em; --s-r: .43em; }
@@ -400,3 +400,8 @@
 @media (prefers-reduced-motion: reduce) { .dch *, .dch__check b { animation: none !important; transition: none !important; } }
 .dch-ctrl { display: flex; justify-content: flex-end; margin-top: var(--space-12); }
 @media (prefers-reduced-motion: reduce) { .dch-ctrl { display: none; } }
+.dch__file { font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .78em; color: var(--dch-muted); }
+.dch__props { grid-template-columns: minmax(0, 1fr) auto; }
+.dch__props dt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dch__props dd { text-align: right; }
+.dch__var { grid-template-columns: 1.1em minmax(0, 1fr) auto; }

@@ -13,31 +13,32 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var timers = [], loop = null, playing = !reduce, visible = false, toNew = true;
   // Two states of the button. em values mirror the px values at the sketch's scale.
+  // Real tokens from Tobias-Stoll/DesignSystem: semantic aliases change, component tokens resolve.
   var S = [
-    { bg: '#5F2CFF', pad: [8, 16], r: 6,   em: { py: '.57em', px: '1.14em', r: '.43em' } },
-    { bg: '#0E8A7E', pad: [12, 24], r: 999, em: { py: '.86em', px: '1.71em', r: '2em' } }
+    { bg: 'purple/600', hex: '#5F2CFF', py: 'space/8',  px: 'space/16', r: 'radius/md',   v: { py: 8,  px: 16, r: 8 },    em: { py: '.57em', px: '1.14em', r: '.57em' } },
+    { bg: 'cyan/600',   hex: '#007B99', py: 'space/12', px: 'space/24', r: 'radius/full', v: { py: 12, px: 24, r: 9999 }, em: { py: '.86em', px: '1.71em', r: '2em' } }
   ];
   function $(sel) { return el.querySelector(sel); }
   function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
   function clear() { timers.forEach(clearTimeout); timers = []; }
   function run(a) { a.classList.remove('is-run'); void a.offsetWidth; a.classList.add('is-run'); }
   function set(k, v) { el.style.setProperty(k, v); }
-  function edit(row, on) { $('[data-row="' + row + '"]').classList.toggle('is-edit', on); }
+  function edit(row, on) { el.querySelectorAll('[data-row="' + row + '"]').forEach(function (r) { r.classList.toggle('is-edit', on); }); }
+  function txt(sel, v) { $(sel).textContent = v; }
   function figma(key, st) {
-    if (key === 'bg') { set('--f-bg', st.bg); $('[data-val="bg"]').textContent = st.bg; }
-    if (key === 'pad') { set('--f-py', st.em.py); set('--f-px', st.em.px); $('[data-val="pad"]').textContent = st.pad[0] + ' · ' + st.pad[1]; }
-    if (key === 'r') { set('--f-r', st.em.r); $('[data-val="r"]').textContent = st.r; }
+    if (key === 'bg') { set('--f-bg', st.hex); txt('[data-val="bg"]', st.bg); }
+    if (key === 'pad') { set('--f-py', st.em.py); set('--f-px', st.em.px); txt('[data-val="py"]', st.py); txt('[data-val="px"]', st.px); }
+    if (key === 'r') { set('--f-r', st.em.r); txt('[data-val="r"]', st.r); }
   }
   function storybook(st) {
-    set('--s-bg', st.bg); set('--s-py', st.em.py); set('--s-px', st.em.px); set('--s-r', st.em.r);
-    $('[data-sb="pad"]').textContent = st.pad[0] + 'px ' + st.pad[1] + 'px';
-    $('[data-sb="r"]').textContent = st.r + 'px';
+    set('--s-bg', st.hex); set('--s-py', st.em.py); set('--s-px', st.em.px); set('--s-r', st.em.r);
+    txt('[data-sb="bg"]', st.hex); txt('[data-sb="py"]', st.v.py + 'px'); txt('[data-sb="px"]', st.v.px + 'px'); txt('[data-sb="r"]', st.v.r + 'px');
   }
+  function ref(x, pre) { return '{' + (pre || '') + x.replace(/\//g, '.') + '}'; }
   function writeDiff(a, b) {
     function l(c, k, v) { return '<div class="' + c + '">' + (c === 'del' ? '- ' : '+ ') + '"' + k + '": "' + v + '"</div>'; }
-    diff.innerHTML = l('del', 'brand-600', a.bg) + l('add', 'brand-600', b.bg) +
-      l('del', 'button-padding', a.pad[0] + 'px ' + a.pad[1] + 'px') + l('add', 'button-padding', b.pad[0] + 'px ' + b.pad[1] + 'px') +
-      l('del', 'button-radius', a.r + 'px') + l('add', 'button-radius', b.r + 'px');
+    function pair(k, f, pre) { return l('del', k, ref(a[f], pre)) + l('add', k, ref(b[f], pre)); }
+    diff.innerHTML = pair('bg.default', 'bg', 'color.') + pair('inset.sm', 'py') + pair('inset.md', 'px') + pair('control', 'r');
   }
   function cycle() {
     clear();
