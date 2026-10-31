@@ -454,3 +454,14 @@
 /* Playground: fixed height so switching layouts does not push the page (31.10.).
    CSS gives a safe minimum; offer-box.js keeps the tallest height seen so far. */
 @media (min-width: 900px) { .pgx-stage.pgx-shell__canvas { min-height: 600px; } }
+
+/* Playground controls in black, matching the primary button (decision Tobias 31.10.).
+   The slots switch stays teal because it matches the slot outlines it turns on. */
+.pgx-shell { --pgx-ink: var(--color-fg-default, #1d1d22); }
+.pgx-shell .pgx-switch input:checked { background: var(--pgx-ink); }
+.pgx-shell .pgx-switch--slots input:checked { background: #007b99; }
+.pgx-shell .pgx-seg button[aria-pressed="true"] { background: var(--color-bg-default, #fff); color: var(--pgx-ink); box-shadow: 0 0 0 1.5px var(--pgx-ink); }
+.pgx-shell .pgx-step.is-on { color: var(--pgx-ink); }
+.pgx-shell .pgx-step.is-on .pgx-step__n { background: var(--pgx-ink); color: var(--color-bg-default, #fff); }
+.pgx-shell .pgx-step__bar { background: var(--pgx-ink); }
+.pgx-shell .pgx-your-turn { background: var(--pgx-ink); color: var(--color-bg-default, #fff); }
