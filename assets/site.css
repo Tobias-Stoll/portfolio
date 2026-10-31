@@ -766,8 +766,6 @@ html.has-lightbox { overflow: hidden; }
 @media (max-width: 720px) { .overview__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-12); } }
 
 /* Open item, visible in previews only: remove before going live */
-.todo { display: block; margin-top: var(--space-12); padding: var(--space-8) var(--space-12); border: 1px dashed #C93A17; border-radius: 6px; background: rgba(255, 90, 54, .08); color: #962B10; font-size: 14px; line-height: 20px; }
-.todo::before { content: "Offen: "; font-weight: 700; }
 
 /* Narrow portrait screenshot (e.g. a sidebar) */
 .figure--sidebar .figure__link { max-width: 260px; }
