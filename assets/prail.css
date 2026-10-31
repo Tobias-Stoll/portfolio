@@ -146,3 +146,4 @@ html:not(.using-kbd) :is(.pcard, .pm__body, .pm__close, .prail__paddle):focus-vi
 
 /* keyboard focus brings a whole row into view; on desktop with the same top space as the case studies */
 @media (min-width: 1024px) { .prail-group { scroll-margin-top: calc(clamp(112px, 14.45svh, 148px) - 72px); } }
+.pcard--accent .pcard__stat-n { color: var(--color-accent-display, #F5532F); }
