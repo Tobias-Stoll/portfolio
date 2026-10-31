@@ -436,19 +436,23 @@
 
     <!-- 3 · The audit -->
     <section class="cs-section" aria-labelledby="audit">
-      <p class="cs-kicker text-label">Decision 3 · The audit</p>
-      <div class="cs-grid">
-        <div class="cs-head">
-          <h2 id="audit" class="text-heading-l">From deleting special components to merging them</h2>
-          <p class="quote text-body-l">"Which of these 60 do we really need?"</p>
-        </div>
-        <div class="cs-body">
+      <div class="prose">
+        <p class="cs-kicker text-label">Decision 3 · The audit</p>
+        <h2 id="audit" class="text-heading-l">From deleting special components to merging them</h2>
+        <p class="quote text-body-l">"Which of these 60 do we really need?"</p>
+      </div>
+
+      <div class="split split--even">
+        <div class="split__text">
           <p class="text-body-m"><b>Tension.</b> Many components had been built for one device or one use case. Deleting them would break real screens. Keeping them all would keep the chaos.</p>
           <p class="text-body-m"><b>Approach.</b> Many components had been created directly in code, often with very similar patterns. The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Similar components became a variant of one component or were replaced by one that fits the pattern. Unused components went. Where a real need was missing, a new component was built.</p>
           <p class="text-body-m"><b>Goal.</b> Work with fewer components and extend them wisely.</p>
-        </div>
+          <div class="cs-result">
+        <p class="cs-result__label text-label">Result</p>
+        <p class="text-body-m">30 standardized core components, all maintained in Figma. Nothing lives only in code anymore.</p>
       </div>
-      <figure class="figure hero-stage merge" data-merge>
+        </div>
+      <figure class="figure hero-stage merge split__visual" data-merge>
       <div class="hero-stage__panel">
           <div class="merge__stage">
             <div class="merge__hud">
@@ -462,10 +466,6 @@
       </div>
       <figcaption class="text-body-s"><b>60 components became 30.</b> Many special components merged into one flexible component for several use cases.</figcaption>
     </figure>
-
-      <div class="cs-result">
-        <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">30 standardized core components, all maintained in Figma. Nothing lives only in code anymore.</p>
       </div>
     </section>
 

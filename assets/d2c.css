@@ -407,3 +407,7 @@
 .dch__var { grid-template-columns: 1.1em minmax(0, 1fr) auto; }
 .dch__snip { display: block; padding: .7em .8em; border-radius: 6px; background: #26262c; color: #f2f2f5; font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .78em; line-height: 1.4; white-space: normal; overflow-wrap: anywhere; }
 .dch__snip .t { color: #ff8a80; } .dch__snip .a { color: #ffd479; } .dch__snip .v { color: #9be59b; }
+/* Audit: text and the small merge sketch side by side (icebreaker, not a hero) */
+.split--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+.split--even .merge .hero-stage__panel { padding: var(--space-24); }
+@media (max-width: 900px) { .split--even { grid-template-columns: minmax(0, 1fr); } }
