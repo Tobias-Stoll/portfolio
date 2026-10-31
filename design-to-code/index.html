@@ -252,7 +252,7 @@
           </ol>
           <p class="text-body-m">At the same time, the company was moving toward AI-supported development. Without a clean base, AI has nothing reliable to work from.</p>
           <p class="text-body-m"><b>Hypothesis.</b> One source of truth raises efficiency, improves coordination and simplifies QA, and it meets the criteria for an AI workflow, because Claude needs a fixed set of rules to work at quality.</p>
-          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet. So far, handover time is the one measurable number.</p>
+          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet, checked by the token QA. So far, handover time is the one measurable number.</p>
         </div>
       </div>
     </section>
@@ -282,14 +282,14 @@
       <div class="split">
         <div class="split__text">
         <p class="text-body-m"><b>Problem.</b> Code was the de facto truth, but only developers could read it. Every handover meant translating between two sources.</p>
-        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude structures the tokens going in and runs a design QA on the components coming out. Then developers review the code in GitHub, adjust and approve it, and send it back to Figma. Every approved push updates the internal Storybook.</p>
+        <p class="text-body-m"><b>Approach.</b> We made Figma the core and let everything else read from it. Claude structures the tokens going in and runs a token QA on the components coming out. Then developers review the code in GitHub, adjust and approve it, and send it back to Figma. Every approved push updates the internal Storybook.</p>
         <div class="cs-result">
           <p class="cs-result__label text-label">Result</p>
           <p class="text-body-m">Design, development, marketing and AI work from one system. Nobody copies a value by hand.</p>
         </div>
         </div>
 
-      <figure class="figure atom split__visual" aria-label="Figma at the core. Around it, the tools that feed it: Claude structures the tokens, the Token Bridge sends them to GitHub, the Figma MCP reads components and Claude runs the design QA. Further out, the teams that use it: developers review and approve the code in GitHub, the internal Storybook updates itself on every approved push, and marketing uses Figma and the Storybook.">
+      <figure class="figure atom split__visual" aria-label="Figma at the core. Around it, the tools that feed it: Claude structures the tokens, the Token Bridge sends them to GitHub, the Figma MCP reads components and Claude runs the token QA. Further out, the teams that use it: developers review and approve the code in GitHub, the internal Storybook updates itself on every approved push, and marketing uses Figma and the Storybook.">
         <div class="atom__scroll">
           <div class="atom__frame">
             <svg class="atom__svg" viewBox="0 0 1000 680" aria-hidden="true">
@@ -314,7 +314,7 @@
             </div>
             <div class="atom__node atom__node--qa" data-node="mcp" style="left: 33.4%; top: 72.94%; --float-d: 6.8s; --float-delay: -0.6s;">
               <b class="hub__title">Figma MCP</b>
-              <span class="hub__desc">Reads components, design QA with Claude</span>
+              <span class="hub__desc">Reads components, token QA with Claude</span>
             </div>
             <div class="atom__node atom__node--dev" data-node="github" style="left: 89.6%; top: 50.00%; --float-d: 7.6s; --float-delay: -2.2s;">
               <b class="hub__title">GitHub</b>
@@ -499,12 +499,12 @@
           <h2 id="proof" class="text-heading-l">How design and code stay in sync</h2>
         </div>
         <div class="cs-body">
-          <p class="text-body-m">This is how tokens and components moved between design and code at the client. Two checks keep it clean: a design QA before any code exists, and a developer review before anything goes back to Figma.</p>
+          <p class="text-body-m">This is how tokens and components moved between design and code at the client. Two checks keep it clean: a token QA before any code exists, and a developer review before anything goes back to Figma.</p>
         </div>
       </div>
 
       <figure class="figure">
-        <div class="diagram" role="img" aria-label="Two tracks from Figma to code and one way back. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, design QA with Claude, Claude builds the React and Tailwind component; token errors are fixed in Figma. Back to design: developers review the code in GitHub, adjust and approve it, the component is updated in Figma, and the approved push updates the Storybook.">
+        <div class="diagram" role="img" aria-label="Two tracks from Figma to code and one way back. Tokens: Claude, Figma Variables, Token Bridge, GitHub Action, tokens.css. Components: Figma component, Figma MCP, token QA with Claude, Claude builds the React and Tailwind component; token errors are fixed in Figma. Back to design: developers review the code in GitHub, adjust and approve it, the component is updated in Figma, and the approved push updates the Storybook.">
           <svg viewBox="0 48 760 460" aria-hidden="true">
             <defs>
               <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker>
@@ -541,12 +541,12 @@
             <rect class="dg-box" x="172" y="198" width="124" height="52" rx="8"/>
             <text class="dg-name" x="234" y="221" text-anchor="middle">Figma MCP</text><text class="dg-sub" x="234" y="238" text-anchor="middle">reads bindings</text>
             <rect class="dg-box dg-box--qa" x="318" y="198" width="124" height="52" rx="8"/>
-            <text class="dg-name" x="380" y="221" text-anchor="middle">Design QA</text><text class="dg-sub" x="380" y="238" text-anchor="middle">checks tokens</text>
+            <text class="dg-name" x="380" y="221" text-anchor="middle">Token QA</text><text class="dg-sub" x="380" y="238" text-anchor="middle">checks tokens</text>
             <rect class="dg-box" x="464" y="198" width="124" height="52" rx="8"/>
             <text class="dg-name" x="526" y="221" text-anchor="middle">Claude</text><text class="dg-sub" x="526" y="238" text-anchor="middle">builds the component</text>
             <rect class="dg-box" x="610" y="198" width="124" height="52" rx="8"/>
             <text class="dg-name" x="672" y="221" text-anchor="middle">React + Tailwind</text><text class="dg-sub" x="672" y="238" text-anchor="middle">uses the tokens</text>
-            <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">Design QA: token errors are fixed in Figma, then read again</text>
+            <text class="dg-note dg-note--qa" x="234" y="298" text-anchor="middle">Token QA: token errors are fixed in Figma, then read again</text>
 
             <text class="dg-lane" x="26" y="334">Code back to design: how it runs at the client</text>
             <path class="dg-line" d="M672 250V342" marker-end="url(#h1)"/>
@@ -565,15 +565,22 @@
             <text class="dg-note" x="536" y="426">approved push</text>
           </svg>
         </div>
-        <figcaption class="text-body-s">The design QA checks the tokens before code exists. The developer review checks the code, and what they approve flows back into Figma.</figcaption>
+        <figcaption class="text-body-s">The token QA checks the tokens before code exists. The developer review checks the code, and what they approve flows back into Figma.</figcaption>
       </figure>
 
       <div class="prose">
-        <h3 class="text-heading-s">Design QA before code</h3>
-        <p class="text-body-m">Every component runs through the same four steps before it becomes code.</p>
+        <h3 class="text-heading-s">Token QA before code</h3>
+        <p class="text-body-m">The token QA checks every component against the rules we defined. These rules are also the requirements each component had to meet:</p>
+        <ul class="text-body-m">
+          <li><b>Semantics everywhere.</b> Every value points to a semantic or component token.</li>
+          <li><b>No hard-coded values</b> and no foreign token structures.</li>
+          <li><b>Spacing by group.</b> Each component group has its allowed paddings, so a button can never get space/inset/lg.</li>
+          <li><b>Primitives are locked for AI.</b> Claude may use them only through semantic tokens, never change or bind them directly.</li>
+        </ul>
+        <p class="text-body-m">The agent reports back what breaks a rule and what needs fixing. Every component runs through the same four steps before it becomes code.</p>
       </div>
 
-      <figure class="figure ft ft--qa" aria-label="The design QA in four steps: read, compare, fix in Figma, read again">
+      <figure class="figure ft ft--qa" aria-label="The token QA in four steps: read, compare, fix in Figma, read again">
         <ol class="ft__steps" role="list">
           <li class="ft-step ft-step--a">
             <span class="ft__dot" aria-hidden="true">1</span>
@@ -589,7 +596,7 @@
             <div class="ft__text">
               <p class="ft__tag text-label">Compare</p>
               <h4 class="ft__title text-heading-s">Flag what does not belong</h4>
-              <p class="ft__body text-body-s">Foreign tokens, mixed-up tokens and hard-coded values are flagged. Example: the first read of the Sign-up Card in the rebuild.</p>
+              <p class="ft__body text-body-s">Foreign tokens, mixed-up tokens, hard-coded values and paddings outside their group are flagged, with a note on what to fix. Example: the first read of the Sign-up Card in the rebuild.</p>
             </div>
             <div class="ft__frame qa-report" role="img" aria-label="QA report: tokens from a foreign library, a card border bound to an input token, input padding bound to a button token, and values typed in by hand.">
               <p class="qa-report__head" aria-hidden="true">Sign-up Card · first read</p>
@@ -623,7 +630,7 @@
       </figure>
       <div class="cs-result ft-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">Design QA is now a fixed step before any code is written. In the rebuild, the first read found four problems, the second came back clean.</p>
+        <p class="text-body-l">Token QA is now a fixed step before any code is written. In the rebuild, the first read found four problems, the second came back clean.</p>
       </div>
 
       <div class="prose">
@@ -665,7 +672,7 @@
         </div>
         <div class="cs-body">
           <ul class="text-body-m">
-            <li><b>Tools.</b> Claude structured the token base and ran the design QA. The Figma MCP read every component and what each layer was bound to.</li>
+            <li><b>Tools.</b> Claude structured the token base and ran the token QA. The Figma MCP read every component and what each layer was bound to.</li>
             <li><b>What it delivered.</b> Token structures to import, QA reports, and component code as a reference.</li>
             <li><b>What I corrected.</b> The first QA read of the Sign-up Card found tokens from a foreign library, mixed-up tokens and typed-in values. I fixed them in Figma, never in code. In the rebuild I translated the React and Tailwind reference into HTML and CSS, e.g. Figma's inside stroke became an inset box shadow, so inputs keep their 36 px height.</li>
             <li><b>Without AI.</b> The audit. The team ranked every component by use and repeated patterns, because that needed people who knew the real screens.</li>
