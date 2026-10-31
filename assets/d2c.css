@@ -405,3 +405,5 @@
 .dch__props dt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dch__props dd { text-align: right; }
 .dch__var { grid-template-columns: 1.1em minmax(0, 1fr) auto; }
+.dch__snip { display: block; padding: .7em .8em; border-radius: 6px; background: #26262c; color: #f2f2f5; font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .78em; line-height: 1.4; white-space: normal; overflow-wrap: anywhere; }
+.dch__snip .t { color: #ff8a80; } .dch__snip .a { color: #ffd479; } .dch__snip .v { color: #9be59b; }
