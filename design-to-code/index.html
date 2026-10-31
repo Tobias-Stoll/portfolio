@@ -252,7 +252,7 @@
           </ol>
           <p class="text-body-m">At the same time, the company was moving toward AI-supported development. Without a clean base, AI has nothing reliable to work from.</p>
           <p class="text-body-m"><b>Hypothesis.</b> One source of truth raises efficiency, improves coordination and simplifies QA, and it meets the criteria for an AI workflow, because Claude needs a fixed set of rules to work at quality.</p>
-          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet, checked by the token QA. So far, handover time is the one measurable number.</p>
+          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet, checked in part by the token QA. So far, handover time is the one measurable number.</p>
         </div>
       </div>
     </section>
@@ -444,7 +444,8 @@
         </div>
         <div class="cs-body">
           <p class="text-body-m"><b>Tension.</b> Many components had been built for one device or one use case. Deleting them would break real screens. Keeping them all would keep the chaos.</p>
-          <p class="text-body-m"><b>Approach.</b> The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Duplicates went, variants were cut, and many special components merged into one flexible component for several use cases. Where a real need was missing, a new component was built.</p>
+          <p class="text-body-m"><b>Approach.</b> Many components had been created directly in code, often with very similar patterns. The team ranked every component by value: how often it was used and how often its pattern repeated. I guided the process and gave feedback. Similar components became a variant of one component or were replaced by one that fits the pattern. Unused components went. Where a real need was missing, a new component was built.</p>
+          <p class="text-body-m"><b>Goal.</b> Work with fewer components and extend them wisely.</p>
         </div>
       </div>
       <figure class="figure hero-stage merge" data-merge>
@@ -570,14 +571,15 @@
 
       <div class="prose">
         <h3 class="text-heading-s">Token QA before code</h3>
-        <p class="text-body-m">The token QA checks every component against the rules we defined. These rules are also the requirements each component had to meet:</p>
+        <p class="text-body-m">Every component had to meet the same requirements, for example:</p>
         <ul class="text-body-m">
           <li><b>Semantics everywhere.</b> Every value points to a semantic or component token.</li>
           <li><b>No hard-coded values</b> and no foreign token structures.</li>
           <li><b>Spacing by group.</b> Each component group has its allowed paddings, so a button can never get space/inset/lg.</li>
           <li><b>Primitives are locked for AI.</b> Claude may use them only through semantic tokens, never change or bind them directly.</li>
+          <li><b>WCAG AA.</b> Every component meets WCAG AA.</li>
         </ul>
-        <p class="text-body-m">The agent reports back what breaks a rule and what needs fixing. Every component runs through the same four steps before it becomes code.</p>
+        <p class="text-body-m">The token QA checks the token rules. The agent reports back what breaks a rule and what needs fixing. Every component runs through the same four steps before it becomes code.</p>
       </div>
 
       <figure class="figure ft ft--qa" aria-label="The token QA in four steps: read, compare, fix in Figma, read again">
