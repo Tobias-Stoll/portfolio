@@ -799,3 +799,5 @@ html.has-lightbox { overflow: hidden; }
 .research-list dt { font-family: var(--font-family-mono); font-weight: var(--font-weight-medium); color: var(--color-fg-muted); font-size: 14px; line-height: 20px; }
 .research-list dd { margin: 0; }
 @media (max-width: 560px) { .research-list > div { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); } }
+/* Diagonal up arrow next to a big impact value, same height as the cap height, success green */
+.impact-grid b .impact-up { display: inline-block; width: .62em; height: .62em; margin-left: .14em; vertical-align: .02em; color: var(--color-feedback-success-fg, #138a4a); }
