@@ -1,7 +1,7 @@
 /**
  * Design to Code case study.
  * 1. The 60 → 30 merge loop: 60 uneven tiles merge pairwise into 30 clean ones, plays while in view, can be paused.
- * 2. The token tiers: swapping the reference color changes every component, system and component tokens stay.
+ * 2. The token tiers: swapping the primitive color changes every component, semantic and component tokens stay.
  */
 (function () {
   /* 1 · Merge loop */

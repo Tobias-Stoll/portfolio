@@ -152,7 +152,7 @@
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <div class="dch" data-dch role="img" aria-label="Animated sketch of the workflow with real tokens from the design system: in Figma the semantic tokens are re-aliased one after another, color/action/primary/bg/default from purple/600 to cyan/600, space/inset/sm from space/8 to space/12, space/inset/md from space/16 to space/24 and radius/control from radius/md to radius/full. The Figma button follows each step. The Token Bridge plugin exports the changes to tokens/semantic.json as one commit, the GitHub Action builds, and Storybook shows the resolved component tokens: --button-primary-bg-default #007B99, --button-padding-y 12px, --button-padding-x 24px, --button-radius 9999px.">
+        <div class="dch" data-dch role="img" aria-label="Animated sketch of the workflow with real tokens from the rebuild: in Figma the semantic tokens are re-aliased one after another, color/action/primary/bg/default from purple/600 to cyan/600, space/inset/sm from space/8 to space/12, space/inset/md from space/16 to space/24 and radius/control from radius/md to radius/full. The Figma button follows each step. The Token Bridge plugin exports the changes to tokens/semantic.json as one commit, the GitHub Action builds, and Storybook shows the resolved component tokens: --button-primary-bg-default #007B99, --button-padding-y 12px, --button-padding-x 24px, --button-radius 9999px.">
           <div class="dch__win dch__fig" aria-hidden="true">
             <div class="dch__head"><i style="--c:#a259ff"></i>Figma · Variables</div>
             <div class="dch__body">
@@ -190,7 +190,7 @@
           </div>
         </div>
       </div>
-      <figcaption class="text-body-s"><b>One source, every surface.</b> Re-alias the semantic tokens in Figma, and the component tokens in code follow. Token names from the real system. A simplified sketch of the workflow, shown with my rebuild.</figcaption>
+      <figcaption class="text-body-s"><b>One source, every surface.</b> Re-alias the semantic tokens in Figma, and the component tokens in code follow. Token names from the rebuild. A simplified sketch of the workflow, shown with my rebuild.</figcaption>
       <div class="dch-ctrl"><button class="btn btn--secondary" type="button" data-dch-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 
@@ -252,7 +252,7 @@
           </ol>
           <p class="text-body-m">At the same time, the company was moving toward AI-supported development. Without a clean base, AI has nothing reliable to work from.</p>
           <p class="text-body-m"><b>Hypothesis.</b> One source of truth raises efficiency, improves coordination and simplifies QA, and it meets the criteria for an AI workflow, because Claude needs a fixed set of rules to work at quality.</p>
-          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet, checked in part by the token QA. So far, handover time is the one measurable number.</p>
+          <p class="text-body-m"><b>How we measured it.</b> The goal was better internal processes, not a customer metric. Instead of KPIs, we set requirements that every component had to meet, checked in part by the token QA. So far, the only figure is handover time, estimated by the team.</p>
         </div>
       </div>
     </section>
@@ -302,7 +302,7 @@
             <div class="atom__core" style="left: 50%; top: 50%;">
               <b class="atom__core-title">Figma</b>
               <span class="atom__core-desc">Single source of truth</span>
-              <span class="atom__core-lock">Reference tokens locked</span>
+              <span class="atom__core-lock">Primitives locked</span>
             </div>
             <div class="atom__node" data-node="claude" style="left: 21.0%; top: 50.00%; --float-d: 6.5s; --float-delay: -1.1s;">
               <b class="hub__title">Claude</b>
@@ -345,8 +345,8 @@
           <p class="quote text-body-l">"How do we change a brand color without breaking anything?"</p>
         </div>
         <div class="cs-body">
-          <p class="text-body-m"><b>Approach.</b> I followed Material Design's token model, a structure everyone on the team understood at once, and built the token base from zero with the UI designer. Reference tokens hold the raw values, system tokens name their purpose, component tokens apply them to one component.</p>
-          <p class="text-body-m"><b>The lock.</b> Reference tokens are hidden from Figma users and not available to AI agents. Everyone works with system and component tokens only, so nobody binds a raw value by accident.</p>
+          <p class="text-body-m"><b>Approach.</b> I followed Material Design's token model, a structure everyone on the team understood at once, and built the token base from zero with the UI designer. Primitive tokens hold the raw values, semantic tokens name their purpose, component tokens apply them to one component.</p>
+          <p class="text-body-m"><b>The lock.</b> Primitive tokens are hidden from Figma users and not available to AI agents. Everyone works with semantic and component tokens only, so nobody binds a raw value by accident.</p>
         </div>
       </div>
 
@@ -403,9 +403,9 @@
                 <span></span>
               </div>
               <div class="map__row map__band" data-step="2">
-                <span class="map__tier"><span class="map__n">140+</span><span class="map__tname">System tokens</span></span>
+                <span class="map__tier"><span class="map__n">140+</span><span class="map__tname">Semantic tokens</span></span>
                 <code class="map__chip" data-route="color" data-sys>color/<wbr>action/<wbr>primary/<wbr>bg/<wbr>default</code>
-                <code class="map__chip" data-route="radius">radius/<wbr>action</code>
+                <code class="map__chip" data-route="radius">radius/<wbr>control</code>
                 <span class="map__chip" data-route="padding"><code>space/<wbr>inset/<wbr>md</code><code>space/<wbr>inset/<wbr>sm</code></span>
                 <span class="map__access">People and AI</span>
               </div>
@@ -415,7 +415,7 @@
                 <span></span>
               </div>
               <div class="map__row map__band map__band--locked" data-step="1">
-                <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Reference tokens</span><span class="map__sub">the foundation</span></span>
+                <span class="map__tier"><span class="map__n">100+</span><span class="map__tname">Primitive tokens</span><span class="map__sub">the foundation</span></span>
                 <span class="map__chip" data-route="color"><code data-ref>purple/<wbr>600</code><span class="map__val"><i class="map__swatch" aria-hidden="true"></i><span data-hex>#5F2CFF</span></span></span>
                 <span class="map__chip" data-route="radius"><code>radius/<wbr>md</code><span class="map__val"><i class="map__corner" aria-hidden="true"></i>8 px</span></span>
                 <span class="map__chip" data-route="padding"><code>space/<wbr>16 · space/<wbr>8</code><span class="map__val"><i class="map__pad" aria-hidden="true"><b></b></i>16 × 8 px</span></span>
@@ -425,12 +425,12 @@
           </div>
           <p class="map__foot">Simplified view: one variant, three properties. The full button uses more tokens for its states, text color and focus ring, 21 in the rebuild alone.</p>
         </div>
-        <figcaption class="text-body-s"><b>Built from the ground up.</b> Reference tokens are the locked foundation, system tokens give each value a role, component tokens apply it to the button. Hover a token to follow its line, or switch the variant: only the color changes. The arrows show what each line defines on the button.</figcaption>
+        <figcaption class="text-body-s"><b>Built from the ground up.</b> Primitive tokens are the locked foundation, semantic tokens give each value a role, component tokens apply it to the button. Hover a token to follow its line, or switch the variant: only the color changes. The arrows show what each line defines on the button.</figcaption>
       </figure>
 
       <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">440+ tokens: 100+ reference, 140+ system and about 200 component tokens. A brand color or a whole theme now changes in one place.</p>
+        <p class="text-body-l">440+ tokens: 100+ primitive, 140+ semantic and about 200 component tokens. A brand color or a whole theme now changes in one place.</p>
       </div>
     </section>
 
@@ -525,7 +525,7 @@
             </div>
           </div>
         </div>
-        <figcaption class="text-body-s"><b>From Claude to GitHub in three steps.</b> A simplified sketch; the plugin labels are German, as in the real plugin.</figcaption>
+        <figcaption class="text-body-s"><b>From Claude to GitHub in three steps.</b> A simplified sketch from the rebuild; the plugin labels are German, as in the real plugin.</figcaption>
         <div class="dch-ctrl"><button class="btn btn--secondary" type="button" data-tbh-toggle aria-pressed="false"><span>Pause</span></button></div>
       </figure>
       </div>
@@ -654,7 +654,7 @@
             <div class="ft__text">
               <p class="ft__tag text-label">Fix in Figma</p>
               <h4 class="ft__title text-heading-s">Correct it at the source</h4>
-              <p class="ft__body text-body-s">Errors are fixed in Figma, never patched in code. Every value points to a system token again.</p>
+              <p class="ft__body text-body-s">Errors are fixed in Figma, never patched in code. Every value points to a semantic token again.</p>
             </div>
             <a class="figure__link ft__frame" href="images/semantic-aliases.webp"><img src="images/semantic-aliases.webp" width="1762" height="1458" loading="lazy" alt="Figma Variables panel, collection Semantic: color/action/primary/bg default, hover, pressed and disabled, each shown as an alias pill of a purple or neutral primitive."></a>
           </li>
