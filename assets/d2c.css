@@ -342,7 +342,7 @@
   position: relative; width: min(980px, 100%); aspect-ratio: 16 / 9; display: grid; grid-template-columns: 1.15fr .25fr 1fr .25fr 1fr; align-items: center;
   font-family: var(--font-family-body, Roboto, system-ui, sans-serif); font-size: clamp(8px, 1.05vw, 12.5px); line-height: 1.35; color: var(--dch-ink); text-align: left; }
 .dch * { box-sizing: border-box; }
-.dch.is-new { --dch-brand: #0e8a7e; --dch-brand-soft: #dff4f1; }
+.dch { --f-bg: #5f2cff; --f-py: .57em; --f-px: 1.14em; --f-r: .43em; --s-bg: #5f2cff; --s-py: .57em; --s-px: 1.14em; --s-r: .43em; }
 .dch__win { background: #fff; border: 1px solid var(--dch-line); border-radius: 10px; box-shadow: 0 18px 40px -26px rgba(0,0,0,.35); overflow: hidden; align-self: center; }
 .dch__head { display: flex; align-items: center; gap: .5em; padding: .55em .8em; border-bottom: 1px solid var(--dch-line); font-weight: 700; font-size: .95em; background: #fafafb; }
 .dch__head i { width: .9em; height: .9em; border-radius: 3px; background: var(--c); flex: none; }
@@ -350,15 +350,26 @@
 .dch__label { color: var(--dch-muted); font-size: .82em; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
 .dch__var { display: grid; grid-template-columns: 1.1em minmax(0, 1fr) auto; align-items: center; gap: .5em; padding: .35em .45em; border-radius: 5px; font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .85em; }
 .dch__var.is-edit { background: var(--dch-brand-soft); outline: 1.5px solid var(--dch-brand); }
-.dch__sw { width: 1.1em; height: 1.1em; border-radius: 3px; background: var(--dch-brand); transition: background .6s; }
+.dch__sw { width: 1.1em; height: 1.1em; border-radius: 3px; background: var(--f-bg); transition: background .6s; }
+.dch__ic { width: 1.1em; height: 1.1em; display: grid; place-items: center; color: var(--dch-muted); }
+.dch__ic svg { width: 100%; height: 100%; }
+.dch__var .dch__hex { transition: color .3s; }
+.dch__var.is-edit .dch__hex { color: var(--dch-ink); font-weight: 700; }
 .dch__var .dch__hex { color: var(--dch-muted); }
 .dch__var span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.dch__btn { justify-self: start; padding: .55em 1.1em; border-radius: 6px; background: var(--dch-brand); color: #fff; font-weight: 700; transition: background .6s; }
+.dch__btn { justify-self: start; color: #fff; font-weight: 700; line-height: 1.2; transition: background .6s, padding .6s, border-radius .6s; }
+.dch__fig .dch__btn { background: var(--f-bg); padding: var(--f-py) var(--f-px); border-radius: var(--f-r); }
+.dch__sb .dch__btn { background: var(--s-bg); padding: var(--s-py) var(--s-px); border-radius: var(--s-r); }
+.dch__props { display: grid; grid-template-columns: auto 1fr; gap: .2em .8em; font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .8em; }
+.dch__props dt { color: var(--dch-muted); }
+.dch__props dd { margin: 0; color: var(--dch-ink); transition: color .4s; }
+.dch.is-synced .dch__props dd { color: var(--dch-ok); }
+.dch__diff div { line-height: 1.3; }
 .dch__plug { justify-self: stretch; text-align: center; padding: .5em; border-radius: 6px; border: 1px solid var(--dch-line); font-weight: 700; transition: transform .2s, background .2s; }
 .dch.is-pressing .dch__plug { transform: scale(.95); background: #f3f3f6; }
 .dch__arrow { position: relative; height: 2px; margin: 0 .4em; background: var(--dch-wire); overflow: visible; }
 .dch__arrow::after { content: ""; position: absolute; right: -2px; top: -4px; border: 5px solid transparent; border-left-color: var(--dch-wire); }
-.dch__dot { position: absolute; top: -4px; left: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--dch-brand); opacity: 0; }
+.dch__dot { position: absolute; top: -4px; left: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--f-bg); opacity: 0; }
 .dch__arrow.is-run .dch__dot { animation: dch-run .9s ease-in-out forwards; }
 @keyframes dch-run { 0% { left: 0; opacity: 1; } 100% { left: calc(100% - 10px); opacity: 1; } }
 .dch__commit { display: grid; gap: .35em; opacity: .35; transition: opacity .4s; }
@@ -379,9 +390,6 @@
 .dch__code { font-family: var(--font-family-mono, ui-monospace, monospace); font-size: .8em; color: var(--dch-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dch__upd { font-size: .82em; color: var(--dch-ok); opacity: 0; transition: opacity .4s; }
 .dch.is-synced .dch__upd { opacity: 1; }
-.dch__sb .dch__btn { transition: background .6s .1s; }
-.dch:not(.is-synced) .dch__sb .dch__btn { background: #5f2cff; }
-.dch:not(.is-committed) .dch__fig .dch__btn { }
 .dch.is-paused .dch__check b { animation-play-state: paused; }
 @media (max-width: 720px) {
   .dch { aspect-ratio: auto; grid-template-columns: minmax(0, 1fr); gap: .8em; font-size: 11px; }
