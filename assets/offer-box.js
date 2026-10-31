@@ -100,3 +100,15 @@
     }, { threshold: .4 }).observe(ob);
   } else play();
 })();
+
+/* Keep the playground stage at the tallest height it has reached, so toggling does not shift the page */
+(function () {
+  var st = document.querySelector('#playground .pgx-stage');
+  if (!st || !('ResizeObserver' in window)) return;
+  var max = 0, w = 0;
+  new ResizeObserver(function () {
+    if (st.offsetWidth !== w) { w = st.offsetWidth; max = 0; st.style.minHeight = ''; }
+    var h = st.scrollHeight;
+    if (h > max) { max = h; st.style.minHeight = h + 'px'; }
+  }).observe(st.firstElementChild || st);
+})();

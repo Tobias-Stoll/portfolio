@@ -450,3 +450,7 @@
 }
 @media (prefers-reduced-motion: reduce) { .ivh *, .ivh__skel, .ivh__line { animation: none !important; transition: none !important; } .plh-ctrl { display: none; } }
 .plh-ctrl { display: flex; justify-content: flex-end; margin-top: var(--space-12); }
+
+/* Playground: fixed height so switching layouts does not push the page (31.10.).
+   CSS gives a safe minimum; offer-box.js keeps the tallest height seen so far. */
+@media (min-width: 900px) { .pgx-stage.pgx-shell__canvas { min-height: 600px; } }
