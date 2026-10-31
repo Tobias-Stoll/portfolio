@@ -42,7 +42,7 @@ PAGES = [
    'Tobias Stoll is a product designer (UX/UI) in Berlin. UX design, UI design and design systems for web, iOS and Android, from research to interactive prototypes in code. Open to freelance projects and selected roles.',
    'home', 'home', True),
   ('invia/', 'Three Moments That Decide a Flight Booking · UX Case Study by Tobias Stoll',
-   'UX/UI case study for Invia Flights (fluege.de): three A/B tested booking features that raised conversion by a high single-digit percentage. Includes an interactive playground of the Offer Box.',
+   'UX/UI case study for Invia Flights (fluege.de): three A/B tested booking features that raised conversion across the funnel. Includes an interactive playground of the Offer Box.',
    'invia', 'case', True),
   ('design-to-code/', 'Building a Design System as the Single Source of Truth · Design System Case Study by Tobias Stoll',
    'Design system case study: 60 legacy components merged into 30, 440+ design tokens in three tiers and a design to code workflow with Figma, GitHub and AI. By Tobias Stoll, UX/UI designer in Berlin.',
@@ -132,7 +132,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 - Interactive prototypes in code, AI-assisted (Claude Code, Figma MCP)
 
 ## Case studies
-- [Three moments that decide a flight booking]({BASE}/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up by a high single-digit percentage, about 1 in 3 customers chose the Flex Ticket.
+- [Three moments that decide a flight booking]({BASE}/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up across the funnel, about 1 in 3 customers chose the Flex Ticket.
 - [Building a design system as the single source of truth]({BASE}/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
 - [An esports platform people can follow]({BASE}/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. Research-led information architecture around the match, a global sidebar, Discord notifications and a help center; 30 % more teams and players finished the season.
 
