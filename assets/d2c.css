@@ -460,3 +460,13 @@
 @media (prefers-reduced-motion: reduce) { .tbh *, .tbh__scene { transition: none !important; } }
 .tbh__log li { margin: 0; }
 @media (max-width: 900px) { .tbh__screen { aspect-ratio: 4 / 3.9; } }
+/* Decision 4: shorter sketch, text column stretched so the result sits at the visual's bottom */
+.split--fit { align-items: start; }
+.split--fit .split__text > .cs-result { margin-top: var(--space-24); }
+.split--fit .hero-stage__panel { padding: var(--space-20, 20px); }
+.split--fit .tbh { gap: .7em; }
+.split--fit .tbh__screen { aspect-ratio: 16 / 10; }
+.split--fit .tbh__body { gap: .5em; padding: .8em; }
+.split--fit .figure { display: flex; flex-direction: column; }
+.split--fit .dch-ctrl { margin-top: var(--space-8); }
+@media (max-width: 900px) { .split--fit .tbh__screen { aspect-ratio: 4 / 3.9; } }
