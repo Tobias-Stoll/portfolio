@@ -152,28 +152,51 @@
 
     <figure class="figure hero-stage">
       <div class="hero-stage__panel">
-        <div class="ivh" data-ivh role="img" aria-label="Animated sketch of the booking funnel start: a flight search from Berlin to Ho Chi Minh City fills in, the search button is pressed, results load, and the redesigned Offer Box appears with normal price and member price as two equal choices.">
-          <div class="ivh__top" aria-hidden="true"><span class="ivh__logo">fluege<span>.de</span></span><span class="ivh__nav"><span>Flüge</span><span>Hotels</span><span>Mietwagen</span></span></div>
-          <div class="ivh__stage" aria-hidden="true">
-            <div class="ivh__search">
-              <span class="ivh__field"><small>Von</small><b></b></span>
-              <span class="ivh__field"><small>Nach</small><b></b></span>
-              <span class="ivh__field"><small>Hinflug</small><b></b></span>
-              <span class="ivh__field"><small>Rückflug</small><b></b></span>
-              <span class="ivh__go">Flüge suchen</span>
+        <div class="ivh" data-ivh role="img" aria-label="Animated sketch of the fluege.de booking funnel start: on the start page a flight search from Berlin to Ho Chi Minh City fills in with a suggestion list, the search button is pressed, the results page loads filters and placeholders, and the redesigned Offer Box appears with normal price and member price as two equal choices.">
+          <div class="ivh__scene ivh__scene--start is-on" aria-hidden="true">
+            <div class="ivh__bar"><span class="ivh__logo">fluege<b>.</b>de</span><span class="ivh__links"><span>Pauschalurlaub</span><span>Hotel</span><span>Mietwagen</span></span><span class="ivh__login">Anmelden</span></div>
+            <p class="ivh__h">Wohin geht Ihre nächste Reise?</p>
+            <p class="ivh__sub">Hier finden Sie den besten Flug</p>
+            <div class="ivh__band">
+              <div class="ivh__tabs"><span>Hin &amp; Zurück</span><span>Nur Hinflug</span><span>Gabelflug</span></div>
+              <div class="ivh__search">
+                  <span class="ivh__field" data-k="0"><small>Von?</small><b data-ph="Abflughafen"></b></span>
+                  <span class="ivh__field" data-k="1"><small>Nach?</small><b data-ph="Zielflughafen"></b></span>
+                  <span class="ivh__field" data-k="2"><small>Reisezeitraum</small><b>02.11.26 – 05.11.26</b></span>
+                  <span class="ivh__field" data-k="3"><small>Reisende, Klasse</small><b>1 Reisender, Economy</b></span>
+                  <span class="ivh__go">Flüge finden</span>
+              </div>
+              <div class="ivh__suggest"><ul></ul></div>
             </div>
-            <p class="ivh__hero-text">Wohin soll es gehen?</p>
+            <p class="ivh__plus"><span>PLUS</span>Mitglied werden und günstiger fliegen</p>
+            <div class="ivh__trust"><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="ivh__scene ivh__scene--results" aria-hidden="true">
+            <div class="ivh__rtop"><span class="ivh__logo">fluege<b>.</b>de</span></div>
+            <div class="ivh__rsearch">
+                  <span class="ivh__field"><small>Von?</small><b>Berlin – Flughafen BER</b></span>
+                  <span class="ivh__field"><small>Nach?</small><b>Ho-Chi-Minh-Stadt (SGN)</b></span>
+                  <span class="ivh__field"><small>Reisezeitraum</small><b>02.11.26 – 05.11.26</b></span>
+                  <span class="ivh__field"><small>Reisende, Klasse</small><b>1 Reisender, Economy</b></span>
+                  <span class="ivh__go">Suche anpassen</span>
+            </div>
             <div class="ivh__progress"><span></span></div>
-            <div class="ivh__results">
-              <div class="ivh__meta"><span>248 Flüge gefunden</span><span class="ivh__chips"><span>Günstigste</span><span>Schnellste</span><span>Empfehlung</span></span></div>
-              <div class="ivh__skel ivh__skel--a"></div>
-              <div class="ivh__offer"><img src="images/offerbox-redesign.png" width="830" height="424" alt=""></div>
-              <div class="ivh__skel"></div>
+            <div class="ivh__rbody">
+              <div class="ivh__filter">
+                <div class="ivh__fskel"><p>Filter</p><div class="ivh__line"></div><div class="ivh__line"></div><div class="ivh__line"></div><div class="ivh__line"></div><div class="ivh__line"></div><div class="ivh__line"></div></div>
+                <div class="ivh__fopts"><p>Sortierung</p><span class="ivh__opt is-on"><i></i>Günstigster Preis</span><span class="ivh__opt"><i></i>Kürzeste Reise</span><span class="ivh__opt"><i></i>Bestes Angebot</span><p style="margin-top:1em">Stopps</p><span class="ivh__opt"><i></i>max. 1 Stopp</span><span class="ivh__opt is-on"><i></i>alle Stopps</span></div>
+              </div>
+              <div class="ivh__main">
+                <p class="ivh__note">Wir suchen nach den besten Angeboten: <b>Flugangebote</b> sortiert nach dem günstigsten Preis.</p>
+                <div class="ivh__skel ivh__skel--a"></div>
+                <div class="ivh__offer"><img src="images/offerbox-redesign.png" width="830" height="424" alt=""></div>
+                <div class="ivh__skel"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <figcaption class="text-body-s"><b>From search to the Offer Box.</b> A simplified modern sketch of the booking funnel start in the style of the shipped product. The Offer Box is the live design.</figcaption>
+      <figcaption class="text-body-s"><b>From search to the Offer Box.</b> A simplified modern sketch of the UX flow in the style of the shipped product. The Offer Box shows my redesign.</figcaption>
       <div class="plh-ctrl"><button class="btn btn--secondary" type="button" data-ivh-toggle aria-pressed="false"><span>Pause</span></button></div>
     </figure>
 
