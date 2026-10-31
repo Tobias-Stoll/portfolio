@@ -471,24 +471,63 @@
 
     <!-- 4 · Tooling -->
     <section class="cs-section" aria-labelledby="bridge">
-      <p class="cs-kicker text-label">Decision 4 · Tooling</p>
-      <div class="cs-grid">
-        <div class="cs-head">
-          <h2 id="bridge" class="text-heading-l">From a Figma Enterprise upgrade to my own plugin</h2>
-          <p class="quote text-body-l">"Do we need Figma Enterprise for this?"</p>
-        </div>
-        <div class="cs-body">
+      <div class="prose">
+        <p class="cs-kicker text-label">Decision 4 · Tooling</p>
+        <h2 id="bridge" class="text-heading-l">From a Figma Enterprise upgrade to my own plugin</h2>
+        <p class="quote text-body-l">"Do we need Figma Enterprise for this?"</p>
+      </div>
+
+      <div class="split split--even">
+        <div class="split__text">
           <p class="text-body-m"><b>Tension.</b> Figma's Variables API needs an Enterprise plan, and the client considered upgrading. I advised against it: most Enterprise features didn't fit their use case.</p>
           <p class="text-body-m"><b>Approach.</b> I built a Figma plugin instead. It imports token structures defined with Claude and exports all tokens to GitHub in one commit. Missing references are reported on import, which doubles as a naming check.</p>
-        </div>
-      </div>
-      <figure class="figure">
-        <a class="figure__link" href="images/token-bridge.webp" title="Open full size"><img src="images/token-bridge.webp" width="1898" height="1274" loading="lazy" alt="Token Bridge plugin windows. Import log: Semantic 0 new, 53 updated, 0 missing; Component 0 new, 35 updated, 0 missing; Text Styles 0 new, 9 updated. Export log: token counts and no changes since the last export."></a>
-        <figcaption class="text-body-s"><b>Import: 0 new, 0 missing,</b> so names match across design and code. <b>Export:</b> every collection in one commit. Shown in my rebuild; the plugin interface is in German.</figcaption>
-      </figure>
-      <div class="cs-result">
+          <div class="cs-result">
         <p class="cs-result__label text-label">Result</p>
-        <p class="text-body-l">No Enterprise license needed. Tokens reach the repository in one click.</p>
+        <p class="text-body-m">No Enterprise license needed. Tokens reach the repository in one click.</p>
+      </div>
+        </div>
+      <figure class="figure hero-stage split__visual">
+        <div class="hero-stage__panel">
+          <div class="tbh" data-tbh role="img" aria-label="Animated sketch of the Token Bridge flow in four steps. Claude: asked to structure the button tokens by the naming rules, Claude returns the component tokens as JSON. Import: the JSON is pasted into the Token Bridge plugin and imported, the log shows Semantic 0 new, 53 updated, 0 missing, Component 0 new, 35 updated, 0 missing, Text Styles 9 updated. Export: with the commit message tokens: sync from Figma, all tokens go to GitHub in one commit, Primitives 114, Semantic 54, Component 35, Text Styles 9. Shared: Figma, GitHub, Storybook and Claude all use the same name, button/padding-x pointing to space/inset/md.">
+            <ol class="tbh__steps" aria-hidden="true"><li>Claude</li><li>Import</li><li>Export</li><li>Shared</li></ol>
+            <div class="tbh__screen" aria-hidden="true">
+              <div class="tbh__scene" data-scene>
+                <div class="tbh__head"><i style="--c:#d97757"></i>Claude</div>
+                <div class="tbh__body">
+                  <p class="tbh__bubble tbh__bubble--me" data-at="200">Structure the button tokens. Semantic references only, follow our naming rules.</p>
+                  <p class="tbh__bubble" data-at="900">Here is the component layer:</p>
+                  <pre class="tbh__json"><span data-at="1300">"button": {</span><span data-at="1550">  "padding-x": { "$value": "{space.inset.md}" },</span><span data-at="1800">  "padding-y": { "$value": "{space.inset.sm}" },</span><span data-at="2050">  "radius": { "$value": "{radius.control}" }</span><span data-at="2300">}</span></pre>
+                </div>
+              </div>
+              <div class="tbh__scene" data-scene>
+                <div class="tbh__head"><i style="--c:#1e1e1e"></i>Token Bridge</div>
+                <div class="tbh__body">
+                  <div class="tbh__tabs"><span class="is-active">Import</span><span>Export → GitHub</span></div>
+                  <pre class="tbh__json tbh__json--field"><span data-at="300">"button": {</span><span data-at="420">  "padding-x": { "$value": "{space.inset.md}" },</span><span data-at="540">  "padding-y": { "$value": "{space.inset.sm}" },</span><span data-at="660">  "radius": { "$value": "{radius.control}" }</span><span data-at="780">}</span></pre>
+                  <span class="tbh__cta" data-press="1300">Tokens importieren</span>
+                  <ul class="tbh__log"><li data-at="1800">Semantic: 0 neu, 53 aktualisiert, 0 fehlend</li><li data-at="2050">Component: 0 neu, 35 aktualisiert, 0 fehlend</li><li data-at="2300">Text Styles: 0 neu, 9 aktualisiert</li></ul>
+                </div>
+              </div>
+              <div class="tbh__scene" data-scene>
+                <div class="tbh__head"><i style="--c:#1e1e1e"></i>Token Bridge</div>
+                <div class="tbh__body">
+                  <div class="tbh__tabs"><span>Import</span><span class="is-active">Export → GitHub</span></div>
+                  <span class="tbh__input">tokens: sync from Figma</span>
+                  <span class="tbh__cta" data-press="700">Nach GitHub exportieren</span>
+                  <ul class="tbh__log"><li data-at="1100">Primitives: 114 Tokens</li><li data-at="1250">Semantic: 54 Tokens</li><li data-at="1400">Component: 35 Tokens</li><li data-at="1550">Text Styles: 9 Typography Tokens</li></ul>
+                  <span class="tbh__gh" data-at="2100"><b>✓</b> 1 commit pushed to GitHub</span>
+                </div>
+              </div>
+              <div class="tbh__scene tbh__scene--shared" data-scene>
+                <p class="tbh__title" data-at="100">One naming for everyone</p>
+                <div class="tbh__tiles"><div class="tbh__tile"><span class="tbh__tname"><i style="--c:#a259ff"></i>Figma<b>✓</b></span><code>button/padding-x</code><code class="tbh__alias">→ space/inset/md</code></div><div class="tbh__tile"><span class="tbh__tname"><i style="--c:#24292f"></i>GitHub<b>✓</b></span><code>button/padding-x</code><code class="tbh__alias">→ space/inset/md</code></div><div class="tbh__tile"><span class="tbh__tname"><i style="--c:#ff4785"></i>Storybook<b>✓</b></span><code>button/padding-x</code><code class="tbh__alias">→ space/inset/md</code></div><div class="tbh__tile"><span class="tbh__tname"><i style="--c:#d97757"></i>Claude<b>✓</b></span><code>button/padding-x</code><code class="tbh__alias">→ space/inset/md</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="text-body-s"><b>From Claude to GitHub in three steps.</b> Claude structures, the plugin imports and exports, and everyone works with the same names. A simplified sketch; the plugin labels are German, as in the real plugin.</figcaption>
+        <div class="dch-ctrl"><button class="btn btn--secondary" type="button" data-tbh-toggle aria-pressed="false"><span>Pause</span></button></div>
+      </figure>
       </div>
     </section>
 
@@ -735,6 +774,7 @@
 <script src="../assets/lightbox.js?v=2.0.4"></script>
 <script src="../assets/d2c.js?v=2.0.4"></script>
 <script src="../assets/d2c-hero.js?v=2.0.4" defer></script>
+<script src="../assets/d2c-tb.js?v=2.0.4" defer></script>
 <script data-goatcounter="https://tobiasstoll.goatcounter.com/count" async src="../assets/count.js?v=2.0.4"></script>
 <script async src="../assets/track.js?v=2.0.4"></script>
 </body>
