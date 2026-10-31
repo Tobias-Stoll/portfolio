@@ -13,7 +13,7 @@ Contact: tobiasstoll@pm.me · LinkedIn: https://www.linkedin.com/in/tobiasstoll-
 - Interactive prototypes in code, AI-assisted (Claude Code, Figma MCP)
 
 ## Case studies
-- [Three moments that decide a flight booking](https://concept2design.de/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up across the funnel, about 1 in 3 customers chose the Flex Ticket.
+- [Three moments that decide a flight booking](https://concept2design.de/invia/): Invia Flights (fluege.de). Three A/B tested booking features (Offer Box, Flex Ticket, Price Guarantee); conversion up across the funnel, all three still live.
 - [Building a design system as the single source of truth](https://concept2design.de/design-to-code/): design system for a company building safety-critical software. 60 legacy components merged into 30 core components, 440+ tokens in three tiers, 40 to 50 % less handover time (team estimate).
 - [An esports platform people can follow](https://concept2design.de/prime-league/): Prime League, one of the largest League of Legends competitions in the DACH region. Research-led information architecture around the match, a global sidebar, Discord notifications and a help center; 30 % more teams and players finished the season.
 
